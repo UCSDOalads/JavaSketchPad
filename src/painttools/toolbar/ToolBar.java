@@ -20,6 +20,7 @@ import painttools.tools.SelectTool;
 public class ToolBar extends JPanel {
 
 	public ArrayList<ToolBarListener> listeners;
+	private SelectTool selectTool;
 
 	/**
 	 * Creates a default toolbar and add necessary tools
@@ -30,8 +31,9 @@ public class ToolBar extends JPanel {
 		//sets the box layout
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
+		selectTool = new SelectTool();
 		addTool(new DotTool());
-		addTool(new SelectTool());
+		addTool(selectTool);
 	}
 
 	/**
@@ -69,5 +71,11 @@ public class ToolBar extends JPanel {
 			toolBarListener.toolSelected(tool);
 		}
 	}
+
+	public SelectTool getSelectTool() {
+		return selectTool;
+	}
+
+	
 
 }

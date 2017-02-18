@@ -4,6 +4,8 @@ import java.awt.Color;
 
 public class Defaults {
 	
+	private static final Color SELECT_TOOL_ICON_COLOR = Color.BLACK;
+
 	public static Defaults defaults = new Defaults();
 	
 	private static Color SIMPLE_POINT_COLOR = new Color(200, 41, 47); 
@@ -28,5 +30,9 @@ public class Defaults {
 	}
 	public Color defaultSimplePointSelectedColor(){
 		return SIMPLE_POINT_SELECTED_COLOR;
+	}
+
+	public Color defaultColorForSelectToolIcon() {
+		return SELECT_TOOL_ICON_COLOR;
 	}
 }

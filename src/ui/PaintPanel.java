@@ -1,4 +1,5 @@
 package ui;
+
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import paintcomponents.PaintComponent;
 import painttools.toolbar.ToolBarListener;
 import painttools.tools.PaintTool;
+import painttools.tools.SelectTool;
 
 public class PaintPanel extends JPanel implements ToolBarListener {
 
@@ -28,6 +30,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	private PaintTool tool;
 	private PaintComponent tempComponent;
 
+	private SelectTool selectTool;
+
 	/**
 	 * @return the tempComponent
 	 */
@@ -36,14 +40,21 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	/**
-	 * @param tempComponent the tempComponent to set
+	 * Sets a temporary component. Temporary component is the compoennt this
+	 * panel paints when tools are selected. When tools are not in operation,
+	 * i.e. when user hits esc key, the temporary component is discarded The
+	 * Point tool sets the temp component to a moving point on screen by calling
+	 * this method in the tool's <code>start</code> method.
+	 * 
+	 * @param tempComponent
+	 *            the tempComponent to set
 	 */
 	public void setTempComponent(PaintComponent tempComponent) {
 		this.tempComponent = tempComponent;
 	}
 
 	private void setTool(PaintTool tool) {
-		if(this.state == State.TOOLS){
+		if (this.state == State.TOOLS) {
 			resetTool();
 		}
 		this.tool = tool;
@@ -85,9 +96,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 			public void mouseEntered(MouseEvent e) {
 				requestFocusInWindow();
 
-				
 			}
-
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -107,31 +116,30 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 			}
 		});
-		
+
 		this.addKeyListener(new KeyListener() {
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				
+
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				switch (e.getKeyCode()) {
-					case KeyEvent.VK_ESCAPE:
-						resetTool();
-						break;
+				case KeyEvent.VK_ESCAPE:
+					resetTool();
+					break;
 
-					default:
-						break;
+				default:
+					break;
 				}
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}
@@ -143,7 +151,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 			paintComponent.paint(g);
 		}
 		if (state == State.TOOLS) {
-			if(tempComponent != null)
+			if (tempComponent != null)
 				tempComponent.paint(g);
 		}
 	}
@@ -159,27 +167,48 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 				new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB),
 				new Point(), null));
 	}
+
 	public void showCursor() {
 		setCursor(Cursor.getDefaultCursor());
 	}
 
 	public void addPaintComponent(PaintComponent comp) {
 		components.add(comp);
-		
+
 	}
 
 	/**
 	 * Returns the topmost component under a given point
+	 * 
 	 * @param x
 	 * @param y
 	 * @return null if there is no component under current point
 	 */
 	public PaintComponent componentUnderPoint(int x, int y) {
 		for (PaintComponent paintComponent : components) {
-			if(paintComponent.getBounds().contains(x, y)){
+			if (paintComponent.getBounds().contains(x, y)) {
 				return paintComponent;
 			}
 		}
 		return null;
 	}
+
+	/**
+	 * Gets the select tool for this panel
+	 * 
+	 * @return
+	 */
+	public SelectTool getSelectTool() {
+		return selectTool;
+	}
+
+	/**
+	 * Set the select tool for this panel
+	 * 
+	 * @param selectTool
+	 */
+	public void setSelectTool(SelectTool selectTool) {
+		this.selectTool = selectTool;
+	}
+
 }
