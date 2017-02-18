@@ -48,7 +48,6 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		}
 		this.tool = tool;
 		this.tool.start(this);
-		hideCursor();
 		this.state = State.TOOLS;
 		this.addMouseListener(this.tool);
 		this.addMouseMotionListener(this.tool);
@@ -144,7 +143,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 			paintComponent.paint(g);
 		}
 		if (state == State.TOOLS) {
-			tempComponent.paint(g);
+			if(tempComponent != null)
+				tempComponent.paint(g);
 		}
 	}
 
@@ -166,5 +166,20 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	public void addPaintComponent(PaintComponent comp) {
 		components.add(comp);
 		
+	}
+
+	/**
+	 * Returns the topmost component under a given point
+	 * @param x
+	 * @param y
+	 * @return null if there is no component under current point
+	 */
+	public PaintComponent componentUnderPoint(int x, int y) {
+		for (PaintComponent paintComponent : components) {
+			if(paintComponent.getBounds().contains(x, y)){
+				return paintComponent;
+			}
+		}
+		return null;
 	}
 }

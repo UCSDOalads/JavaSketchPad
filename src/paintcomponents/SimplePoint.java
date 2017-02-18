@@ -8,7 +8,6 @@ import settings.Defaults;
 public class SimplePoint extends PaintComponent {
 
 
-	private static final int DEFUALT_RADIUS = 10;
 	private int radius;
 	private Color color;
 	private Color selectedColor;

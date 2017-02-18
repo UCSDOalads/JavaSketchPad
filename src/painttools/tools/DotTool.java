@@ -19,17 +19,14 @@ public class DotTool extends PaintTool<SimplePoint> {
 	public void start(PaintPanel panel) {
 		this.panel = panel;
 		
+		panel.hideCursor();
 		p = new SimplePoint(0, 0);
 		panel.setTempComponent(p);
 		
 	}
 
 
-	@Override
-	public SimplePoint paintedComponent() {
-		return p;
-	}
-
+	
 	@Override
 	public JButton getButton() {
 		JButton button = super.getButton();

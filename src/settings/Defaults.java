@@ -6,6 +6,10 @@ public class Defaults {
 	
 	public static Defaults defaults = new Defaults();
 	
+	private static Color SIMPLE_POINT_COLOR = new Color(200, 41, 47); 
+	private static Color SIMPLE_POINT_SELECTED_COLOR = new Color(0, 0, 132);
+	private static int SIMPLE_POINT_DEFAULT_SIZE = 10;
+	
 	private Defaults(){
 		
 	}
@@ -16,13 +20,13 @@ public class Defaults {
 	}
 	
 	public int defaultSimplePointSize(){
-		return 10;
+		return SIMPLE_POINT_DEFAULT_SIZE;
 	}
 	
 	public Color defaultSimplePointColor(){
-		return new Color(200, 41, 47); 
+		return SIMPLE_POINT_COLOR;
 	}
 	public Color defaultSimplePointSelectedColor(){
-		return new Color(136, 0, 32); 
+		return SIMPLE_POINT_SELECTED_COLOR;
 	}
 }

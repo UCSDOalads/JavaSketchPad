@@ -64,6 +64,14 @@ public abstract class PaintComponent {
 		selected = false;
 	}
 	
+	public void toggleSelect() {
+		selected = !selected;
+	}
+	
+	public boolean isSelected(){
+		return selected;
+	}
 	public abstract Rectangle getBounds();
+
 
 }
