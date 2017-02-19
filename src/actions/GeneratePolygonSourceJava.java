@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import paintcomponents.PaintComponent;
+import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
 public class GeneratePolygonSourceJava extends PaintAction {
@@ -27,7 +28,8 @@ public class GeneratePolygonSourceJava extends PaintAction {
 	@Override
 	public void performAction() {
 		try{
-			String str = generatePolygon(panel.getSelectTool().getSelectedComponents());
+			@SuppressWarnings("unchecked")
+			String str = generatePolygon((ArrayList)(panel.getSelectTool().getSelectedComponents()));
 
 
 			JOptionPane.showMessageDialog(panel, "Already Saved To Downloads: \n\n" + str);
@@ -39,7 +41,7 @@ public class GeneratePolygonSourceJava extends PaintAction {
 	}
 
 	private String generatePolygon(
-			ArrayList<PaintComponent> selectedComponents) {
+			ArrayList<SimplePoint> selectedComponents) {
 		
 		
 		//get width and height for target
@@ -55,7 +57,7 @@ public class GeneratePolygonSourceJava extends PaintAction {
 		
 		//get a bounds for current polygon
 		Polygon poly = new Polygon();
-		for (PaintComponent paintComponent : selectedComponents) {
+		for (SimplePoint paintComponent : selectedComponents) {
 			poly.addPoint(paintComponent.getX(), paintComponent .getY());
 
 		}
@@ -64,7 +66,7 @@ public class GeneratePolygonSourceJava extends PaintAction {
 		double xfactor = (double)actual.getWidth() / width;
 		double yfactor = (double)actual.getHeight() / height;
 		
-		for (PaintComponent paintComponent : selectedComponents) {
+		for (SimplePoint paintComponent : selectedComponents) {
 			int x = (int)((paintComponent.getX() - actual.getX()) / xfactor);
 			int y = (int)((paintComponent.getY() - actual.getY()) / yfactor);
 			builder.append("\t\tp.addPoint(" + x + ", " + y + ");\n");
@@ -92,7 +94,7 @@ public class GeneratePolygonSourceJava extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Generate/Java Source File from Selection...";
+		return "Generate/Polygon Class Java Source File from Selection...";
 	}
 
 }

@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import actions.ActionsMenuBar;
+import actions.menu.ActionsMenuBar;
 import painttools.toolbar.ToolBar;
 
 public class MainFrame extends JFrame{

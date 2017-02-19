@@ -73,5 +73,11 @@ public abstract class PaintComponent {
 	}
 	public abstract Rectangle getBounds();
 
+	public void translate(int i, int j) {
+		this.x+=i;
+		this.y+=j;
+		
+	}
+
 
 }

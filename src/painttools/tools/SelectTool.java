@@ -45,24 +45,13 @@ public class SelectTool extends PaintTool {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// select or deselect component under cursor on mouse clicked
-
-		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
-		if (comp != null) {
-			if (comp.isSelected()) {
-				deselectComponent(comp);
-			} else {
-				selectComponent(comp);
-			}
-
-		}
 
 	}
 
 	/**
-	 * Selects a component, changes selection
-	 * All listeners are informed.
-	 * Panel are repainted
+	 * Selects a component, changes selection All listeners are informed. Panel
+	 * are repainted
+	 * 
 	 * @param comp
 	 */
 	public void selectComponent(PaintComponent comp) {
@@ -73,35 +62,34 @@ public class SelectTool extends PaintTool {
 		}
 		panel.repaint();
 	}
-	
+
 	/**
-	 * Deselect a component, changes selection
-	 * All listeners are informed.
-	 * Panel are repainted
+	 * Deselect a component, changes selection All listeners are informed. Panel
+	 * are repainted
+	 * 
 	 * @param comp
 	 */
-	public void deselectComponent(PaintComponent comp){
+	public void deselectComponent(PaintComponent comp) {
 		comp.deselect();
 		selectedComponents.remove(comp);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
 		panel.repaint();
-		
+
 	}
-	
+
 	/**
-	 * Deselect ALL components, changes selection
-	 * All listeners are informed.
+	 * Deselect ALL components, changes selection All listeners are informed.
 	 * Panel are repainted
 	 */
-	public void clearSelection(){
+	public void clearSelection() {
 		// remove all selection
 		for (PaintComponent component : selectedComponents) {
 			component.deselect();
 		}
 		selectedComponents.clear();
-		
+
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
@@ -111,13 +99,46 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		// select or deselect component under cursor on mouse clicked
+
+		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
+		if (comp != null) {
+			if (comp.isSelected()) {
+				// do not deselect on mouse press, deselect in mouse release
+				movingComponentOriginallySelected = true;
+			} else {
+				selectComponent(comp);
+				movingComponentOriginallySelected = false;
+			}
+			canDrag = true;
+
+		} else {
+			clearSelection();
+			canDrag = false;
+		}
+
+		lastX = e.getX();
+		lastY = e.getY();
+		moved = false;
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// select or deselect component under cursor on mouse clicked
 
+		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
+		if (comp != null) {
+			if (comp.isSelected()) {
+				// deselect if mouse not moved
+				if (!moved && movingComponentOriginallySelected) {
+					deselectComponent(comp);
+				}
+			} else {
+				// do not select on mouse release
+			}
+
+		}
 	}
 
 	@Override
@@ -132,14 +153,57 @@ public class SelectTool extends PaintTool {
 
 	}
 
+	// lastX and Y position for mouse
+	private int lastX, lastY;
+	private boolean moved;
+	private boolean canDrag;
+
+	private boolean movingComponentOriginallySelected;// whether the currently
+														// moving component has
+														// originally been
+														// seleceted
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+
+		//do nothing if dragged empty
+		if(!canDrag) return;
+		// if it is the first time in our move, and only one selected before the
+		// start of dragging, i.e. two items selected after mouse press
+		if (!moved  && !movingComponentOriginallySelected) {
+			if (selectedComponents.size() == 2) {
+				//deselect the bottom component
+				deselectComponent(selectedComponents.get(0));
+			}
+		}
+		for (PaintComponent comp : selectedComponents) {
+			comp.translate(e.getX() - lastX, e.getY() - lastY);
+
+			// show arrow as dragging
+			panel.hideCursor();
+			// get the left arrow
+			PaintComponent arrow = LeftArrow.paintComponentFromPolygon(
+					LeftArrow.getPolygon(),
+					Defaults.sharedDefaults().defaultColorForSelectToolIcon());
+			arrow.setX(e.getX());
+			arrow.setY(e.getY());
+
+			// add arrow by setting the temp component
+			panel.setTempComponent(arrow);
+
+			panel.repaint();
+		}
+
+		lastX = e.getX();
+		lastY = e.getY();
+		moved = true;
+		panel.repaint();
 
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		
 		// shows a left arrow if cursor hits something
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {
@@ -182,7 +246,7 @@ public class SelectTool extends PaintTool {
 
 	@Override
 	public void reset() {
-		
+
 		clearSelection();
 
 	}

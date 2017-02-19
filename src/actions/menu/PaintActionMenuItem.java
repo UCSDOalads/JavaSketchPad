@@ -1,6 +1,8 @@
-package actions;
+package actions.menu;
 
 import javax.swing.JMenuItem;
+
+import actions.PaintAction;
 
 public class PaintActionMenuItem extends JMenuItem{
 
