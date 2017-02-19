@@ -37,31 +37,75 @@ public class SelectTool extends PaintTool {
 		return selectedComponents;
 	}
 
-	public SelectTool() {
+	public SelectTool(PaintPanel panel) {
 		selectedComponents = new ArrayList<>();
 		listeners = new ArrayList<>();
+		this.panel = panel;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//select or deselect component under cursor on mouse clicked
+		// select or deselect component under cursor on mouse clicked
 
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {
 			if (comp.isSelected()) {
-				comp.deselect();
-				selectedComponents.remove(comp);
+				deselectComponent(comp);
 			} else {
-				comp.select();
-				selectedComponents.add(comp);
+				selectComponent(comp);
 			}
-			for (SelectionToolListener selectionToolListener : listeners) {
-				selectionToolListener.selectionChanged();
-			}
-			panel.repaint();
 
 		}
 
+	}
+
+	/**
+	 * Selects a component, changes selection
+	 * All listeners are informed.
+	 * Panel are repainted
+	 * @param comp
+	 */
+	public void selectComponent(PaintComponent comp) {
+		comp.select();
+		selectedComponents.add(comp);
+		for (SelectionToolListener selectionToolListener : listeners) {
+			selectionToolListener.selectionChanged();
+		}
+		panel.repaint();
+	}
+	
+	/**
+	 * Deselect a component, changes selection
+	 * All listeners are informed.
+	 * Panel are repainted
+	 * @param comp
+	 */
+	public void deselectComponent(PaintComponent comp){
+		comp.deselect();
+		selectedComponents.remove(comp);
+		for (SelectionToolListener selectionToolListener : listeners) {
+			selectionToolListener.selectionChanged();
+		}
+		panel.repaint();
+		
+	}
+	
+	/**
+	 * Deselect ALL components, changes selection
+	 * All listeners are informed.
+	 * Panel are repainted
+	 */
+	public void clearSelection(){
+		// remove all selection
+		for (PaintComponent component : selectedComponents) {
+			component.deselect();
+		}
+		selectedComponents.clear();
+		
+		for (SelectionToolListener selectionToolListener : listeners) {
+			selectionToolListener.selectionChanged();
+		}
+		panel.repaint();
 	}
 
 	@Override
@@ -96,7 +140,7 @@ public class SelectTool extends PaintTool {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		//shows a left arrow if cursor hits something
+		// shows a left arrow if cursor hits something
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {
 
@@ -107,14 +151,14 @@ public class SelectTool extends PaintTool {
 					Defaults.sharedDefaults().defaultColorForSelectToolIcon());
 			arrow.setX(e.getX());
 			arrow.setY(e.getY());
-			
-			//add arrow by setting the temp component
+
+			// add arrow by setting the temp component
 			panel.setTempComponent(arrow);
-			
+
 			panel.repaint();
 
 		} else {
-			//remove arrow
+			// remove arrow
 			panel.setTempComponent(null);
 			panel.showCursor();
 			panel.repaint();
@@ -134,6 +178,13 @@ public class SelectTool extends PaintTool {
 		button.setIcon(LeftArrow.iconFromPolygon(LeftArrow.getPolygon(),
 				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
 		return button;
+	}
+
+	@Override
+	public void reset() {
+		
+		clearSelection();
+
 	}
 
 }

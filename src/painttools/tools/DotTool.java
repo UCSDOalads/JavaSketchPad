@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
-public class DotTool extends PaintTool<SimplePoint> {
+public class DotTool extends PaintTool {
 	
 	SimplePoint p;
 	private PaintPanel panel;
@@ -54,7 +54,14 @@ public class DotTool extends PaintTool<SimplePoint> {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		panel.addPaintComponent(new SimplePoint(p));
+
+		SimplePoint pointToAdd = new SimplePoint(p);
+		
+		//change selection to be only the added point
+		panel.getSelectTool().clearSelection();
+		panel.getSelectTool().selectComponent(pointToAdd);
+
+		panel.addPaintComponent(pointToAdd);
 	}
 
 	@Override
@@ -89,10 +96,19 @@ public class DotTool extends PaintTool<SimplePoint> {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		p.setX(e.getX());
 		p.setY(e.getY());
 		panel.repaint();
+	}
+
+
+
+	@Override
+	public void reset() {
+		//do nothing on reset
+		//temporary component will automatically be removed
+		
+		
 	}
 
 	

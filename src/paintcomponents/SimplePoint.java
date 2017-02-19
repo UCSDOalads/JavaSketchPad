@@ -25,6 +25,10 @@ public class SimplePoint extends PaintComponent {
 		this.selectedColor = selectedColor;
 	}
 
+	/**
+	 * Returns a deep copy of this object
+	 * @param p
+	 */
 	public SimplePoint(SimplePoint p) {
 		this(p.getX(), p.getY(), p.radius, p.color, p.selectedColor);
 	}

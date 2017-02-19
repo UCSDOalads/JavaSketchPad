@@ -14,8 +14,8 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 
 		//set up toolbar and main panel
-		ToolBar toolBar = new ToolBar();
 		PaintPanel paintPanel = new PaintPanel();
+		ToolBar toolBar = new ToolBar(paintPanel);
 		
 		//link select tool
 		paintPanel.setSelectTool(toolBar.getSelectTool());
