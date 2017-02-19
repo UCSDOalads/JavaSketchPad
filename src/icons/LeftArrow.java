@@ -37,7 +37,7 @@ public class LeftArrow{
 				//center arrow, by shifting y up by half of the bounds.height
 				dy -= poly.getBounds().getHeight() / 2;
 				//shift the arrow to the right a little bit
-				dx += poly.getBounds().getWidth() / 5;
+				dx += poly.getBounds().getWidth() / 8;
 				poly.translate(dx, dy);
 				g.fillPolygon(poly);
 			}
