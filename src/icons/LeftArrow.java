@@ -42,9 +42,11 @@ public class LeftArrow{
 				g.fillPolygon(poly);
 			}
 			
+			
+
 			@Override
-			public Rectangle getBounds() {
-				return poly.getBounds();
+			public boolean contains(int x2, int y2) {
+				return poly.getBounds().contains(x2, y2);
 			}
 		};
 		

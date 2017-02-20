@@ -71,13 +71,15 @@ public abstract class PaintComponent {
 	public boolean isSelected(){
 		return selected;
 	}
-	public abstract Rectangle getBounds();
 
 	public void translate(int i, int j) {
 		this.x+=i;
 		this.y+=j;
 		
 	}
+
+
+	public abstract boolean contains(int x2, int y2); 
 
 
 }

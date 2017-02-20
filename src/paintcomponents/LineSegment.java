@@ -18,6 +18,7 @@ public class LineSegment extends PaintComponent {
 	private Color defaultColor;
 	private Color selectColor;
 	private Stroke stroke;
+	private double strokeWidth;
 
 	/**
 	 * @return the toPoint
@@ -57,6 +58,7 @@ public class LineSegment extends PaintComponent {
 		this.defaultColor = defaultColor;
 		this.selectColor = selectColor;
 		this.stroke = new BasicStroke(strokeWidth);
+		this.strokeWidth = strokeWidth;
 	}
 
 	public LineSegment(SimplePoint fromPoint, SimplePoint toPoint) {
@@ -70,7 +72,7 @@ public class LineSegment extends PaintComponent {
 	@Override
 	protected void paintNotSelected(Graphics g) {
 		g.setColor(defaultColor);
-		((Graphics2D)g).setStroke(stroke);
+		((Graphics2D) g).setStroke(stroke);
 		g.drawLine(fromPoint.getX(), fromPoint.getY(), toPoint.getX(),
 				toPoint.getY());
 
@@ -79,16 +81,50 @@ public class LineSegment extends PaintComponent {
 	@Override
 	protected void paintSelected(Graphics g) {
 		g.setColor(selectColor);
-		((Graphics2D)g).setStroke(stroke);
+		((Graphics2D) g).setStroke(stroke);
 		g.drawLine(fromPoint.getX(), fromPoint.getY(), toPoint.getX(),
 				toPoint.getY());
 	}
 
 	@Override
-	public Rectangle getBounds() {
-		return new Rectangle(fromPoint.getX(), fromPoint.getY(),
-				toPoint.getX() - fromPoint.getX(),
-				toPoint.getY() - fromPoint.getY());
+	public boolean contains(int x, int y) {
+		// if either end points contains, I do not contain
+		if (fromPoint.contains(x, y) || toPoint.contains(x, y)) {
+			return false;
+		}
+		// else return the D(curPoint , fromPoint) + D(curPoint, toPoint) ==
+		// D(fromPoint, toPoint)
+		double distanceBetweenXYandFrom = Math
+				.sqrt(Math.pow(fromPoint.getX() - x, 2)
+						+ Math.pow(fromPoint.getY() - y, 2));
+		double distanceBetweenXYandTo = Math
+				.sqrt(Math.pow(toPoint.getX() - x, 2)
+						+ Math.pow(toPoint.getY() - y, 2));
+		double distanceBetweenFromAndTo = Math
+				.sqrt(Math.pow(toPoint.getX() - fromPoint.getX(), 2)
+						+ Math.pow(toPoint.getY() - fromPoint.getY(), 2));
+
+		// checking delta distance
+		// Note: this calculation is only an approximation
+		if (Math.abs(distanceBetweenFromAndTo - distanceBetweenXYandFrom
+				- distanceBetweenXYandTo) < Math.sqrt(strokeWidth)) {
+			return true;
+
+		}
+		return false;
+	}
+
+	@Override
+	public void translate(int i, int j) {
+		super.translate(i, j);
+		// if from and to points are not selected, translate them as well
+		if (this.fromPoint.isSelected() == false){
+			this.fromPoint.translate(i, j);
+		}
+		if (this.toPoint.isSelected() == false){
+			this.toPoint.translate(i, j);
+		}
+
 	}
 
 }

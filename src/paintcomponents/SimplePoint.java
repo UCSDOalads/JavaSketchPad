@@ -48,8 +48,8 @@ public class SimplePoint extends PaintComponent {
 	}
 
 	@Override
-	public Rectangle getBounds() {
-		return new Rectangle(this.getX()- this.radius/2, this.getY() - this.radius/2, radius, radius);
+	public boolean contains(int x, int y){
+		return new Rectangle(this.getX()- this.radius/2, this.getY() - this.radius/2, radius, radius).contains(x, y);
 	}
 
 }

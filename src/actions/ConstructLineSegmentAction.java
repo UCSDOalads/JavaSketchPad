@@ -25,6 +25,8 @@ public class ConstructLineSegmentAction extends PaintAction {
 				return false;
 			}
 		}
+		//TODO If line segment already exists, do not add again!!!
+		//TODO Do not allow adding two line segments connecting the same point
 		return true;
 		
 	}

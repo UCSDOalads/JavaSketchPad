@@ -186,9 +186,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	 * @return null if there is no component under current point
 	 */
 	public PaintComponent componentUnderPoint(int x, int y) {
-		System.out.println("Nuber of Paint Component: " +components.size() + " " + components.toString());
 		for (PaintComponent paintComponent : components) {
-			if (paintComponent.getBounds().contains(x, y)) {
+			if (paintComponent.contains(x, y)) {
 				return paintComponent;
 			}
 		}
