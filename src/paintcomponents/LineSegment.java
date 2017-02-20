@@ -1,8 +1,11 @@
 package paintcomponents;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 
 import settings.Defaults;
 
@@ -14,6 +17,7 @@ public class LineSegment extends PaintComponent {
 
 	private Color defaultColor;
 	private Color selectColor;
+	private Stroke stroke;
 
 	/**
 	 * @return the toPoint
@@ -46,24 +50,27 @@ public class LineSegment extends PaintComponent {
 	}
 
 	public LineSegment(SimplePoint fromPoint, SimplePoint toPoint,
-			Color defaultColor, Color selectColor) {
+			Color defaultColor, Color selectColor, int strokeWidth) {
 		super(0, 0);
 		this.fromPoint = fromPoint;
 		this.toPoint = toPoint;
 		this.defaultColor = defaultColor;
 		this.selectColor = selectColor;
+		this.stroke = new BasicStroke(strokeWidth);
 	}
 
 	public LineSegment(SimplePoint fromPoint, SimplePoint toPoint) {
 		this(fromPoint, toPoint,
 				Defaults.sharedDefaults().defaultColorForLineSegment(),
-				Defaults.sharedDefaults().defaultColorForSelectedLineSegment());
+				Defaults.sharedDefaults().defaultColorForSelectedLineSegment(),
+				Defaults.sharedDefaults().defaultStrokeWidthForLineSegment());
 
 	}
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
 		g.setColor(defaultColor);
+		((Graphics2D)g).setStroke(stroke);
 		g.drawLine(fromPoint.getX(), fromPoint.getY(), toPoint.getX(),
 				toPoint.getY());
 
@@ -72,6 +79,7 @@ public class LineSegment extends PaintComponent {
 	@Override
 	protected void paintSelected(Graphics g) {
 		g.setColor(selectColor);
+		((Graphics2D)g).setStroke(stroke);
 		g.drawLine(fromPoint.getX(), fromPoint.getY(), toPoint.getX(),
 				toPoint.getY());
 	}

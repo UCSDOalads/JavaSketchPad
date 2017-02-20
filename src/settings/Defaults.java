@@ -14,6 +14,7 @@ public class Defaults {
 	private static int SIMPLE_POINT_DEFAULT_SIZE = 10;
 	private static final Color LINE_SEGMENT_COLOR = SIMPLE_POINT_COLOR;
 	private static final Color LINE_SEGMENT_SELECTED_COLOR = SIMPLE_POINT_SELECTED_COLOR;
+	private static final int LINE_SEGMENT_STROKE_WIDTH = 5;
 	
 	private Defaults(){
 		
@@ -44,5 +45,9 @@ public class Defaults {
 	}
 	public Color defaultColorForSelectedLineSegment(){
 		return LINE_SEGMENT_SELECTED_COLOR;
+	}
+
+	public int defaultStrokeWidthForLineSegment() {
+		return LINE_SEGMENT_STROKE_WIDTH;
 	}
 }
