@@ -3,6 +3,7 @@ package settings;
 import java.awt.Color;
 
 public class Defaults {
+  //sample change to Defaults
 	
 	private static final Color SELECT_TOOL_ICON_COLOR = Color.BLACK;
 
