@@ -166,13 +166,15 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
-		//do nothing if dragged empty
-		if(!canDrag) return;
-		// if it is the first time in our move, and only one selected before the
-		// start of dragging, i.e. two items selected after mouse press
-		if (!moved  && !movingComponentOriginallySelected) {
-			if (selectedComponents.size() == 2) {
-				//deselect the bottom component
+		// do nothing if dragged empty
+		// TODO GROUP SELECTION WHEN CANNOT DRAG
+		if (!canDrag)
+			return;
+		// if it is the first time in our move, and the moving component is not
+		// originally selected, deselect all bottom components
+		if (!moved && !movingComponentOriginallySelected) {
+			// deselect the bottom components, by removing all until
+			while (selectedComponents.size() != 1) {
 				deselectComponent(selectedComponents.get(0));
 			}
 		}
@@ -203,7 +205,7 @@ public class SelectTool extends PaintTool {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
+
 		// shows a left arrow if cursor hits something
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {
