@@ -7,6 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import actions.AddTextBoxAction;
 import actions.ConstructLineSegmentAction;
 import actions.GeneratePolygonSourceJava;
 import actions.PaintAction;
@@ -18,6 +19,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	public ActionsMenuBar(PaintPanel panel){
 		addAction(new GeneratePolygonSourceJava(panel));
 		addAction(new ConstructLineSegmentAction(panel));
+		addAction(new AddTextBoxAction(panel));
 
 	}
 
