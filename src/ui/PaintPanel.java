@@ -177,6 +177,10 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		components.add(comp);
 
 	}
+	
+	public ArrayList<PaintComponent> getPaintComponents() {
+		return components;
+	}
 
 	/**
 	 * Returns the topmost component under a given point
