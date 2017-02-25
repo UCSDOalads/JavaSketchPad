@@ -15,6 +15,10 @@ public class Defaults {
 	private static final Color LINE_SEGMENT_COLOR = SIMPLE_POINT_COLOR;
 	private static final Color LINE_SEGMENT_SELECTED_COLOR = SIMPLE_POINT_SELECTED_COLOR;
 	private static final int LINE_SEGMENT_STROKE_WIDTH = 5;
+
+
+	private static final Color DATA_INPUT_TEXTFIELD_COLOR = LINE_SEGMENT_COLOR;
+	private static final Color DATA_INPUT_TEXTFIELD_SELECTED_COLOR = LINE_SEGMENT_SELECTED_COLOR;
 	
 	private Defaults(){
 		
@@ -49,5 +53,13 @@ public class Defaults {
 
 	public int defaultStrokeWidthForLineSegment() {
 		return LINE_SEGMENT_STROKE_WIDTH;
+	}
+
+	public Color defaultColorForDataInputTextfield() {
+		return DATA_INPUT_TEXTFIELD_COLOR;
+	}
+	
+	public Color defaultColorForSelectedDataInputTextfield(){
+		return DATA_INPUT_TEXTFIELD_SELECTED_COLOR;
 	}
 }

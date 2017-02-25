@@ -9,7 +9,11 @@ import java.awt.geom.Rectangle2D;
 public class TextPaintComponent extends PaintComponent{
 	
 	public String displayingText;
-	private Rectangle2D bounds;
+	/**
+	 * The bounds of the text area, this property is updated when paint method is invoked.
+	 * This class uses Graphics2D's font matrices to determine the bounds
+	 */
+	protected Rectangle2D bounds;
 
 	/**
 	 * @return the displayingText
