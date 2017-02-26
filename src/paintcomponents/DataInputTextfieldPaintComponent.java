@@ -12,7 +12,7 @@ import settings.Defaults;
  * @author chenzb
  *
  */
-public class DataInputTextfieldPaintComponent extends DataTextPaintComponent {
+public class DataInputTextfieldPaintComponent extends DataTextPaintComponent implements DataFromPointDataProvider<String> {
 
 
 	private static final int HORIZONTAL_OFFSET = 10;
@@ -22,6 +22,7 @@ public class DataInputTextfieldPaintComponent extends DataTextPaintComponent {
 			int y) {
 		super(displayingText, x, y);
 		this.fromPoint = new DataFromPoint<>(x, y);
+		fromPoint.setProvider(this);
 	}
 	
 	@Override
@@ -60,8 +61,19 @@ public class DataInputTextfieldPaintComponent extends DataTextPaintComponent {
 	}
 
 	public void inputData(String s) {
-		fromPoint.offer(s);
 		this.setDisplayingText(s);
+	}
+
+	@Override
+	public String provideInformationToDataFromPoint(
+			DataFromPoint<String> dataFromPoint) {
+		return displayingText;
+	}
+
+	@Override
+	public boolean canProvideInformationToDataFromPoint(
+			DataFromPoint<String> dataFromPoint) {
+		return displayingText == null;
 	}
 	
 }

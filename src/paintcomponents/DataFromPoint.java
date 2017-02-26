@@ -11,10 +11,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  *
  */
 public class DataFromPoint<T> extends SimplePoint {
-	
-	
-	DataLineSegment<T> lineSegment;
-	Queue<T> datas;
+
+	private DataLineSegment<T> lineSegment;
+	private DataFromPointDataProvider<T> provider;
 
 	/**
 	 * @return the lineSegment
@@ -33,20 +32,32 @@ public class DataFromPoint<T> extends SimplePoint {
 
 	public DataFromPoint(int x, int y) {
 		super(x, y);
-		datas = new LinkedBlockingQueue<>();
 	}
-	
-	public void offer(T data){
-		this.datas.offer(data);
-	}
-	
+
 	/**
-	 * Fetches the data, users should not try to call this method, except from DataToPoint class
-	 * returns null if the underlying queue is empty.
+	 * Fetches the data, users should not try to call this method, except from
+	 * DataToPoint class
+	 * 
 	 * @param data
+	 * @throws DataFromPointNoDataProviderException if provider for this method is not set
+	 * @throws DataFromPointProviderCannotProvideDataException if the provider cannot provide such information
 	 */
-	protected T poll(){
-		return this.datas.poll();
+	protected T getData() throws DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException {
+		if (this.provider == null){
+			throw new DataFromPointNoDataProviderException();
+		}
+		if (!this.provider.canProvideInformationToDataFromPoint(this)){
+			throw new DataFromPointProviderCannotProvideDataException();
+		}
+		return this.provider.provideInformationToDataFromPoint(this);
+	}
+
+	public DataFromPointDataProvider<T> getProvider() {
+		return provider;
+	}
+
+	public void setProvider(DataFromPointDataProvider<T> provider) {
+		this.provider = provider;
 	}
 
 }

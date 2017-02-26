@@ -37,11 +37,13 @@ public class DataToPoint<T> extends SimplePoint {
 	 * 
 	 * @throws NoConnectingLineSegmentException when this point is not connected to a valid line segment
 	 * @throws NoSuchElementException when the connecting in point does not have a data to offer
+	 * @throws DataFromPointProviderCannotProvideDataException  when the connecting dataInputPoint's data provider cannot provide a information
+	 * @throws DataFromPointNoDataProviderException  when the connecting DataInputPoint does not have a data provider associated
 	 */
-	public T fetchData() throws NoConnectingLineSegmentException, NoSuchElementException{
+	public T fetchData() throws NoConnectingLineSegmentException, NoSuchElementException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
 		if(this.lineSegment == null) throw new NoConnectingLineSegmentException();
 		
-		T returnVal = lineSegment.getFromPoint().poll();
+		T returnVal = lineSegment.getFromPoint().getData();
 		if(returnVal == null) throw new NoSuchElementException();
 		return returnVal;
 		
