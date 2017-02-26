@@ -7,52 +7,30 @@ import java.awt.Graphics2D;
 
 import settings.Defaults;
 
-public class DataInputTextfieldPaintComponent extends TextPaintComponent {
+public class DataInputTextfieldPaintComponent extends DataTextPaintComponent {
+
 
 	private static final int HORIZONTAL_OFFSET = 10;
 	private DataFromPoint<String> fromPoint;
-	private RectanglePaintComponent rect;
-	private Color defaultColor;
-	private Color selectedColor;
 	
-
 	public DataInputTextfieldPaintComponent(String displayingText, int x,
 			int y) {
 		super(displayingText, x, y);
-		fromPoint = new DataFromPoint<>(x - 50, y);
-		defaultColor = Defaults.sharedDefaults().defaultColorForDataInputTextfield();
-		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataInputTextfield();
+		this.fromPoint = new DataFromPoint<>(x, y);
 	}
 	
-	
-
-	@Override
-	protected void paintNotSelected(Graphics g) {
-		g.setColor(defaultColor);
-		((Graphics2D)g).setStroke(new BasicStroke(1));
-		super.paintNotSelected(g);
-		updateFromPointPosition();
-		updateAndPaintBoudingRectangle(g);
-		fromPoint.paintNotSelected(g);
-		
-	}
-	
-
 	@Override
 	protected void paintSelected(Graphics g) {
-		g.setColor(selectedColor);
-		((Graphics2D)g).setStroke(new BasicStroke(1));
-		super.paintSelected(g);;
+		super.paintSelected(g);
 		updateFromPointPosition();
-		updateAndPaintBoudingRectangle(g);
-		fromPoint.paintSelected(g);
+		fromPoint.paint(g);
 	}
 	
-	private void updateAndPaintBoudingRectangle(Graphics g){
-		rect = new RectanglePaintComponent(getX(), getY(), (int)this.bounds.getWidth(), (int)this.bounds.getHeight());
-		//select rectangle according to current select status
-		if(isSelected())rect.select(); else rect.deselect();
-		rect.paint(g);
+	@Override
+	protected void paintNotSelected(Graphics g) {
+		super.paintNotSelected(g);
+		updateFromPointPosition();
+		fromPoint.paint(g);
 	}
 
 	/**
