@@ -8,8 +8,11 @@ import painttools.tools.SelectTool;
 /**
  * Abstracts the behavior of a paint component.
  * 
- * Override translate method if you want to customize tranlation. Override
- * select and deselect method to perform additional selections.
+ * To add functionality to translation: Override translate method if you want to
+ * customize tranlation.
+ * 
+ * To add functionality to selection: Override select and deselect method to
+ * perform additional selections.
  * 
  * 
  * You should generally not override paint, toggleSelect as the default
@@ -92,6 +95,7 @@ public abstract class PaintComponent {
 
 	/**
 	 * Set the state of this object to be selected state
+	 * If select tool is not null, update select tools's selection list to contain this paint component
 	 * 
 	 * @param selectTool
 	 *            TODO
@@ -104,6 +108,8 @@ public abstract class PaintComponent {
 
 	/**
 	 * Set the state of this object to be unselected
+	 * 
+	 * If the select tool is not null,  remove this paint component from the tool's selection list
 	 * 
 	 * @param selectTool
 	 *            TODO
