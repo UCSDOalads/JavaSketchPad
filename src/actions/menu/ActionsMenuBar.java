@@ -29,26 +29,26 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 
 	private void addAction(PaintAction action) {
 		String[] strings = action.locationString().split("/");
-		JMenu insertionMenu = null;
+		Object insertionMenu = this;
 		//look for existing j menus
-		for (int i = 0; i < getMenuCount();i++) {
-			JMenu menu = getMenu(i);
-			if(menu.getText().equals(strings[0])){
-				insertionMenu = menu;
-				break;
+		for( int k = 0; k < strings.length-1; k++) {
+			for (int i = 0; i < menuCount( insertionMenu );i++) {
+				JMenuItem menu = obtainMenu(insertionMenu, i);
+				if(menu.getText().equals(strings[k])){
+					insertionMenu = menu;
+					break;
+				}
 			}
+			//create a new if not found
+			JMenu toInsert = new JMenu(strings[k]);
+			insertMenu( insertionMenu, toInsert );
+			insertionMenu = toInsert;
 		}
-		//create a new if not found
-		if(insertionMenu == null){
-			insertionMenu = new JMenu(strings[0]);
-			this.add(insertionMenu);
-		}
-		
 		//assume 2 level depth
 		//TODO Change here
 		PaintActionMenuItem item = new PaintActionMenuItem(action);
 		item.setEnabled(action.canPerformAction());
-		item.setText(strings[1]);
+		item.setText(strings[strings.length-1]);
 		item.addActionListener(new ActionListener() {
 			
 			@Override
@@ -58,8 +58,33 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 			}
 		});
 		
-		insertionMenu.add(item);
-		
+		insertMenu( insertionMenu, item );		
+	}
+	private int menuCount( Object a ) {
+		if( a instanceof JMenu) {
+			return ((JMenu) a).getItemCount();
+		}
+		if( a instanceof JMenuBar) {
+			return ((JMenuBar) a).getMenuCount();
+		}
+		return -1;
+	}
+	private JMenuItem obtainMenu( Object a, int index  ) {
+		if( a instanceof JMenu) {
+			return ((JMenu) a).getItem(index);
+		}
+		if( a instanceof JMenuBar) {
+			return ((JMenuBar) a).getMenu(index);
+		}
+		return null;
+	}	
+	private void insertMenu( Object a, JMenuItem toInsert ) {
+		if( a instanceof JMenu) {
+			((JMenu) a).add(toInsert);
+		}
+		if( a instanceof JMenuBar) {
+			((JMenuBar) a).add(toInsert);
+		}
 	}
 
 	@Override
