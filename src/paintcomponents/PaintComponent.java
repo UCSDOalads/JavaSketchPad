@@ -42,6 +42,10 @@ public abstract class PaintComponent {
 		this.y = y;
 	}
 	
+	/**
+	 * Paints this component using a graphics object
+	 * @param g
+	 */
 	public void paint(Graphics g){
 		if(selected){
 			paintSelected(g);
@@ -51,23 +55,45 @@ public abstract class PaintComponent {
 		
 	}
 		
+	/**
+	 * Paint the non-select version of this paint object
+	 * @param g
+	 */
 	protected abstract void paintNotSelected(Graphics g) ;
 		
 
+	/**
+	 * Paints the selected version of this paint object
+	 * @param g
+	 */
 	protected abstract void paintSelected(Graphics g) ;
 		
 
+	/**
+	 * Set the state of this object to be selected state
+	 */
 	public void select(){
 		selected = true;
 	}
+	
+	/**
+	 * Set the state of this object to be unselected
+	 */
 	public void deselect(){
 		selected = false;
 	}
 	
+	/**
+	 * toggle the selection status of this paintable object
+	 */
 	public void toggleSelect() {
 		selected = !selected;
 	}
 	
+	/**
+	 * Check if this object is selected
+	 * @return 
+	 */
 	public boolean isSelected(){
 		return selected;
 	}

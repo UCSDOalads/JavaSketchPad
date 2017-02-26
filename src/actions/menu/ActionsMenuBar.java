@@ -11,6 +11,7 @@ import actions.AddDataInputBoxAction;
 import actions.AddTextBoxAction;
 import actions.ConstructLineSegmentAction;
 import actions.GeneratePolygonSourceJava;
+import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
 import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
@@ -22,6 +23,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new ConstructLineSegmentAction(panel));
 		addAction(new AddTextBoxAction(panel));
 		addAction(new AddDataInputBoxAction(panel));
+		addAction(new InputDataForDataInputBoxAction(panel));
 
 	}
 

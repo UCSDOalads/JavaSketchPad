@@ -42,10 +42,15 @@ public class TextPaintComponent extends PaintComponent{
 		//draw string starts from bottom left corner, shift to top left
 		g.drawString(displayingText, getX(), (int) (getY() + bounds.getHeight()));
 	}
+	//IMPORTANT :: THIS COMPONENT IS SHIFTED DOWN, WHICH CAUSES PROBLEMS. WHEN FIXING COORDINATES, 
+	//WE SHOULD COME UP WITH A COMMON SOLUTION
 
 	@Override
 	protected void paintSelected(Graphics g) {
-		paintNotSelected(g);
+		bounds = ((Graphics2D)g).getFontMetrics().getStringBounds(displayingText,g); 
+
+		//draw string starts from bottom left corner, shift to top left
+		g.drawString(displayingText, getX(), (int) (getY() + bounds.getHeight()));
 		
 	}
 
