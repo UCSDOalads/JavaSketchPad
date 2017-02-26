@@ -62,4 +62,11 @@ public class Defaults {
 	public Color defaultColorForSelectedDataInputTextfield(){
 		return DATA_INPUT_TEXTFIELD_SELECTED_COLOR;
 	}
+	public Color defaultColorForRectanglePaintComponent() {
+		return DATA_INPUT_TEXTFIELD_COLOR;
+	}
+	
+	public Color defaultColorForSelectedRectanglePaintComponent(){
+		return DATA_INPUT_TEXTFIELD_SELECTED_COLOR;
+	}
 }

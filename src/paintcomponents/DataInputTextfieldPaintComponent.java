@@ -10,16 +10,17 @@ import settings.Defaults;
 public class DataInputTextfieldPaintComponent extends TextPaintComponent {
 
 	private static final int HORIZONTAL_OFFSET = 10;
-	DataFromPoint<String> fromPoint;
-	Color boundColor;
-	Color selectedColor;
+	private DataFromPoint<String> fromPoint;
+	private RectanglePaintComponent rect;
+	private Color defaultColor;
+	private Color selectedColor;
 	
 
 	public DataInputTextfieldPaintComponent(String displayingText, int x,
 			int y) {
 		super(displayingText, x, y);
 		fromPoint = new DataFromPoint<>(x - 50, y);
-		boundColor = Defaults.sharedDefaults().defaultColorForDataInputTextfield();
+		defaultColor = Defaults.sharedDefaults().defaultColorForDataInputTextfield();
 		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataInputTextfield();
 	}
 	
@@ -27,11 +28,11 @@ public class DataInputTextfieldPaintComponent extends TextPaintComponent {
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
-		g.setColor(boundColor);
+		g.setColor(defaultColor);
 		((Graphics2D)g).setStroke(new BasicStroke(1));
 		super.paintNotSelected(g);
 		updateFromPointPosition();
-		g.drawRect(getX(), getY(), (int)this.bounds.getWidth(), (int)this.bounds.getHeight());
+		updateAndPaintBoudingRectangle(g);
 		fromPoint.paintNotSelected(g);
 		
 	}
@@ -39,12 +40,19 @@ public class DataInputTextfieldPaintComponent extends TextPaintComponent {
 
 	@Override
 	protected void paintSelected(Graphics g) {
-		((Graphics2D)g).setStroke(new BasicStroke(1));
 		g.setColor(selectedColor);
+		((Graphics2D)g).setStroke(new BasicStroke(1));
 		super.paintSelected(g);;
 		updateFromPointPosition();
-		g.drawRect(getX(), getY(), (int)this.bounds.getWidth(), (int)this.bounds.getHeight());
+		updateAndPaintBoudingRectangle(g);
 		fromPoint.paintSelected(g);
+	}
+	
+	private void updateAndPaintBoudingRectangle(Graphics g){
+		rect = new RectanglePaintComponent(getX(), getY(), (int)this.bounds.getWidth(), (int)this.bounds.getHeight());
+		//select rectangle according to current select status
+		if(isSelected())rect.select(); else rect.deselect();
+		rect.paint(g);
 	}
 
 	/**
@@ -72,4 +80,5 @@ public class DataInputTextfieldPaintComponent extends TextPaintComponent {
 		fromPoint.offer(s);
 		this.setDisplayingText(s);
 	}
+	
 }
