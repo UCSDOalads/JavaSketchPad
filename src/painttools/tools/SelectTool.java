@@ -55,8 +55,7 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void selectComponent(PaintComponent comp) {
-		comp.select();
-		selectedComponents.add(comp);
+		comp.select(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
@@ -70,8 +69,7 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void deselectComponent(PaintComponent comp) {
-		comp.deselect();
-		selectedComponents.remove(comp);
+		comp.deselect(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
@@ -85,10 +83,9 @@ public class SelectTool extends PaintTool {
 	 */
 	public void clearSelection() {
 		// remove all selection
-		for (PaintComponent component : selectedComponents) {
-			component.deselect();
+		while(!selectedComponents.isEmpty()) {
+			selectedComponents.get(0).deselect(this);
 		}
-		selectedComponents.clear();
 
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();

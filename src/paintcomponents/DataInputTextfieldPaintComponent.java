@@ -7,6 +7,11 @@ import java.awt.Graphics2D;
 
 import settings.Defaults;
 
+/**
+ * A data text with a point on the right
+ * @author chenzb
+ *
+ */
 public class DataInputTextfieldPaintComponent extends DataTextPaintComponent {
 
 

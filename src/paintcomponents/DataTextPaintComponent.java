@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import painttools.tools.SelectTool;
 import settings.Defaults;
 
 /**
@@ -16,14 +17,15 @@ import settings.Defaults;
 public class DataTextPaintComponent extends TextPaintComponent {
 
 
-private RectanglePaintComponent rect;
+	private RectanglePaintComponent rect;
 	private Color defaultColor;
 	private Color selectedColor;
 	
-public DataTextPaintComponent(String displayingText, int x, int y) {
+	public DataTextPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
 		defaultColor = Defaults.sharedDefaults().defaultColorForDataInputTextfield();
 		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataInputTextfield();
+		rect = new RectanglePaintComponent(x, y, 0, 0);
 	}
 
 	
@@ -49,10 +51,31 @@ public DataTextPaintComponent(String displayingText, int x, int y) {
 	}
 	
 	private void updateAndPaintBoudingRectangle(Graphics g){
-		rect = new RectanglePaintComponent(getX(), getY(), (int)this.bounds.getWidth(), (int)this.bounds.getHeight());
-		//select rectangle according to current select status
-		if(isSelected())rect.select(); else rect.deselect();
+		rect.setWidth((int) bounds.getWidth());
+		rect.setHeight((int) bounds.getHeight());
 		rect.paint(g);
 	}
+	
+	@Override
+	public void translate(int i, int j) {
+		super.translate(i, j);
+		this.rect.translate(i, j);
+	}
+	
+	@Override
+	public void select(SelectTool selectTool) {
+		super.select(selectTool);
+		//pass in null to prevent current selection from being modified
+		//only causes changes in apperance
+		rect.select(null);
+	}
 
+	@Override
+	public void deselect(SelectTool selectTool) {
+		// TODO Auto-generated method stub
+		super.deselect(selectTool);
+		rect.deselect(null);
+	}
+	
+	
 }
