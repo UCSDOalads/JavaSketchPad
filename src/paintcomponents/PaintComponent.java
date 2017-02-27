@@ -11,14 +11,14 @@ import painttools.tools.SelectTool;
  * To add functionality to translation: Override translate method if you want to
  * customize tranlation.
  * 
- * To add functionality to selection: Override select and deselect method to
+ * To add functionality to selection: Override isSelected, select and deselect method to
  * perform additional selections.
  * 
  * 
  * You should generally not override paint, toggleSelect as the default
  * implementation delegates to other methods that you have to.
  * 
- * MAKE SURE YOU CALL SUPER when overriding non-abstract methods.
+ * MAKE SURE YOU CALL SUPER when overriding non-abstract methods, (select, translate)
  * 
  * @author chenzb
  *
