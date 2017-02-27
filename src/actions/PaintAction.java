@@ -11,7 +11,12 @@ public abstract class PaintAction {
 	}
 	
 	public abstract boolean canPerformAction();
+	/**
+	 * Performs this action
+	 * Subclassess must invoke panel.repaint if the action changes the panel
+	 */
 	public abstract void performAction();
+
 	public abstract String locationString();
 
 }

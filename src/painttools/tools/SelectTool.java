@@ -18,6 +18,15 @@ public class SelectTool extends PaintTool {
 
 	private ArrayList<PaintComponent> selectedComponents;
 	private ArrayList<SelectionToolListener> listeners;
+	
+	private MouseEvent lastMouseEvent;
+
+	/**
+	 * @return the lastMouseEvent
+	 */
+	public MouseEvent getLastMouseEvent() {
+		return lastMouseEvent;
+	}
 
 	/**
 	 * adds a selection listener
@@ -55,8 +64,7 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void selectComponent(PaintComponent comp) {
-		comp.select();
-		selectedComponents.add(comp);
+		comp.select(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
@@ -70,8 +78,7 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void deselectComponent(PaintComponent comp) {
-		comp.deselect();
-		selectedComponents.remove(comp);
+		comp.deselect(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
@@ -85,10 +92,9 @@ public class SelectTool extends PaintTool {
 	 */
 	public void clearSelection() {
 		// remove all selection
-		for (PaintComponent component : selectedComponents) {
-			component.deselect();
+		while(!selectedComponents.isEmpty()) {
+			selectedComponents.get(0).deselect(this);
 		}
-		selectedComponents.clear();
 
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
@@ -98,8 +104,10 @@ public class SelectTool extends PaintTool {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		lastMouseEvent = e;
 		// TODO Auto-generated method stub
 		// select or deselect component under cursor on mouse clicked
+
 
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {
@@ -126,6 +134,7 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// select or deselect component under cursor on mouse clicked
+		lastMouseEvent = e;
 
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {
@@ -166,6 +175,7 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
+		lastMouseEvent = e;
 		// do nothing if dragged empty
 		// TODO GROUP SELECTION WHEN CANNOT DRAG
 		if (!canDrag)
@@ -206,6 +216,7 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 
+		lastMouseEvent = e;
 		// shows a left arrow if cursor hits something
 		PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 		if (comp != null) {

@@ -7,8 +7,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import actions.AddDataInputBoxAction;
+import actions.AddTextBoxAction;
 import actions.ConstructLineSegmentAction;
 import actions.GeneratePolygonSourceJava;
+import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
 import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
@@ -18,31 +21,34 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	public ActionsMenuBar(PaintPanel panel){
 		addAction(new GeneratePolygonSourceJava(panel));
 		addAction(new ConstructLineSegmentAction(panel));
+		addAction(new AddTextBoxAction(panel));
+		addAction(new AddDataInputBoxAction(panel));
+		addAction(new InputDataForDataInputBoxAction(panel));
 
 	}
 
 	private void addAction(PaintAction action) {
 		String[] strings = action.locationString().split("/");
-		Object insertionMenu = this;
+		JMenu insertionMenu = null;
 		//look for existing j menus
-		for( int k = 0; k < strings.length-1; k++) {
-			for (int i = 0; i < menuCount( insertionMenu );i++) {
-				JMenuItem menu = obtainMenu(insertionMenu, i);
-				if(menu.getText().equals(strings[k])){
-					insertionMenu = menu;
-					break;
-				}
+		for (int i = 0; i < getMenuCount();i++) {
+			JMenu menu = getMenu(i);
+			if(menu.getText().equals(strings[0])){
+				insertionMenu = menu;
+				break;
 			}
-			//create a new if not found
-			JMenu toInsert = new JMenu(strings[k]);
-			insertMenu( insertionMenu, toInsert );
-			insertionMenu = toInsert;
 		}
+		//create a new if not found
+		if(insertionMenu == null){
+			insertionMenu = new JMenu(strings[0]);
+			this.add(insertionMenu);
+		}
+		
 		//assume 2 level depth
 		//TODO Change here
 		PaintActionMenuItem item = new PaintActionMenuItem(action);
 		item.setEnabled(action.canPerformAction());
-		item.setText(strings[strings.length-1]);
+		item.setText(strings[1]);
 		item.addActionListener(new ActionListener() {
 			
 			@Override
@@ -52,33 +58,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 			}
 		});
 		
-		insertMenu( insertionMenu, item );		
-	}
-	private int menuCount( Object a ) {
-		if( a instanceof JMenu) {
-			return ((JMenu) a).getItemCount();
-		}
-		if( a instanceof JMenuBar) {
-			return ((JMenuBar) a).getMenuCount();
-		}
-		return -1;
-	}
-	private JMenuItem obtainMenu( Object a, int index  ) {
-		if( a instanceof JMenu) {
-			return ((JMenu) a).getItem(index);
-		}
-		if( a instanceof JMenuBar) {
-			return ((JMenuBar) a).getMenu(index);
-		}
-		return null;
-	}	
-	private void insertMenu( Object a, JMenuItem toInsert ) {
-		if( a instanceof JMenu) {
-			((JMenu) a).add(toInsert);
-		}
-		if( a instanceof JMenuBar) {
-			((JMenuBar) a).add(toInsert);
-		}
+		insertionMenu.add(item);
+		
 	}
 
 	@Override
