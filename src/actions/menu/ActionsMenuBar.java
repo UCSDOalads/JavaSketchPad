@@ -7,14 +7,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import painttools.tools.SelectionToolListener;
+import ui.PaintPanel;
 import actions.AddDataInputBoxAction;
 import actions.AddTextBoxAction;
 import actions.ConstructLineSegmentAction;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
-import painttools.tools.SelectionToolListener;
-import ui.PaintPanel;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -30,25 +30,49 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	private void addAction(PaintAction action) {
 		String[] strings = action.locationString().split("/");
 		JMenu insertionMenu = null;
-		//look for existing j menus
-		for (int i = 0; i < getMenuCount();i++) {
+		// look for existing i menus, determine where to insert
+		for( int i = 0; i < getMenuCount(); i++) {
 			JMenu menu = getMenu(i);
 			if(menu.getText().equals(strings[0])){
 				insertionMenu = menu;
 				break;
-			}
+			}		
 		}
-		//create a new if not found
-		if(insertionMenu == null){
-			insertionMenu = new JMenu(strings[0]);
-			this.add(insertionMenu);
+		// if not found, create a new menu
+		if( insertionMenu == null ) {
+			JMenu newMenu = new JMenu(strings[0]);
+			add(newMenu);
+			insertionMenu = newMenu;
 		}
 		
+		// do the similar steps above for k level
+		for( int k = 1; k < strings.length-1; k++) {
+			boolean menuFound = false;
+			for (int i = 0; i < insertionMenu.getItemCount();i++) {
+				
+				// only check JMenu, exclude PaintActionMenuItem
+				if(insertionMenu.getItem(i) instanceof JMenu ) {
+					JMenu menu = (JMenu)insertionMenu.getItem(i);
+					if(menu.getText().equals(strings[k])){
+						insertionMenu = menu;
+						menuFound = true;
+						break;
+					}
+				}
+			}
+			// if not found, create a new menu
+
+			if( !menuFound ) {
+				JMenu newMenu = new JMenu(strings[k]);
+				insertionMenu.add(newMenu);
+				insertionMenu = newMenu;
+			}
+		}
 		//assume 2 level depth
 		//TODO Change here
 		PaintActionMenuItem item = new PaintActionMenuItem(action);
 		item.setEnabled(action.canPerformAction());
-		item.setText(strings[1]);
+		item.setText(strings[strings.length-1]);
 		item.addActionListener(new ActionListener() {
 			
 			@Override
@@ -57,25 +81,25 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 				
 			}
 		});
-		
 		insertionMenu.add(item);
-		
 	}
 
 	@Override
 	public void selectionChanged() {
 		for (int i = 0; i < getMenuCount(); i++) {
 			JMenu menu = getMenu(i);
-			for(int j = 0; j < menu.getItemCount(); j++){
-				PaintActionMenuItem item = (PaintActionMenuItem) menu.getItem(j);
-				item.setEnabled(item.getAssociatedAction().canPerformAction());
-			}
-			
-		}
-		
+			recursiveUpdate(menu);
+		}			
 	}
-
+		
+	private void recursiveUpdate(JMenu jitem) {
+		for( int i = 0; i < jitem.getItemCount(); i++ ) {
+			JMenuItem item = jitem.getItem(i);
+			if( item instanceof PaintActionMenuItem)
+				item.setEnabled(((PaintActionMenuItem)item).getAssociatedAction().canPerformAction());
+			else if( item instanceof JMenu )
+				recursiveUpdate( (JMenu)item );
+		}
+	}
 	
-	
-
 }
