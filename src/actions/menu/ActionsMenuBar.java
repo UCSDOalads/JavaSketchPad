@@ -7,36 +7,66 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import actions.ConstructLineSegmentAction;
-import actions.GeneratePolygonSourceJava;
-import actions.PaintAction;
 import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
+import actions.AddDataInputBoxAction;
+import actions.AddTextBoxAction;
+import actions.ConstructLineSegmentAction;
+import actions.GeneratePolygonSourceJava;
+import actions.InputDataForDataInputBoxAction;
+import actions.PaintAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
 	public ActionsMenuBar(PaintPanel panel){
 		addAction(new GeneratePolygonSourceJava(panel));
 		addAction(new ConstructLineSegmentAction(panel));
+		addAction(new AddTextBoxAction(panel));
+		addAction(new AddDataInputBoxAction(panel));
+		addAction(new InputDataForDataInputBoxAction(panel));
 
 	}
 
 	private void addAction(PaintAction action) {
 		String[] strings = action.locationString().split("/");
-		Object insertionMenu = this;
-		//look for existing j menus
-		for( int k = 0; k < strings.length-1; k++) {
-			for (int i = 0; i < menuCount( insertionMenu );i++) {
-				JMenuItem menu = obtainMenu(insertionMenu, i);
-				if(menu.getText().equals(strings[k])){
-					insertionMenu = menu;
-					break;
+		JMenu insertionMenu = null;
+		// look for existing i menus, determine where to insert
+		for( int i = 0; i < getMenuCount(); i++) {
+			JMenu menu = getMenu(i);
+			if(menu.getText().equals(strings[0])){
+				insertionMenu = menu;
+				break;
+			}		
+		}
+		// if not found, create a new menu
+		if( insertionMenu == null ) {
+			JMenu newMenu = new JMenu(strings[0]);
+			add(newMenu);
+			insertionMenu = newMenu;
+		}
+		
+		// do the similar steps above for k level
+		for( int k = 1; k < strings.length-1; k++) {
+			boolean menuFound = false;
+			for (int i = 0; i < insertionMenu.getItemCount();i++) {
+				
+				// only check JMenu, exclude PaintActionMenuItem
+				if(insertionMenu.getItem(i) instanceof JMenu ) {
+					JMenu menu = (JMenu)insertionMenu.getItem(i);
+					if(menu.getText().equals(strings[k])){
+						insertionMenu = menu;
+						menuFound = true;
+						break;
+					}
 				}
 			}
-			//create a new if not found
-			JMenu toInsert = new JMenu(strings[k]);
-			insertMenu( insertionMenu, toInsert );
-			insertionMenu = toInsert;
+			// if not found, create a new menu
+
+			if( !menuFound ) {
+				JMenu newMenu = new JMenu(strings[k]);
+				insertionMenu.add(newMenu);
+				insertionMenu = newMenu;
+			}
 		}
 		//assume 2 level depth
 		//TODO Change here
@@ -51,50 +81,25 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 				
 			}
 		});
-		
-		insertMenu( insertionMenu, item );		
-	}
-	private int menuCount( Object a ) {
-		if( a instanceof JMenu) {
-			return ((JMenu) a).getItemCount();
-		}
-		if( a instanceof JMenuBar) {
-			return ((JMenuBar) a).getMenuCount();
-		}
-		return -1;
-	}
-	private JMenuItem obtainMenu( Object a, int index  ) {
-		if( a instanceof JMenu) {
-			return ((JMenu) a).getItem(index);
-		}
-		if( a instanceof JMenuBar) {
-			return ((JMenuBar) a).getMenu(index);
-		}
-		return null;
-	}	
-	private void insertMenu( Object a, JMenuItem toInsert ) {
-		if( a instanceof JMenu) {
-			((JMenu) a).add(toInsert);
-		}
-		if( a instanceof JMenuBar) {
-			((JMenuBar) a).add(toInsert);
-		}
+		insertionMenu.add(item);
 	}
 
 	@Override
 	public void selectionChanged() {
 		for (int i = 0; i < getMenuCount(); i++) {
 			JMenu menu = getMenu(i);
-			for(int j = 0; j < menu.getItemCount(); j++){
-				PaintActionMenuItem item = (PaintActionMenuItem) menu.getItem(j);
-				item.setEnabled(item.getAssociatedAction().canPerformAction());
-			}
-			
-		}
-		
+			recursiveUpdate(menu);
+		}			
 	}
-
+		
+	private void recursiveUpdate(JMenu jitem) {
+		for( int i = 0; i < jitem.getItemCount(); i++ ) {
+			JMenuItem item = jitem.getItem(i);
+			if( item instanceof PaintActionMenuItem)
+				item.setEnabled(((PaintActionMenuItem)item).getAssociatedAction().canPerformAction());
+			else if( item instanceof JMenu )
+				recursiveUpdate( (JMenu)item );
+		}
+	}
 	
-	
-
 }
