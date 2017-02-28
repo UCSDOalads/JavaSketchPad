@@ -1,5 +1,6 @@
 package actions;
 
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
@@ -24,7 +25,7 @@ public class AddDataInputBoxAction extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Add/Data Input Box...";
+		return ActionsMenuBarTitles.Data().Input_Box().Add().toString();
 	}
 
 }

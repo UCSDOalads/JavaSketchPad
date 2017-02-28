@@ -2,6 +2,7 @@ package actions;
 
 import javax.swing.JOptionPane;
 
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 
@@ -25,7 +26,7 @@ public class AddTextBoxAction extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Add/Text Box...";
+		return ActionsMenuBarTitles.Developer("Add/Text Box...").toString();
 	}
 
 }
