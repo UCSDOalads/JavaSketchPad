@@ -58,10 +58,6 @@ public class DataDisplayPaintComponent extends DataTextPaintComponent {
 		return toPoint.contains(x, y) || super.contains(x, y);
 	}
 
-	public void inputData(String s) {
-		this.setDisplayingText(s);
-	}
-
 
 	@Override
 	public void select(SelectTool selectTool) {
@@ -103,7 +99,7 @@ public class DataDisplayPaintComponent extends DataTextPaintComponent {
 	 * @throws NoSuchElementException 
 	 * @see DataToPoint.fetchData for exception details
 	 */
-	public void displayText() throws NoSuchElementException, NoConnectingLineSegmentException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
+	public void updateDisplayText() throws NoSuchElementException, NoConnectingLineSegmentException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
 		this.setDisplayingText(toPoint.fetchData());
 	}
 	
