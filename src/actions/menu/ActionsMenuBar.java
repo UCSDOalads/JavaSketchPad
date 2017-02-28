@@ -9,12 +9,15 @@ import javax.swing.JMenuItem;
 
 import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
+import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddTextBoxAction;
+import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
+import actions.UpdateDataDisplayBoxAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -24,6 +27,13 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddTextBoxAction(panel));
 		addAction(new AddDataInputBoxAction(panel));
 		addAction(new InputDataForDataInputBoxAction(panel));
+		
+		//data display
+		addAction(new AddDataDisplayBoxAction(panel));
+		addAction(new UpdateDataDisplayBoxAction(panel));
+		
+		//data segments
+		addAction(new ConstructDataLineSegmentAction(panel));
 
 	}
 
