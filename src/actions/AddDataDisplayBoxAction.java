@@ -1,5 +1,6 @@
 package actions;
 
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.DataDisplayPaintComponent;
 import ui.PaintPanel;
 
@@ -23,7 +24,7 @@ public class AddDataDisplayBoxAction extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Add/Data Display";
+		return ActionsMenuBarTitles.Data().Display_Box().Add().toString();
 	}
 
 }

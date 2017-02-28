@@ -2,6 +2,7 @@ package actions;
 
 import java.util.ArrayList;
 
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.DataFromPoint;
 import paintcomponents.DataLineSegment;
 import paintcomponents.DataToPoint;
@@ -43,7 +44,7 @@ public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {
 	@Override
 	public String locationString() {
 		// TODO Auto-generated method stub
-		return "Data/Construct/Line Segment";
+		return ActionsMenuBarTitles.Data().Construct().Line_Segment().toString();
 	}
 
 }

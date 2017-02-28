@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 import javax.swing.JOptionPane;
 
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.DataDisplayPaintComponent;
 import paintcomponents.DataFromPointNoDataProviderException;
 import paintcomponents.DataFromPointProviderCannotProvideDataException;
@@ -43,7 +44,7 @@ public class UpdateDataDisplayBoxAction extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Data/Display Box/Update";
+		return ActionsMenuBarTitles.Data().Display_Box().Update().toString();
 	}
 
 }

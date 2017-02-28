@@ -3,6 +3,7 @@ package actions;
 import java.awt.Component;
 import java.util.ArrayList;
 
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
@@ -82,7 +83,7 @@ public class ConstructLineSegmentAction extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Construct/Line Segment";
+		return ActionsMenuBarTitles.Developer("Construct/Line Segment").toString();
 	}
 
 }
