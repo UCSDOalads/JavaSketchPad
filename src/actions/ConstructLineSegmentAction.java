@@ -59,6 +59,18 @@ public class ConstructLineSegmentAction extends PaintAction {
 		
 		//construct line segment
 		LineSegment lineSegment = new LineSegment((SimplePoint)(items.get(0)), (SimplePoint)(items.get(1)));
+		
+
+		addLineSegment(lineSegment);
+	}
+	/**
+	 * This method updates the panel's list of paint components and selection after a line segment is added
+	 * Subclasses should call this method to update the panel when customizing the addition of a line segment 
+	 * 
+	 * @param lineSegment the lineSegment to be added to the painting panel
+	 */
+	protected void  addLineSegment(LineSegment lineSegment) {
+		
 		//add to panel
 		panel.addPaintComponent(lineSegment);
 		
@@ -66,8 +78,6 @@ public class ConstructLineSegmentAction extends PaintAction {
 		panel.getSelectTool().clearSelection();
 		panel.getSelectTool().selectComponent(lineSegment);
 		panel.repaint();
-		
-
 	}
 
 	@Override
