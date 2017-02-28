@@ -4,6 +4,8 @@ public class DataLineSegment<T> extends LineSegment {
 
 	public DataLineSegment(DataFromPoint<T> fromPoint, DataToPoint<T> toPoint) {
 		super(fromPoint, toPoint);
+		fromPoint.setLineSegment(this);
+		toPoint.setLineSegment(this);
 
 	}
 	

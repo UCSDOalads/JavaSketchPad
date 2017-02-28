@@ -60,4 +60,5 @@ public class DataFromPoint<T> extends SimplePoint {
 		this.provider = provider;
 	}
 
+
 }

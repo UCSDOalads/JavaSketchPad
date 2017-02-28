@@ -11,7 +11,7 @@ import painttools.tools.SelectTool;
  *
  */
 public class DataInputTextfieldPaintComponent extends DataTextPaintComponent
-		implements DataFromPointDataProvider<String> {
+		implements DataFromPointDataProvider<String>{
 
 	private static final int HORIZONTAL_OFFSET = 10;
 	private DataFromPoint<String> fromPoint;
@@ -73,7 +73,7 @@ public class DataInputTextfieldPaintComponent extends DataTextPaintComponent
 	@Override
 	public boolean canProvideInformationToDataFromPoint(
 			DataFromPoint<String> dataFromPoint) {
-		return displayingText == null;
+		return displayingText != null;
 	}
 
 	@Override
@@ -98,5 +98,15 @@ public class DataInputTextfieldPaintComponent extends DataTextPaintComponent
 			super.deselect(selectTool);
 		}
 	}
+	
+	@Override
+	public boolean isSelected() {
+		//if the from point is selected, this components is considered selected
+		if(this.fromPoint.isSelected()) return true;
+		return super.isSelected();
+	}
 
+	
+
+	
 }
