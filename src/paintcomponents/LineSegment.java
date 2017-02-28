@@ -61,6 +61,11 @@ public class LineSegment extends PaintComponent {
 		this.strokeWidth = strokeWidth;
 	}
 
+	/**
+	 * Constructs a line segment with default width and default height.
+	 * @param fromPoint
+	 * @param toPoint
+	 */
 	public LineSegment(SimplePoint fromPoint, SimplePoint toPoint) {
 		this(fromPoint, toPoint,
 				Defaults.sharedDefaults().defaultColorForLineSegment(),
