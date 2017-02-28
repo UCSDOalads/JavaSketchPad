@@ -11,7 +11,7 @@ import painttools.tools.SelectTool;
  *
  */
 public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
-		implements DataFromPointDataProvider<String>{
+		implements DataFromPointDataProvider{
 
 
 	public DataInputTextfieldPaintComponent(String displayingText, int x,
@@ -26,13 +26,13 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 
 	@Override
 	public String provideInformationToDataFromPoint(
-			DataFromPoint<String> dataFromPoint) {
+			DataFromPoint dataFromPoint) {
 		return displayingText;
 	}
 
 	@Override
 	public boolean canProvideInformationToDataFromPoint(
-			DataFromPoint<String> dataFromPoint) {
+			DataFromPoint dataFromPoint) {
 		return displayingText != null;
 	}
 

@@ -1,10 +1,10 @@
 package paintcomponents;
 
 
-public interface DataFromPointDataProvider<T> {
+public interface DataFromPointDataProvider {
 
-	public T provideInformationToDataFromPoint(DataFromPoint<T> dataFromPoint);
-	public boolean canProvideInformationToDataFromPoint(DataFromPoint<T> dataFromPoint);
+	public Object provideInformationToDataFromPoint(DataFromPoint dataFromPoint);
+	public boolean canProvideInformationToDataFromPoint(DataFromPoint dataFromPoint);
 		
 	
 	

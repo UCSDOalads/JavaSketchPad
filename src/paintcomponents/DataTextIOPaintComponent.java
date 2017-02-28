@@ -17,22 +17,22 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 	private static final int HORIZONTAL_OFFSET = 10;
 	
 	private class DataFromPointInfo{
-		public DataFromPointInfo(DataFromPoint<String> fromPoint, int yShift) {
+		public DataFromPointInfo(DataFromPoint fromPoint, int yShift) {
 			super();
 			this.fromPoint = fromPoint;
 			this.yShift = yShift;
 		}
-		DataFromPoint<String> fromPoint;
+		DataFromPoint fromPoint;
 		int yShift;
 	}
 	
 	private class DataToPointInfo{
-		public DataToPointInfo(DataToPoint<String> toPoint, int yShift) {
+		public DataToPointInfo(DataToPoint toPoint, int yShift) {
 			super();
 			this.toPoint = toPoint;
 			this.yShift = yShift;
 		}
-		DataToPoint<String> toPoint;
+		DataToPoint toPoint;
 		int yShift;
 	}
 	
@@ -54,8 +54,8 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 	 * @param provider the provider to query when a data is requested
 	 * @param yShift the row number of placing the data from point
 	 */
-	public void addFromPoint(DataFromPointDataProvider<String> provider, int yShift){
-		DataFromPoint<String> fromPoint = new DataFromPoint<>(getX(), getY());
+	public void addFromPoint(DataFromPointDataProvider provider, int yShift){
+		DataFromPoint fromPoint = new DataFromPoint(getX(), getY());
 		fromPoint.setProvider(provider);
 		fromPoints.add(new DataFromPointInfo(fromPoint, yShift));
 	}
@@ -66,8 +66,8 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 	 * @param yShift the row number
 	 * @return the added toPoint
 	 */
-	public DataToPoint<String> addToPoint(int yShift){
-		DataToPoint<String> toPoint = new DataToPoint<>(getX(), getY());
+	public DataToPoint addToPoint(int yShift){
+		DataToPoint toPoint = new DataToPoint(getX(), getY());
 		toPoints.add(new DataToPointInfo(toPoint, yShift));
 		return toPoint;
 		
@@ -96,13 +96,13 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 	 */
 	private void updatePointsPosition() {
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
-			DataFromPoint<String> fromPoint = dataFromPointInfo.fromPoint;
+			DataFromPoint fromPoint = dataFromPointInfo.fromPoint;
 			fromPoint.setX(
 					(int) (getX() + this.bounds.getWidth() + HORIZONTAL_OFFSET));
 			fromPoint.setY((int) (getY() + this.bounds.getHeight() / 2 + this.bounds.getHeight() * dataFromPointInfo.yShift));
 		}
 		for (DataToPointInfo dataToPointInfo : toPoints) {
-			DataToPoint<String> toPoint = dataToPointInfo.toPoint;
+			DataToPoint toPoint = dataToPointInfo.toPoint;
 			toPoint.setX(
 				(int) (getX() - HORIZONTAL_OFFSET));
 			toPoint.setY((int) (getY() + this.bounds.getHeight() / 2 + this.bounds.getHeight() * dataToPointInfo.yShift));
@@ -120,13 +120,13 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 	public boolean contains(int x, int y) {
 
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
-			DataFromPoint<String> fromPoint = dataFromPointInfo.fromPoint;
+			DataFromPoint fromPoint = dataFromPointInfo.fromPoint;
 			if(fromPoint.contains(x, y)){
 				return true;
 			}
 		}
 		for (DataToPointInfo dataToPointInfo : toPoints) {
-			DataToPoint<String> toPoint = dataToPointInfo.toPoint;
+			DataToPoint toPoint = dataToPointInfo.toPoint;
 			if(toPoint.contains(x, y)){
 				return true;
 			}
@@ -143,14 +143,14 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 		int y = selectTool.getLastMouseEvent().getY();
 		//try to select every from and toPoints
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
-			DataFromPoint<String> fromPoint = dataFromPointInfo.fromPoint;
+			DataFromPoint fromPoint = dataFromPointInfo.fromPoint;
 			if(fromPoint.contains(x, y)){
 				fromPoint.select(selectTool);
 				return;
 			}
 		}
 		for (DataToPointInfo dataToPointInfo : toPoints) {
-			DataToPoint<String> toPoint = dataToPointInfo.toPoint;
+			DataToPoint toPoint = dataToPointInfo.toPoint;
 			if(toPoint.contains(x, y)){
 				toPoint.select(selectTool);
 				return;
@@ -167,14 +167,14 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 		
 		//try to deselect every from and toPoints
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
-			DataFromPoint<String> fromPoint = dataFromPointInfo.fromPoint;
+			DataFromPoint fromPoint = dataFromPointInfo.fromPoint;
 			if(fromPoint.contains(x, y)){
 				fromPoint.deselect(selectTool);
 				return;
 			}
 		}
 		for (DataToPointInfo dataToPointInfo : toPoints) {
-			DataToPoint<String> toPoint = dataToPointInfo.toPoint;
+			DataToPoint toPoint = dataToPointInfo.toPoint;
 			if(toPoint.contains(x, y)){
 				toPoint.deselect(selectTool);
 				return;
@@ -187,13 +187,13 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent
 	public boolean isSelected() {
 		//if any of the point is selected, this component is considered selected, and cannot be selected again
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
-			DataFromPoint<String> fromPoint = dataFromPointInfo.fromPoint;
+			DataFromPoint fromPoint = dataFromPointInfo.fromPoint;
 			if(fromPoint.isSelected()){
 				return true;
 			}
 		}
 		for (DataToPointInfo dataToPointInfo : toPoints) {
-			DataToPoint<String> toPoint = dataToPointInfo.toPoint;
+			DataToPoint toPoint = dataToPointInfo.toPoint;
 			if(toPoint.isSelected()){
 				return true;
 			}

@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 //TODO THIS class is a copy of DataInputTextfieldPaintComponent class, please consider abstraction
 public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 
-	private DataToPoint<String> toPoint;
+	private DataToPoint toPoint;
 
 	public DataDisplayPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
@@ -28,7 +28,12 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 	 * @see DataToPoint.fetchData for exception details
 	 */
 	public void updateDisplayText() throws NoSuchElementException, NoConnectingLineSegmentException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
-		this.setDisplayingText(toPoint.fetchData());
+		Object data = toPoint.fetchData();
+		if(data instanceof String){
+			this.setDisplayingText(data.toString());
+		} else {
+			this.setDisplayingText("Error: Not A String :: " + data.toString());
+		}
 	}
 	
 

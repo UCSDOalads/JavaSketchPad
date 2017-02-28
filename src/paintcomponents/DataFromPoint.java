@@ -10,15 +10,15 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author chenzb
  *
  */
-public class DataFromPoint<T> extends SimplePoint {
+public class DataFromPoint extends SimplePoint {
 
-	private DataLineSegment<T> lineSegment;
-	private DataFromPointDataProvider<T> provider;
+	private DataLineSegment lineSegment;
+	private DataFromPointDataProvider provider;
 
 	/**
 	 * @return the lineSegment
 	 */
-	public DataLineSegment<T> getLineSegment() {
+	public DataLineSegment getLineSegment() {
 		return lineSegment;
 	}
 
@@ -26,7 +26,7 @@ public class DataFromPoint<T> extends SimplePoint {
 	 * @param lineSegment
 	 *            the lineSegment to set
 	 */
-	public void setLineSegment(DataLineSegment<T> lineSegment) {
+	public void setLineSegment(DataLineSegment lineSegment) {
 		this.lineSegment = lineSegment;
 	}
 
@@ -42,7 +42,7 @@ public class DataFromPoint<T> extends SimplePoint {
 	 * @throws DataFromPointNoDataProviderException if provider for this method is not set
 	 * @throws DataFromPointProviderCannotProvideDataException if the provider cannot provide such information
 	 */
-	protected T getData() throws DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException {
+	protected Object getData() throws DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException {
 		if (this.provider == null){
 			throw new DataFromPointNoDataProviderException();
 		}
@@ -52,11 +52,11 @@ public class DataFromPoint<T> extends SimplePoint {
 		return this.provider.provideInformationToDataFromPoint(this);
 	}
 
-	public DataFromPointDataProvider<T> getProvider() {
+	public DataFromPointDataProvider getProvider() {
 		return provider;
 	}
 
-	public void setProvider(DataFromPointDataProvider<T> provider) {
+	public void setProvider(DataFromPointDataProvider provider) {
 		this.provider = provider;
 	}
 
