@@ -73,7 +73,7 @@ public class DataInputTextfieldPaintComponent extends DataTextPaintComponent
 	@Override
 	public boolean canProvideInformationToDataFromPoint(
 			DataFromPoint<String> dataFromPoint) {
-		return displayingText == null;
+		return displayingText != null;
 	}
 
 	@Override
