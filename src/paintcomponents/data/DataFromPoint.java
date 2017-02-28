@@ -1,7 +1,9 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import paintcomponents.SimplePoint;
 
 /**
  * This point consumes data and tries to pass the data along a connecting line

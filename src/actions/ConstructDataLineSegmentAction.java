@@ -3,10 +3,10 @@ package actions;
 import java.util.ArrayList;
 
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.DataFromPoint;
-import paintcomponents.DataLineSegment;
-import paintcomponents.DataToPoint;
 import paintcomponents.PaintComponent;
+import paintcomponents.data.DataFromPoint;
+import paintcomponents.data.DataLineSegment;
+import paintcomponents.data.DataToPoint;
 import ui.PaintPanel;
 
 public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {

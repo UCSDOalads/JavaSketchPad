@@ -1,4 +1,6 @@
-package paintcomponents;
+package paintcomponents.data;
+
+import paintcomponents.LineSegment;
 
 public class DataLineSegment extends LineSegment {
 

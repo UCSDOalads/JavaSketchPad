@@ -1,7 +1,7 @@
 package actions;
 
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.DataInputTextfieldPaintComponent;
+import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
 public class AddDataInputBoxAction extends PaintAction {

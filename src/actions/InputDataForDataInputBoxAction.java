@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.DataInputTextfieldPaintComponent;
 import paintcomponents.PaintComponent;
+import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
 public class InputDataForDataInputBoxAction extends PaintAction {

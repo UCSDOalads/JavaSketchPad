@@ -1,4 +1,4 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.awt.Graphics;
 

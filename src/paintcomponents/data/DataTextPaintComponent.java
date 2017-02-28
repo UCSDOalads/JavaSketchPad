@@ -1,10 +1,12 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import paintcomponents.RectanglePaintComponent;
+import paintcomponents.TextPaintComponent;
 import painttools.tools.SelectTool;
 import settings.Defaults;
 

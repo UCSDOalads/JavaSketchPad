@@ -1,6 +1,8 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.util.NoSuchElementException;
+
+import paintcomponents.NoConnectingLineSegmentException;
 
 /**
  * The data display paint component displays the data with a asoociated DataToPoint

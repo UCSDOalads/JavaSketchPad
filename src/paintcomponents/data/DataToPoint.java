@@ -1,6 +1,9 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.util.NoSuchElementException;
+
+import paintcomponents.NoConnectingLineSegmentException;
+import paintcomponents.SimplePoint;
 
 /**
  * Data to point is the point where data is flowing to.
