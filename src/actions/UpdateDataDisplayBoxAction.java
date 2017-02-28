@@ -1,6 +1,7 @@
 package actions;
 
 import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -36,6 +37,7 @@ public class UpdateDataDisplayBoxAction extends PaintAction {
 		} catch (NoSuchElementException | NoConnectingLineSegmentException
 				| DataFromPointNoDataProviderException
 				| DataFromPointProviderCannotProvideDataException e) {
+			Logger.getGlobal().warning(e.toString());
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(panel, e.toString());
 		}
