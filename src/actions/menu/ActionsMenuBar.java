@@ -13,6 +13,7 @@ import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddLazyJavaClassAction;
 import actions.AddLazyJavaConstructorAction;
+import actions.AddLazyJavaFieldsComponentAction;
 import actions.AddLazyJavaMethodComponentAction;
 import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
@@ -42,6 +43,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaClassAction(panel));
 		addAction(new AddLazyJavaConstructorAction(panel));
 		addAction(new AddLazyJavaMethodComponentAction(panel));
+		addAction(new AddLazyJavaFieldsComponentAction(panel));
 
 	}
 

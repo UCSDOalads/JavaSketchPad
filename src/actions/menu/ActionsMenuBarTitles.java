@@ -79,6 +79,11 @@ public class ActionsMenuBarTitles {
 		append("Java Method");
 		return this;
 	}
+
+	public ActionsMenuBarTitles Java_Fields() {
+		append("Java Fields");
+		return this;
+	}
 	
 
 }

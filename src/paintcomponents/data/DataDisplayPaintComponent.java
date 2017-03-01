@@ -12,11 +12,10 @@ import paintcomponents.NoConnectingLineSegmentException;
 //TODO THIS class is a copy of DataInputTextfieldPaintComponent class, please consider abstraction
 public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 
-	private DataToPoint toPoint;
 
 	public DataDisplayPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
-		this.toPoint = addToPoint(0);
+		addToPoint(0);
 	}
 
 	/**
@@ -30,7 +29,7 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 	 * @see DataToPoint.fetchData for exception details
 	 */
 	public void updateDisplayText() throws NoSuchElementException, NoConnectingLineSegmentException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
-		Object data = toPoint.fetchData();
+		Object data = getToPoints().get(0).fetchData();
 		if(data instanceof String){
 			this.setDisplayingText(data.toString());
 		} else {

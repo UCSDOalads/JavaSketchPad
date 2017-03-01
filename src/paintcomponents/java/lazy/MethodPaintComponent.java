@@ -62,7 +62,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		// prepare String
 		StringBuilder s = new StringBuilder();
 		s.append(this.displayingMethod.toString() + "\n");
-		s.append(">>> Operating Instance  :: " + this.displayingMethod.toString()
+		s.append(">>> Operating Instance  :: " 
 				+ "\n");
 		for (int i = 0; i < paramTypes.length; i++) {
 			s.append("arg" + i + " :: " + paramTypes[i].getName() + "\n");

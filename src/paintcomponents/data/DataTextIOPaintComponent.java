@@ -91,10 +91,9 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	 *            the row number
 	 * @return the added toPoint
 	 */
-	public DataToPoint addToPoint(int yShift) {
+	public void addToPoint(int yShift) {
 		DataToPoint toPoint = new DataToPoint(getX(), getY());
 		toPoints.add(new DataToPointInfo(toPoint, yShift));
-		return toPoint;
 
 	}
 
