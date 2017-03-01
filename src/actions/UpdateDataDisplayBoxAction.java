@@ -1,14 +1,15 @@
 package actions;
 
 import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.DataDisplayPaintComponent;
-import paintcomponents.DataFromPointNoDataProviderException;
-import paintcomponents.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.NoConnectingLineSegmentException;
+import paintcomponents.data.DataDisplayPaintComponent;
+import paintcomponents.data.DataFromPointNoDataProviderException;
+import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import ui.PaintPanel;
 
 public class UpdateDataDisplayBoxAction extends PaintAction {
@@ -36,6 +37,7 @@ public class UpdateDataDisplayBoxAction extends PaintAction {
 		} catch (NoSuchElementException | NoConnectingLineSegmentException
 				| DataFromPointNoDataProviderException
 				| DataFromPointProviderCannotProvideDataException e) {
+			Logger.getGlobal().warning(e.toString());
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(panel, e.toString());
 		}

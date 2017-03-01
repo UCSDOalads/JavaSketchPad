@@ -60,6 +60,30 @@ public class ActionsMenuBarTitles {
 		append("Line Segment");
 		return this;
 	}
+
+	public static ActionsMenuBarTitles Lazy() {
+		return new ActionsMenuBarTitles("Lazy");
+	}
+
+	public ActionsMenuBarTitles Java_Class() {
+		append("Java Class");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Java_Constructor() {
+		append("Java Constructor");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Java_Method() {
+		append("Java Method");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Java_Fields() {
+		append("Java Fields");
+		return this;
+	}
 	
 
 }
