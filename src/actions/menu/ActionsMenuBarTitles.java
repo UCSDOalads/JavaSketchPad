@@ -74,6 +74,11 @@ public class ActionsMenuBarTitles {
 		append("Java Constructor");
 		return this;
 	}
+
+	public ActionsMenuBarTitles Java_Method() {
+		append("Java Method");
+		return this;
+	}
 	
 
 }
