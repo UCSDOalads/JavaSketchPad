@@ -25,8 +25,8 @@ public class DataTextPaintComponent extends TextPaintComponent {
 	
 	public DataTextPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
-		defaultColor = Defaults.sharedDefaults().defaultColorForDataInputTextfield();
-		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataInputTextfield();
+		defaultColor = Defaults.sharedDefaults().defaultColorForDataTextComponent();
+		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataTextComponent();
 		rect = new RectanglePaintComponent(x, y, 0, 0);
 	}
 
@@ -53,8 +53,8 @@ public class DataTextPaintComponent extends TextPaintComponent {
 	}
 	
 	private void updateAndPaintBoudingRectangle(Graphics g){
-		rect.setWidth((int) bounds.getWidth());
-		rect.setHeight((int) bounds.getHeight());
+		rect.setWidth((int) getBounds().getWidth());
+		rect.setHeight((int) getBounds().getHeight());
 		rect.paint(g);
 	}
 	

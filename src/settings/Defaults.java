@@ -17,8 +17,17 @@ public class Defaults {
 	private static final int LINE_SEGMENT_STROKE_WIDTH = 5;
 
 
-	private static final Color DATA_INPUT_TEXTFIELD_COLOR = LINE_SEGMENT_COLOR;
-	private static final Color DATA_INPUT_TEXTFIELD_SELECTED_COLOR = LINE_SEGMENT_SELECTED_COLOR;
+	private static final Color DATA_TEXTFIELD_COLOR = LINE_SEGMENT_COLOR;
+	private static final Color DATA_TEXTFIELD_SELECTED_COLOR = LINE_SEGMENT_SELECTED_COLOR;
+
+
+	private static final Color TEXT_COMPONENT_COLOR = Color.BLACK;
+
+
+	private static final Color TEXT_COMPONENT_SELECTED_COLOR = LINE_SEGMENT_SELECTED_COLOR;
+
+
+	private static final float TEXT_COMPONENT_TEXT_SIZE = 16;
 	
 	private Defaults(){
 		
@@ -55,18 +64,30 @@ public class Defaults {
 		return LINE_SEGMENT_STROKE_WIDTH;
 	}
 
-	public Color defaultColorForDataInputTextfield() {
-		return DATA_INPUT_TEXTFIELD_COLOR;
+	public Color defaultColorForDataTextComponent() {
+		return DATA_TEXTFIELD_COLOR;
 	}
 	
-	public Color defaultColorForSelectedDataInputTextfield(){
-		return DATA_INPUT_TEXTFIELD_SELECTED_COLOR;
+	public Color defaultColorForSelectedDataTextComponent(){
+		return DATA_TEXTFIELD_SELECTED_COLOR;
 	}
 	public Color defaultColorForRectanglePaintComponent() {
-		return DATA_INPUT_TEXTFIELD_COLOR;
+		return DATA_TEXTFIELD_COLOR;
 	}
 	
 	public Color defaultColorForSelectedRectanglePaintComponent(){
-		return DATA_INPUT_TEXTFIELD_SELECTED_COLOR;
+		return DATA_TEXTFIELD_SELECTED_COLOR;
+	}
+
+	public Color defaultColorForTextPaintComponent() {
+		return TEXT_COMPONENT_COLOR;
+	}
+
+	public Color defaultColorForSelectedTextPaintComponent() {
+		return TEXT_COMPONENT_SELECTED_COLOR;
+	}
+
+	public float defaultFontSizeForPaintComponent() {
+		return TEXT_COMPONENT_TEXT_SIZE;
 	}
 }

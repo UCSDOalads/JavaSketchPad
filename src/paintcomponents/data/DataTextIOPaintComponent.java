@@ -122,16 +122,16 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	private void updatePointsPosition() {
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
 			DataFromPoint fromPoint = dataFromPointInfo.fromPoint;
-			fromPoint.setX((int) (getX() + this.bounds.getWidth()
+			fromPoint.setX((int) (getX() + this.getBounds().getWidth()
 					+ HORIZONTAL_OFFSET));
-			fromPoint.setY((int) (getY() + this.bounds.getHeight() / 2
-					+ this.bounds.getHeight() * dataFromPointInfo.yShift));
+			fromPoint.setY((int) (getY() + this.getRowHeight() / 2
+					+ this.getRowHeight() * dataFromPointInfo.yShift));
 		}
 		for (DataToPointInfo dataToPointInfo : toPoints) {
 			DataToPoint toPoint = dataToPointInfo.toPoint;
 			toPoint.setX((int) (getX() - HORIZONTAL_OFFSET));
-			toPoint.setY((int) (getY() + this.bounds.getHeight() / 2
-					+ this.bounds.getHeight() * dataToPointInfo.yShift));
+			toPoint.setY((int) (getY() + this.getRowHeight() / 2
+					+ this.getRowHeight() * dataToPointInfo.yShift));
 		}
 	}
 
