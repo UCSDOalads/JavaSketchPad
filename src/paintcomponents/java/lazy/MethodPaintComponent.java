@@ -62,13 +62,13 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		// prepare String
 		StringBuilder s = new StringBuilder();
 		s.append(this.displayingMethod.toString() + "\n");
-		s.append(">>> Operating Instance  :: " 
+		s.append(">>> Operating Instance  " 
 				+ "\n");
 		for (int i = 0; i < paramTypes.length; i++) {
 			s.append("arg" + i + " :: " + paramTypes[i].getName() + "\n");
 		}
 
-		s.append("Return value"
+		s.append("Return value :: "
 				+ this.displayingMethod.getReturnType().toString() + " >>>> "
 				+ "\n");
 		setDisplayingText(s.toString());
@@ -98,8 +98,8 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		// args takes toPoint 1 to size
 		Object[] args = new Object[toPoints.size() - 1];
 
-		for (int i = 1; i < toPoints.size(); i++) {
-			DataToPoint toPoint = toPoints.get(i);
+		for (int i = 0; i < toPoints.size() - 1; i++) {
+			DataToPoint toPoint = toPoints.get(i+1);
 			try {
 				args[i] = toPoint.fetchData();
 			} catch (NoSuchElementException | NoConnectingLineSegmentException
