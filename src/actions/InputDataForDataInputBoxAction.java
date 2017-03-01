@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import paintcomponents.DataInputTextfieldPaintComponent;
+import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.PaintComponent;
+import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
 public class InputDataForDataInputBoxAction extends PaintAction {
@@ -34,7 +35,7 @@ public class InputDataForDataInputBoxAction extends PaintAction {
 
 	@Override
 	public String locationString() {
-		return "Input/Input into Data Panel";
+		return ActionsMenuBarTitles.Data().Input_Box().Update().toString();
 	}
 
 }

@@ -1,6 +1,9 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.util.NoSuchElementException;
+
+import paintcomponents.NoConnectingLineSegmentException;
+import paintcomponents.SimplePoint;
 
 /**
  * Data to point is the point where data is flowing to.
@@ -8,22 +11,22 @@ import java.util.NoSuchElementException;
  * @author chenzb
  *
  */
-public class DataToPoint<T> extends SimplePoint {
+public class DataToPoint extends SimplePoint {
 	
 	
-	DataLineSegment<T> lineSegment;
+	DataLineSegment lineSegment;
 
 	/**
 	 * @return the lineSegment
 	 */
-	public DataLineSegment<T> getLineSegment() {
+	public DataLineSegment getLineSegment() {
 		return lineSegment;
 	}
 
 	/**
 	 * @param lineSegment the lineSegment to set
 	 */
-	public void setLineSegment(DataLineSegment<T> lineSegment) {
+	public void setLineSegment(DataLineSegment lineSegment) {
 		this.lineSegment = lineSegment;
 	}
 
@@ -40,10 +43,10 @@ public class DataToPoint<T> extends SimplePoint {
 	 * @throws DataFromPointProviderCannotProvideDataException  when the connecting dataInputPoint's data provider cannot provide a information
 	 * @throws DataFromPointNoDataProviderException  when the connecting DataInputPoint does not have a data provider associated
 	 */
-	public T fetchData() throws NoConnectingLineSegmentException, NoSuchElementException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
+	public Object fetchData() throws NoConnectingLineSegmentException, NoSuchElementException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
 		if(this.lineSegment == null) throw new NoConnectingLineSegmentException();
 		
-		T returnVal = lineSegment.getFromPoint().getData();
+		Object returnVal = lineSegment.getFromPoint().getData();
 		if(returnVal == null) throw new NoSuchElementException();
 		return returnVal;
 		

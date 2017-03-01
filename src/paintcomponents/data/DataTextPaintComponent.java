@@ -1,10 +1,12 @@
-package paintcomponents;
+package paintcomponents.data;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import paintcomponents.RectanglePaintComponent;
+import paintcomponents.TextPaintComponent;
 import painttools.tools.SelectTool;
 import settings.Defaults;
 
@@ -18,13 +20,9 @@ public class DataTextPaintComponent extends TextPaintComponent {
 
 
 	private RectanglePaintComponent rect;
-	private Color defaultColor;
-	private Color selectedColor;
 	
 	public DataTextPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
-		defaultColor = Defaults.sharedDefaults().defaultColorForDataInputTextfield();
-		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataInputTextfield();
 		rect = new RectanglePaintComponent(x, y, 0, 0);
 	}
 
@@ -34,7 +32,6 @@ public class DataTextPaintComponent extends TextPaintComponent {
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
-		g.setColor(defaultColor);
 		((Graphics2D)g).setStroke(new BasicStroke(1));
 		super.paintNotSelected(g);
 		updateAndPaintBoudingRectangle(g);
@@ -44,15 +41,14 @@ public class DataTextPaintComponent extends TextPaintComponent {
 
 	@Override
 	protected void paintSelected(Graphics g) {
-		g.setColor(selectedColor);
 		((Graphics2D)g).setStroke(new BasicStroke(1));
 		super.paintSelected(g);;
 		updateAndPaintBoudingRectangle(g);
 	}
 	
 	private void updateAndPaintBoudingRectangle(Graphics g){
-		rect.setWidth((int) bounds.getWidth());
-		rect.setHeight((int) bounds.getHeight());
+		rect.setWidth((int) getBounds().getWidth());
+		rect.setHeight((int) getBounds().getHeight());
 		rect.paint(g);
 	}
 	
