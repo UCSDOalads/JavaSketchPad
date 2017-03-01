@@ -20,13 +20,9 @@ public class DataTextPaintComponent extends TextPaintComponent {
 
 
 	private RectanglePaintComponent rect;
-	private Color defaultColor;
-	private Color selectedColor;
 	
 	public DataTextPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
-		defaultColor = Defaults.sharedDefaults().defaultColorForDataTextComponent();
-		selectedColor = Defaults.sharedDefaults().defaultColorForSelectedDataTextComponent();
 		rect = new RectanglePaintComponent(x, y, 0, 0);
 	}
 
@@ -36,7 +32,6 @@ public class DataTextPaintComponent extends TextPaintComponent {
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
-		g.setColor(defaultColor);
 		((Graphics2D)g).setStroke(new BasicStroke(1));
 		super.paintNotSelected(g);
 		updateAndPaintBoudingRectangle(g);
@@ -46,7 +41,6 @@ public class DataTextPaintComponent extends TextPaintComponent {
 
 	@Override
 	protected void paintSelected(Graphics g) {
-		g.setColor(selectedColor);
 		((Graphics2D)g).setStroke(new BasicStroke(1));
 		super.paintSelected(g);;
 		updateAndPaintBoudingRectangle(g);
