@@ -44,7 +44,7 @@ public class FieldsPaintComponent extends DataTextIOPaintComponent implements Da
 		s.append(">>> Operating Instance  " 
 				+ "\n");
 		for (int i = 0; i < fields.length; i++) {
-			s.append("arg" + i + " :: " + fields[i].getName() + " :: " + fields[i].getType().toString() + "\n");
+			s.append("field" + i + " :: " + fields[i].getName() + " :: " + fields[i].getType().toString() + "\n");
 		}
 
 		setDisplayingText(s.toString());
