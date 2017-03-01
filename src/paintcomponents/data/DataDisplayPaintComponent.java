@@ -34,7 +34,7 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 		if(data instanceof String){
 			this.setDisplayingText(data.toString());
 		} else {
-			this.setDisplayingText("Error: Not A String :: " + data.toString());
+			this.setDisplayingText("Error: Not A String :: " + "Type : " + data.getClass().toString() + " Value: " + data.toString());
 		}
 	}
 	
