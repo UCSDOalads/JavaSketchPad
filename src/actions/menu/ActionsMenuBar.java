@@ -11,6 +11,8 @@ import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
+import actions.AddLazyJavaClassAction;
+import actions.AddLazyJavaConstructorAction;
 import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
@@ -34,6 +36,10 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		
 		//data segments
 		addAction(new ConstructDataLineSegmentAction(panel));
+		
+		//java class
+		addAction(new AddLazyJavaClassAction(panel));
+		addAction(new AddLazyJavaConstructorAction(panel));
 
 	}
 

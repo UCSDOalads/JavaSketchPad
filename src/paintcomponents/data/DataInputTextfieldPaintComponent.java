@@ -25,7 +25,7 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 	}
 
 	@Override
-	public String provideInformationToDataFromPoint(
+	public Object provideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
 		return displayingText;
 	}
