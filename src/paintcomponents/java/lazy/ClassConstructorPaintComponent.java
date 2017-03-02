@@ -30,11 +30,11 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent imp
 		//parameters take place from line 1 to length
 		Class[] paramTypes = displayingConstructor.getParameterTypes();
 		for(int i = 0; i < paramTypes.length; i ++){
-			addToPoint(i + 1);
+			addToPoint(i + 1, paramTypes[i].getName());
 		}
 		
 		//constructed instance take line length+1
-		addFromPoint(this, paramTypes.length + 1);
+		addFromPoint(this, paramTypes.length + 1, this.displayingConstructor.getDeclaringClass().getName());
 
 		
 		//prepare String

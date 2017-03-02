@@ -15,7 +15,7 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 
 	public DataDisplayPaintComponent(String displayingText, int x, int y) {
 		super(displayingText, x, y);
-		addToPoint(0);
+		addToPoint(0, String.class.getName());
 	}
 
 	/**

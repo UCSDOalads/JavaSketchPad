@@ -17,7 +17,7 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 	public DataInputTextfieldPaintComponent(String displayingText, int x,
 			int y) {
 		super(displayingText, x, y);
-		addFromPoint(this, 0);
+		addFromPoint(this, 0, String.class.getName());
 	}
 
 	public void inputData(String s) {

@@ -15,6 +15,7 @@ public class DataToPoint extends SimplePoint {
 	
 	
 	DataLineSegment lineSegment;
+	private String expectedType;
 
 	/**
 	 * @return the lineSegment
@@ -30,8 +31,9 @@ public class DataToPoint extends SimplePoint {
 		this.lineSegment = lineSegment;
 	}
 
-	public DataToPoint(int x, int y) {
+	public DataToPoint(int x, int y, String expectedType) {
 		super(x, y);
+		this.expectedType = expectedType;
 	}
 	
 	
@@ -50,6 +52,14 @@ public class DataToPoint extends SimplePoint {
 		if(returnVal == null) throw new NoSuchElementException();
 		return returnVal;
 		
+	}
+
+	public String getExpectedType() {
+		return expectedType;
+	}
+
+	public void setExpectedType(String expectedType) {
+		this.expectedType = expectedType;
 	}
 	
 

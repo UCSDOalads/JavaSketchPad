@@ -77,8 +77,8 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	 * @param yShift
 	 *            the row number of placing the data from point
 	 */
-	public void addFromPoint(DataFromPointDataProvider provider, int yShift) {
-		DataFromPoint fromPoint = new DataFromPoint(getX(), getY());
+	public void addFromPoint(DataFromPointDataProvider provider, int yShift, String expectedType) {
+		DataFromPoint fromPoint = new DataFromPoint(getX(), getY(), expectedType);
 		fromPoint.setProvider(provider);
 		fromPoints.add(new DataFromPointInfo(fromPoint, yShift));
 	}
@@ -91,8 +91,8 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	 *            the row number
 	 * @return the added toPoint
 	 */
-	public void addToPoint(int yShift) {
-		DataToPoint toPoint = new DataToPoint(getX(), getY());
+	public void addToPoint(int yShift, String expectedType) {
+		DataToPoint toPoint = new DataToPoint(getX(), getY(), expectedType);
 		toPoints.add(new DataToPointInfo(toPoint, yShift));
 
 	}
