@@ -49,15 +49,15 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 
 		// line 0 is signature
 		// line 1 is the operating instance
-		addToPoint(1);
+		addToPoint(1, this.displayingMethod.getDeclaringClass().getName());
 		// parameters take place from line 2 to length+1
 		Class[] paramTypes = displayingMethod.getParameterTypes();
-		for (int i = 2; i < paramTypes.length + 2; i++) {
-			addToPoint(i);
+		for (int i = 0; i < paramTypes.length ; i++) {
+			addToPoint(i + 2, paramTypes[i].getName());
 		}
 
 		// method's return value take line length+2
-		addFromPoint(this, paramTypes.length + 2);
+		addFromPoint(this, paramTypes.length + 2, displayingMethod.getReturnType().getName());
 
 		// prepare String
 		StringBuilder s = new StringBuilder();

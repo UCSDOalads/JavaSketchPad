@@ -18,6 +18,8 @@ public class ClassPaintComponent extends DataInputTextfieldPaintComponent{
 	public ClassPaintComponent(Class displayingClass, int x, int y) {
 		super(displayingClass.getName(), x, y);
 		this.displayingClass = displayingClass;
+		//make sure we set correct type for outgoint edges
+		this.getFromPoints().get(0).setExpectedType(displayingClass.getClass().getName());
 	}
 
 	@Override

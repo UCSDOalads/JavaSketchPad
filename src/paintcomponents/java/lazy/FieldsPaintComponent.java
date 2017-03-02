@@ -31,10 +31,11 @@ public class FieldsPaintComponent extends DataTextIOPaintComponent implements Da
 		Field[] fields = displayingClass.getFields();
 		
 		//the left receiving instance
-		addToPoint(1);
+		addToPoint(1, displayingClass.getName());
 		
 		for (int i = 0; i < fields.length; i++) {
-			addFromPoint(this, i + 2);
+			//the type is the type of the field
+			addFromPoint(this, i + 2, fields[i].getType().getName());
 		}
 		
 		

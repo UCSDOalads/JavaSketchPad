@@ -1,3 +1,6 @@
 1. File Save/Close Operations
 2. Edit Undo/Redo Operations
 3. More usable SelectTools
+4. Remove Functinoality
+5. Zooming and Scrolling
+6. Data Point Connection Types

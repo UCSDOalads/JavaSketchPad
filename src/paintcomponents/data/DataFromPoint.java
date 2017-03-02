@@ -16,6 +16,7 @@ public class DataFromPoint extends SimplePoint {
 
 	private DataLineSegment lineSegment;
 	private DataFromPointDataProvider provider;
+	private String expectedType;
 
 	/**
 	 * @return the lineSegment
@@ -32,8 +33,9 @@ public class DataFromPoint extends SimplePoint {
 		this.lineSegment = lineSegment;
 	}
 
-	public DataFromPoint(int x, int y) {
+	public DataFromPoint(int x, int y, String expectedType) {
 		super(x, y);
+		this.expectedType = expectedType;
 	}
 
 	/**
@@ -60,6 +62,14 @@ public class DataFromPoint extends SimplePoint {
 
 	public void setProvider(DataFromPointDataProvider provider) {
 		this.provider = provider;
+	}
+
+	public String getExpectedType() {
+		return expectedType;
+	}
+
+	public void setExpectedType(String expectedType) {
+		this.expectedType = expectedType;
 	}
 
 
