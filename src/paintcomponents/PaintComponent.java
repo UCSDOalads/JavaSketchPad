@@ -1,7 +1,6 @@
 package paintcomponents;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 import painttools.tools.SelectTool;
 
@@ -11,14 +10,15 @@ import painttools.tools.SelectTool;
  * To add functionality to translation: Override translate method if you want to
  * customize tranlation.
  * 
- * To add functionality to selection: Override isSelected, select and deselect method to
- * perform additional selections.
+ * To add functionality to selection: Override isSelected, select and deselect
+ * method to perform additional selections.
  * 
  * 
  * You should generally not override paint, toggleSelect as the default
  * implementation delegates to other methods that you have to.
  * 
- * MAKE SURE YOU CALL SUPER when overriding non-abstract methods, (select, translate)
+ * MAKE SURE YOU CALL SUPER when overriding non-abstract methods, (select,
+ * translate)
  * 
  * @author chenzb
  *
@@ -31,12 +31,13 @@ public abstract class PaintComponent {
 
 	static private long UNIQUE_ID = 0;
 	long uid = ++UNIQUE_ID;
-	
+
 	/**
 	 * Get a Unique ID of this component. IDs resets to zero when JVM starts;
+	 * 
 	 * @return
 	 */
-	public long getComponentID(){
+	public long getComponentID() {
 		return uid;
 	}
 
@@ -105,8 +106,9 @@ public abstract class PaintComponent {
 	protected abstract void paintSelected(Graphics g);
 
 	/**
-	 * Set the state of this object to be selected state
-	 * If select tool is not null, update select tools's selection list to contain this paint component
+	 * Set the state of this object to be selected state If select tool is not
+	 * null, update select tools's selection list to contain this paint
+	 * component
 	 * 
 	 * @param selectTool
 	 *            TODO
@@ -120,7 +122,8 @@ public abstract class PaintComponent {
 	/**
 	 * Set the state of this object to be unselected
 	 * 
-	 * If the select tool is not null,  remove this paint component from the tool's selection list
+	 * If the select tool is not null, remove this paint component from the
+	 * tool's selection list
 	 * 
 	 * @param selectTool
 	 *            TODO
@@ -161,6 +164,5 @@ public abstract class PaintComponent {
 	}
 
 	public abstract boolean contains(int x2, int y2);
-	
 
 }

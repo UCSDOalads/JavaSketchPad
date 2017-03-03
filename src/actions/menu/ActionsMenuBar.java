@@ -20,6 +20,7 @@ import actions.AddLazyJavaMethodComponentAction;
 import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
+import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
@@ -50,6 +51,9 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//haskell
 		addAction(new AddHaskellComponent(panel));
 		addAction(new AddHaskellEvaluatorComponentAction(panel));
+		
+		//file
+		addAction(new FileSaveAs(panel));
 
 	}
 
