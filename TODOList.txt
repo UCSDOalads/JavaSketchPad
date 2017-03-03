@@ -4,3 +4,4 @@
 4. Remove Functinoality
 5. Zooming and Scrolling
 6. Data Point Connection Types
+7. Available Class Search

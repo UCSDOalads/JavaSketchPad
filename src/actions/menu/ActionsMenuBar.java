@@ -11,6 +11,8 @@ import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
+import actions.AddHaskellComponent;
+import actions.AddHaskellEvaluatorComponentAction;
 import actions.AddLazyJavaClassAction;
 import actions.AddLazyJavaConstructorAction;
 import actions.AddLazyJavaFieldsComponentAction;
@@ -44,6 +46,10 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaConstructorAction(panel));
 		addAction(new AddLazyJavaMethodComponentAction(panel));
 		addAction(new AddLazyJavaFieldsComponentAction(panel));
+		
+		//haskell
+		addAction(new AddHaskellComponent(panel));
+		addAction(new AddHaskellEvaluatorComponentAction(panel));
 
 	}
 
