@@ -29,6 +29,17 @@ public abstract class PaintComponent {
 	private int y;
 	private boolean selected;
 
+	static private long UNIQUE_ID = 0;
+	long uid = ++UNIQUE_ID;
+	
+	/**
+	 * Get a Unique ID of this component. IDs resets to zero when JVM starts;
+	 * @return
+	 */
+	public long getComponentID(){
+		return uid;
+	}
+
 	/**
 	 * @return the x
 	 */
@@ -150,5 +161,6 @@ public abstract class PaintComponent {
 	}
 
 	public abstract boolean contains(int x2, int y2);
+	
 
 }
