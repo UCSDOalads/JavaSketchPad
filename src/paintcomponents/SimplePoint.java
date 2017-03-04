@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import settings.Defaults;
 
 public class SimplePoint extends PaintComponent {
@@ -50,6 +53,11 @@ public class SimplePoint extends PaintComponent {
 	@Override
 	public boolean contains(int x, int y){
 		return new Rectangle(this.getX()- this.radius/2, this.getY() - this.radius/2, radius, radius).contains(x, y);
+	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
 	}
 
 }

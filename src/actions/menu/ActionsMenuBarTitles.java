@@ -28,6 +28,16 @@ public class ActionsMenuBarTitles {
 	public static ActionsMenuBarTitles Developer(String remainingTitle){
 		return new ActionsMenuBarTitles("Developer" + "/" + remainingTitle);
 	}
+	
+	public static ActionsMenuBarTitles File(){
+		return new ActionsMenuBarTitles("File");
+	}
+	
+	
+	public ActionsMenuBarTitles Save(){
+		append("Save...");
+		return this;
+	}
 
 	private void append(String str){
 		this.pending += "/" + str;
@@ -95,6 +105,11 @@ public class ActionsMenuBarTitles {
 	
 	public ActionsMenuBarTitles Redo() {
 		append("Redo");
+    return this;
+  }
+  
+	public ActionsMenuBarTitles Remove() {
+		append("Remove");
 		return this;
 	}
 	

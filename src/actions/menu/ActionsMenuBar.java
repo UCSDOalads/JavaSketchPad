@@ -11,6 +11,8 @@ import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
+import actions.AddHaskellComponent;
+import actions.AddHaskellEvaluatorComponentAction;
 import actions.AddLazyJavaClassAction;
 import actions.AddLazyJavaConstructorAction;
 import actions.AddLazyJavaFieldsComponentAction;
@@ -20,9 +22,11 @@ import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
 import actions.EditRedoAction;
 import actions.EditUndoAction;
+import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
+import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
@@ -50,6 +54,16 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//edit 
 		addAction(new EditRedoAction(panel));
 		addAction(new EditUndoAction(panel));
+
+		//haskell
+		addAction(new AddHaskellComponent(panel));
+		addAction(new AddHaskellEvaluatorComponentAction(panel));
+		
+		//file
+		addAction(new FileSaveAs(panel));
+
+		// remove
+		addAction(new RemovePaintComponent(panel));
 
 	}
 
