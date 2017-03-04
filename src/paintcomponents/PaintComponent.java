@@ -2,6 +2,9 @@ package paintcomponents;
 
 import java.awt.Graphics;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import painttools.tools.SelectTool;
 
 /**
@@ -165,4 +168,34 @@ public abstract class PaintComponent {
 
 	public abstract boolean contains(int x2, int y2);
 
+	public void saveToElement(Element rootElement, Document doc) {
+		/*
+		 * <position>
+		 * 		<xcoordinate>45</xcoordinate>
+		 * 		<ycoordinate>50</ycoordinate>
+		 * </position>
+		 */
+		Element posElement = doc.createElement("position");
+		Element	posXElement = doc.createElement("xcoordinate");
+		Element posYElement = doc.createElement("ycoordinate");
+		posXElement.appendChild(doc.createTextNode(Integer.toString(getX())));
+		posYElement.appendChild(doc.createTextNode(Integer.toString(getY())));
+		posElement.appendChild(posXElement);
+		posElement.appendChild(posYElement);
+		rootElement.appendChild(posElement);
+		
+
+
+		
+	}
+
+	/**
+	 * Create by reading from an xml
+	 * @param rootElement the same document as the saved one.
+	 * @param doc
+	 */
+	public PaintComponent(Element rootElement, Document doc) {
+
+
+	}
 }

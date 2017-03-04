@@ -1,6 +1,7 @@
 package file;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,6 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
 /**
@@ -46,7 +48,7 @@ public class PanelIO {
 		version.appendChild(doc.createTextNode("1.0"));
 		rootElement.appendChild(version);
 		
-		constructRootElementWithPanel(rootElement, panel);
+		constructRootElementWithPanel(rootElement, doc, panel);
 		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -65,9 +67,17 @@ public class PanelIO {
 		
 	}
 
-	private void constructRootElementWithPanel(Element rootElement,
+	private void constructRootElementWithPanel(Element rootElement, Document doc,
 			PaintPanel panel) {
-		// TODO Auto-generated method stub
+		ArrayList<PaintComponent> paintComponents = panel.getPaintComponents();
+		//assume only 
+		for (PaintComponent paintComponent : paintComponents) {
+			Element elem = doc.createElement("paintcomponent");
+			rootElement.appendChild(elem);
+			elem.setAttribute("type", paintComponent.getClass().getName());
+			//the root for a particular paint component
+			paintComponent.saveToElement(elem, doc);
+		}
 		
 	}
 }
