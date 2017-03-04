@@ -4,6 +4,8 @@ import java.lang.reflect.Method;
 
 import javax.swing.JOptionPane;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.lazy.ClassConstructorPaintComponent;
 import paintcomponents.java.lazy.ClassPaintComponent;
@@ -44,6 +46,21 @@ public class AddLazyJavaMethodComponentAction extends PaintAction {
 				methods[desiaredConstructorIndex], panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(methodComp);
+		// add action to undo redo manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+					
+			@Override
+			public void undoAction() {
+				methodComp.remove(panel);
+				panel.repaint();
+			}
+					
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(methodComp);
+				panel.repaint();
+			}
+		});
 		panel.repaint();
 	}
 	public String getMethodsSelectionUI(Method[] methods) {
