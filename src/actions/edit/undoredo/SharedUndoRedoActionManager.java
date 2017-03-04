@@ -40,11 +40,11 @@ public class SharedUndoRedoActionManager {
 	}
 	
 	public boolean canUndo() {
-		return undoStack.isEmpty();
+		return !undoStack.isEmpty();
 	}
 	
 	public boolean canRedo() {
-		return redoStack.isEmpty();
+		return !redoStack.isEmpty();
 	}
 	
 	public void pushUndoableAction( UndoRedoableInterface undoredoableAction ) {

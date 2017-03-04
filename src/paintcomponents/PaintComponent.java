@@ -152,6 +152,11 @@ public abstract class PaintComponent {
 
 	public abstract boolean contains(int x2, int y2);
 	
+	/**
+	 * Remove this component from the Paint Panel
+	 * @param panel the panel that this paint component resides
+	 */
+	
 	public void remove(PaintPanel panel) {
 		panel.getPaintComponents().remove(this);
 	}

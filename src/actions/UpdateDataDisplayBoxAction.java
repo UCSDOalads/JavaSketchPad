@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataDisplayPaintComponent;
@@ -33,6 +35,21 @@ public class UpdateDataDisplayBoxAction extends PaintAction {
 		DataDisplayPaintComponent comp = (DataDisplayPaintComponent) panel.getSelectTool().getSelectedComponents().get(0) ;
 		try {
 			comp.updateDisplayText();
+			//push action to the manager
+			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+				
+				@Override
+				public void undoAction() {
+					comp.remove(panel);
+					panel.repaint();
+				}
+				
+				@Override
+				public void redoAction() {
+					panel.addPaintComponent(comp);
+					panel.repaint();
+				}
+			});
 			panel.repaint();
 		} catch (NoSuchElementException | NoConnectingLineSegmentException
 				| DataFromPointNoDataProviderException

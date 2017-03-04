@@ -3,6 +3,8 @@ package actions;
 import java.awt.Component;
 import java.util.ArrayList;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
@@ -78,6 +80,21 @@ public class ConstructLineSegmentAction extends PaintAction {
 		//change selection
 		panel.getSelectTool().clearSelection();
 		panel.getSelectTool().selectComponent(lineSegment);
+		//push action to the manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+			
+			@Override
+			public void undoAction() {
+				lineSegment.remove(panel);
+				panel.repaint();
+			}
+			
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(lineSegment);
+				panel.repaint();
+			}
+		});
 		panel.repaint();
 	}
 

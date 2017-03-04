@@ -28,12 +28,14 @@ public class AddDataInputBoxAction extends PaintAction {
 			
 			@Override
 			public void undoAction() {
-				panel.getPaintComponents().remove(panel);
+				comp.remove(panel);
+				panel.repaint();
 			}
 			
 			@Override
 			public void redoAction() {
 				panel.addPaintComponent(comp);
+				panel.repaint();
 				
 			}
 		});

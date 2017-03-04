@@ -94,16 +94,16 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 				insertionMenu = newMenu;
 			}
 		}
-		//assume 2 level depth
+		
 		//TODO Change here
-		PaintActionMenuItem item = new PaintActionMenuItem(action);
+		PaintActionMenuItem item = new PaintActionMenuItem(action, this);
 		item.setEnabled(action.canPerformAction());
 		item.setText(strings[strings.length-1]);
 		item.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				action.performAction();
+				item.performAction();
 				
 			}
 		});
@@ -112,10 +112,14 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 
 	@Override
 	public void selectionChanged() {
+		updateEnableStatusForAllMenuItems();			
+	}
+
+	public void updateEnableStatusForAllMenuItems() {
 		for (int i = 0; i < getMenuCount(); i++) {
 			JMenu menu = getMenu(i);
 			recursiveUpdate(menu);
-		}			
+		}
 	}
 		
 	private void recursiveUpdate(JMenu jitem) {
