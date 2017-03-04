@@ -21,6 +21,7 @@ import actions.ConstructLineSegmentAction;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
+import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
@@ -44,6 +45,9 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaConstructorAction(panel));
 		addAction(new AddLazyJavaMethodComponentAction(panel));
 		addAction(new AddLazyJavaFieldsComponentAction(panel));
+		
+		// remove
+		addAction(new RemovePaintComponent(panel));
 
 	}
 
