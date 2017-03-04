@@ -225,6 +225,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	}
 	
 	@Override
+	// IMPORTANT , points not in panel.paintComponents, so won't removed by regular remove method
 	public void remove(PaintPanel panel) {
 		// TODO Auto-generated method stub
 		for(DataFromPoint fromPoint: getFromPoints()) {
