@@ -95,5 +95,10 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 	
+	public ActionsMenuBarTitles Remove() {
+		append("Remove");
+		return this;
+	}
+	
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import painttools.tools.SelectTool;
+import ui.PaintPanel;
 
 /**
  * A data text with surrounding points on either side
@@ -221,6 +222,22 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 			}
 		}
 		return super.isSelected();
+	}
+	
+	@Override
+	// IMPORTANT , points not in panel.paintComponents, so won't removed by regular remove method
+	public void remove(PaintPanel panel) {
+		// TODO Auto-generated method stub
+		for(DataFromPoint fromPoint: getFromPoints()) {
+			if(fromPoint.getLineSegment() != null)
+				fromPoint.getLineSegment().remove(panel);
+		}
+		for(DataToPoint toPoint: getToPoints()) {
+			if(toPoint.getLineSegment() != null)
+				toPoint.getLineSegment().remove(panel);
+		}
+		super.remove(panel);
+		
 	}
 
 }

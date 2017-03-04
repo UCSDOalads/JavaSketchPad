@@ -24,6 +24,7 @@ import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
+import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
@@ -54,6 +55,9 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		
 		//file
 		addAction(new FileSaveAs(panel));
+
+		// remove
+		addAction(new RemovePaintComponent(panel));
 
 	}
 

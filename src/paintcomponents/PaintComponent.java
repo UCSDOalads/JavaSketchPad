@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import painttools.tools.SelectTool;
+import ui.PaintPanel;
 
 /**
  * Abstracts the behavior of a paint component.
@@ -196,6 +197,9 @@ public abstract class PaintComponent {
 	 */
 	public PaintComponent(Element rootElement, Document doc) {
 
-
+  }
+	
+	public void remove(PaintPanel panel) {
+		panel.getPaintComponents().remove(this);
 	}
 }
