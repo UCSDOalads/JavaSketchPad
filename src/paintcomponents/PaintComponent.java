@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import painttools.tools.SelectTool;
+import ui.PaintPanel;
 
 /**
  * Abstracts the behavior of a paint component.
@@ -150,5 +151,8 @@ public abstract class PaintComponent {
 	}
 
 	public abstract boolean contains(int x2, int y2);
-
+	
+	public void remove(PaintPanel panel) {
+		panel.getPaintComponents().remove(this);
+	}
 }
