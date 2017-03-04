@@ -1,5 +1,7 @@
 package actions;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
@@ -19,8 +21,23 @@ public class AddDataInputBoxAction extends PaintAction {
 	public void performAction() {
 		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent("Data Input", panel.getWidth() /2, panel.getHeight()/2);
 		panel.addPaintComponent(comp);
+		
+		
+		//push action to the manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+			
+			@Override
+			public void undoAction() {
+				panel.getPaintComponents().remove(panel);
+			}
+			
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(comp);
+				
+			}
+		});
 		panel.repaint();
-
 	}
 
 	@Override

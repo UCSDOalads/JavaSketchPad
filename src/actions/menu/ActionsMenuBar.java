@@ -18,6 +18,8 @@ import actions.AddLazyJavaMethodComponentAction;
 import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
+import actions.EditRedoAction;
+import actions.EditUndoAction;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
@@ -44,6 +46,10 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaConstructorAction(panel));
 		addAction(new AddLazyJavaMethodComponentAction(panel));
 		addAction(new AddLazyJavaFieldsComponentAction(panel));
+		
+		//edit 
+		addAction(new EditRedoAction(panel));
+		addAction(new EditUndoAction(panel));
 
 	}
 

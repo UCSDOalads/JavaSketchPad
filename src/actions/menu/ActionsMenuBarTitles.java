@@ -17,6 +17,9 @@ public class ActionsMenuBarTitles {
 		return new ActionsMenuBarTitles("Data");
 	}
 	
+	public static ActionsMenuBarTitles Edit() {
+		return new ActionsMenuBarTitles("Edit");
+	}
 	/**
 	 * Returns the string construct for Developer Only Feature
 	 * @param remainingTitle the remaining menu titles, this should not begin with /
@@ -82,6 +85,16 @@ public class ActionsMenuBarTitles {
 
 	public ActionsMenuBarTitles Java_Fields() {
 		append("Java Fields");
+		return this;
+	}
+	
+	public ActionsMenuBarTitles Undo() {
+		append("Undo");
+		return this;
+	}
+	
+	public ActionsMenuBarTitles Redo() {
+		append("Redo");
 		return this;
 	}
 	
