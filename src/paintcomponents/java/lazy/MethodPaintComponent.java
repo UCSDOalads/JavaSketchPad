@@ -56,13 +56,18 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 			addToPoint(i + 2, paramTypes[i].getName());
 		}
 
+		//the instance after performing this method after taking in
+		addFromPoint(this, 1, displayingMethod.getDeclaringClass().getName());
+
 		// method's return value take line length+2
 		addFromPoint(this, paramTypes.length + 2, displayingMethod.getReturnType().getName());
+		
+		
 
 		// prepare String
 		StringBuilder s = new StringBuilder();
 		s.append(this.displayingMethod.toString() + "\n");
-		s.append(">>> Operating Instance  " 
+		s.append(">>> Operating Instance  >>>" 
 				+ "\n");
 		for (int i = 0; i < paramTypes.length; i++) {
 			s.append("arg" + i + " :: " + paramTypes[i].getName() + "\n");
@@ -113,7 +118,13 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		}
 
 		try {
-			return this.displayingMethod.invoke(operatingInstance, args);
+			Object returnValue =  this.displayingMethod.invoke(operatingInstance, args);
+			//depends on the position, return either the operating instance or the return value
+			if(getFromPoints().indexOf(dataFromPoint) == 0){
+				return operatingInstance;
+			} else {
+				return returnValue;
+			}
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			// TODO Auto-generated catch block
