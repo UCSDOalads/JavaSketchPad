@@ -8,41 +8,71 @@ import java.util.Enumeration;
 
 public class ClassSearch {
 	private static ClassSearch sharedInstance = new ClassSearch();
-	ArrayList<Class> classes;
-	ClassLoader classLoader;
-	
+
 	public static ClassSearch sharedInstance() {
 		return sharedInstance;
 	}
-	
+
 	private ClassSearch() {
+	}
+
+	public ArrayList<Class> classesForName(String name) {
+
+		ArrayList<Class> classes;
+		ClassLoader classLoader;
 		classes = new ArrayList<Class>();
 		classLoader = ClassSearch.class.getClassLoader();
-	}
-	
-	public ArrayList<Class> classesForName(String name) {
+		
+		
 		try {
-			//get all class path roots
-			Enumeration<URL> roots = classLoader.getResources("");
-			
+			// get all class path roots
+			Enumeration<URL> roots = ClassLoader.getSystemClassLoader().getResources("");
+			System.out.println(roots);
+
 			// iterate roots
-			while(roots.hasMoreElements()) {
-				
+			while (roots.hasMoreElements()) {
 				// constrcut a file using the url
 				File root = new File(roots.nextElement().getPath());
-				for (File file : root.listFiles()) {
-					if (file.isDirectory()) {
-				    // Loop through its listFiles() recursively.
-					} else {
-				    String fileName = file.getName();
-				    // Check if it's a .class file or a .jar file and handle accordingly.
-					}
-				}
+				classes.addAll(recSearch(root));
 			}
-		} catch(IOException io) {
-			
+		} catch (IOException io) {
+
 		}
 		return classes;
-		
+
+	}
+
+	/**
+	 * Recursively search all directories
+	 * 
+	 * @param file the directory to search
+	 * @return
+	 */
+	private ArrayList<Class> recSearch(File directory) {
+		ArrayList<Class> classes;
+		ClassLoader classLoader;
+		classes = new ArrayList<Class>();
+		classLoader = ClassSearch.class.getClassLoader();
+
+		if(directory == null || directory.listFiles() == null){
+			System.out.println("null");
+			return classes;
+		}
+		for (File file : directory.listFiles()) {
+			if (file.isDirectory()) {
+				classes.addAll(recSearch(file));
+			} else {
+				String fileName = file.getName();
+				System.out.println("checking file" + file);
+				// Check if it's a .class file or a .jar file and handle
+				// accordingly.
+				if(fileName.endsWith(".class")){
+					
+				} else if (fileName.endsWith(".jar")){
+					
+				}
+			}
+		}
+		return classes;
 	}
 }
