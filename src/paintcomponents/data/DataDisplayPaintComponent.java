@@ -2,6 +2,8 @@ package paintcomponents.data;
 
 import java.util.NoSuchElementException;
 
+import org.w3c.dom.Element;
+
 import paintcomponents.NoConnectingLineSegmentException;
 
 /**
@@ -36,7 +38,10 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 			this.setDisplayingText("Error: Not A String :: " + "Type : " + data.getClass().toString() + " Value: " + data.toString());
 		}
 	}
-	
 
+	public DataDisplayPaintComponent(Element rootElement) {
+		super(rootElement);
+		// TODO Auto-generated constructor stub
+	}
 
 }
