@@ -1,5 +1,6 @@
 package painttools.tools;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import paintcomponents.PaintComponent;
@@ -34,5 +35,7 @@ public interface SelectToolInterface {
 	public abstract void clearSelection();
 
 	public abstract boolean addSelectionToolListener(SelectionToolListener e);
+
+	public abstract MouseEvent getLastMouseEvent();
 
 }

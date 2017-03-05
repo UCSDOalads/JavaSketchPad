@@ -24,6 +24,7 @@ public class SelectTool extends PaintTool implements SelectToolInterface{
 	/**
 	 * @return the lastMouseEvent
 	 */
+	@Override
 	public MouseEvent getLastMouseEvent() {
 		return lastMouseEvent;
 	}
@@ -244,7 +245,7 @@ public class SelectTool extends PaintTool implements SelectToolInterface{
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-
+		panel.setSelectTool(this);
 	}
 
 	@Override
