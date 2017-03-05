@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import paintcomponents.RectanglePaintComponent;
 import paintcomponents.TextPaintComponent;
 import painttools.tools.SelectTool;
@@ -73,5 +76,24 @@ public class DataTextPaintComponent extends TextPaintComponent {
 		rect.deselect(null);
 	}
 	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		
+		Element main = doc.createElement("datatextpaintcomponent");
+		Element rectElem = doc.createElement("rect");
+		
+		rect.saveToElement(rectElem, doc);
+		main.appendChild(rectElem);
+		
+		rootElement.appendChild(main);
+	}
+
+	public DataTextPaintComponent(Element rootElement) {
+		super(rootElement);
+		Element main = (Element) rootElement.getElementsByTagName("datatextpaintcomponent").item(0);
+		Element rectElem = (Element) main.getElementsByTagName("rect").item(0);
+		this.rect = new RectanglePaintComponent(rectElem);
+	}
 	
 }

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import org.w3c.dom.Element;
+
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
 
@@ -238,6 +240,11 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 		}
 		super.remove(panel);
 		
+	}
+
+	public DataTextIOPaintComponent(Element rootElement) {
+		super(rootElement);
+		// TODO Auto-generated constructor stub
 	}
 
 }
