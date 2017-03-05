@@ -17,6 +17,7 @@ import paintcomponents.PaintComponent;
 import painttools.toolbar.ToolBarListener;
 import painttools.tools.PaintTool;
 import painttools.tools.SelectTool;
+import painttools.tools.SelectToolInterface;
 
 public class PaintPanel extends JPanel implements ToolBarListener {
 
@@ -30,7 +31,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	private PaintTool tool;
 	private PaintComponent tempComponent;
 
-	private SelectTool selectTool;
+	private SelectToolInterface selectTool;
 
 	/**
 	 * @return the tempComponent
@@ -203,7 +204,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	 * 
 	 * @return
 	 */
-	public SelectTool getSelectTool() {
+	public SelectToolInterface getSelectTool() {
 		return selectTool;
 	}
 
@@ -212,7 +213,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	 * 
 	 * @param selectTool
 	 */
-	public void setSelectTool(SelectTool selectTool) {
+	public void setSelectTool(SelectToolInterface selectTool) {
 		this.selectTool = selectTool;
 	}
 

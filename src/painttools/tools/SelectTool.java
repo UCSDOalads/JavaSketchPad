@@ -12,7 +12,7 @@ import paintcomponents.PaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
 
-public class SelectTool extends PaintTool {
+public class SelectTool extends PaintTool implements SelectToolInterface{
 
 	private PaintPanel panel;
 
@@ -35,13 +35,15 @@ public class SelectTool extends PaintTool {
 	 * @return
 	 * @see java.util.ArrayList#add(java.lang.Object)
 	 */
+	@Override
 	public boolean addSelectionToolListener(SelectionToolListener e) {
 		return listeners.add(e);
 	}
 
-	/**
-	 * @return the selectedComponents
+	/* (non-Javadoc)
+	 * @see painttools.tools.SelectToolInterface#getSelectedComponents()
 	 */
+	@Override
 	public ArrayList<PaintComponent> getSelectedComponents() {
 		return selectedComponents;
 	}
@@ -57,12 +59,10 @@ public class SelectTool extends PaintTool {
 
 	}
 
-	/**
-	 * Selects a component, changes selection All listeners are informed. Panel
-	 * are repainted
-	 * 
-	 * @param comp
+	/* (non-Javadoc)
+	 * @see painttools.tools.SelectToolInterface#selectComponent(paintcomponents.PaintComponent)
 	 */
+	@Override
 	public void selectComponent(PaintComponent comp) {
 		comp.select(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
@@ -71,12 +71,10 @@ public class SelectTool extends PaintTool {
 		panel.repaint();
 	}
 
-	/**
-	 * Deselect a component, changes selection All listeners are informed. Panel
-	 * are repainted
-	 * 
-	 * @param comp
+	/* (non-Javadoc)
+	 * @see painttools.tools.SelectToolInterface#deselectComponent(paintcomponents.PaintComponent)
 	 */
+	@Override
 	public void deselectComponent(PaintComponent comp) {
 		comp.deselect(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
@@ -86,10 +84,10 @@ public class SelectTool extends PaintTool {
 
 	}
 
-	/**
-	 * Deselect ALL components, changes selection All listeners are informed.
-	 * Panel are repainted
+	/* (non-Javadoc)
+	 * @see painttools.tools.SelectToolInterface#clearSelection()
 	 */
+	@Override
 	public void clearSelection() {
 		// remove all selection
 		while(!selectedComponents.isEmpty()) {

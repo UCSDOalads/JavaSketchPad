@@ -16,6 +16,7 @@ import javax.tools.Tool;
 import painttools.tools.DotTool;
 import painttools.tools.PaintTool;
 import painttools.tools.SelectTool;
+import painttools.tools.SelectToolInterface;
 import ui.PaintPanel;
 
 public class ToolBar extends JPanel {
@@ -73,7 +74,7 @@ public class ToolBar extends JPanel {
 		}
 	}
 
-	public SelectTool getSelectTool() {
+	public SelectToolInterface getSelectTool() {
 		return selectTool;
 	}
 
