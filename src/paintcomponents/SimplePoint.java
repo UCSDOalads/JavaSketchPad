@@ -58,6 +58,38 @@ public class SimplePoint extends PaintComponent {
 	@Override
 	public void saveToElement(Element rootElement, Document doc) {
 		super.saveToElement(rootElement, doc);
+		//list all tags
+		Element main = doc.createElement("simplepoint");
+		Element radiusElem = doc.createElement("radius");
+		Element colorElem = doc.createElement("color");
+		Element selectedColorElem = doc.createElement("selectedcolor");
+		
+		//fill the data
+		radiusElem.appendChild(doc.createTextNode(Integer.toString(radius)));
+		XMLEncodingUtilForPaintComponents.attachRGB(color, colorElem, doc);
+		XMLEncodingUtilForPaintComponents.attachRGB(selectedColor, selectedColorElem, doc);
+
+		//structure
+		main.appendChild(radiusElem);
+		main.appendChild(colorElem);
+		main.appendChild(selectedColorElem);
+
+		rootElement.appendChild(main);
 	}
+
+	public SimplePoint(Element rootElement) {
+		super(rootElement);
+		Element main = (Element) rootElement.getElementsByTagName("simplepoint").item(0);
+		Element radiusElem = (Element) main.getElementsByTagName("radius").item(0);
+		Element colorElem = (Element) main.getElementsByTagName("color").item(0);
+		Element selectedColorElem = (Element) main.getElementsByTagName("selectedcolor").item(0);
+		
+		this.radius = Integer.parseInt(radiusElem.getTextContent());
+		this.color = XMLEncodingUtilForPaintComponents.getRGB(colorElem);
+		this.selectedColor = XMLEncodingUtilForPaintComponents.getRGB(selectedColorElem);
+
+	}
+
+	
 
 }

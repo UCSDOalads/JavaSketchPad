@@ -112,6 +112,11 @@ public class ActionsMenuBarTitles {
 		append("Remove");
 		return this;
 	}
+
+	public Object Open() {
+		append("Open...");
+		return this;
+	}
 	
 
 }

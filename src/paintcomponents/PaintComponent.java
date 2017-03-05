@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
@@ -169,6 +171,15 @@ public abstract class PaintComponent {
 
 	public abstract boolean contains(int x2, int y2);
 
+	/**
+	 * Remove this component from the Paint Panel
+	 * @param panel the panel that this paint component resides
+	 */
+	
+	public void remove(PaintPanel panel) {
+		panel.getPaintComponents().remove(this);
+	}
+
 	public void saveToElement(Element rootElement, Document doc) {
 		/*
 		 * <position>
@@ -185,26 +196,28 @@ public abstract class PaintComponent {
 		posElement.appendChild(posYElement);
 		rootElement.appendChild(posElement);
 		
-
-
 		
 	}
 
 	/**
-	 * Create by reading from an xml
-	 * @param rootElement the same document as the saved one.
-	 * @param doc
-	 */
-	public PaintComponent(Element rootElement, Document doc) {
-
-  }
-	
-	/**
-	 * Remove this component from the Paint Panel
-	 * @param panel the panel that this paint component resides
-	 */
-	
-	public void remove(PaintPanel panel) {
-		panel.getPaintComponents().remove(this);
-	}
+		 * Create by reading from an xml
+		 * 
+		 * When implementing this method,subclass should call super.
+		 * 
+		 * Subclass must achieve at least the SAME functionality as their "Regular" constructor to ensure correctness
+		 * @param rootElement the same document as the saved one.
+		 */
+		public PaintComponent(Element rootElement) {
+		/*
+		 * <position>
+		 * 		<xcoordinate>45</xcoordinate>
+		 * 		<ycoordinate>50</ycoordinate>
+		 * </position>
+		 */
+			
+			NodeList nodes = rootElement.getChildNodes();
+			Element pos = (Element) rootElement.getElementsByTagName("position").item(0);
+			this.x = Integer.parseInt(pos.getElementsByTagName("xcoordinate").item(0).getTextContent());
+			this.y = Integer.parseInt(pos.getElementsByTagName("ycoordinate").item(0).getTextContent());
+	  }
 }
