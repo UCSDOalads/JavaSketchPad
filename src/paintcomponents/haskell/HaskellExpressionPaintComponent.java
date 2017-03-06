@@ -2,6 +2,9 @@ package paintcomponents.haskell;
 
 import java.util.NoSuchElementException;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataFromPointDataProvider;
@@ -9,8 +12,9 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
 import paintcomponents.data.DataToPoint;
+import ui.PaintPanel;
 
-public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent {
+public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent implements DataFromPointDataProvider {
 
 	private HaskellTypeParser typeParser;
 	private String displayingExpr;
@@ -43,21 +47,7 @@ public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent {
 		builder.append(this.displayingExpr + "\n");
 		builder.append(this.displayingExpr + " :: "
 				+ typeParser.getDisplayingExprType() + " >>>>" + "\n");
-		addFromPoint(new DataFromPointDataProvider() {
-
-			@Override
-			public Object provideInformationToDataFromPoint(
-					DataFromPoint dataFromPoint) {
-				// TODO implement this
-				return displayingExpr;
-			}
-
-			@Override
-			public boolean canProvideInformationToDataFromPoint(
-					DataFromPoint dataFromPoint) {
-				return true;
-			}
-		}, 1, typeParser.getDisplayingExprType());
+		addFromPoint(this , 1, typeParser.getDisplayingExprType());
 
 		// arguments
 		for (int i = 0; i < typeParser.getArguments().size(); i++) {
@@ -69,11 +59,19 @@ public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent {
 		// return value
 		builder.append("Return Value :: " + this.typeParser.getReturnType()
 				+ " >>> " + "\n");
-		addFromPoint(new DataFromPointDataProvider() {
+		addFromPoint(this, 2 + typeParser.getArguments().size(),
+				this.typeParser.getReturnType());
+		setDisplayingText(builder.toString());
 
-			@Override
-			public Object provideInformationToDataFromPoint(
-					DataFromPoint dataFromPoint) {
+	}
+
+	@Override
+	public Object provideInformationToDataFromPoint(
+			DataFromPoint dataFromPoint) {
+		// TODO implement this
+		if(getFromPoints().indexOf(dataFromPoint)==0){
+				return displayingExpr;
+		} else if (getFromPoints().indexOf(dataFromPoint) == 1){
 				String expr = displayingExpr;
 				for (DataToPoint toPoint : getToPoints()) {
 					try {
@@ -93,24 +91,51 @@ public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent {
 							| NoConnectingLineSegmentException
 							| DataFromPointNoDataProviderException
 							| DataFromPointProviderCannotProvideDataException e) {
-						e.printStackTrace();
 						// break on the first occurance, to allow for currying
 						break;
 					}
 
 				}
 				return expr;
-			}
-
-			@Override
-			public boolean canProvideInformationToDataFromPoint(
-					DataFromPoint dataFromPoint) {
-				return true;
-			}
-		}, 2 + typeParser.getArguments().size(),
-				this.typeParser.getReturnType());
-		setDisplayingText(builder.toString());
-
+		} else {
+			return null;
+		}
 	}
 
+	@Override
+	public boolean canProvideInformationToDataFromPoint(
+			DataFromPoint dataFromPoint) {
+		return true;
+	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		
+		//create and structure
+		Element main = doc.createElement("haskellexprcomponent");
+		Element expressionElem = doc.createElement("expression");
+		
+		main.appendChild(expressionElem);
+		rootElement.appendChild(main);
+		
+		//insert data
+		expressionElem.appendChild(doc.createTextNode(displayingExpr));
+	}
+
+	public HaskellExpressionPaintComponent(Element rootElement,
+			PaintPanel panel) {
+		super(rootElement, panel);
+		//use the same routine as the designated initializer
+		Element main = (Element) rootElement.getElementsByTagName("haskellexprcomponent").item(0);
+		Element expressionElem = (Element) main.getElementsByTagName("expression").item(0);
+		this.displayingExpr = expressionElem.getTextContent();
+		this.setDisplayingText(displayingExpr);
+		this.typeParser = new HaskellTypeParser(displayingExpr);
+		init();
+		linkPoints(rootElement);
+		
+	}
+	
+	
 }

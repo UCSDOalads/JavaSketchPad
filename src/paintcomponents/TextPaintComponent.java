@@ -20,7 +20,7 @@ import ui.PaintPanel;
  */
 public class TextPaintComponent extends PaintComponent{
 	
-	public String displayingText;
+	private String displayingText;
 	
 	/**
 	 * The height per row

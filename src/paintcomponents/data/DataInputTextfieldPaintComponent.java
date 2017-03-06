@@ -28,13 +28,13 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 	@Override
 	public Object provideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
-		return displayingText;
+		return getDisplayingText();
 	}
 
 	@Override
 	public boolean canProvideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
-		return displayingText != null;
+		return getDisplayingText() != null;
 	}
 	
 	@Override

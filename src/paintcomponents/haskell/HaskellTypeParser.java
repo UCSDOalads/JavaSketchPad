@@ -54,6 +54,10 @@ public class HaskellTypeParser {
 	private String displayingExpr;
 	private String message;
 	
+	/**
+	 * Construct a haskell type parser to parse specific expression
+	 * @param haskellExpr
+	 */
 	public HaskellTypeParser(String haskellExpr){
 		this.displayingExpr = haskellExpr;
 		
