@@ -1,7 +1,6 @@
 package paintcomponents.data;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -11,7 +10,7 @@ import org.w3c.dom.Element;
 import paintcomponents.RectanglePaintComponent;
 import paintcomponents.TextPaintComponent;
 import painttools.tools.SelectTool;
-import settings.Defaults;
+import ui.PaintPanel;
 
 /**
  * A text component with a bounding box,
@@ -89,11 +88,11 @@ public class DataTextPaintComponent extends TextPaintComponent {
 		rootElement.appendChild(main);
 	}
 
-	public DataTextPaintComponent(Element rootElement) {
-		super(rootElement);
+	public DataTextPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
 		Element main = (Element) rootElement.getElementsByTagName("datatextpaintcomponent").item(0);
 		Element rectElem = (Element) main.getElementsByTagName("rect").item(0);
-		this.rect = new RectanglePaintComponent(rectElem);
+		this.rect = new RectanglePaintComponent(rectElem, panel);
 	}
 	
 }

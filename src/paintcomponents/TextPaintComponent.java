@@ -9,6 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import settings.Defaults;
+import ui.PaintPanel;
 
 
 /**
@@ -75,8 +76,8 @@ public class TextPaintComponent extends PaintComponent{
 	}
 	
 
-	public TextPaintComponent(Element rootElement) {
-		super(rootElement);
+	public TextPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
 		Element main = (Element) rootElement.getElementsByTagName("textpaintcomponent").item(0);
 		Element displayingTextElem = (Element) main.getElementsByTagName("text").item(0);
 		Element defaultTextColorElem = (Element) main.getElementsByTagName("color").item(0);

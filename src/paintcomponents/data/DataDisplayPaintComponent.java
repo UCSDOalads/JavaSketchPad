@@ -2,9 +2,11 @@ package paintcomponents.data;
 
 import java.util.NoSuchElementException;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import paintcomponents.NoConnectingLineSegmentException;
+import ui.PaintPanel;
 
 /**
  * The data display paint component displays the data with a asoociated DataToPoint
@@ -38,10 +40,20 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 			this.setDisplayingText("Error: Not A String :: " + "Type : " + data.getClass().toString() + " Value: " + data.toString());
 		}
 	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		//since the original class already saved the displaying text, there is no need for us to do the same thing
+	}
 
-	public DataDisplayPaintComponent(Element rootElement) {
-		super(rootElement);
-		// TODO Auto-generated constructor stub
+	public DataDisplayPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		//we only need to do the same thing as our designated constructor
+		addToPoint(0, String.class.getName());
+		//we have to link the points
+		linkPoints(rootElement);
+
 	}
 
 }

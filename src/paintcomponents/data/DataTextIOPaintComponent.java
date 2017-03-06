@@ -4,8 +4,11 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
+import file.PanelIO;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
 
@@ -241,10 +244,78 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 		super.remove(panel);
 		
 	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		//create elements
+		Element main = doc.createElement("datatextiopaintcomponent");
+		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
+			Element fromPointsElem = doc.createElement("frompoint");
+			fromPointsElem.setAttribute("id", Long.toString(dataFromPointInfo.fromPoint.getComponentID()));
+			fromPointsElem.setAttribute("yshift", Integer.toString(dataFromPointInfo.yShift));
+			dataFromPointInfo.fromPoint.saveToElement(fromPointsElem, doc);
+			main.appendChild(fromPointsElem);
+		}
+		
+		for (DataToPointInfo dataToPointInfo : toPoints) {
+			Element toPointElem = doc.createElement("topoint");
+			toPointElem.setAttribute("id", Long.toString(dataToPointInfo.toPoint.getComponentID()));
+			toPointElem.setAttribute("yshift", Integer.toString(dataToPointInfo.yShift));
+			dataToPointInfo.toPoint.saveToElement(toPointElem, doc);
+			main.appendChild(toPointElem);
+		}
+		
+		rootElement.appendChild(main);
+		
+	}
 
-	public DataTextIOPaintComponent(Element rootElement) {
-		super(rootElement);
-		// TODO Auto-generated constructor stub
+	/**
+	 * The default implementations does not reconstruct points, subclasses
+	 * must call <code>linkPoints</code> after manually reconstruct all points, to ensure
+	 * respective line segments can be reconstructed
+	 * @param rootElement
+	 */
+	public DataTextIOPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		fromPoints = new ArrayList<>();
+		toPoints = new ArrayList<>();
+		
+		
+	}
+	
+	/**
+	 * Link all constructed points with their original reference, update PanelIO.linkedPoints list
+	 * 
+	 * @param rootElement
+	 */
+	protected void linkPoints(Element rootElement){
+		Element main = (Element) rootElement.getElementsByTagName("datatextiopaintcomponent").item(0);
+		NodeList fromPointElems = main.getElementsByTagName("frompoint");
+		for(int i = 0; i < fromPointElems.getLength(); i ++){
+			Element fromPointElem = (Element) fromPointElems.item(i);
+
+			DataFromPoint fromPoint  = fromPoints.get(i).fromPoint;
+//			= new DataFromPoint(fromPointElem);
+//			int yShift = Integer.parseInt(fromPointElem.getAttribute("yshift"));
+//			DataFromPointInfo info = new DataFromPointInfo(fromPoint, yShift);
+//			fromPoints.add(info);
+//			
+//			//important :: update global hash
+			PanelIO.idMapping.put(Long.parseLong(fromPointElem.getAttribute("id")), fromPoint.getComponentID());
+		}
+		NodeList toPointElems = main.getElementsByTagName("topoint");
+		for(int i = 0; i < toPointElems.getLength(); i ++){
+			Element toPointElem = (Element) toPointElems.item(i);
+			DataToPoint toPoint = toPoints.get(i).toPoint;
+//			= new DataToPoint(toPointElem);
+//			int yShift = Integer.parseInt(toPointElem.getAttribute("yshift"));
+//			DataToPointInfo info = new DataToPointInfo(toPoint, yShift);
+//			toPoints.add(info);
+			
+			//important :: update global hash
+			PanelIO.idMapping.put(Long.parseLong(toPointElem.getAttribute("id")), toPoint.getComponentID());
+		}
 	}
 
 }

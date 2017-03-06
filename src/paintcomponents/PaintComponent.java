@@ -207,7 +207,7 @@ public abstract class PaintComponent {
 		 * Subclass must achieve at least the SAME functionality as their "Regular" constructor to ensure correctness
 		 * @param rootElement the same document as the saved one.
 		 */
-		public PaintComponent(Element rootElement) {
+		public PaintComponent(Element rootElement, PaintPanel panel) {
 		/*
 		 * <position>
 		 * 		<xcoordinate>45</xcoordinate>

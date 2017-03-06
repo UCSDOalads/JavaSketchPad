@@ -11,6 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import settings.Defaults;
+import ui.PaintPanel;
 
 /**
  * @author chenzb
@@ -90,8 +91,8 @@ public class RectanglePaintComponent extends PaintComponent {
 		rootElement.appendChild(main);
 	}
 	
-	public RectanglePaintComponent(Element rootElement) {
-		super(rootElement);
+	public RectanglePaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
 		Element main = (Element) rootElement.getElementsByTagName("rectangle").item(0);
 		Element widthElem = (Element) main.getElementsByTagName("width").item(0);
 		Element heightElem = (Element) main.getElementsByTagName("height").item(0);
