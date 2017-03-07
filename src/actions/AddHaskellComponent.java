@@ -23,6 +23,7 @@ public class AddHaskellComponent extends PaintAction {
 				.showInputDialog("Please enter the haskell expression");
 		panel.addPaintComponent(new HaskellExpressionPaintComponent(
 				expr, panel.getWidth() / 2, panel.getHeight() / 2));
+		
 		panel.repaint();
 
 	}

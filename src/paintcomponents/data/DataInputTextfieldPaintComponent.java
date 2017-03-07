@@ -1,8 +1,9 @@
 package paintcomponents.data;
 
-import java.awt.Graphics;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
-import painttools.tools.SelectTool;
+import ui.PaintPanel;
 
 /**
  * A data text with a point on the right
@@ -27,14 +28,31 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 	@Override
 	public Object provideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
-		return displayingText;
+		return getDisplayingText();
 	}
 
 	@Override
 	public boolean canProvideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
-		return displayingText != null;
+		return getDisplayingText() != null;
 	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		//save does nothing as this particular class does not have any instance properties 
+	}
+
+	public DataInputTextfieldPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		//do the same thing as the designated constructor
+		addFromPoint(this, 0, String.class.getName());
+		//link the points
+		linkPoints(rootElement);
+	}
+
+	
+	
 
 	
 }

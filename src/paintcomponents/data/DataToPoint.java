@@ -2,8 +2,12 @@ package paintcomponents.data;
 
 import java.util.NoSuchElementException;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.SimplePoint;
+import ui.PaintPanel;
 
 /**
  * Data to point is the point where data is flowing to.
@@ -61,6 +65,18 @@ public class DataToPoint extends SimplePoint {
 	public void setExpectedType(String expectedType) {
 		this.expectedType = expectedType;
 	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		// TODO Auto-generated method stub
+		super.saveToElement(rootElement, doc);
+	}
+
+	public DataToPoint(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 
 }

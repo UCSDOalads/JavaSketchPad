@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import settings.Defaults;
+import ui.PaintPanel;
 
 public class SimplePoint extends PaintComponent {
 
@@ -77,8 +78,8 @@ public class SimplePoint extends PaintComponent {
 		rootElement.appendChild(main);
 	}
 
-	public SimplePoint(Element rootElement) {
-		super(rootElement);
+	public SimplePoint(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
 		Element main = (Element) rootElement.getElementsByTagName("simplepoint").item(0);
 		Element radiusElem = (Element) main.getElementsByTagName("radius").item(0);
 		Element colorElem = (Element) main.getElementsByTagName("color").item(0);

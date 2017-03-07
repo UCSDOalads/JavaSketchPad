@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -112,6 +113,16 @@ public class PanelIO {
 		}
 
 	}
+	
+	/**
+	 * ID mapping are used to describe relationship components that 
+	 * depend on the component ID of selected component.
+	 * This property is cleared on every open action. DataTextIOComponents
+	 * may use this property to create a one-to-one mapping from the old id to the new id.
+	 * <old, new>. Line segments may use this table when traversing the whole paint components
+	 * to find the correct relationships.
+	 */
+	public static HashMap<Long, Long> idMapping;
 
 	/**
 	 * 
@@ -141,6 +152,8 @@ public class PanelIO {
 	public void constructPanelFromDocument(PaintPanel panel, String path,
 			boolean overwrite) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
+		//override idMapping
+		idMapping = new HashMap<>();
 		//clear if overwrite flag is set to true
 		if(overwrite) panel.getPaintComponents().clear();
 		
@@ -184,9 +197,13 @@ public class PanelIO {
 				if(elem.getTagName().equals(TAG_NAME_PAINT_COMPONENT)){
 					String className = elem.getAttribute(TAG_NAME_TYPE);
 					Class representingClass = Class.forName(className);
-					Constructor constructor = representingClass.getConstructor(Element.class);
-					PaintComponent newInstance = (PaintComponent) constructor.newInstance(elem);
+					Constructor constructor = representingClass.getConstructor(Element.class, PaintPanel.class);
+					PaintComponent newInstance = (PaintComponent) constructor.newInstance(elem, panel);
 					panel.addPaintComponent(newInstance);
+					
+					//update id Mapping
+					long id = Long.parseLong(elem.getAttribute("id"));
+					idMapping.put(id, newInstance.getComponentID());
 				}
 			}
 			
