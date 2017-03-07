@@ -3,7 +3,14 @@ package paintcomponents.java.lazy;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
+
+import javax.swing.JOptionPane;
+
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataFromPoint;
@@ -12,6 +19,7 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
 import paintcomponents.data.DataToPoint;
+import ui.PaintPanel;
 
 public class MethodPaintComponent extends DataTextIOPaintComponent
 		implements DataFromPointDataProvider {
@@ -157,5 +165,60 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		}
 		return true;
 	}
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		// build the structure
+		Element main = doc.createElement("methodcomponent");
+		Element className = doc.createElement("classname");
+		Element methodInfoElem = doc
+				.createElement("methodinfo");
 
+		main.appendChild(className);
+		main.appendChild(methodInfoElem);
+		rootElement.appendChild(main);
+
+		// store the class name in the classname element
+		className.setTextContent(displayingMethod.getDeclaringClass().getName());
+
+		/* Index approach */
+		methodInfoElem
+				.setAttribute("index",
+						Integer.toString(Arrays.asList(this.displayingMethod
+								.getDeclaringClass().getMethods())
+								.indexOf(displayingMethod)));
+
+	}
+
+	public  MethodPaintComponent(Element rootElement,
+			PaintPanel panel) {
+		super(rootElement, panel);
+		Element main = (Element) rootElement
+				.getElementsByTagName("methodcomponent").item(0);
+		Element classNameElem = (Element) main
+				.getElementsByTagName("classname").item(0);
+		Element methodInfoElem = (Element) main
+				.getElementsByTagName("methodinfo").item(0);
+
+
+
+		String className = classNameElem.getTextContent();
+		
+		//index appproach
+		try {
+			Class mtdClass = Class.forName(className);
+			this.displayingMethod = mtdClass.getMethods()[Integer.parseInt(methodInfoElem.getAttribute("index"))];
+			this.setDisplayingText(displayingMethod.toString());
+			init();
+			linkPoints(rootElement);
+
+		} catch (ClassNotFoundException | DOMException | SecurityException e) {
+			JOptionPane.showMessageDialog(panel, e.toString());
+			e.printStackTrace();
+		}
+		
+		
+		
+
+	}
 }

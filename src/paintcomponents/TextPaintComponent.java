@@ -15,6 +15,10 @@ import ui.PaintPanel;
 /**
  * Text components displays a block of texts dilimited by \n characters
  * Use get rowHeight and get width to fetch the row height and width after calling the paint method
+ * 
+ * 
+ * When overriding save and read method, subclasses should be calling setDisplayingText if the text 
+ * being displayed when saving is not the save as the recovery
  * @author chenzb
  *
  */
