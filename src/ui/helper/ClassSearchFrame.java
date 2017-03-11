@@ -16,6 +16,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 import classpathutil.ClassSearch;
+import javax.swing.JButton;
 
 public class ClassSearchFrame extends JFrame implements ActionListener, DocumentListener {
 	private JTextField searchingTextField;
@@ -53,6 +54,15 @@ public class ClassSearchFrame extends JFrame implements ActionListener, Document
 		
 		JScrollPane scrollPane = new JScrollPane(resultsTable);
 		panel.add(scrollPane, BorderLayout.CENTER);
+		
+		JPanel panel_1 = new JPanel();
+		getContentPane().add(panel_1, BorderLayout.SOUTH);
+		
+		JButton btnCancel = new JButton("Cancel");
+		panel_1.add(btnCancel);
+		
+		JButton btnConfirm = new JButton("Confirm");
+		panel_1.add(btnConfirm);
 		
 		//setting up connections
 		
