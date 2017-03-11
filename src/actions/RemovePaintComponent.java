@@ -3,10 +3,12 @@ package actions;
 import java.util.ArrayList;
 
 import paintcomponents.PaintComponent;
+import painttools.tools.SmartTool;
 import ui.PaintPanel;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
+import actions.menu.ActionsPopupMenuTitles;
 
 public class RemovePaintComponent extends PaintAction{
 
@@ -54,9 +56,9 @@ public class RemovePaintComponent extends PaintAction{
 	@Override
 	public String locationString() {
 		// TODO Auto-generated method stub
-		return ActionsMenuBarTitles.Data().Remove().toString();	}
-	
-	public String toString() {
-		return "Remove";
+		if(panel.getSelectTool() instanceof SmartTool)
+			return ActionsPopupMenuTitles.Remove().toString();
+		return ActionsMenuBarTitles.Data().Remove().toString();
 	}
+	
 }
