@@ -2,10 +2,13 @@ package painttools.tools;
 
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPopupMenu;
 
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
 import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
@@ -133,6 +136,22 @@ public class SmartTool extends PaintTool implements SelectToolInterface{
 
 	public MouseEvent getLastMouseEvent() {
 		return lastMouseEvent;
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		ZoomInAction zoomIn = new ZoomInAction(panel);
+		ZoomOutAction zoomOut = new ZoomOutAction(panel);
+		if (e.getWheelRotation() > 0) {
+			zoomIn.setCenterX(e.getX());
+			zoomIn.setCenterY(e.getY());
+			zoomIn.performAction();
+		} else {
+			zoomOut.setCenterX(e.getX());
+			zoomOut.setCenterY(e.getY());
+			zoomOut.performAction();
+		}
 	}
 
 }

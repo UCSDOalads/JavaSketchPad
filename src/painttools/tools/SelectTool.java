@@ -2,6 +2,7 @@ package painttools.tools;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -261,6 +262,12 @@ public class SelectTool extends PaintTool implements SelectToolInterface{
 
 		clearSelection();
 
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
