@@ -117,6 +117,15 @@ public class ActionsMenuBarTitles {
 		append("Open...");
 		return this;
 	}
+
+	public ActionsMenuBarTitles Zoom_In() {
+		append("Zoom In");
+		return this;
+	}
 	
+	public ActionsMenuBarTitles Zoom_Out() {
+		append("Zoom Out");
+		return this;
+	}
 
 }
