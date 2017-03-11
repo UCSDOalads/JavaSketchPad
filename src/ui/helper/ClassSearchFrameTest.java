@@ -2,6 +2,8 @@ package ui.helper;
 
 import static org.junit.Assert.*;
 
+import java.awt.Dimension;
+
 import javax.swing.SwingUtilities;
 
 import org.junit.Test;
@@ -14,7 +16,20 @@ public class ClassSearchFrameTest {
 			
 			@Override
 			public void run() {
-				new ClassSearchFrame().setVisible(true);
+				ClassSearchFrame classSearchFrame = new ClassSearchFrame();
+				classSearchFrame.setDelegate(new ClassSearchFrameDelegateInterface() {
+					
+					@Override
+					public void didSelectClass(String classname) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				
+				
+				classSearchFrame.setVisible(true);
+				classSearchFrame.setSize(new Dimension(300, 200));
+				
 				
 			}
 		});
