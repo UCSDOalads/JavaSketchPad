@@ -113,8 +113,18 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
-	public Object Open() {
+	public ActionsMenuBarTitles Open() {
 		append("Open...");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Font_Size() {
+		append("Font Size...");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Point_Size() {
+		append("Point Size...");
 		return this;
 	}
 	
