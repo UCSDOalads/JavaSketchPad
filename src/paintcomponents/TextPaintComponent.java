@@ -9,17 +9,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import settings.Defaults;
+import ui.PaintPanel;
 
 
 /**
  * Text components displays a block of texts dilimited by \n characters
  * Use get rowHeight and get width to fetch the row height and width after calling the paint method
+ * 
+ * 
+ * When overriding save and read method, subclasses should be calling setDisplayingText if the text 
+ * being displayed when saving is not the save as the recovery
  * @author chenzb
  *
  */
 public class TextPaintComponent extends PaintComponent{
 	
-	public String displayingText;
+	private String displayingText;
 	
 	/**
 	 * The height per row
@@ -75,8 +80,8 @@ public class TextPaintComponent extends PaintComponent{
 	}
 	
 
-	public TextPaintComponent(Element rootElement) {
-		super(rootElement);
+	public TextPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
 		Element main = (Element) rootElement.getElementsByTagName("textpaintcomponent").item(0);
 		Element displayingTextElem = (Element) main.getElementsByTagName("text").item(0);
 		Element defaultTextColorElem = (Element) main.getElementsByTagName("color").item(0);

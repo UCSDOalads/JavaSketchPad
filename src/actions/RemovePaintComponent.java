@@ -1,9 +1,12 @@
 package actions;
 
+import java.util.ArrayList;
+
 import paintcomponents.PaintComponent;
-import paintcomponents.java.lazy.ClassPaintComponent;
-import actions.menu.ActionsMenuBarTitles;
 import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
+import actions.menu.ActionsMenuBarTitles;
 
 public class RemovePaintComponent extends PaintAction{
 
@@ -22,10 +25,29 @@ public class RemovePaintComponent extends PaintAction{
 
 	@Override
 	public void performAction() {
+		ArrayList<PaintComponent> comps = new ArrayList<>();
 		for ( PaintComponent comp: panel.getSelectTool().getSelectedComponents())	{
-			comp.remove( panel );
+			comps.add(comp);
 		}
+
+
+		for( PaintComponent comp: comps ) comp.remove(panel);
 		
+		//push action to the manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+				
+			@Override
+			public void undoAction() {
+				for( PaintComponent comp: comps )
+					panel.addPaintComponent(comp);
+			}
+			@Override
+			public void redoAction() {
+				for( PaintComponent comp: comps ) 
+					comp.remove(panel);
+			}
+		});
+
 		panel.repaint();
 	}
 

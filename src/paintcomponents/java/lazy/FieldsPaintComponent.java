@@ -1,8 +1,13 @@
 package paintcomponents.java.lazy;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
+import javax.swing.JOptionPane;
+
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataFromPoint;
@@ -10,6 +15,7 @@ import paintcomponents.data.DataFromPointDataProvider;
 import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
+import ui.PaintPanel;
 
 public class FieldsPaintComponent extends DataTextIOPaintComponent implements DataFromPointDataProvider{
 	
@@ -87,5 +93,37 @@ public class FieldsPaintComponent extends DataTextIOPaintComponent implements Da
 		//TODO IMPORTANT Implement this method
 		return true;
 	}
+@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		
+		//build structure
+		Element main = doc.createElement("fieldspaintcomponent");
+		Element classNameElem = doc.createElement("classname");
+		
+		rootElement.appendChild(main);
+		main.appendChild(classNameElem);
+		
+		classNameElem.appendChild(doc.createTextNode(displayingClass.getName()));
+	}
 
+	public FieldsPaintComponent(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		Element main = (Element) rootElement.getElementsByTagName("fieldspaintcomponent").item(0);
+		Element classNameElem = (Element) main.getElementsByTagName("classname").item(0);
+		
+		try {
+			this.displayingClass = Class.forName(classNameElem.getTextContent());
+			this.setDisplayingText(this.displayingClass.getName());
+			//make sure we set correct type for outgoint edges
+			
+			init();
+			linkPoints(rootElement);
+			
+
+		} catch (ClassNotFoundException | DOMException e) {
+			JOptionPane.showMessageDialog(panel, e.toString());
+			e.printStackTrace();
+		}
+	}
 }
