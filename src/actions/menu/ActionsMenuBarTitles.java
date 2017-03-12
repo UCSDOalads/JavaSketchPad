@@ -119,6 +119,7 @@ public class ActionsMenuBarTitles {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public ActionsMenuBarTitles Font_Size() {
 		append("Font Size...");
 		return this;
@@ -126,6 +127,10 @@ public class ActionsMenuBarTitles {
 
 	public ActionsMenuBarTitles Point_Size() {
 		append("Point Size...");
+=======
+	public ActionsMenuBarTitles Zoom_In() {
+		append("Zoom In");
+>>>>>>> develop
 =======
 	public ActionsMenuBarTitles Zoom_In() {
 		append("Zoom In");
