@@ -120,6 +120,9 @@ public class ActionsMenuBarTitles {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 695372550c06a77d3b9c2a11c9320fcf036d5a18
 	public ActionsMenuBarTitles Font_Size() {
 		append("Font Size...");
 		return this;
@@ -131,10 +134,13 @@ public class ActionsMenuBarTitles {
 	public ActionsMenuBarTitles Zoom_In() {
 		append("Zoom In");
 >>>>>>> develop
+<<<<<<< HEAD
 =======
 	public ActionsMenuBarTitles Zoom_In() {
 		append("Zoom In");
 >>>>>>> develop
+=======
+>>>>>>> 695372550c06a77d3b9c2a11c9320fcf036d5a18
 		return this;
 	}
 	

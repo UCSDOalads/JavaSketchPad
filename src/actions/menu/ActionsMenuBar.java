@@ -31,16 +31,22 @@ import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 695372550c06a77d3b9c2a11c9320fcf036d5a18
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
 =======
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
 >>>>>>> develop
+<<<<<<< HEAD
 =======
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
 >>>>>>> develop
+=======
+>>>>>>> 695372550c06a77d3b9c2a11c9320fcf036d5a18
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -83,13 +89,19 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 695372550c06a77d3b9c2a11c9320fcf036d5a18
 		//edit
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
 =======
 >>>>>>> develop
+<<<<<<< HEAD
 =======
 >>>>>>> develop
+=======
+>>>>>>> 695372550c06a77d3b9c2a11c9320fcf036d5a18
 
 	}
 
