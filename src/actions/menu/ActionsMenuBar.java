@@ -29,8 +29,13 @@ import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
 import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
+<<<<<<< HEAD
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
+=======
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
+>>>>>>> develop
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -57,6 +62,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//edit 
 		addAction(new EditRedoAction(panel));
 		addAction(new EditUndoAction(panel));
+		addAction(new ZoomInAction(panel));
+		addAction(new ZoomOutAction(panel));
 
 		//haskell
 		addAction(new AddHaskellComponent(panel));
@@ -69,9 +76,12 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		// remove
 		addAction(new RemovePaintComponent(panel));
 		
+<<<<<<< HEAD
 		//edit
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
+=======
+>>>>>>> develop
 
 	}
 
