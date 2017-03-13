@@ -27,6 +27,10 @@ public abstract class SingleInstanceOperation<T> extends PaintAction {
 		super(panel);
 	}
 
+	/**
+	 * The default behavior for a change method, only one component is selected
+	 * and that component's type matchs the desired type
+	 */
 	@Override
 	public boolean canPerformAction() {
 		if (panel.getSelectTool().getSelectedComponents().size() != 1) {
@@ -41,6 +45,10 @@ public abstract class SingleInstanceOperation<T> extends PaintAction {
 
 	}
 
+	/**
+	 * The implementation of this method delegates to the "PerformActionOnInstance"
+	 * 
+	 */
 	@Override
 	public void performAction() {
 		// TODO Auto-generated method stub
@@ -50,6 +58,11 @@ public abstract class SingleInstanceOperation<T> extends PaintAction {
 		panel.repaint();
 	}
 
+	/**
+	 * This method is called when the action is triggered. 
+	 * Subclasses need to override this method to do appropriate operations
+	 * @param instance
+	 */
 	protected abstract void performActionOnInstance(T instance);
 	
 	/**

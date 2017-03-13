@@ -127,6 +127,11 @@ public class ActionsMenuBarTitles {
 		append("Point Size...");
 		return this;
 	}
+
+	public ActionsMenuBarTitles Line_Segment_Width() {
+		append("Line Segment Width...");
+		return this;
+	}
 	
 
 }

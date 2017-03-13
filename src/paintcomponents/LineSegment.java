@@ -26,6 +26,22 @@ public class LineSegment extends PaintComponent {
 	private double strokeWidth;
 
 	/**
+	 * @return the strokeWidth
+	 */
+	public double getStrokeWidth() {
+		return strokeWidth;
+	}
+
+	/**
+	 * @param strokeWidth the strokeWidth to set
+	 */
+	public void setStrokeWidth(double strokeWidth) {
+		this.strokeWidth = strokeWidth;
+		this.stroke = new BasicStroke((float) strokeWidth);
+	}
+
+
+	/**
 	 * @return the toPoint
 	 */
 	public SimplePoint getToPoint() {
