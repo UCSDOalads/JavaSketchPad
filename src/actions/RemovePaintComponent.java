@@ -29,6 +29,8 @@ public class RemovePaintComponent extends PaintAction{
 		for ( PaintComponent comp: panel.getSelectTool().getSelectedComponents())	{
 			comps.add(comp);
 		}
+
+
 		for( PaintComponent comp: comps ) comp.remove(panel);
 		
 		//push action to the manager
@@ -45,6 +47,7 @@ public class RemovePaintComponent extends PaintAction{
 					comp.remove(panel);
 			}
 		});
+
 		panel.repaint();
 	}
 
@@ -52,5 +55,8 @@ public class RemovePaintComponent extends PaintAction{
 	public String locationString() {
 		// TODO Auto-generated method stub
 		return ActionsMenuBarTitles.Data().Remove().toString();	}
-
+	
+	public String toString() {
+		return "Remove";
+	}
 }
