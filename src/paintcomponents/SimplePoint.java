@@ -13,6 +13,7 @@ public class SimplePoint extends PaintComponent {
 
 
 	private int radius;
+	
 	private Color color;
 	private Color selectedColor;
 	
@@ -91,6 +92,19 @@ public class SimplePoint extends PaintComponent {
 
 	}
 
-	
+	/**
+	 * @return the radius
+	 */
+	public int getRadius() {
+		return radius;
+	}
+
+	/**
+	 * @param radius the radius to set
+	 */
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
 
 }

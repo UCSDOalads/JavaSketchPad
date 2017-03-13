@@ -29,6 +29,10 @@ import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
 import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
+import actions.singleinstanceoperations.SetPointSizeOperation;
+import actions.singleinstanceoperations.UpdateFontSizeOperation;
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
 
@@ -71,6 +75,9 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		// remove
 		addAction(new RemovePaintComponent(panel));
 		
+		//edit
+		addAction(new UpdateFontSizeOperation(panel));
+		addAction(new SetPointSizeOperation(panel));
 
 	}
 
