@@ -2,6 +2,9 @@
 2. Edit Undo/Redo Operations
 3. More usable SelectTools
 4. Remove Functinoality
-5. Zooming and Scrolling
+5. Zooming and Scrolling and Moving Function
 6. Data Point Connection Types
 7. Available Class Search
+8. Auto-Update Display Box Affected by Recent Changes
+9. Debug Undo Function
+10. Type Cast try (String) catch

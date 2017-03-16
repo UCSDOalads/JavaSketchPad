@@ -11,20 +11,36 @@ public class ClassSearch {
 		return sharedInstance;
 	}
 
-	private ClassSearch() {
-	}
+	private ArrayList<String> allClasses;
 
-	public ArrayList<String> classesForName(String name) {
-		ArrayList<String> result = new ArrayList<>();
+	/**
+	 * Constructs a ClassSearch Instance
+	 * The method 
+	 */
+	private ClassSearch() {
+		//load classes
+		
+		
+		allClasses = new ArrayList<>();
 		ClassFinder.findClasses(new Visitor<String>() {
 			
 			@Override
 			public boolean visit(String t) {
-				result.add(t);
-
+				allClasses.add(t);
 				return true;
 			}
 		});
+
+	}
+
+	public ArrayList<String> classesForName(String name) {
+		
+		ArrayList<String> result = new ArrayList<>();
+		for (String string : allClasses) {
+			if(string.contains(name)){
+				result.add(string); 
+			}
+		}
 		
 		return sortAccordingToPrecedence(result, name);
 	}

@@ -23,6 +23,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	public ArrayList<PaintComponent> components;
 
+	
 	enum State {
 		TOOLS, DEFAULT
 	}
