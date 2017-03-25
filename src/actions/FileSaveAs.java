@@ -15,6 +15,9 @@ import actions.menu.ActionsMenuBarTitles;
 import file.PanelIO;
 import ui.PaintPanel;
 
+import javax.swing.JFileChooser;
+import java.io.File;
+
 public class FileSaveAs extends PaintAction {
 
 	public FileSaveAs(PaintPanel panel) {
@@ -25,10 +28,25 @@ public class FileSaveAs extends PaintAction {
 	public boolean canPerformAction() {
 		return true;
 	}
-
+	
+	/**
+	 * Use a JFileChooser to save the file
+	 * @author xy gong
+	 */
 	@Override
 	public void performAction() {
-		String filePath = JOptionPane.showInputDialog("Please input file path");
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");
+		int userSelection = fileChooser.showSaveDialog(panel);
+		
+		String filePath;
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    filePath = fileToSave.getAbsolutePath();
+		} else {
+			return;
+		}
+		
 		PanelIO io = new PanelIO();
 		try {
 			io.constructDocumentFromPanel(panel, filePath);

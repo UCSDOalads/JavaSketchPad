@@ -24,9 +24,6 @@ public class MainFrame extends JFrame{
 		ActionsMenuBar menuBar = new ActionsMenuBar(paintPanel);
 		toolBar.getSelectTool().addSelectionToolListener(menuBar);
 
-
-
-
 		//set background
 		paintPanel.setBackground(Color.WHITE);
 
