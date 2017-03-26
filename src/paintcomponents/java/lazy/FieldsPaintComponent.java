@@ -15,6 +15,7 @@ import paintcomponents.data.DataFromPointDataProvider;
 import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
+import typesystem.JavaType;
 import ui.PaintPanel;
 
 public class FieldsPaintComponent extends DataTextIOPaintComponent implements DataFromPointDataProvider{
@@ -37,11 +38,11 @@ public class FieldsPaintComponent extends DataTextIOPaintComponent implements Da
 		Field[] fields = displayingClass.getFields();
 		
 		//the left receiving instance
-		addToPoint(1, displayingClass.getName());
+		addToPoint(1, new JavaType(displayingClass));
 		
 		for (int i = 0; i < fields.length; i++) {
 			//the type is the type of the field
-			addFromPoint(this, i + 2, fields[i].getType().getName());
+			addFromPoint(this, i + 2, new JavaType(fields[i].getType()));
 		}
 		
 		
