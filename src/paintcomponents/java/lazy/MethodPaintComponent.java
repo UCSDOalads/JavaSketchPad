@@ -19,6 +19,7 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
 import paintcomponents.data.DataToPoint;
+import typesystem.JavaType;
 import ui.PaintPanel;
 
 public class MethodPaintComponent extends DataTextIOPaintComponent
@@ -57,18 +58,18 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 
 		// line 0 is signature
 		// line 1 is the operating instance
-		addToPoint(1, this.displayingMethod.getDeclaringClass().getName());
+		addToPoint(1, new JavaType(this.displayingMethod.getDeclaringClass()));
 		// parameters take place from line 2 to length+1
 		Class[] paramTypes = displayingMethod.getParameterTypes();
 		for (int i = 0; i < paramTypes.length ; i++) {
-			addToPoint(i + 2, paramTypes[i].getName());
+			addToPoint(i + 2, new JavaType(paramTypes[i]));
 		}
 
 		//the instance after performing this method after taking in
-		addFromPoint(this, 1, displayingMethod.getDeclaringClass().getName());
+		addFromPoint(this, 1, new JavaType(displayingMethod.getDeclaringClass()));
 
 		// method's return value take line length+2
-		addFromPoint(this, paramTypes.length + 2, displayingMethod.getReturnType().getName());
+		addFromPoint(this, paramTypes.length + 2, new JavaType(displayingMethod.getReturnType()));
 		
 		
 

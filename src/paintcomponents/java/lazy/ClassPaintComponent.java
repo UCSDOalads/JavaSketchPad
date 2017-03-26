@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
 
 import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
-import paintcomponents.data.DataTextIOPaintComponent;
+import typesystem.JavaType;
 import ui.PaintPanel;
 
 public class ClassPaintComponent extends DataInputTextfieldPaintComponent{
@@ -26,7 +26,7 @@ public class ClassPaintComponent extends DataInputTextfieldPaintComponent{
 		super(displayingClass.getName(), x, y);
 		this.displayingClass = displayingClass;
 		//make sure we set correct type for outgoint edges
-		this.getFromPoints().get(0).setExpectedType(displayingClass.getClass().getName());
+		this.getFromPoints().get(0).setExpectedType(new JavaType(displayingClass.getClass()));
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class ClassPaintComponent extends DataInputTextfieldPaintComponent{
 			this.displayingClass = Class.forName(classNameElem.getTextContent());
 			this.setDisplayingText(this.displayingClass.getName());
 			//make sure we set correct type for outgoint edges
-			this.getFromPoints().get(0).setExpectedType(displayingClass.getClass().getName());
+			this.getFromPoints().get(0).setExpectedType(new JavaType(displayingClass.getClass()));
 			
 			//no linking since Data Text filed already linked
 

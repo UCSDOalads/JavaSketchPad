@@ -12,6 +12,7 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
 import paintcomponents.data.DataToPoint;
+import typesystem.HaskellType;
 import ui.PaintPanel;
 
 public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent implements DataFromPointDataProvider {
@@ -53,7 +54,7 @@ public class HaskellExpressionPaintComponent extends DataTextIOPaintComponent im
 		for (int i = 0; i < typeParser.getArguments().size(); i++) {
 			builder.append("arg" + i + " :: " + typeParser.getArguments().get(i)
 					+ "\n");
-			addToPoint(i + 2, typeParser.getArguments().get(i));
+			addToPoint(i + 2, new HaskellType(typeParser.getArguments().get(i)));
 
 		}
 		// return value

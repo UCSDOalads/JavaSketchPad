@@ -49,7 +49,8 @@ public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {
 				.getSelectedComponents();
 		DataFromPoint fromPoint = (DataFromPoint) comps.get(0);
 		DataToPoint toPoint = (DataToPoint) comps.get(1);
-		if (!fromPoint.getExpectedType().equals(toPoint.getExpectedType())) {
+		//if (!fromPoint.getExpectedType().equals(toPoint.getExpectedType())) {
+		if(!toPoint.getExpectedType().canBeAssignedFrom(fromPoint.getExpectedType())){
 			int result = JOptionPane.showConfirmDialog(panel,
 					"The source type is " + fromPoint.getExpectedType()
 							+ ", the destination type is "
