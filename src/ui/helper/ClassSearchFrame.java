@@ -142,7 +142,8 @@ public class ClassSearchFrame extends JFrame
 
 		// User cancel the class search
 		if (e.getSource() == btnCancel) {
-			System.exit(0);
+			setVisible(false);
+			dispose();
 		} else if (e.getSource() == btnConfirm) {
 
 			System.out.println("btnConfirm pressed");
@@ -161,7 +162,8 @@ public class ClassSearchFrame extends JFrame
 
 			}
 
-			System.exit(0);
+			setVisible(false);
+			dispose();
 		}
 	}
 
