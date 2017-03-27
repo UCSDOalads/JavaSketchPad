@@ -7,13 +7,15 @@ import java.util.logging.Logger;
 
 import javax.swing.LookAndFeel;
 
+import typesystem.HaskellType;
+
 public class HaskellTypeParser {
 
 	private HashMap<String, ArrayList<String>> associatedTypeClasses;
 	// (Eq a, Ord a, Eq t) => will become [<a,[Eq, Ord]>, <t,[Eq]>]
 	private ArrayList<String> arguments;
-	private String returnType;
-	private String displayingExprType;
+	private HaskellType returnType;
+	private HaskellType displayingExprType;
 
 	/**
 	 * @return the associatedTypeClasses
@@ -32,14 +34,14 @@ public class HaskellTypeParser {
 	/**
 	 * @return the returnType
 	 */
-	public String getReturnType() {
+	public HaskellType getReturnType() {
 		return returnType;
 	}
 
 	/**
 	 * @return the displayingExprType
 	 */
-	public String getDisplayingExprType() {
+	public HaskellType getDisplayingExprType() {
 		return displayingExprType;
 	}
 
@@ -93,7 +95,7 @@ public class HaskellTypeParser {
 				equalArrowIndex = doubleColonIndex;
 			}
 			parseArguments(type.substring(equalArrowIndex + 2).trim());
-			this.displayingExprType = type.substring(doubleColonIndex + 2).trim();
+			this.displayingExprType = new HaskellType(type.substring(doubleColonIndex + 2).trim());
 			return true;
 	}
 
@@ -104,7 +106,7 @@ public class HaskellTypeParser {
 			String arg = arguments[i];
 			this.arguments.add(arg);
 		}
-		this.returnType = arguments[arguments.length - 1];
+		this.returnType = new HaskellType( arguments[arguments.length - 1]);
 		
 	}
 
