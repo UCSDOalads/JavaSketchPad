@@ -21,7 +21,6 @@ public class ClassSearchFrameTest {
 					
 					@Override
 					public void didSelectClass(String classname) {
-						// TODO Auto-generated method stub
 						
 					}
 				});
