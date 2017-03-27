@@ -21,7 +21,7 @@ public class ClassSearchFrameTest {
 					
 					@Override
 					public void didSelectClass(String classname) {
-						
+						System.out.println(classname);
 					}
 				});
 				
