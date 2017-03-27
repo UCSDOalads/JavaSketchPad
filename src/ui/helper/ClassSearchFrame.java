@@ -17,6 +17,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import actions.AddLazyJavaClassAction;
 import classpathutil.ClassSearch;
 
 import javax.swing.DefaultListSelectionModel;
@@ -38,6 +39,8 @@ public class ClassSearchFrame extends JFrame
 	JPanel panel;
 	JScrollPane scrollPane;
 
+	AddLazyJavaClassAction addLazy;
+	
 	/*
 	 * Setup class finders
 	 */
@@ -88,6 +91,14 @@ public class ClassSearchFrame extends JFrame
 		searchingTextField.getDocument().addDocumentListener(this);
 	}
 
+	/*
+	 * Constructor with a AddLazyJavaClassAction ref to be stored
+	 */
+	public ClassSearchFrame(AddLazyJavaClassAction e) {
+		this();
+		addLazy = e;
+	}
+	
 	private void updateClassList() {
 		if (runningThread != null) {
 			runningThread.interrupt();
@@ -132,7 +143,7 @@ public class ClassSearchFrame extends JFrame
 			}
 		});
 		runningThread.start();
-	}
+	} 
 
 	/**
 	 * perform cancel and confirm action
@@ -142,7 +153,8 @@ public class ClassSearchFrame extends JFrame
 
 		// User cancel the class search
 		if (e.getSource() == btnCancel) {
-			System.exit(0);
+			setVisible(false);
+			dispose();
 		} else if (e.getSource() == btnConfirm) {
 
 			System.out.println("btnConfirm pressed");
@@ -155,13 +167,20 @@ public class ClassSearchFrame extends JFrame
 				if (selectedRow == -1) {
 					selectedRow = 0;
 				}
+				
+				String name = (String) resultsTable.getValueAt(selectedRow, 0);
 				// TODO get selected/highlighted class, not just the first one
-				delegate.didSelectClass(
-						(String) resultsTable.getValueAt(selectedRow, 0));
-
+				// ^^^^^^ It seems this has been completed ^^^^
+				//delegate.didSelectClass(name);
+				
+				
+				// Tell the AddLazyJavaClass about the class selected.
+				addLazy.perform(name);
 			}
 
-			System.exit(0);
+			//Exit the search window
+			setVisible(false);
+			dispose();
 		}
 	}
 
@@ -187,7 +206,7 @@ public class ClassSearchFrame extends JFrame
 	public void setDelegate(ClassSearchFrameDelegateInterface delegate) {
 		this.delegate = delegate;
 	}
-
+	
 	/*
 	 * Forcely remove single selection in Jtable
 	 */
