@@ -7,6 +7,11 @@ import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.FieldsPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * Add a Java Fileds Component
+ * @author chenzb
+ *
+ */
 public class AddLazyJavaFieldsComponentAction extends PaintAction {
 
 public AddLazyJavaFieldsComponentAction(PaintPanel panel) {

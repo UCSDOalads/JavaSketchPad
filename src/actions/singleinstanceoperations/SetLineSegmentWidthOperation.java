@@ -8,6 +8,11 @@ import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
 
+/**
+ * A single instance operation responsible for setting the line width
+ * @author chenzb
+ *
+ */
 public class SetLineSegmentWidthOperation extends SingleInstanceOperation<LineSegment> {
 
 	public SetLineSegmentWidthOperation(PaintPanel panel) {

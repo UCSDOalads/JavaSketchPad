@@ -33,6 +33,13 @@ import actions.singleinstanceoperations.SetLineSegmentWidthOperation;
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
 
+/**
+ * The main menubar.
+ * 
+ * Individual actions should register itself in the constructor of this method.
+ * @author chenzb
+ *
+ */
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
 	public ActionsMenuBar(PaintPanel panel){

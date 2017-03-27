@@ -7,6 +7,12 @@ import java.util.jar.JarFile;
 
 /**Take from 
  * 
+ * This is a template class. 
+ * 
+ * Use ClassSearch instead.
+ * 
+ * This class is copied from
+ * 
  * http://stackoverflow.com/questions/3222638/get-all-of-the-classes-in-the-classpath
  * 
  * @author chenzb

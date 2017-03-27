@@ -7,7 +7,7 @@ import paintcomponents.PaintComponent;
 /**
  * Annotations is part of the paint panel that is attached to a particular paint component
  * Annotations does not mainly impact the behavior of underlying paint components, but 
- * extends the component to be more extensible
+ * extends the component to be more extensible, and usable by external actions
  * @author chenzb
  *
  */

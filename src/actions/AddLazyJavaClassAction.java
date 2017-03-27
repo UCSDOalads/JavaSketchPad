@@ -9,6 +9,11 @@ import actions.menu.PaintActionMenuItem;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * Add a lazily evaluated java class component
+ * @author chenzb
+ *
+ */
 public class AddLazyJavaClassAction extends PaintAction {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {

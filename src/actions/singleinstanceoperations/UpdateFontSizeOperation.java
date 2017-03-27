@@ -6,6 +6,11 @@ import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
 
+/**
+ * Single instance operaiton responsible for updating the font size
+ * @author chenzb
+ *
+ */
 public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintComponent>{
 
 	public UpdateFontSizeOperation(PaintPanel panel) {

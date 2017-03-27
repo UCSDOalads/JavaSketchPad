@@ -4,6 +4,14 @@ import javax.swing.JMenuItem;
 
 import actions.PaintAction;
 
+/**
+ * An action menu item is a JMenuItme associated with an action. 
+ * 
+ * The associated paint action is invoked on a mouse click.
+ * 
+ * @author chenzb
+ *
+ */
 public class PaintActionMenuItem extends JMenuItem{
 
 	

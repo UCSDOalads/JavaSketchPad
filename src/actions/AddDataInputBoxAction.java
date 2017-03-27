@@ -6,6 +6,11 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * Add Data Input Box Action
+ * @author chenzb
+ *
+ */
 public class AddDataInputBoxAction extends PaintAction {
 
 	public AddDataInputBoxAction(PaintPanel panel) {
