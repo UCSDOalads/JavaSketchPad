@@ -67,5 +67,17 @@ public class InputManager {
 			askForInt(panel, delegate);
 		}
 	}
+	
+	// TODO askForClass
+	public void askForClass(PaintPanel panel, InputManagerDelegate<Integer> delegate) {
+		String input = JOptionPane.showInputDialog("Please Input A Class");
+		try{
+			//TODO Class
+			//delegate.didFinishInput(inputInt);
+		} catch (NumberFormatException exp){
+			exp.printStackTrace();
+			askForClass(panel, delegate);
+		}
+	}
 
 }

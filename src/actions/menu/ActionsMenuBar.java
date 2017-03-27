@@ -32,6 +32,10 @@ import actions.UpdateDataDisplayBoxAction;
 import actions.singleinstanceoperations.SetLineSegmentWidthOperation;
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
 
 /**
  * The main menubar.
@@ -65,6 +69,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//edit 
 		addAction(new EditRedoAction(panel));
 		addAction(new EditUndoAction(panel));
+		addAction(new ZoomInAction(panel));
+		addAction(new ZoomOutAction(panel));
 
 		//haskell
 		addAction(new AddHaskellComponent(panel));

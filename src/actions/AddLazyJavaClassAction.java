@@ -55,8 +55,6 @@ public class AddLazyJavaClassAction extends PaintAction {
 			JOptionPane.showMessageDialog(panel,
 					className + " :: Class Not Found");
 		}
-		
-		
 
 	}
 

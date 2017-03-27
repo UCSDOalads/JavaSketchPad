@@ -138,6 +138,11 @@ public class ActionsMenuBarTitles {
 
 	public ActionsMenuBarTitles Point_Size() {
 		append("Point Size...");
+    return this;
+  }
+
+	public ActionsMenuBarTitles Zoom_In() {
+		append("Zoom In");
 		return this;
 	}
 
@@ -146,5 +151,9 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 	
+	public ActionsMenuBarTitles Zoom_Out() {
+		append("Zoom Out");
+		return this;
+	}
 
 }
