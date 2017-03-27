@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 
 import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
+import actions.AddAnnotationAction;
 import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddHaskellComponent;
@@ -79,6 +80,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
 
+		// add data annotation
+		addAction(new AddAnnotationAction(panel));
 	}
 
 	private void addAction(PaintAction action) {

@@ -102,7 +102,7 @@ public class TextPaintComponent extends PaintComponent{
 		//draw string starts from bottom left corner, shift to top left
 		updateBoundsAndDrawString(g);
 	}
-	private void updateBoundsAndDrawString(Graphics g) {
+	public void updateBoundsAndDrawString(Graphics g) {
 		//reset bounds to begin calculation
 		width = 0;
 		//derive row Height
