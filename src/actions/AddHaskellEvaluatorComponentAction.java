@@ -4,6 +4,11 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.haskell.EvaluateHaskellPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * Haskell expression evaluator action
+ * @author chenzb
+ *
+ */
 public class AddHaskellEvaluatorComponentAction extends PaintAction {
 
 	public AddHaskellEvaluatorComponentAction(PaintPanel panel) {

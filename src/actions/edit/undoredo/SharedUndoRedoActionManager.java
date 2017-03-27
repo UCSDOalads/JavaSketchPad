@@ -4,6 +4,13 @@ import java.util.Stack;
 
 /**
  * 
+ * A manager for undo and redo in the program.
+ * Use getSharedInstance to retrieve such an instance.
+ * 
+ * An undoable action should push an instance of the interface to this manger
+ * via pushUndoableAction method. Edit /Undo /Redo action should actively delgate this
+ * manager for the availability of undo and redoables.
+ * 
  * @author cs12wagn
  * add to stack
  * 

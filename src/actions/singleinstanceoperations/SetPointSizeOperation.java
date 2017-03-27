@@ -6,6 +6,11 @@ import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
 
+/**
+ * A single instance operation responsible for setting the point size
+ * @author chenzb
+ *
+ */
 public class SetPointSizeOperation extends SingleInstanceOperation<SimplePoint> {
 
 	public SetPointSizeOperation(PaintPanel panel) {

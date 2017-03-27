@@ -6,12 +6,18 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataDisplayPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * This action adds a data display box (Data > Display > Add)
+ * @author chenzb
+ *
+ */
 public class AddDataDisplayBoxAction extends PaintAction {
 
 	public AddDataDisplayBoxAction(PaintPanel panel) {
 		super(panel);
 	}
 
+	
 	@Override
 	public boolean canPerformAction() {
 		return true;

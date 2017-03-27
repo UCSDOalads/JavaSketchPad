@@ -6,6 +6,11 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.haskell.HaskellExpressionPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * Add a haskell expression component
+ * @author chenzb
+ *
+ */
 public class AddHaskellComponent extends PaintAction {
 
 	public AddHaskellComponent(PaintPanel panel) {

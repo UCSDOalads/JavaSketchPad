@@ -13,6 +13,11 @@ import ui.PaintPanel;
 import ui.helper.ClassSearchFrame;
 import ui.helper.ClassSearchFrameDelegateInterface;
 
+/**
+ * Add a lazily evaluated java class component
+ * @author chenzb
+ *
+ */
 public class AddLazyJavaClassAction extends PaintAction {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {

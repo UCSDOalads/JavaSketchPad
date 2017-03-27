@@ -1,5 +1,18 @@
 package actions.menu;
 
+/**
+ * The menubar titles.
+ * 
+ * A paint action's get location should use this class for creating menubar titles.
+ * 
+ * For example ActionsMenuBarTitles.Edit().Undo().toString();
+ * 
+ * 
+ * 
+ * 
+ * @author chenzb
+ *
+ */
 public class ActionsMenuBarTitles {
 	
 	public String pending;
@@ -130,6 +143,11 @@ public class ActionsMenuBarTitles {
 
 	public ActionsMenuBarTitles Zoom_In() {
 		append("Zoom In");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Line_Segment_Width() {
+		append("Line Segment Width...");
 		return this;
 	}
 	
