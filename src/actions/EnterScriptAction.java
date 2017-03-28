@@ -25,12 +25,12 @@ public class EnterScriptAction extends PaintAction {
 		
 		System.out.println("Enter script:");
 		while (scanner.hasNextLine()) {
-			System.out.println("Enter script:");
 			try {
 				interpreter.interpreteLine(scanner.nextLine());
 			} catch (ExecutionErrorException e) {
 				System.out.println("Invalid script");
 			}
+			System.out.println("Enter script:");
 		}
 		scanner.close();
 	}

@@ -15,7 +15,11 @@ import ui.PaintPanel;
 
 public class InterpreterAddLazy {
 
-	private PaintPanel panel;
+	private static final String JAVA_METHOD_COMPONENT = "javaMethodComponent";
+  private static final String JAVA_FIELDS_COMPONENT = "javaFieldsComponent";
+  private static final String JAVA_CONSTRUCTOR = "javaConstructor";
+  private static final String JAVA_CLASS = "javaClass";
+  private PaintPanel panel;
 
 	public InterpreterAddLazy(Tokenizer tokenizer, PaintPanel panel)
 			throws ExecutionErrorException {
@@ -24,19 +28,19 @@ public class InterpreterAddLazy {
 
 		if (tokenizer.hasNext()) {
 			switch (tokenizer.next()) {
-			case "JavaClass":
+			case JAVA_CLASS:
 				performAddJavaClassAction();
 				break;
 
-			case "JavaConstructor":
+			case JAVA_CONSTRUCTOR:
 				performAddJavaConstructorAction();
 				break;
 
-			case "JavaFieldsComponent":
+			case JAVA_FIELDS_COMPONENT:
 				performAddJavaFieldsComponentAction();
 				break;
 
-			case "JavaMethodComponent":
+			case JAVA_METHOD_COMPONENT:
 				performAddJavaMethodComponentAction();
 				break;
 				

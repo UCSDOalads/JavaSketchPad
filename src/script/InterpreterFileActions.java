@@ -14,7 +14,9 @@ import ui.PaintPanel;
 
 public class InterpreterFileActions {
 	
-	private static final String OPEN = "open";
+	private static final String SAVE = "save";
+  private static final String SAVE_AS = "saveAs";
+  private static final String OPEN = "open";
 	private PaintPanel panel;
 	
 	public InterpreterFileActions(Tokenizer tokenizer, PaintPanel panel)
@@ -27,11 +29,11 @@ public class InterpreterFileActions {
 				performOpen(panel);
 				break;
 
-			case "saveAs":
+			case SAVE_AS:
 				performSaveAs(panel);
 				break;
 				
-			case "save":
+			case SAVE:
 				performSaveAs(panel);
 				break;
 				
