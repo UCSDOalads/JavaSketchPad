@@ -100,6 +100,7 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 
 	/**
 	 * Check whether the data is good to return from this component
+	 * @param dataFromPoint
 	 * @return   the return value
 	 */
 	@Override
@@ -108,7 +109,27 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 
 		return returnVal != null;
 	}
-
+	
+	/**
+	 * Retrieve the instance of what this component manipulated.
+	 * @param dataFromPoint  
+	 * @return  that instance
+	 */
+	public Object provideInstanceToDataFromPoint(
+			DataFromPoint dataFromPoint){
+		return instance;
+	}
+	
+	/**
+	 * Check whether there's an instance to retrieve
+	 * @param dataFromPoint
+	 * @return true if there is, false if not
+	 */
+	public boolean canProvideInstanceToDataFromPoint(
+			DataFromPoint dataFromPoint){
+		return instance != null;
+	}
+	
 	@Override
 	public void saveToElement(Element rootElement, Document doc) {
 		super.saveToElement(rootElement, doc);
