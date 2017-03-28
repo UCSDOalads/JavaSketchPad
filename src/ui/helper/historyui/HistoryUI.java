@@ -3,33 +3,29 @@ package ui.helper.historyui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
-import classpathutil.ClassSearch;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 
 public class HistoryUI extends JFrame
 		{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8141494344180865577L;
 	private JTable resultsTable;
-	private ClassSearch searchUtil;
 	private DefaultTableModel defaultTableModel;
 	private HistoryUIInterface delegate;
 
-	private Thread runningThread;
 	JButton btnCancel, btnConfirm;
 	JPanel panel;
 	JScrollPane scrollPane;
@@ -42,6 +38,11 @@ public class HistoryUI extends JFrame
 
 		// set the defaultTableModel to non editable by user clicking around
 		defaultTableModel = new DefaultTableModel(0, 1) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -57,9 +58,6 @@ public class HistoryUI extends JFrame
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		// search text field on top
-		searchUtil = ClassSearch.sharedInstance();
-
 		// show result
 		resultsTable = new JTable();
 		resultsTable.setModel(defaultTableModel);
@@ -70,13 +68,13 @@ public class HistoryUI extends JFrame
 		panel.add(scrollPane, BorderLayout.CENTER);
 
 		// add small JPanel for Cancel and Confirm buttons
-		JPanel panel_1 = new JPanel();
-		getContentPane().add(panel_1, BorderLayout.SOUTH);
+		JPanel buttom_panel = new JPanel();
+		getContentPane().add(buttom_panel, BorderLayout.SOUTH);
 		
 		//create buttons from array list
 		for (String title : titles){
 			JButton button = new JButton(title);
-			panel_1.add(button);
+			buttom_panel.add(button);
 			button.addActionListener(new ActionListener() {
 				
 				@Override
@@ -100,11 +98,16 @@ public class HistoryUI extends JFrame
 	}
 
 	/*
-	 * Forcely remove single selection in JTable
+	 * Forcedly remove single selection in JTable
 	 */
 	private static class ForcedListSelectionModel
 			extends
 				DefaultListSelectionModel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public ForcedListSelectionModel() {
 			this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		};
