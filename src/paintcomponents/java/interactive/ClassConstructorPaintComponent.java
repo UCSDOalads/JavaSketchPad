@@ -27,13 +27,11 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 
 	private Constructor displayingConstructor;
 	private Object instance;
-	private Object returnVal;
 
 
 	public ClassConstructorPaintComponent(Constructor displayingContructor,
-			Object instance, int x, int y) {
+			int x, int y) {
 		super(displayingContructor.toString(), x, y);
-		this.instance = instance;
 		this.displayingConstructor = displayingContructor;
 		init();
 	}
@@ -46,6 +44,10 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 			addToPoint(i + 1, new JavaType(paramTypes[i]));
 		}
 
+		// constructed instance take line length+1
+		addFromPoint(this, paramTypes.length + 1,
+				new JavaType(this.displayingConstructor.getDeclaringClass()));
+		
 		// prepare String
 		StringBuilder s = new StringBuilder();
 		s.append(this.displayingConstructor.toString() + "\n");
@@ -53,6 +55,7 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 			s.append("arg" + i + " :: " + paramTypes[i].getName() + "\n");
 		}
 
+		s.append("Constructed Instance >>>> " + "\n");
 		setDisplayingText(s.toString());
 
 	}
@@ -77,7 +80,7 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 					}
 				}
 				try {
-					returnVal = displayingConstructor.newInstance(args);
+					instance = displayingConstructor.newInstance(args);
 				} catch (InstantiationException | IllegalAccessException
 						| IllegalArgumentException | InvocationTargetException e) {
 					e.printStackTrace();
@@ -95,7 +98,7 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 	public Object provideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
 
-		return returnVal;
+		return instance;
 	}
 
 	/**
@@ -107,26 +110,6 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 	public boolean canProvideInformationToDataFromPoint(
 			DataFromPoint dataFromPoint) {
 
-		return returnVal != null;
-	}
-	
-	/**
-	 * Retrieve the instance of what this component manipulated.
-	 * @param dataFromPoint  
-	 * @return  that instance
-	 */
-	public Object provideInstanceToDataFromPoint(
-			DataFromPoint dataFromPoint){
-		return instance;
-	}
-	
-	/**
-	 * Check whether there's an instance to retrieve
-	 * @param dataFromPoint
-	 * @return true if there is, false if not
-	 */
-	public boolean canProvideInstanceToDataFromPoint(
-			DataFromPoint dataFromPoint){
 		return instance != null;
 	}
 	

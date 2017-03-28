@@ -38,30 +38,17 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 	
 	/*
 	 * 
-	 * 
 	 * line 0 is signature
-	 * 
-	 * 
-	 * 
-	 * line 1 is the operating instance
-	 * 
-	 * 
 	 * 
 	 * parameters take place from line 2 to length+1
 	 * 
-	 * 
-	 * 
 	 * method's return value take line length+2
-	 * 
-	 * 
-	 * 
 	 * 
 	 */
 
 	private void init() {
 
 		// line 0 is signature
-		// line 1 is the operating instance
 		addToPoint(1, new JavaType(this.displayingMethod.getDeclaringClass()));
 		// parameters take place from line 2 to length+1
 		Class[] paramTypes = displayingMethod.getParameterTypes();
@@ -69,8 +56,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 			addToPoint(i + 2, new JavaType(paramTypes[i]));
 		}
 
-		// method's return value take line length+2
-		//**** Update: The from point should be on length+1 now since the instance line is removed ****
+		// method's return value take line length+1 since we no longer have a from point for instance
 		addFromPoint(this, paramTypes.length + 1, new JavaType(displayingMethod.getReturnType()));
 		
 		// prepare String
@@ -133,11 +119,8 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 	 */
 	@Override
 	public Object provideInformationToDataFromPoint(
-			DataFromPoint dataFromPoint) {
-		
-		
-			return returnVal;
-		
+			DataFromPoint dataFromPoint) {	
+			return returnVal;	
 	}
 	
 	/**
@@ -153,24 +136,13 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 	}
 	
 	/**
-	 * Retrieve the instance of what this component manipulated.
-	 * @param dataFromPoint  
-	 * @return  that instance
+	 * Getter for instance
+	 * @return  instance ref
 	 */
-	public Object provideInstanceToDataFromPoint(
-			DataFromPoint dataFromPoint){
+	public Object getInstance(){
 		return instance;
 	}
 	
-	/**
-	 * Check whether there's an instance to retrieve
-	 * @param dataFromPoint
-	 * @return true if there is, false if not
-	 */
-	public boolean canProvideInstanceToDataFromPoint(
-			DataFromPoint dataFromPoint){
-		return instance != null;
-	}
 	@Override
 	public void saveToElement(Element rootElement, Document doc) {
 		super.saveToElement(rootElement, doc);
@@ -193,7 +165,6 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 						Integer.toString(Arrays.asList(this.displayingMethod
 								.getDeclaringClass().getMethods())
 								.indexOf(displayingMethod)));
-
 	}
 
 	public  MethodPaintComponent(Element rootElement,
@@ -205,8 +176,6 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 				.getElementsByTagName("classname").item(0);
 		Element methodInfoElem = (Element) main
 				.getElementsByTagName("methodinfo").item(0);
-
-
 
 		String className = classNameElem.getTextContent();
 		
@@ -223,8 +192,5 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 			e.printStackTrace();
 		}
 		
-		
-		
-
 	}
 }
