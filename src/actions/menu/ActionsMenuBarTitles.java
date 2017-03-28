@@ -77,6 +77,10 @@ public class ActionsMenuBarTitles {
 	public static ActionsMenuBarTitles Lazy() {
 		return new ActionsMenuBarTitles("Lazy");
 	}
+	
+	public static ActionsMenuBarTitles Script() {
+		return new ActionsMenuBarTitles("Script");
+	}
 
 	public ActionsMenuBarTitles Java_Class() {
 		append("Java Class");
@@ -137,5 +141,9 @@ public class ActionsMenuBarTitles {
 		append("Zoom Out");
 		return this;
 	}
-
+	
+	public ActionsMenuBarTitles Enter_Script() {
+		append("Enter Script");
+		return this;
+	}
 }

@@ -1,13 +1,19 @@
 package script;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-
+/**
+ * Tokenize a string
+ * @author Xiaoquan Jiang
+ */
 public class Tokenizer {
-	private enum State { INIT, IN_DOUBLE_QUOTE, IN_SINGLE_QUOTE, IN_DOUBLE_QUOTE_ESCAPE, IN_SINGLE_QUOTE_ESCAPE, INIT_ESCAPE}
+	private enum State { INIT, IN_DOUBLE_QUOTE, IN_SINGLE_QUOTE,
+		IN_DOUBLE_QUOTE_ESCAPE, IN_SINGLE_QUOTE_ESCAPE, INIT_ESCAPE};
   private State state;
 	private char[] array;
 	private ArrayList<String> output;
+	private Iterator<String> iterator;
 	private String pending;
 
 	// ctor
@@ -17,14 +23,18 @@ public class Tokenizer {
 		output = new ArrayList<String>();
 		pending = "";
 		
+		// interpret characters
 		for (int i = 0; i < array.length; i++) {
       interpretChar(array[i]);
 		}
 		
+		// add any remaining pending string to array list
 		if (!pending.equals("")) {
 			output.add(pending);
 			pending = "";
 		}
+		
+		iterator = output.iterator();
 	}
 
 	/**
@@ -115,4 +125,14 @@ public class Tokenizer {
 			break;
 		}
 	}
+
+	public boolean hasNext() {
+		return iterator.hasNext();
+	}
+
+	public String next() {
+		return iterator.next();
+	}
+	
+	
 }
