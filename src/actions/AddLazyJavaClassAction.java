@@ -1,5 +1,7 @@
 package actions;
 
+import java.awt.Dimension;
+
 import javax.swing.JOptionPane;
 
 import actions.edit.undoredo.SharedUndoRedoActionManager;
@@ -8,6 +10,8 @@ import actions.menu.ActionsMenuBarTitles;
 import actions.menu.PaintActionMenuItem;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
+import ui.helper.ClassSearchFrame;
+import ui.helper.ClassSearchFrameDelegateInterface;
 
 public class AddLazyJavaClassAction extends PaintAction {
 
@@ -19,37 +23,51 @@ public class AddLazyJavaClassAction extends PaintAction {
 	public boolean canPerformAction() {
 		return true;
 	}
-
+	
 	@Override
 	public void performAction() {
-		String className = JOptionPane
-				.showInputDialog("Please specify the name of the Java Class");
-		try {
-			Class classObj = Class.forName(className);
-			ClassPaintComponent comp = new ClassPaintComponent(classObj,
-					panel.getWidth() / 2, panel.getHeight() / 2);
-			panel.addPaintComponent(comp);
-			// add action to undo redo manager
-			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+		
+		ClassSearchFrame classSearchFrame = new ClassSearchFrame();
+		classSearchFrame.setDelegate(new ClassSearchFrameDelegateInterface() {
+			
+			@Override
+			public void didSelectClass(String classname) {
 				
-				@Override
-				public void undoAction() {
-					comp.remove(panel);
-					panel.repaint();
-				}
-				
-				@Override
-				public void redoAction() {
+				try {
+					Class classObj = Class.forName(classname);
+					ClassPaintComponent comp = new ClassPaintComponent(classObj,
+							panel.getWidth() / 2, panel.getHeight() / 2);
 					panel.addPaintComponent(comp);
+					// add action to undo redo manager
+					SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+				
+						@Override
+						public void undoAction() {
+							comp.remove(panel);
+							panel.repaint();
+						}
+				
+						@Override
+						public void redoAction() {
+							panel.addPaintComponent(comp);
+							panel.repaint();
+						}
+					});
 					panel.repaint();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(panel,
+							classname + " :: Class Not Found");
 				}
-			});
-			panel.repaint();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(panel,
-					className + " :: Class Not Found");
-		}
+			}
+		});
+		
+		
+		classSearchFrame.setVisible(true);
+		classSearchFrame.setSize(new Dimension(300, 200));
+		
+		
+		
 
 	}
 
