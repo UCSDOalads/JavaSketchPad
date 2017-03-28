@@ -12,6 +12,10 @@ import org.xml.sax.SAXException;
 import file.PanelIO;
 import ui.PaintPanel;
 
+/**
+ * Interpret and execute 'file' scripts 
+ * @author Xiaoquan Jiang
+ */
 public class InterpreterFileActions {
 	
 	private static final String SAVE = "save";

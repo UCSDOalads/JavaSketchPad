@@ -19,7 +19,7 @@ public class Interpreter {
 	private static final String GENERATE_POLYGON = "generatePolygon";
 	private static final String FILE = "file";
 	private static final String EDIT = "edit";
-	private static final String CONSTRUCT = "Construct";
+	private static final String CONSTRUCT = "construct";
 	private static final String ADD = "add";
 	private PaintPanel panel;
 
@@ -31,6 +31,7 @@ public class Interpreter {
 
 		Tokenizer tokenizer = new Tokenizer(script);
 
+		// interpret the first token and pass the tokenizer to a sub interpreter
 		if (tokenizer.hasNext()) {
 			switch (tokenizer.next()) {
 			case ADD:
@@ -68,6 +69,34 @@ public class Interpreter {
 			throw new ExecutionErrorException("Script is empty");
 		}
 	}
-
-
 }
+
+/* Scripts:
+add
+  data
+    displayBox
+    inputBox
+  haskell
+    component
+    haskellCompoment
+  lazy
+    javaClass
+    javaConstructor
+    javaFieldsComponent
+    javaMethodComponent
+  textBox
+construct
+  dataLineSegment
+  lineSegment
+edit
+  redo
+  undo
+file
+  saveAs == save
+  open
+generatePolygon
+update
+  dataBox
+  inputBox
+remove
+*/

@@ -7,7 +7,7 @@ import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 
 /**
- * Interpret and execute 'add_data' scripts 
+ * Interpret and execute 'add data' scripts 
  * @author Xiaoquan Jiang
  */
 public class InterpreterAddData {

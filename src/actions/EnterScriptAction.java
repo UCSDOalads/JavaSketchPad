@@ -1,6 +1,9 @@
 package actions;
 
+import java.awt.HeadlessException;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 import actions.menu.ActionsMenuBarTitles;
 import ui.PaintPanel;
@@ -21,7 +24,7 @@ public class EnterScriptAction extends PaintAction {
 	@Override
 	public void performAction() {
 		Interpreter interpreter = new Interpreter(panel);
-		Scanner scanner = new Scanner(System.in);
+		/*Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Enter script:");
 		while (scanner.hasNextLine()) {
@@ -33,6 +36,15 @@ public class EnterScriptAction extends PaintAction {
 			System.out.println("Enter script:");
 		}
 		scanner.close();
+		*/
+		try {
+      interpreter.interpreteLine(JOptionPane.showInputDialog(panel, "Enter Script: "));
+    } catch (HeadlessException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ExecutionErrorException e) {
+      System.out.println("Invalid script");
+    }
 	}
 
 	@Override

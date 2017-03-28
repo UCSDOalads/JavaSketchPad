@@ -1,12 +1,15 @@
 package script;
 
 import java.util.ArrayList;
-
 import paintcomponents.PaintComponent;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import ui.PaintPanel;
 
+/**
+ * Interpret and execute 'remove' script 
+ * @author Xiaoquan Jiang
+ */
 public class InterpreterRemoveAction {
 	
 	private PaintPanel panel;

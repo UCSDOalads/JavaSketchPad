@@ -13,6 +13,10 @@ import javax.swing.JOptionPane;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
+/**
+ * Interpret and execute 'generatePolygon' scripts 
+ * @author Xiaoquan Jiang
+ */
 public class InterpreterGeneratePolygonAction {
 
 	private PaintPanel panel;

@@ -13,6 +13,10 @@ import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import ui.PaintPanel;
 
+/**
+ * Interpret and execute 'add_lazy' scripts 
+ * @author Xiaoquan Jiang
+ */
 public class InterpreterAddLazy {
 
 	private static final String JAVA_METHOD_COMPONENT = "javaMethodComponent";

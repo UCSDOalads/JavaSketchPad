@@ -7,7 +7,7 @@ import paintcomponents.haskell.HaskellExpressionPaintComponent;
 import ui.PaintPanel;
 
 /**
- * Interpret and execute 'add_haskell' scripts 
+ * Interpret and execute 'add haskell' scripts 
  * @author Xiaoquan Jiang
  */
 public class InterpreterAddHaskell {

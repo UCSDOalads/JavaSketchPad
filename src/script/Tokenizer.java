@@ -23,15 +23,17 @@ public class Tokenizer {
 		output = new ArrayList<String>();
 		pending = "";
 		
-		// interpret characters
-		for (int i = 0; i < array.length; i++) {
-      interpretChar(array[i]);
-		}
+		if (!input.isEmpty()) {
+		  // interpret characters
+		  for (int i = 0; i < array.length; i++) {
+		    interpretChar(array[i]);
+		  }
 		
-		// add any remaining pending string to array list
-		if (!pending.equals("")) {
-			output.add(pending);
-			pending = "";
+		  // add any remaining pending string to array list
+		  if (!pending.equals("")) {
+		    output.add(pending);
+		    pending = "";
+		  }
 		}
 		
 		iterator = output.iterator();
@@ -108,6 +110,7 @@ public class Tokenizer {
 				pending += c;
 				break;
 			}
+			break;
 			
 		case INIT_ESCAPE:
 			pending += c;

@@ -3,6 +3,10 @@ package script;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import ui.PaintPanel;
 
+/**
+ * Interpret and execute 'edit' scripts 
+ * @author Xiaoquan Jiang
+ */
 public class InterpreterEditActions {
 
 	private static final String UNDO = "undo";

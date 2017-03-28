@@ -14,6 +14,10 @@ import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import ui.PaintPanel;
 
+/**
+ * Interpret and execute 'update' scripts 
+ * @author Xiaoquan Jiang
+ */
 public class InterpreterUpdateActions {
 	
 	private static final String INPUT_BOX = "inputBox";
