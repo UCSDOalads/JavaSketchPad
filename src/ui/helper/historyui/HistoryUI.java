@@ -1,4 +1,4 @@
-package interactive;
+package ui.helper.historyui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

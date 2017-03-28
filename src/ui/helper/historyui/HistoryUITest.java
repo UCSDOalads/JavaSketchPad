@@ -1,4 +1,4 @@
-package interactive;
+package ui.helper.historyui;
 
 import static org.junit.Assert.*;
 

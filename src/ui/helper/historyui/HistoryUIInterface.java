@@ -1,4 +1,4 @@
-package interactive;
+package ui.helper.historyui;
 
 public interface HistoryUIInterface {
 
