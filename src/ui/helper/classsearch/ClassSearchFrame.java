@@ -1,4 +1,4 @@
-package ui.helper;
+package ui.helper.classsearch;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
