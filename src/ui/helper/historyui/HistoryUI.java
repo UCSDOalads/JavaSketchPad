@@ -18,17 +18,14 @@ import javax.swing.JButton;
 
 public class HistoryUI extends JFrame
 		{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8141494344180865577L;
 	private JTable resultsTable;
 	private DefaultTableModel defaultTableModel;
 	private HistoryUIInterface delegate;
 
-	JButton btnCancel, btnConfirm;
-	JPanel panel;
-	JScrollPane scrollPane;
+	
+	private JPanel panel;
+	private JScrollPane scrollPane;
 	
 
 	/*
@@ -38,9 +35,6 @@ public class HistoryUI extends JFrame
 
 		// set the defaultTableModel to non editable by user clicking around
 		defaultTableModel = new DefaultTableModel(0, 1) {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -49,9 +43,6 @@ public class HistoryUI extends JFrame
 				
 			}
 		};
-		
-
-		//defaultTableModel.addColumn("Data");
 
 		// big JPanel window
 		panel = new JPanel();
@@ -103,9 +94,6 @@ public class HistoryUI extends JFrame
 	private static class ForcedListSelectionModel
 			extends
 				DefaultListSelectionModel {
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
 		public ForcedListSelectionModel() {
