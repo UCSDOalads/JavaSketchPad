@@ -10,6 +10,7 @@ import org.w3c.dom.NodeList;
 
 import file.PanelIO;
 import painttools.tools.SelectTool;
+import typesystem.Type;
 import ui.PaintPanel;
 
 /**
@@ -83,7 +84,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	 * @param yShift
 	 *            the row number of placing the data from point
 	 */
-	public void addFromPoint(DataFromPointDataProvider provider, int yShift, String expectedType) {
+	public void addFromPoint(DataFromPointDataProvider provider, int yShift, Type expectedType) {
 		DataFromPoint fromPoint = new DataFromPoint(getX(), getY(), expectedType);
 		fromPoint.setProvider(provider);
 		fromPoints.add(new DataFromPointInfo(fromPoint, yShift));
@@ -97,7 +98,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	 *            the row number
 	 * @return the added toPoint
 	 */
-	public void addToPoint(int yShift, String expectedType) {
+	public void addToPoint(int yShift, Type expectedType) {
 		DataToPoint toPoint = new DataToPoint(getX(), getY(), expectedType);
 		toPoints.add(new DataToPointInfo(toPoint, yShift));
 

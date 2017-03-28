@@ -101,7 +101,6 @@ public class ClassSearchFrame extends JFrame
 				synchronized (searchingTextField) {
 					searchText = searchingTextField.getText();
 				}
-				System.out.println("Searching for " + searchText);
 				// start Search
 				ArrayList<String> classesForName = searchUtil
 						.classesForName(searchText);
@@ -142,10 +141,9 @@ public class ClassSearchFrame extends JFrame
 
 		// User cancel the class search
 		if (e.getSource() == btnCancel) {
-			System.exit(0);
+			setVisible(false);
+			dispose();
 		} else if (e.getSource() == btnConfirm) {
-
-			System.out.println("btnConfirm pressed");
 
 			// return the selected (or the first if no selected) class if the
 			// table is not empty
@@ -161,7 +159,8 @@ public class ClassSearchFrame extends JFrame
 
 			}
 
-			System.exit(0);
+			setVisible(false);
+			dispose();
 		}
 	}
 

@@ -1,8 +1,14 @@
 1. File Save/Close Operations
 2. Edit Undo/Redo Operations
+<<<<<<< HEAD
 3. More usable SelectTools x
 4. Remove Functinoality x
 5. Zooming and Scrolling and Moving Function x
+=======
+//3. More usable SelectTools
+//4. Remove Functinoality
+//5. Zooming and Scrolling and Moving Function
+>>>>>>> develop
 6. Data Point Connection Types
 7. Available Class Search
 8. Auto-Update Display Box Affected by Recent Changes
