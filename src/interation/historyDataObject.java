@@ -9,8 +9,8 @@ public class historyDataObject {
 	}
 	
 	
-	public String toString(historyDataObject h){
-		return h.data;
+	public String toString(){
+		return data;
 	}
 	
 	
