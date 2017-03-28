@@ -138,4 +138,9 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
+	public ActionsMenuBarTitles Annotations() {
+		append("Annotations");
+		return this;
+	}
+
 }

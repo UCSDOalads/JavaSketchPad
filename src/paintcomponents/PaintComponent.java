@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import paintcomponents.annotations.PaintComponentAnnotation;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
 
@@ -38,6 +39,7 @@ public abstract class PaintComponent {
 	static private long UNIQUE_ID = 0;
 	long uid = ++UNIQUE_ID;
 
+	private PaintComponentAnnotation optionalAnnotation;
 	/**
 	 * Get a Unique ID of this component. IDs resets to zero when JVM starts;
 	 * 
@@ -95,6 +97,10 @@ public abstract class PaintComponent {
 			paintNotSelected(g);
 		}
 
+		//paint annotation
+		if(optionalAnnotation != null){
+			optionalAnnotation.paint(g);
+		}
 	}
 
 	/**
@@ -166,7 +172,11 @@ public abstract class PaintComponent {
 	public void translate(int i, int j) {
 		this.x += i;
 		this.y += j;
-
+		
+		//if attached component is not null, translate it as well
+		if(optionalAnnotation != null){
+			optionalAnnotation.translate(i, j);
+		}
 	}
 
 	public abstract boolean contains(int x2, int y2);
@@ -220,4 +230,18 @@ public abstract class PaintComponent {
 			this.x = Integer.parseInt(pos.getElementsByTagName("xcoordinate").item(0).getTextContent());
 			this.y = Integer.parseInt(pos.getElementsByTagName("ycoordinate").item(0).getTextContent());
 	  }
+
+	/**
+	 * @return the optionalAnnotation
+	 */
+	public PaintComponentAnnotation getOptionalAnnotation() {
+		return optionalAnnotation;
+	}
+
+	/**
+	 * @param optionalAnnotation the optionalAnnotation to set
+	 */
+	public void setOptionalAnnotation(PaintComponentAnnotation optionalAnnotation) {
+		this.optionalAnnotation = optionalAnnotation;
+	}
 }

@@ -176,7 +176,6 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	public void addPaintComponent(PaintComponent comp) {
 		components.add(comp);
-
 	}
 	
 	public ArrayList<PaintComponent> getPaintComponents() {
