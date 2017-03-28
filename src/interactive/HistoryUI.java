@@ -1,4 +1,4 @@
-package interation;
+package interactive;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -22,24 +22,23 @@ import classpathutil.ClassSearch;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 
-public class historyUI extends JFrame
+public class HistoryUI extends JFrame
 		{
 	private JTable resultsTable;
 	private ClassSearch searchUtil;
 	private DefaultTableModel defaultTableModel;
-	private ClassSearchFrameDelegateInterface delegate;
+	private HistoryUIInterface delegate;
 
 	private Thread runningThread;
 	JButton btnCancel, btnConfirm;
 	JPanel panel;
-	JPanel panel_2;
 	JScrollPane scrollPane;
 	
 
 	/*
 	 * Setup class finders
 	 */
-	public historyUI(String[] titles) {
+	public HistoryUI(String[] titles) {
 
 		// set the defaultTableModel to non editable by user clicking around
 		defaultTableModel = new DefaultTableModel(0, 1) {
@@ -74,6 +73,7 @@ public class historyUI extends JFrame
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
+		//create buttons from array list
 		for (String title : titles){
 			JButton button = new JButton(title);
 			panel_1.add(button);
@@ -88,46 +88,19 @@ public class historyUI extends JFrame
 		}
 	}
 
-
-	
-
-	
-	
-	public void insert(historyDataObject e){
+	//add a row to the end of table
+	public void insert(HistoryDataObject e){
 		defaultTableModel.addRow(new Object[] {e.toString()});
-		//updateClassList();
 	}
 	
 	
-	
-//	/**
-//	 * 
-//	 * @return selected data
-//	 */
-//	public Object selectedData(){
-//		int col = 0;
-//		int row = resultsTable.getSelectedRow();
-//		Object value = resultsTable.getModel().getValueAt(row, col);
-//        JFrame f = new JFrame("TableSelection");
-//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        f.add(this, BorderLayout.CENTER);
-//		btnCancel = new JButton("Cancel");
-//		panel_2.add(btnCancel);
-//		btnCancel.addActionListener(this);
-//        f.add(btnCancel, BorderLayout.SOUTH);
-//        f.pack();
-//        f.setLocationRelativeTo(null);
-//        f.setVisible(true);
-//		return value;
-//	}
-	
 
-	public void setDelegate(ClassSearchFrameDelegateInterface delegate) {
+	public void setDelegate(HistoryUIInterface delegate) {
 		this.delegate = delegate;
 	}
 
 	/*
-	 * Forcely remove single selection in Jtable
+	 * Forcely remove single selection in JTable
 	 */
 	private static class ForcedListSelectionModel
 			extends
@@ -135,14 +108,6 @@ public class historyUI extends JFrame
 		public ForcedListSelectionModel() {
 			this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		};
-		/*
-		 * potentially better solve the selection problem, but not needed at the
-		 * moment
-		 * 
-		 * @Override public void clearSelection() { }
-		 * 
-		 * @Override public void removeSelectionInterval(int index0, int index1)
-		 * { }
-		 */
 	}
+
 }

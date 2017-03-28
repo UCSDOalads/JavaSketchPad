@@ -1,4 +1,4 @@
-package interation;
+package interactive;
 
 import static org.junit.Assert.*;
 
@@ -9,17 +9,17 @@ import javax.swing.SwingUtilities;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ClassSearchFrameTest {
+public class HistoryUITest {
 
-	historyUI classSearchFrame;
+	HistoryUI historyUI;
 	
 	
 	@Before
 	public void setUp(){
 		String[] arr = {"cacel","revert","confirm"};
-		classSearchFrame = new historyUI(arr);
-		classSearchFrame.insert(new historyDataObject("AAAA"));
-		classSearchFrame.insert(new historyDataObject("BBB"));
+		historyUI = new HistoryUI(arr);
+		historyUI.insert(new HistoryDataObject("AAAA"));
+		historyUI.insert(new HistoryDataObject("BBB"));
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class ClassSearchFrameTest {
 			public void run() {
 				//ClassSearchFrame classSearchFrame = new ClassSearchFrame();
 				
-				classSearchFrame.setDelegate(new ClassSearchFrameDelegateInterface() {
+				historyUI.setDelegate(new HistoryUIInterface() {
 					
 					@Override
 					public void didPressButton(String buttonName, int selectedRow) {
@@ -40,8 +40,8 @@ public class ClassSearchFrameTest {
 				});
 				
 				
-				classSearchFrame.setVisible(true);
-				classSearchFrame.setSize(new Dimension(300, 200));
+				historyUI.setVisible(true);
+				historyUI.setSize(new Dimension(300, 200));
 				
 				
 			}

@@ -1,6 +1,6 @@
-package interation;
+package interactive;
 
-public interface ClassSearchFrameDelegateInterface {
+public interface HistoryUIInterface {
 
   /**
    * Called when a button is pressed.

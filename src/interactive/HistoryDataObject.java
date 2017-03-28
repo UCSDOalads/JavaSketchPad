@@ -1,10 +1,10 @@
-package interation;
+package interactive;
 
-public class historyDataObject {
+public class HistoryDataObject {
 	
 	String data;
 	
-	public historyDataObject(String data){
+	public HistoryDataObject(String data){
 		this.data = data;
 	}
 	
