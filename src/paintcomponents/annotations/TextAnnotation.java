@@ -14,12 +14,13 @@ public class TextAnnotation extends PaintComponentAnnotation {
 		super(attachedComponent);
 		this.textPaintComponent = new TextPaintComponent(displayingText, attachedComponent.getX(),
 				attachedComponent.getY());
+		
 	}
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
 		// TODO Auto-generated method stub
-		textPaintComponent.updateBoundsAndDrawString(g);
+		textPaintComponent.updateBounds(g);
 		textPaintComponent.setY(getAttachedComponent().getY() - textPaintComponent.getRowHeight());
 		textPaintComponent.paint(g);
 	}
@@ -27,7 +28,7 @@ public class TextAnnotation extends PaintComponentAnnotation {
 	@Override
 	protected void paintSelected(Graphics g) {
 		// TODO Auto-generated method stub
-		textPaintComponent.updateBoundsAndDrawString(g);
+		textPaintComponent.updateBounds(g);
 		textPaintComponent.setY(getAttachedComponent().getY() - textPaintComponent.getRowHeight());
 		textPaintComponent.paint(g);
 	}

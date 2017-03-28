@@ -97,6 +97,10 @@ public abstract class PaintComponent {
 			paintNotSelected(g);
 		}
 
+		//paint annotation
+		if(optionalAnnotation != null){
+			optionalAnnotation.paint(g);
+		}
 	}
 
 	/**

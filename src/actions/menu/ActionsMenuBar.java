@@ -28,6 +28,7 @@ import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
+import actions.RemoveAnnotationAction;
 import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
 import actions.singleinstanceoperations.SetPointSizeOperation;
@@ -82,6 +83,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 
 		// add data annotation
 		addAction(new AddAnnotationAction(panel));
+		addAction(new RemoveAnnotationAction(panel));
 	}
 
 	private void addAction(PaintAction action) {
