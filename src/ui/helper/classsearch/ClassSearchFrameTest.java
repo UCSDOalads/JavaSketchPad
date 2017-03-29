@@ -30,7 +30,7 @@ public class ClassSearchFrameTest {
 				classSearchFrame.setSize(new Dimension(300, 200));
 				
 				try {
-					Thread.sleep(10000);
+					Thread.sleep(5000);
 					classSearchFrame.setVisible(false);
 					classSearchFrame.dispose();
 				} catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class ClassSearchFrameTest {
 			}
 		});
 		SwingUtilities.invokeLater(t);
-		Thread.sleep(100000);
+		Thread.sleep(10000);
 
 
 	}
