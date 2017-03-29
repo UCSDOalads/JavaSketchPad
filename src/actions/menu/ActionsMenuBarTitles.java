@@ -137,6 +137,7 @@ public class ActionsMenuBarTitles {
 		append("Zoom Out");
 		return this;
 	}
+
 	
 	public ActionsMenuBarTitles Instance_Operation() {
 		append("Instance Operation Component");
@@ -147,4 +148,12 @@ public class ActionsMenuBarTitles {
 		append("Add Instance Method");
 		return this;
 	}
+
+
+	public ActionsMenuBarTitles Annotations() {
+		append("Annotations");
+		return this;
+	}
+
+
 }

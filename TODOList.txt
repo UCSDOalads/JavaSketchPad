@@ -8,3 +8,11 @@
 8. Auto-Update Display Box Affected by Recent Changes
 9. Debug Undo Function
 10. Type Cast try (String) catch
+
+
+
+1. File Save
+2. ClassSearch
+11. Display history
+12. 
+13. 

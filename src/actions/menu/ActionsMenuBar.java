@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 
 import painttools.tools.SelectionToolListener;
 import ui.PaintPanel;
+import actions.AddAnnotationAction;
 import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddHaskellComponent;
@@ -28,6 +29,7 @@ import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
+import actions.RemoveAnnotationAction;
 import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
 import actions.singleinstanceoperations.SetPointSizeOperation;
@@ -83,6 +85,9 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
 
+		// add data annotation
+		addAction(new AddAnnotationAction(panel));
+		addAction(new RemoveAnnotationAction(panel));
 	}
 
 	private void addAction(PaintAction action) {

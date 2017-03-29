@@ -1,9 +1,18 @@
 package typesystem;
 
+/**
+ * the java type
+ */
 public class JavaType extends Type {
 
 	private Class curClass;
 
+	/**
+	 * check if the current type can be assigned from another type
+	 * 
+	 * @param the type to be checked
+	 * @return true if it can, otherwise false
+	 */
 	@Override
 	public boolean canBeAssignedFrom(Type type) {
 		// TODO
@@ -13,6 +22,8 @@ public class JavaType extends Type {
 		boolean res = false;
 		try {
 			res = curClass.isAssignableFrom(((JavaType) type).getCurClass());
+			
+			// do the primitive & complex type check
 			if (res == false) {
 				if (this.getCurClass().isPrimitive()) {
 					res = isPrimitiveAssignableFromClass(curClass, jtype.curClass);
@@ -28,13 +39,19 @@ public class JavaType extends Type {
 
 	public JavaType(Class cls) {
 		curClass = cls;
-
 	}
 
 	public Class getCurClass() {
 		return curClass;
 	}
 
+	/**
+	 * check if the primitive type can be assigned by the complex type
+	 * 
+	 * @param primitive the primitive type
+	 * @param complex the complex type
+	 * @return true if it can, otherwise false
+	 */
 	private boolean isPrimitiveAssignableFromClass(Class primitive,
 			Class complex) {
 		if (primitive == int.class) {

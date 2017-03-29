@@ -1,4 +1,4 @@
-package ui.helper;
+package ui.helper.classsearch;
 
 import static org.junit.Assert.*;
 
@@ -21,8 +21,7 @@ public class ClassSearchFrameTest {
 					
 					@Override
 					public void didSelectClass(String classname) {
-						// TODO Auto-generated method stub
-						
+						System.out.println(classname);
 					}
 				});
 				
