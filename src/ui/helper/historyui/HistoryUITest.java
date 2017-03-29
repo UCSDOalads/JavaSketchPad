@@ -44,9 +44,27 @@ public class HistoryUITest {
 				historyUI.setSize(new Dimension(300, 200));
 				
 				
+				/* Comment below to test the framework */
+				/* Added for the purpose of continuous integration */
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						
+						try {
+							Thread.sleep(5000);
+							historyUI.dispose();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
+				
+				
+				
 			}
 		});
-		Thread.sleep(Long.MAX_VALUE);
+		Thread.sleep(10000);
 	}
 
 	
