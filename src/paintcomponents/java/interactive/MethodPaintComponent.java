@@ -143,31 +143,4 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		return instance;
 	}
 	
-
-	public  MethodPaintComponent(Element rootElement,
-			PaintPanel panel) {
-		super(rootElement, panel);
-		Element main = (Element) rootElement
-				.getElementsByTagName("methodcomponent").item(0);
-		Element classNameElem = (Element) main
-				.getElementsByTagName("classname").item(0);
-		Element methodInfoElem = (Element) main
-				.getElementsByTagName("methodinfo").item(0);
-
-		String className = classNameElem.getTextContent();
-		
-		//index appproach
-		try {
-			Class mtdClass = Class.forName(className);
-			this.displayingMethod = mtdClass.getMethods()[Integer.parseInt(methodInfoElem.getAttribute("index"))];
-			this.setDisplayingText(displayingMethod.toString());
-			init();
-			linkPoints(rootElement);
-
-		} catch (ClassNotFoundException | DOMException | SecurityException e) {
-			JOptionPane.showMessageDialog(panel, e.toString());
-			e.printStackTrace();
-		}
-		
-	}
 }
