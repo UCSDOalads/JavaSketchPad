@@ -40,6 +40,8 @@ public class HistoryUI extends JFrame
 	@SuppressWarnings("rawtypes")
 	private Stack<ArrayList> delete_history;
 
+	
+	
 	/**
 	 * Setup historyUI
 	 * 
