@@ -38,7 +38,7 @@ public class HistoryUI extends JFrame
 	private Stack<ArrayList> delete_history;
 
 	/*
-	 * Setup class finders
+	 * Setup historyUI
 	 */
 	public HistoryUI(String[] titles) {
 
@@ -146,9 +146,8 @@ public class HistoryUI extends JFrame
 	
 
 	/*
-	 * remove several selected rows from table
+	 * remove several selected rows from table and stores them into stack
 	 * param: an array of rows number to be removed
-	 * return an ArrayList contains a list of indices and corresponding data
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void removeSeveralRows(int[] indices){
