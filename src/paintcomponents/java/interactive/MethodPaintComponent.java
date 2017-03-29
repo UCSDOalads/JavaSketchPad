@@ -22,11 +22,18 @@ import paintcomponents.data.DataToPoint;
 import typesystem.JavaType;
 import ui.PaintPanel;
 
+/*
+ * This is the interactive method paint component, must call the evaluate 
+ * method to calculate the data inside before trying to get data from this 
+ * component.
+ */
 public class MethodPaintComponent extends DataTextIOPaintComponent
 		implements DataFromPointDataProvider {
 
 	private Method displayingMethod;
+	//The data stored
 	private Object returnVal;
+	//Store an instance of the object this method manipulates
 	private Object instance;
 
 	public MethodPaintComponent(Method displayingMethod, Object instance, int x, int y) {
@@ -87,6 +94,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		// args takes toPoint 1 to size
 		Object[] args = new Object[toPoints.size() - 1];
 
+		//Get the input data from each the input points
 		for (int i = 0; i < toPoints.size() - 1; i++) {
 			DataToPoint toPoint = toPoints.get(i+1);
 			try {
