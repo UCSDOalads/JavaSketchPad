@@ -39,6 +39,8 @@ import actions.ZoomOutAction;
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
 import actions.AddInstanceOperationAction;
+import actions.AddInteractiveConstructorAction;
+import actions.AddInteractiveJavaMethodComponentAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -64,6 +66,11 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddInstanceOperationAction(panel));
 		addAction(new AddInstanceMethodAction(panel));
 		
+		//interactive
+		addAction(new AddInteractiveConstructorAction(panel));
+		addAction(new AddInteractiveJavaMethodComponentAction(panel));
+		
+		
 		//edit 
 		addAction(new EditRedoAction(panel));
 		addAction(new EditUndoAction(panel));
@@ -73,6 +80,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//haskell
 		addAction(new AddHaskellComponent(panel));
 		addAction(new AddHaskellEvaluatorComponentAction(panel));
+		
+		
 		
 		//file
 		addAction(new FileSaveAs(panel));
