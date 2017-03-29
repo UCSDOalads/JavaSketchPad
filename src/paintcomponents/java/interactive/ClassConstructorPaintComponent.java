@@ -85,7 +85,6 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 						| IllegalArgumentException | InvocationTargetException e) {
 					e.printStackTrace();
 					// TODO Handle Exception
-					// TODO Handle Exception
 					throw new IllegalStateException();
 				}
 	}
@@ -111,40 +110,6 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 			DataFromPoint dataFromPoint) {
 
 		return instance != null;
-	}
-	
-	@Override
-	public void saveToElement(Element rootElement, Document doc) {
-		super.saveToElement(rootElement, doc);
-		// build the structure
-		Element main = doc.createElement("classconstructorcomponent");
-		Element className = doc.createElement("classname");
-		Element constructorInfoElem = doc
-				.createElement("constructorinfo");
-
-		main.appendChild(className);
-		main.appendChild(constructorInfoElem);
-		rootElement.appendChild(main);
-
-		// store the class name in the classname element
-		className.setTextContent(displayingConstructor.getDeclaringClass().getName());
-
-		// this approach connot deal with arrays and primitives
-		// //store a list of constructor types in constructorParamType element
-		// Class[] parameterTypes = displayingConstructor.getParameterTypes();
-		// for (Class type : parameterTypes) {
-		// Element typeElem = doc.createElement("typename");
-		// typeElem.appendChild(doc.createTextNode(type.getName()));
-		// constructorParamType.appendChild(typeElem);
-		// }
-
-		/* Index approach */
-		constructorInfoElem
-				.setAttribute("index",
-						Integer.toString(Arrays.asList(this.displayingConstructor
-								.getDeclaringClass().getConstructors())
-								.indexOf(displayingConstructor)));
-
 	}
 
 	public ClassConstructorPaintComponent(Element rootElement,

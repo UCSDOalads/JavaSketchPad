@@ -143,29 +143,6 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		return instance;
 	}
 	
-	@Override
-	public void saveToElement(Element rootElement, Document doc) {
-		super.saveToElement(rootElement, doc);
-		// build the structure
-		Element main = doc.createElement("methodcomponent");
-		Element className = doc.createElement("classname");
-		Element methodInfoElem = doc
-				.createElement("methodinfo");
-
-		main.appendChild(className);
-		main.appendChild(methodInfoElem);
-		rootElement.appendChild(main);
-
-		// store the class name in the classname element
-		className.setTextContent(displayingMethod.getDeclaringClass().getName());
-
-		/* Index approach */
-		methodInfoElem
-				.setAttribute("index",
-						Integer.toString(Arrays.asList(this.displayingMethod
-								.getDeclaringClass().getMethods())
-								.indexOf(displayingMethod)));
-	}
 
 	public  MethodPaintComponent(Element rootElement,
 			PaintPanel panel) {
