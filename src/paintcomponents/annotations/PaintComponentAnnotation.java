@@ -18,6 +18,7 @@ public abstract class PaintComponentAnnotation extends PaintComponent{
 	public PaintComponentAnnotation(PaintComponent attachedComponent) {
 		super(attachedComponent.getX(), attachedComponent.getY());
 		this.setAttachedComponent(attachedComponent);
+		attachedComponent.setOptionalAnnotation(this);
 	}
 
 	/**

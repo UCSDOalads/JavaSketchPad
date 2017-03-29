@@ -7,11 +7,10 @@ import javax.swing.JOptionPane;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
-import actions.menu.PaintActionMenuItem;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
-import ui.helper.ClassSearchFrame;
-import ui.helper.ClassSearchFrameDelegateInterface;
+import ui.helper.classsearch.ClassSearchFrame;
+import ui.helper.classsearch.ClassSearchFrameDelegateInterface;
 
 public class AddLazyJavaClassAction extends PaintAction {
 
