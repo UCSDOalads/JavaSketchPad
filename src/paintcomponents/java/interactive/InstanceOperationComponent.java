@@ -1,17 +1,16 @@
-package paintcomponents.java.lazy;
+package paintcomponents.java.interactive;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
 import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataFromPointDataProvider;
 import paintcomponents.data.DataTextIOPaintComponent;
-import paintcomponents.data.DataToPoint;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
-import java.util.ArrayList;
 
 public class InstanceOperationComponent extends DataTextIOPaintComponent 
 		implements DataFromPointDataProvider {
@@ -21,7 +20,7 @@ public class InstanceOperationComponent extends DataTextIOPaintComponent
 	
 	private ClassConstructorPaintComponent ctorPC;
 	private ArrayList<MethodPaintComponent> methods;
-	
+	private Object instance;
 	
 	public InstanceOperationComponent(Constructor displayingContructor,
 			int x, int y) {
@@ -30,7 +29,6 @@ public class InstanceOperationComponent extends DataTextIOPaintComponent
 		methods = new ArrayList<>();
 		height = 0;
 	}
-	
 
 	@Override
 	public Object provideInformationToDataFromPoint(DataFromPoint dataFromPoint) {
@@ -42,7 +40,6 @@ public class InstanceOperationComponent extends DataTextIOPaintComponent
 		return ctorPC.canProvideInformationToDataFromPoint(dataFromPoint);
 	}
 	
-	
 	public void addMethodPaintComponent(Method method, PaintPanel panel) {
 		if (height == 0) {
 			height = this.getRowHeight() * this.getNumberOfRows();
@@ -50,7 +47,7 @@ public class InstanceOperationComponent extends DataTextIOPaintComponent
 		}
 		
 		MethodPaintComponent methodComp = new MethodPaintComponent(
-				method, this.getX(), this.getY() + height);
+				method, instance, this.getX(), this.getY() + height);
 		String[] rows = methodComp.getDisplayingText().split("\n");
 		height += unitHeight * rows.length;
 		methods.add(methodComp);
@@ -58,7 +55,7 @@ public class InstanceOperationComponent extends DataTextIOPaintComponent
 		panel.repaint();
 	}
 	
-	
+
 	public Class getDisplayingClass() {
 		return ctorPC.getSelectedClass();
 	}
@@ -111,7 +108,5 @@ public class InstanceOperationComponent extends DataTextIOPaintComponent
 		}
 		super.deselect(selectTool);
 	}
-	
-	
-	
+
 }

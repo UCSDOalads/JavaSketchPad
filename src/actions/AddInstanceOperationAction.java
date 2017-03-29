@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.java.lazy.InstanceOperationComponent;
+import paintcomponents.java.interactive.InstanceOperationComponent;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
 

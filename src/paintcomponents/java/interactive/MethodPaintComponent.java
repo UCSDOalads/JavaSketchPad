@@ -34,6 +34,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		this.displayingMethod = displayingMethod;
 		this.instance = instance;
 		init();
+		System.out.println("interactive method");
 	}
 	
 	/*
