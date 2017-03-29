@@ -138,6 +138,8 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
+
+
 	
 	public ActionsMenuBarTitles Instance_Operation() {
 		append("Instance Operation Component");
@@ -148,6 +150,7 @@ public class ActionsMenuBarTitles {
 		append("Add Instance Method");
 		return this;
 	}
+
 
 
 	public ActionsMenuBarTitles Annotations() {
