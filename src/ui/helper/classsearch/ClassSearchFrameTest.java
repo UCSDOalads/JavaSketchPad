@@ -29,13 +29,22 @@ public class ClassSearchFrameTest {
 				classSearchFrame.setVisible(true);
 				classSearchFrame.setSize(new Dimension(300, 200));
 				
-				try {
-					Thread.sleep(5000);
-					classSearchFrame.setVisible(false);
-					classSearchFrame.dispose();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				/* Comment below to test the framework */
+				/* Added for the purpose of continuous integration */
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(5000);
+							classSearchFrame.setVisible(false);
+							classSearchFrame.dispose();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
+					}
+				}).start();
 				
 			}
 		});

@@ -46,13 +46,19 @@ public class HistoryUITest {
 				
 				/* Comment below to test the framework */
 				/* Added for the purpose of continuous integration */
-				try {
-					Thread.sleep(5000);
-					historyUI.dispose();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						
+						try {
+							Thread.sleep(5000);
+							historyUI.dispose();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
 				
 				
 				
