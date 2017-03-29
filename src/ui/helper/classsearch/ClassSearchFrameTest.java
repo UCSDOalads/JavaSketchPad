@@ -1,4 +1,4 @@
-package ui.helper;
+package ui.helper.classsearch;
 
 import static org.junit.Assert.*;
 
