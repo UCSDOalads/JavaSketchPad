@@ -13,6 +13,7 @@ import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddHaskellComponent;
 import actions.AddHaskellEvaluatorComponentAction;
+import actions.AddInstanceMethodAction;
 import actions.AddLazyJavaClassAction;
 import actions.AddLazyJavaConstructorAction;
 import actions.AddLazyJavaFieldsComponentAction;
@@ -35,6 +36,7 @@ import actions.ZoomInAction;
 import actions.ZoomOutAction;
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
+import actions.AddInstanceOperationAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -57,6 +59,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaConstructorAction(panel));
 		addAction(new AddLazyJavaMethodComponentAction(panel));
 		addAction(new AddLazyJavaFieldsComponentAction(panel));
+		addAction(new AddInstanceOperationAction(panel));
+		addAction(new AddInstanceMethodAction(panel));
 		
 		//edit 
 		addAction(new EditRedoAction(panel));
