@@ -127,7 +127,7 @@ public class HistoryUI extends JFrame
 		if(!delete_history.isEmpty()){
 			ArrayList arr = delete_history.pop();
 			int[] indices = (int[]) arr.get(0);
-			String[] objects = (String[]) arr.get(1);
+			HistoryDataObject[] objects = (HistoryDataObject[]) arr.get(1);
 			for(int i = 0; i<indices.length; i++){
 				defaultTableModel.insertRow(indices[i], new Object[] {objects[i]} );
 			}
@@ -141,7 +141,7 @@ public class HistoryUI extends JFrame
 	 * receive a HistoryDataObject
 	 */
 	public void insert(HistoryDataObject e){
-		defaultTableModel.addRow(new Object[] {e.toString()});
+		defaultTableModel.addRow(new Object[] {e});
 	}
 	
 
@@ -153,11 +153,11 @@ public class HistoryUI extends JFrame
 	public void removeSeveralRows(int[] indices){
 		//create a arr to hold the deleted data and rows
 		ArrayList arr = new ArrayList<>();
-		String[] objects = new String[indices.length];
+		HistoryDataObject[] objects = new HistoryDataObject[indices.length];
 		Arrays.sort(indices);
 		
 		for(int i=indices.length-1;i>=0;i--){
-			objects[i] = (String) resultsTable.getModel().getValueAt(indices[i], 0);
+			objects[i] = (HistoryDataObject) resultsTable.getModel().getValueAt(indices[i], 0);
 			defaultTableModel.removeRow(indices[i]);
 		}
 		
