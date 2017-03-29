@@ -1,5 +1,11 @@
 package ui.helper.historyui;
 
+
+/**
+ * 
+ * HistoryDataOjbect
+ *
+ */
 public class HistoryDataObject {
 	
 	String data;

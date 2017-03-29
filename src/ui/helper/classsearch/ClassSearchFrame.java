@@ -140,6 +140,7 @@ public class ClassSearchFrame extends JFrame
 	public void actionPerformed(ActionEvent e) {
 
 		// User cancel the class search
+		
 		if (e.getSource() == btnCancel) {
 			setVisible(false);
 			dispose();
