@@ -32,6 +32,8 @@ import actions.PaintAction;
 import actions.RemoveAnnotationAction;
 import actions.RemovePaintComponent;
 import actions.UpdateDataDisplayBoxAction;
+import actions.singleinstanceoperations.ExecuteJavaInteractiveConstructor;
+import actions.singleinstanceoperations.ExecuteJavaInteractiveMethod;
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
 import actions.ZoomInAction;
@@ -69,7 +71,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//interactive
 		addAction(new AddInteractiveConstructorAction(panel));
 		addAction(new AddInteractiveJavaMethodComponentAction(panel));
-		
+		addAction(new ExecuteJavaInteractiveConstructor(panel));
+		addAction(new ExecuteJavaInteractiveMethod(panel));
 		
 		//edit 
 		addAction(new EditRedoAction(panel));
