@@ -31,7 +31,6 @@ public class AddLazyJavaClassAction extends PaintAction {
 			
 			@Override
 			public void didFinishInput(Class input) {
-				// TODO Auto-generated method stub
 				ClassPaintComponent comp = new ClassPaintComponent(input,
 						panel.getWidth() / 2, panel.getHeight() / 2);
 				panel.addPaintComponent(comp);
@@ -53,13 +52,7 @@ public class AddLazyJavaClassAction extends PaintAction {
 				panel.repaint();
 			}
 		} );
-		
-
-		
-		
-		
-		
-		
+			
 	}
 
 	@Override
