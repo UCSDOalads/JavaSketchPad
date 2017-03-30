@@ -32,6 +32,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	private PaintComponent tempComponent;
 
 	private SelectTool selectTool;
+	private KeyHandler keyHandler;
 
 	/**
 	 * @return the tempComponent
@@ -79,7 +80,9 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	public PaintPanel() {
 		requestFocusInWindow();
+		
 		this.components = new ArrayList<>();
+		this.keyHandler = new KeyHandler(this);
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -121,6 +124,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 		this.addKeyListener(new KeyListener() {
 
+			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 
@@ -132,8 +137,10 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 				case KeyEvent.VK_ESCAPE:
 					resetTool();
 					break;
+				
 
 				default:
+					keyHandler.keyPressed(e);
 					break;
 				}
 			}
