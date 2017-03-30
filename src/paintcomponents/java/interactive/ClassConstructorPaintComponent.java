@@ -116,6 +116,10 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 
 		return instance != null;
 	}
+	
+	public Class getSelectedClass() {
+		return displayingConstructor.getDeclaringClass();
+	}
 
 	public Class getDisplayingClass() {
 		return displayingConstructor.getDeclaringClass();
