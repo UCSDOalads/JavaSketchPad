@@ -30,8 +30,6 @@ public class AddLazyJavaClassAction extends PaintAction {
 		im.askForClass(panel,new InputManagerDelegate<Class>() {
 			
 			@Override
-<<<<<<< HEAD
-<<<<<<< HEAD
 			public void didSelectClass(String classname) {
 				
 				try {
@@ -70,9 +68,7 @@ public class AddLazyJavaClassAction extends PaintAction {
 					JOptionPane.showMessageDialog(panel,
 							classname + " :: Class Not Found");
 				}
-=======
-=======
->>>>>>> 4f41aecd269d8f76209e96e93a84044f2ed8ce7b
+
 			public void didFinishInput(Class input) {
 				ClassPaintComponent comp = new ClassPaintComponent(input,
 						panel.getWidth() / 2, panel.getHeight() / 2);
@@ -103,10 +99,7 @@ public class AddLazyJavaClassAction extends PaintAction {
 					}
 				});
 				panel.repaint();
-<<<<<<< HEAD
->>>>>>> b98205a7902a523ee24a46ded1dbeeb3ce3fd604
-=======
->>>>>>> 4f41aecd269d8f76209e96e93a84044f2ed8ce7b
+
 			}
 		} );
 			
