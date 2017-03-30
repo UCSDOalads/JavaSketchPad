@@ -149,4 +149,28 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		return instance;
 	}
 	
+	public void setInstance(Object instance) {
+		this.instance = instance;
+	}
+	
+	public void executeMethod() {
+		try {
+			if (instance == null) {
+				JOptionPane.showMessageDialog(null, "Please initiate an instance");
+				return;
+			}
+			Object[] initargs = new Object[this.getToPoints().size()];
+			for (int i = 0; i < initargs.length; i ++) {
+				DataFromPoint fromP = 
+						this.getToPoints().get(i).getLineSegment().getFromPoint();
+				initargs[i] = fromP.getProvider().provideInformationToDataFromPoint(fromP);
+			}
+			Object returnVal = this.displayingMethod.invoke(instance, initargs);			
+System.out.println("method return val: " + returnVal);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error Occurs");
+			e.printStackTrace();
+		}
+	}
+	
 }

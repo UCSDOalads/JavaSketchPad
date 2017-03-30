@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.lazy.ClassPaintComponent;
-import paintcomponents.java.lazy.InstanceOperationComponent;
+import paintcomponents.java.interactive.InstanceOperationComponent;
 import paintcomponents.java.lazy.MethodPaintComponent;
 
 public class AddInstanceMethodAction extends PaintAction {

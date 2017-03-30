@@ -143,15 +143,16 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
+
+
+
+
 	public ActionsMenuBarTitles Enter_Script() {
 		append("Enter Script");
 		return this;
 	}
 
-	public ActionsMenuBarTitles Annotations() {
-		append("Annotations");
-		return this;
-	}
+
 	
 	public ActionsMenuBarTitles RedoUndoHisotry(){
 		append("Redo/Undo Hisotry");
@@ -168,9 +169,28 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
+
+	public ActionsMenuBarTitles Execute_Instance_Constructor() {
+		append("Execute Constructor");
+		return this;
+	}
+	
+	public ActionsMenuBarTitles Execute_Instance_Method() {
+		append("Execute Method");
+		return this;
+	}
+
+	public ActionsMenuBarTitles Annotations() {
+		append("Annotations");
+		return this;
+	}
+
+
+
 	public ActionsMenuBarTitles Annotation_Font_Size() {
 		append("Annotation Font Size");
 
 		return this;
 	}
+
 }
