@@ -115,21 +115,7 @@ public class InterpreterAddLazy {
 			Class classObj = Class.forName(className);
 			ClassPaintComponent comp = new ClassPaintComponent(classObj, panel.getWidth() / 2, panel.getHeight() / 2);
 			panel.addPaintComponent(comp);
-			// add action to undo redo manager
-			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-				@Override
-				public void undoAction() {
-					comp.remove(panel);
-					panel.repaint();
-				}
-
-				@Override
-				public void redoAction() {
-					panel.addPaintComponent(comp);
-					panel.repaint();
-				}
-			});
 			panel.repaint();
 			return comp;
 		} catch (ClassNotFoundException e) {
@@ -147,21 +133,7 @@ public class InterpreterAddLazy {
 		ClassConstructorPaintComponent consComp = new ClassConstructorPaintComponent(cons[desiaredConstructorIndex],
 				panel.getWidth() / 2, panel.getHeight() / 2);
 		panel.addPaintComponent(consComp);
-		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-			@Override
-			public void undoAction() {
-				consComp.remove(panel);
-				panel.repaint();
-			}
-
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(consComp);
-				panel.repaint();
-			}
-		});
 		panel.repaint();
 		return consComp;
 	}
@@ -179,20 +151,7 @@ public class InterpreterAddLazy {
 		FieldsPaintComponent fieldsComp = new FieldsPaintComponent(classComp.getDisplayingClass(), panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(fieldsComp);
-		// push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-			@Override
-			public void undoAction() {
-				fieldsComp.remove(panel);
-			}
-
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(fieldsComp);
-
-			}
-		});
 		panel.repaint();
 		return fieldsComp;
 	}
@@ -205,21 +164,7 @@ public class InterpreterAddLazy {
 		MethodPaintComponent methodComp = new MethodPaintComponent(methods[desiaredConstructorIndex], panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(methodComp);
-		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-			@Override
-			public void undoAction() {
-				methodComp.remove(panel);
-				panel.repaint();
-			}
-
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(methodComp);
-				panel.repaint();
-			}
-		});
 		panel.repaint();
 		return methodComp;
 	}
