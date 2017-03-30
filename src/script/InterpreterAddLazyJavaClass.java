@@ -16,8 +16,9 @@ public class InterpreterAddLazyJavaClass {
 	public InterpreterAddLazyJavaClass(Tokenizer tokenizer, PaintPanel panel)
 		throws ExecutionErrorException {
 		this.panel = panel;
+		PaintComponent comp = performAddJavaClassAction();
 		if (tokenizer.hasNext()) {
-			ComponentMap.map.put(tokenizer.next(), performAddJavaClassAction());
+			ComponentMap.map.put(tokenizer.next(), comp);
 		}
 	}
 
