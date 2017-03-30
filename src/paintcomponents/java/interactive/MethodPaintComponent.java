@@ -58,7 +58,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		// parameters take place from line 2 to length+1
 		Class[] paramTypes = displayingMethod.getParameterTypes();
 		for (int i = 0; i < paramTypes.length ; i++) {
-			addToPoint(i + 2, new JavaType(paramTypes[i]));
+			addToPoint(i + 1, new JavaType(paramTypes[i]));
 		}
 
 		// method's return value take line length+1 since we no longer have a from point for instance
