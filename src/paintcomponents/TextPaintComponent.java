@@ -96,7 +96,6 @@ public class TextPaintComponent extends PaintComponent{
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
-		g.setFont(g.getFont().deriveFont(fontSize));
 		g.setColor(defaultTextColor);
 
 		//draw string starts from bottom left corner, shift to top left
@@ -113,6 +112,8 @@ public class TextPaintComponent extends PaintComponent{
 	 * @param g Graphics Object
 	 */
 	public void updateBounds(Graphics g) {
+		g.setFont(g.getFont().deriveFont(fontSize));
+
 		//reset bounds to begin calculation
 		width = 0;
 		//derive row Height
@@ -155,7 +156,6 @@ public class TextPaintComponent extends PaintComponent{
 
 	@Override
 	protected void paintSelected(Graphics g) {
-		g.setFont(g.getFont().deriveFont(fontSize));
 		g.setColor(selectedTextColor);
 
 		//draw string starts from bottom left corner, shift to top left
