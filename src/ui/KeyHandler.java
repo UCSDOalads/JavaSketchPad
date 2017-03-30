@@ -3,19 +3,29 @@ package ui;
 import java.awt.event.KeyEvent;
 
 import paintcomponents.TextPaintComponent;
+import script.ExecutionErrorException;
+import script.Interpreter;
 
 public class KeyHandler {
 
+	private static final int VERTICAL_OFFSET = 5;
 	private PaintPanel paintPanel;
 	private String pendingCommand;
 	private boolean inCommandMode;
 	private TextPaintComponent component;
-
+	Interpreter interpreter ;
 	public KeyHandler(PaintPanel paintPanel) {
 		pendingCommand = "";
 		this.paintPanel = paintPanel;
+		
+		//initialize text component
 		this.component = new TextPaintComponent("", 0, 0);
 		this.paintPanel.addPaintComponent(this.component);
+		
+		interpreter = new Interpreter(paintPanel);
+		
+		
+		//not in command
 		inCommandMode = false;
 	}
 
@@ -55,6 +65,11 @@ public class KeyHandler {
 
 	private void executeCommand(String pendingCommand2) {
 
+		try {
+			interpreter.interpreteLine(pendingCommand2);
+		} catch (ExecutionErrorException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void update() {
@@ -67,7 +82,7 @@ public class KeyHandler {
 		int height = paintPanel.getHeight();
 		int rowHeight = component.getRowHeight();
 		component.setX(0);
-		component.setY(height - rowHeight);
+		component.setY(height - rowHeight - VERTICAL_OFFSET);
 		paintPanel.repaint();
 	}
 
