@@ -25,6 +25,7 @@ import actions.ConstructLineSegmentAction;
 import actions.EditAnnotationSizeAction;
 import actions.EditRedoAction;
 import actions.EditUndoAction;
+import actions.EnterScriptAction;
 import actions.FileOpen;
 import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
@@ -97,6 +98,10 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//edit
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
+
+
+		//script
+		addAction(new EnterScriptAction(panel));
 
 		// add data annotation
 		addAction(new AddAnnotationAction(panel));
