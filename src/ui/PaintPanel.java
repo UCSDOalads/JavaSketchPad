@@ -1,8 +1,10 @@
 package ui;
 
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +13,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import paintcomponents.PaintComponent;
@@ -20,7 +23,7 @@ import painttools.tools.SelectTool;
 
 public class PaintPanel extends JPanel implements ToolBarListener {
 
-	public ArrayList<PaintComponent> components;
+	private ArrayList<PaintComponent> components;
 
 	
 	enum State {
@@ -80,6 +83,10 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	public PaintPanel() {
 		requestFocusInWindow();
+
+		
+		setLayout(new BorderLayout());
+		
 		
 		this.components = new ArrayList<>();
 		this.keyHandler = new KeyHandler(this);
@@ -128,19 +135,20 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-
+					keyHandler.keyEntered(e);
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_ESCAPE:
-					resetTool();
+					
+					if(state == State.TOOLS)
+						resetTool();
 					break;
 				
 
 				default:
-					keyHandler.keyPressed(e);
 					break;
 				}
 			}
