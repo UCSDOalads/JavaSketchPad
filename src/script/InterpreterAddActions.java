@@ -1,11 +1,11 @@
 package script;
 
 import javax.swing.JOptionPane;
-
 import paintcomponents.TextPaintComponent;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import ui.PaintPanel;
+import paintcomponents.*;
 
 /**
  * Interpret and execute 'add' scripts 
@@ -17,10 +17,13 @@ public class InterpreterAddActions {
 	private static final String LAZY = "lazy";
 	private static final String HASKELL = "haskell";
 	private static final String DATA = "data";
+	private PaintPanel panel;
+	private PaintComponent component;
 
 	public InterpreterAddActions(Tokenizer tokenizer, PaintPanel panel)
 			throws ExecutionErrorException {
-
+	  this.panel = panel;
+	  
 		if (tokenizer.hasNext()) {
 			switch (tokenizer.next()) {
 			case DATA:
@@ -36,7 +39,7 @@ public class InterpreterAddActions {
 				break;
 
 			case TEXT_BOX:
-				performAddTextBox(panel);
+				component = performAddTextBox();
 		    break;
 				
 			default:
@@ -45,9 +48,14 @@ public class InterpreterAddActions {
 		} else {
 			throw new ExecutionErrorException("incomplete script");
 		}
+		
+		// name and store the component added
+    if (tokenizer.hasNext() && component != null) {
+      ComponentMap.map.put(tokenizer.next(), component);
+    }
 	}
 
-	private void performAddTextBox(PaintPanel panel) {
+	private PaintComponent performAddTextBox() {
 		String s = JOptionPane.showInputDialog("Please enter the text to display");
 		TextPaintComponent comp = new TextPaintComponent(s, panel.getWidth() / 2,
 				panel.getHeight() / 2);
@@ -69,5 +77,6 @@ public class InterpreterAddActions {
 					}
 				});
 		panel.repaint();
+		return comp;
 	}
 }

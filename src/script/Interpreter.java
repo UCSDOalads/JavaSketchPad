@@ -6,6 +6,7 @@ import ui.PaintPanel;
 import paintcomponents.data.DataDisplayPaintComponent;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
+import paintcomponents.*;
 
 /**
  * Interpret and execute scripts 
@@ -13,6 +14,7 @@ import actions.edit.undoredo.UndoRedoableInterface;
  */
 public class Interpreter {
 
+	private static final String SELECT = "select";
 	private static final String ZOOM = "zoom";
 	private static final String REMOVE = "remove";
 	private static final String UPDATE = "update";
@@ -21,8 +23,8 @@ public class Interpreter {
 	private static final String EDIT = "edit";
 	private static final String CONSTRUCT = "construct";
 	private static final String ADD = "add";
-	private PaintPanel panel;
-
+	protected PaintPanel panel;
+	
 	public Interpreter(PaintPanel panel) {
 		this.panel = panel;
 	}
@@ -62,6 +64,10 @@ public class Interpreter {
         new InterpreterRemoveAction(tokenizer, panel);
         break;
         
+			case SELECT:
+				new InterpreterSelectAction(tokenizer, panel);
+				break;
+				
 			default:
 				throw new ExecutionErrorException("invalid script");
 			}

@@ -1,8 +1,10 @@
 package script;
 
+import paintcomponents.PaintComponent;
 import paintcomponents.data.DataDisplayPaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
+
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 
@@ -14,20 +16,21 @@ public class InterpreterAddData {
 	private static final String INPUT_BOX = "inputBox";
 	private static final String DISPLAY_BOX = "displayBox";
 	private PaintPanel panel;
+	private PaintComponent component;
 
 	public InterpreterAddData(Tokenizer tokenizer, PaintPanel panel)
 			throws ExecutionErrorException {
 
 		this.panel = panel;
-
+		
 		if (tokenizer.hasNext()) {
 			switch (tokenizer.next()) {
 			case DISPLAY_BOX:
-				performAddDisplayBoxAction();
+				component = performAddDisplayBoxAction();
 				break;
 
 			case INPUT_BOX:
-				performAddInputBoxAction();
+				component = performAddInputBoxAction();
 				break;
 				
 			default:
@@ -36,9 +39,14 @@ public class InterpreterAddData {
 		} else {
 			throw new ExecutionErrorException("incomplete script");
 		}
+		
+    // name and store the component added
+    if (tokenizer.hasNext() && component != null) {
+      ComponentMap.map.put(tokenizer.next(), component);
+    }
 	}
 
-	private void performAddDisplayBoxAction() {
+	private PaintComponent performAddDisplayBoxAction() {
 		DataDisplayPaintComponent comp = new DataDisplayPaintComponent(
 				"Data Display", panel.getWidth() / 2, panel.getHeight() / 2);
 		panel.addPaintComponent(comp);
@@ -60,9 +68,10 @@ public class InterpreterAddData {
 					}
 				});
 		panel.repaint();
+		return comp;
 	}
 
-	private void performAddInputBoxAction() {
+	private PaintComponent performAddInputBoxAction() {
 		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent(
 				"Data Input", panel.getWidth() / 2, panel.getHeight() / 2);
 		panel.addPaintComponent(comp);
@@ -85,6 +94,6 @@ public class InterpreterAddData {
 					}
 				});
 		panel.repaint();
+		return comp;
 	}
-
 }

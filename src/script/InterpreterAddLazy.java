@@ -2,9 +2,11 @@ package script;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import paintcomponents.PaintComponent;
 import paintcomponents.java.lazy.ClassConstructorPaintComponent;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.FieldsPaintComponent;
@@ -14,109 +16,154 @@ import actions.edit.undoredo.UndoRedoableInterface;
 import ui.PaintPanel;
 
 /**
- * Interpret and execute 'add_lazy' scripts 
+ * Interpret and execute 'add_lazy' scripts
+ * 
  * @author Xiaoquan Jiang
  */
 public class InterpreterAddLazy {
 
 	private static final String JAVA_METHOD_COMPONENT = "javaMethodComponent";
-  private static final String JAVA_FIELDS_COMPONENT = "javaFieldsComponent";
-  private static final String JAVA_CONSTRUCTOR = "javaConstructor";
-  private static final String JAVA_CLASS = "javaClass";
-  private PaintPanel panel;
+	private static final String JAVA_FIELDS_COMPONENT = "javaFieldsComponent";
+	private static final String JAVA_CONSTRUCTOR = "javaConstructor";
+	private static final String JAVA_CLASS = "javaClass";
+	private PaintPanel panel;
+	private PaintComponent comp;
+	private ClassPaintComponent classComp;
+	private String className;
+	private String compName;
+	private boolean specified;
 
-	public InterpreterAddLazy(Tokenizer tokenizer, PaintPanel panel)
-			throws ExecutionErrorException {
-
+	public InterpreterAddLazy(Tokenizer tokenizer, PaintPanel panel) throws ExecutionErrorException {
+		String token;
+		String nextToken;
 		this.panel = panel;
 
 		if (tokenizer.hasNext()) {
-			switch (tokenizer.next()) {
-			case JAVA_CLASS:
-				performAddJavaClassAction();
-				break;
+			token = tokenizer.next();
 
-			case JAVA_CONSTRUCTOR:
-				performAddJavaConstructorAction();
-				break;
+			// check if the component to add is a java class
+			if (token.equals(JAVA_CLASS)) {
+				new InterpreterAddLazyJavaClass(tokenizer, panel);
+			} else {
+				if (tokenizer.hasNext()) {
+					nextToken = tokenizer.next();
+					// add class name and find class component
+					if (nextToken.equals("-c")) {
+						specified = true;
+						if (tokenizer.hasNext()) {
+							className = tokenizer.next();
+							if (ComponentMap.map.containsKey(className)
+									|| ComponentMap.map.get(className) instanceof ClassPaintComponent) {
+								classComp = (ClassPaintComponent) ComponentMap.map.get(className);
+							} else {
+								throw new ExecutionErrorException("class not found");
+							}
+						} else {
+							throw new ExecutionErrorException("invalid script");
+						}
 
-			case JAVA_FIELDS_COMPONENT:
-				performAddJavaFieldsComponentAction();
-				break;
+						// get component name
+						if (tokenizer.hasNext()) {
+							nextToken = tokenizer.next();
+						}
+					}
 
-			case JAVA_METHOD_COMPONENT:
-				performAddJavaMethodComponentAction();
-				break;
-				
-			default:
-				throw new ExecutionErrorException("invalid script");
+					// add component name
+					compName = nextToken;
+				}
+
+				// if class name is not specified, use the selected class component
+				if (!specified) {
+					ArrayList<PaintComponent> comps = panel.getSelectTool().getSelectedComponents();
+					if (comps.size() == 1 && comps.get(0) instanceof ClassPaintComponent) {
+						classComp = (ClassPaintComponent) comps.get(0);
+					} else {
+						throw new ExecutionErrorException("class not found");
+					}
+				}
+
+				switch (token) {
+				case JAVA_CONSTRUCTOR:
+					comp = performAddJavaConstructorAction();
+					break;
+
+				case JAVA_FIELDS_COMPONENT:
+					comp = performAddJavaFieldsComponentAction();
+					break;
+
+				case JAVA_METHOD_COMPONENT:
+					comp = performAddJavaMethodComponentAction();
+					break;
+
+				default:
+					throw new ExecutionErrorException("invalid script");
+				}
+
+				// name and store the component added
+				if (comp != null) {
+					ComponentMap.map.put(compName, comp);
+				}
 			}
 		} else {
 			throw new ExecutionErrorException("incomplete script");
 		}
 	}
 
-	private void performAddJavaClassAction() {
-		String className = JOptionPane
-				.showInputDialog("Please specify the name of the Java Class");
+	private PaintComponent performAddJavaClassAction() {
+		String className = JOptionPane.showInputDialog("Please specify the name of the Java Class");
 		try {
 			Class classObj = Class.forName(className);
-			ClassPaintComponent comp = new ClassPaintComponent(classObj,
-					panel.getWidth() / 2, panel.getHeight() / 2);
+			ClassPaintComponent comp = new ClassPaintComponent(classObj, panel.getWidth() / 2, panel.getHeight() / 2);
 			panel.addPaintComponent(comp);
 			// add action to undo redo manager
-			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-					new UndoRedoableInterface() {
+			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-						@Override
-						public void undoAction() {
-							comp.remove(panel);
-							panel.repaint();
-						}
+				@Override
+				public void undoAction() {
+					comp.remove(panel);
+					panel.repaint();
+				}
 
-						@Override
-						public void redoAction() {
-							panel.addPaintComponent(comp);
-							panel.repaint();
-						}
-					});
+				@Override
+				public void redoAction() {
+					panel.addPaintComponent(comp);
+					panel.repaint();
+				}
+			});
 			panel.repaint();
+			return comp;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(panel, className + " :: Class Not Found");
+			return null;
 		}
 	}
 
-	private void performAddJavaConstructorAction() {
-		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
-				.getSelectedComponents().get(0);
-		Constructor[] cons = comp.getDisplayingClass().getConstructors();
+	private PaintComponent performAddJavaConstructorAction() {
+		Constructor[] cons = classComp.getDisplayingClass().getConstructors();
 
-		int desiaredConstructorIndex = Integer
-				.parseInt(JOptionPane
-						.showInputDialog("Please enter the index of the constructor you would like to use: \n\n\n"
-								+ getConstructorsSelectionUI(cons)));
-		ClassConstructorPaintComponent consComp = new ClassConstructorPaintComponent(
-				cons[desiaredConstructorIndex], panel.getWidth() / 2,
-				panel.getHeight() / 2);
+		int desiaredConstructorIndex = Integer.parseInt(JOptionPane.showInputDialog(
+				"Please enter the index of the constructor you would like to use: \n\n\n" + getConstructorsSelectionUI(cons)));
+		ClassConstructorPaintComponent consComp = new ClassConstructorPaintComponent(cons[desiaredConstructorIndex],
+				panel.getWidth() / 2, panel.getHeight() / 2);
 		panel.addPaintComponent(consComp);
 		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-					@Override
-					public void undoAction() {
-						consComp.remove(panel);
-						panel.repaint();
-					}
+			@Override
+			public void undoAction() {
+				consComp.remove(panel);
+				panel.repaint();
+			}
 
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(consComp);
-						panel.repaint();
-					}
-				});
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(consComp);
+				panel.repaint();
+			}
+		});
 		panel.repaint();
+		return consComp;
 	}
 
 	private String getConstructorsSelectionUI(Constructor[] cons) {
@@ -128,61 +175,53 @@ public class InterpreterAddLazy {
 		return builder.toString();
 	}
 
-	private void performAddJavaFieldsComponentAction() {
-		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
-				.getSelectedComponents().get(0);
-
-		FieldsPaintComponent fieldsComp = new FieldsPaintComponent(
-				comp.getDisplayingClass(), panel.getWidth() / 2, panel.getHeight() / 2);
+	private PaintComponent performAddJavaFieldsComponentAction() {
+		FieldsPaintComponent fieldsComp = new FieldsPaintComponent(classComp.getDisplayingClass(), panel.getWidth() / 2,
+				panel.getHeight() / 2);
 		panel.addPaintComponent(fieldsComp);
 		// push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-					@Override
-					public void undoAction() {
-						fieldsComp.remove(panel);
-					}
+			@Override
+			public void undoAction() {
+				fieldsComp.remove(panel);
+			}
 
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(fieldsComp);
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(fieldsComp);
 
-					}
-				});
+			}
+		});
 		panel.repaint();
+		return fieldsComp;
 	}
 
-	private void performAddJavaMethodComponentAction() {
-		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
-				.getSelectedComponents().get(0);
-		Method[] methods = comp.getDisplayingClass().getMethods();
+	private PaintComponent performAddJavaMethodComponentAction() {
+		Method[] methods = classComp.getDisplayingClass().getMethods();
 
-		int desiaredConstructorIndex = Integer
-				.parseInt(JOptionPane
-						.showInputDialog("Please enter the index of the constructor you would like to use: \n\n\n"
-								+ getMethodsSelectionUI(methods)));
-		MethodPaintComponent methodComp = new MethodPaintComponent(
-				methods[desiaredConstructorIndex], panel.getWidth() / 2,
+		int desiaredConstructorIndex = Integer.parseInt(JOptionPane.showInputDialog(
+				"Please enter the index of the constructor you would like to use: \n\n\n" + getMethodsSelectionUI(methods)));
+		MethodPaintComponent methodComp = new MethodPaintComponent(methods[desiaredConstructorIndex], panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(methodComp);
 		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-					@Override
-					public void undoAction() {
-						methodComp.remove(panel);
-						panel.repaint();
-					}
+			@Override
+			public void undoAction() {
+				methodComp.remove(panel);
+				panel.repaint();
+			}
 
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(methodComp);
-						panel.repaint();
-					}
-				});
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(methodComp);
+				panel.repaint();
+			}
+		});
 		panel.repaint();
+		return methodComp;
 	}
 
 	public String getMethodsSelectionUI(Method[] methods) {
