@@ -9,6 +9,9 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
+import actions.AddLazyJavaClassAction;
+import actions.FileOpen;
+import actions.FileSaveAs;
 import file.PanelIO;
 import ui.PaintPanel;
 
@@ -50,29 +53,12 @@ public class InterpreterFileActions {
 	}
 
 	private void performOpen(PaintPanel panel2) {
-		String filePath = JOptionPane.showInputDialog("Please input file path");
-		PanelIO io = new PanelIO();
-		try {
-			io.constructPanelFromDocument(panel, filePath, true);
-			panel.repaint();
-		} catch (ParserConfigurationException | SAXException | IOException
-				| ClassNotFoundException | NoSuchMethodException
-				| SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(panel, e.toString());
-		}
+		FileOpen action = new FileOpen(panel);
+		action.performAction();
 	}
 
 	private void performSaveAs(PaintPanel panel2) {
-		String filePath = JOptionPane.showInputDialog("Please input file path");
-		PanelIO io = new PanelIO();
-		try {
-			io.constructDocumentFromPanel(panel, filePath);
-		} catch (ParserConfigurationException | TransformerException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(panel, e.toString());
-		}
+		FileSaveAs action = new FileSaveAs(panel);
+		action.performAction();
 	}
 }

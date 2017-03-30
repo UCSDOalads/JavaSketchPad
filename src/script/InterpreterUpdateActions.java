@@ -67,22 +67,7 @@ public class InterpreterUpdateActions {
 	private void performUpdateDataBox() {
 		try {
 			((DataDisplayPaintComponent) comp).updateDisplayText();
-			// push action to the manager
-			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-				public void undoAction() {
-					comp.remove(panel);
-					panel.repaint();
-				  if (ComponentMap.map.containsValue(comp)) {
-				  	
-				  }
-				}
-
-				public void redoAction() {
-					panel.addPaintComponent(comp);
-					panel.repaint();
-				}
-			});
 			panel.repaint();
 		} catch (NoSuchElementException | NoConnectingLineSegmentException | DataFromPointNoDataProviderException
 				| DataFromPointProviderCannotProvideDataException e) {
@@ -95,21 +80,7 @@ public class InterpreterUpdateActions {
 	private void performUpdateinputBox() {
 		String s = JOptionPane.showInputDialog("Please specify the message to push to the data input");
 		((DataInputTextfieldPaintComponent) comp).inputData(s);
-		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 
-			@Override
-			public void undoAction() {
-				comp.remove(panel);
-				panel.repaint();
-			}
-
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(comp);
-				panel.repaint();
-			}
-		});
 		panel.repaint();
 	}
 }
