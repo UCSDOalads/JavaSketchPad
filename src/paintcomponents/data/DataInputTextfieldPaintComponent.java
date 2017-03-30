@@ -3,6 +3,7 @@ package paintcomponents.data;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import typesystem.JavaType;
 import ui.PaintPanel;
 
 /**
@@ -18,7 +19,7 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 	public DataInputTextfieldPaintComponent(String displayingText, int x,
 			int y) {
 		super(displayingText, x, y);
-		addFromPoint(this, 0, String.class.getName());
+		addFromPoint(this, 0, new JavaType(String.class));
 	}
 
 	public void inputData(String s) {
@@ -46,7 +47,7 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 	public DataInputTextfieldPaintComponent(Element rootElement, PaintPanel panel) {
 		super(rootElement, panel);
 		//do the same thing as the designated constructor
-		addFromPoint(this, 0, String.class.getName());
+		addFromPoint(this, 0, new JavaType(String.class));
 		//link the points
 		linkPoints(rootElement);
 	}

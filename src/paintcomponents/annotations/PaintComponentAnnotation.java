@@ -18,6 +18,7 @@ public abstract class PaintComponentAnnotation extends PaintComponent{
 	public PaintComponentAnnotation(PaintComponent attachedComponent) {
 		super(attachedComponent.getX(), attachedComponent.getY());
 		this.setAttachedComponent(attachedComponent);
+		attachedComponent.setOptionalAnnotation(this);
 	}
 
 	/**
@@ -34,12 +35,10 @@ public abstract class PaintComponentAnnotation extends PaintComponent{
 		this.attachedComponent = attachedComponent;
 	}
 	
-	
-	
-
-
-
-
-	
-
+	/**
+	 * set the font size of the annotation
+	 * 
+	 * @param input the new size
+	 */
+	abstract public void setFontSize(float input);
 }

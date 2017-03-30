@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import paintcomponents.SimplePoint;
+import typesystem.Type;
 import ui.PaintPanel;
 
 /**
@@ -17,7 +18,7 @@ public class DataFromPoint extends SimplePoint {
 
 	private DataLineSegment lineSegment;
 	private DataFromPointDataProvider provider;
-	private String expectedType;
+	private Type expectedType;
 
 	/**
 	 * @return the lineSegment
@@ -34,7 +35,7 @@ public class DataFromPoint extends SimplePoint {
 		this.lineSegment = lineSegment;
 	}
 
-	public DataFromPoint(int x, int y, String expectedType) {
+	public DataFromPoint(int x, int y, Type expectedType) {
 		super(x, y);
 		this.expectedType = expectedType;
 	}
@@ -65,11 +66,11 @@ public class DataFromPoint extends SimplePoint {
 		this.provider = provider;
 	}
 
-	public String getExpectedType() {
+	public Type getExpectedType() {
 		return expectedType;
 	}
 
-	public void setExpectedType(String expectedType) {
+	public void setExpectedType(Type expectedType) {
 		this.expectedType = expectedType;
 	}
 	

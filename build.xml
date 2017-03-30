@@ -1,0 +1,42 @@
+<project name="JavaSketchPad" default="run" basedir=".">
+	<property name="build.dir" location="ant_build" />
+	<property name="src.dir" location="src" />
+
+	<target name="init" description="Creating directory">
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="compile" depends="init" description="Compiling Sources">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+			<classpath refid="classpath.test" />
+		</javac>
+	</target>
+
+	<target name="run" depends="compile" description="Running the program">
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+
+	<path id="classpath.test">
+		<pathelement location="lib/junit-4.12.jar" />
+		<pathelement location="lib/hamcrest-core-1.3.jar" />
+		<pathelement location="${build.dir}" />
+	</path>
+
+
+	<target name="test" depends="compile">
+		<junit printsummary="on" haltonfailure="yes" fork="true">
+			<classpath>
+				<path refid="classpath.test" />
+				<pathelement location="${test.build.dir}" />
+			</classpath>
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${src.dir}" includes="**/*Test.java" />
+			</batchtest>
+		</junit>
+	</target>
+</project>

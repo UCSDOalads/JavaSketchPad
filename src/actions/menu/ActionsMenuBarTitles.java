@@ -91,7 +91,7 @@ public class ActionsMenuBarTitles {
 		append("Java Constructor");
 		return this;
 	}
-
+	
 	public ActionsMenuBarTitles Java_Method() {
 		append("Java Method");
 		return this;
@@ -141,9 +141,32 @@ public class ActionsMenuBarTitles {
 		append("Zoom Out");
 		return this;
 	}
+
 	
 	public ActionsMenuBarTitles Enter_Script() {
 		append("Enter Script");
+    return this
+  }
+
+	public ActionsMenuBarTitles Annotations() {
+		append("Annotations");
+		return this;
+	}
+
+	
+	public ActionsMenuBarTitles Instance_Operation() {
+		append("Instance Operation Component");
+		return this;
+	}
+	
+	public ActionsMenuBarTitles Add_Instance_Method() {
+		append("Add Instance Method");
+		return this;
+	}
+	
+	public ActionsMenuBarTitles Annotation_Font_Size() {
+		append("Annotation Font Size");
+
 		return this;
 	}
 }

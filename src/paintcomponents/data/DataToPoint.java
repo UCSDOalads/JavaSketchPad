@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.SimplePoint;
+import typesystem.Type;
 import ui.PaintPanel;
 
 /**
@@ -19,7 +20,7 @@ public class DataToPoint extends SimplePoint {
 	
 	
 	DataLineSegment lineSegment;
-	private String expectedType;
+	private Type expectedType;
 
 	/**
 	 * @return the lineSegment
@@ -35,7 +36,7 @@ public class DataToPoint extends SimplePoint {
 		this.lineSegment = lineSegment;
 	}
 
-	public DataToPoint(int x, int y, String expectedType) {
+	public DataToPoint(int x, int y, Type expectedType) {
 		super(x, y);
 		this.expectedType = expectedType;
 	}
@@ -58,11 +59,11 @@ public class DataToPoint extends SimplePoint {
 		
 	}
 
-	public String getExpectedType() {
+	public Type getExpectedType() {
 		return expectedType;
 	}
 
-	public void setExpectedType(String expectedType) {
+	public void setExpectedType(Type expectedType) {
 		this.expectedType = expectedType;
 	}
 	
