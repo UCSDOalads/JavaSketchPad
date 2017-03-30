@@ -151,7 +151,15 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
-
+	public ActionsMenuBarTitles Execute_Instance_Constructor() {
+		append("Execute Constructor");
+		return this;
+	}
+	
+	public ActionsMenuBarTitles Execute_Instance_Method() {
+		append("Execute Method");
+		return this;
+	}
 
 	public ActionsMenuBarTitles Annotations() {
 		append("Annotations");

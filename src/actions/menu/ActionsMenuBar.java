@@ -43,6 +43,8 @@ import actions.ZoomOutAction;
 import actions.AddInstanceOperationAction;
 import actions.AddInteractiveConstructorAction;
 import actions.AddInteractiveJavaMethodComponentAction;
+import actions.ExecuteInstanceConstructorAction;
+import actions.ExecuteInstanceMethodAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -67,6 +69,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaFieldsComponentAction(panel));
 		addAction(new AddInstanceOperationAction(panel));
 		addAction(new AddInstanceMethodAction(panel));
+		addAction(new ExecuteInstanceConstructorAction(panel));
+		addAction(new ExecuteInstanceMethodAction(panel));
 		
 		//interactive
 		addAction(new AddInteractiveConstructorAction(panel));
