@@ -100,6 +100,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//edit
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
+		addAction(new EditAnnotationSizeAction(panel));
 
 
 		//script
@@ -109,12 +110,13 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddAnnotationAction(panel));
 		addAction(new RemoveAnnotationAction(panel));
 		
-<<<<<<< HEAD
+
 		//view
 		addAction(new ShowHistory(panel));
-=======
+
 		addAction(new EditAnnotationSizeAction(panel));
->>>>>>> b98205a7902a523ee24a46ded1dbeeb3ce3fd604
+
+
 	}
 
 	private void addAction(PaintAction action) {

@@ -3,7 +3,7 @@ package actions;
 import java.awt.Dimension;
 
 import ui.PaintPanel;
-import ui.helper.historyui.undoredoLog.UndoredoLog;
+import ui.helper.historyui.undoredoLog.UndoredoDialog;
 
 public class ShowHistory extends PaintAction {
 	
@@ -23,7 +23,7 @@ public class ShowHistory extends PaintAction {
 	public void performAction() {
 		// TODO Auto-generated method stub
 
-		UndoredoLog.sharedInstance().setVisible(true);
+		UndoredoDialog.sharedInstance().setVisible(true);
 		
 	}
 

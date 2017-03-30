@@ -31,6 +31,7 @@ public class AddLazyJavaClassAction extends PaintAction {
 			
 			@Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 			public void didSelectClass(String classname) {
 				
 				try {
@@ -70,13 +71,15 @@ public class AddLazyJavaClassAction extends PaintAction {
 							classname + " :: Class Not Found");
 				}
 =======
+=======
+>>>>>>> 4f41aecd269d8f76209e96e93a84044f2ed8ce7b
 			public void didFinishInput(Class input) {
 				ClassPaintComponent comp = new ClassPaintComponent(input,
 						panel.getWidth() / 2, panel.getHeight() / 2);
 				panel.addPaintComponent(comp);
 				// add action to undo redo manager
 				SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
+					
 					@Override
 					public void undoAction() {
 						comp.remove(panel);
@@ -88,9 +91,22 @@ public class AddLazyJavaClassAction extends PaintAction {
 						panel.addPaintComponent(comp);
 						panel.repaint();
 					}
+
+					@Override
+					protected String commandName() {
+						return "add lazy javaClass";
+					}
+
+					@Override
+					protected String commandDescription() {
+						return "add a java class component";
+					}
 				});
 				panel.repaint();
+<<<<<<< HEAD
 >>>>>>> b98205a7902a523ee24a46ded1dbeeb3ce3fd604
+=======
+>>>>>>> 4f41aecd269d8f76209e96e93a84044f2ed8ce7b
 			}
 		} );
 			

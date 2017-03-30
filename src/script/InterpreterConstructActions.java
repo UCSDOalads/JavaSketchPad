@@ -66,21 +66,7 @@ public class InterpreterConstructActions {
 		DataLineSegment seg = new DataLineSegment(fromPoint, toPoint);
 		addLineSegment(seg);
 		// push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
-
-					@Override
-					public void undoAction() {
-						seg.remove(panel);
-						panel.repaint();
-					}
-
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(seg);
-						panel.repaint();
-					}
-				});
+		
 	}
 
 	private void performAddLineSegment() {
@@ -111,22 +97,7 @@ public class InterpreterConstructActions {
 		// change selection
 		panel.getSelectTool().clearSelection();
 		panel.getSelectTool().selectComponent(lineSegment);
-		// push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
-
-					@Override
-					public void undoAction() {
-						lineSegment.remove(panel);
-						panel.repaint();
-					}
-
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(lineSegment);
-						panel.repaint();
-					}
-				});
+		
 		panel.repaint();
 	}
 }

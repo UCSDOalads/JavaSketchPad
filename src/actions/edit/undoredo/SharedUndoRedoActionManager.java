@@ -39,7 +39,7 @@ public class SharedUndoRedoActionManager {
 		UndoRedoableInterface redoableAction = redoStack.pop();
 		redoableAction.redoAction();
 		undoStack.add(redoableAction);
-		delegate.didUndoAction(redoableAction);
+		delegate.didRedoAction(redoableAction);
 	}
 	
 	public boolean canUndo() {
@@ -53,14 +53,27 @@ public class SharedUndoRedoActionManager {
 	public void pushUndoableAction( UndoRedoableInterface undoredoableAction ) {
 		undoStack.push(undoredoableAction);
 		redoStack.clear();
+		delegate.didAddNewAction(undoredoableAction);
 	}
 
-	public SharedUndoRedoActionManagerDelegate getDelegate() {
-		return delegate;
-	}
+	
 
 	public void setDelegate(SharedUndoRedoActionManagerDelegate delegate) {
 		this.delegate = delegate;
+	}
+
+	/**
+	 * @return the undoStack
+	 */
+	public Stack<UndoRedoableInterface> getUndoStack() {
+		return undoStack;
+	}
+
+	/**
+	 * @return the redoStack
+	 */
+	public Stack<UndoRedoableInterface> getRedoStack() {
+		return redoStack;
 	}
 
 }
