@@ -68,7 +68,7 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 	/**
 	 * Calculate the input data and store it.
 	 */
-	public void evaluate(DataFromPoint dataFromPoint){
+	public void evaluate(){
 		// prepare argument list
 				ArrayList<DataToPoint> toPoints = getToPoints();
 				Object[] args = new Object[toPoints.size()];
@@ -115,6 +115,14 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 			DataFromPoint dataFromPoint) {
 
 		return instance != null;
+	}
+
+	public Class getDisplayingClass() {
+		return displayingConstructor.getDeclaringClass();
+	}
+
+	public Object getInstance() {
+		return instance;
 	}
 
 }

@@ -55,8 +55,6 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 
 	private void init() {
 
-		// line 0 is signature
-		addToPoint(1, new JavaType(this.displayingMethod.getDeclaringClass()));
 		// parameters take place from line 2 to length+1
 		Class[] paramTypes = displayingMethod.getParameterTypes();
 		for (int i = 0; i < paramTypes.length ; i++) {
@@ -83,7 +81,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 	/**
 	 * Calculate the input data and store it.
 	 */
-	public void evaluate(DataFromPoint dataFromPoint){
+	public void evaluate(){
 		
 		// prepare argument list
 		ArrayList<DataToPoint> toPoints = getToPoints();
@@ -92,11 +90,11 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		
 
 		// args takes toPoint 1 to size
-		Object[] args = new Object[toPoints.size() - 1];
+		Object[] args = new Object[toPoints.size()];
 
 		//Get the input data from each the input points
-		for (int i = 0; i < toPoints.size() - 1; i++) {
-			DataToPoint toPoint = toPoints.get(i+1);
+		for (int i = 0; i < toPoints.size() ; i++) {
+			DataToPoint toPoint = toPoints.get(i);
 			try {
 				args[i] = toPoint.fetchData();
 			} catch (NoSuchElementException | NoConnectingLineSegmentException
