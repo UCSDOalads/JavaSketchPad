@@ -51,6 +51,16 @@ public class AddLazyJavaClassAction extends PaintAction {
 							panel.addPaintComponent(comp);
 							panel.repaint();
 						}
+
+						@Override
+						protected String commandName() {
+							return "add lazy javaClass";
+						}
+
+						@Override
+						protected String commandDescription() {
+							return "add a java class component";
+						}
 					});
 					panel.repaint();
 				} catch (ClassNotFoundException e) {

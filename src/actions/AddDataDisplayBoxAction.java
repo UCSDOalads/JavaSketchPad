@@ -36,6 +36,18 @@ public class AddDataDisplayBoxAction extends PaintAction {
 				panel.addPaintComponent(comp);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "add data displayBox";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a string display";
+			}
+
+			
 		});
 		panel.repaint();
 	}

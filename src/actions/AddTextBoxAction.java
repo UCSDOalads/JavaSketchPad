@@ -38,6 +38,16 @@ public class AddTextBoxAction extends PaintAction {
 				panel.addPaintComponent(comp);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "add textBox";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "[Deprecated] add a generic textbox";
+			}
 		});
 		panel.repaint();
 	}

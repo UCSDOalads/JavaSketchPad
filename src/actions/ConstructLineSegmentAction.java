@@ -94,6 +94,16 @@ public class ConstructLineSegmentAction extends PaintAction {
 				panel.addPaintComponent(lineSegment);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "construct lineSegment";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "[Deprecated] construct a generic line segment";
+			}
 		});
 		panel.repaint();
 	}

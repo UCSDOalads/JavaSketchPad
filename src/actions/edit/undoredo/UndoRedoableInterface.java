@@ -1,9 +1,12 @@
 package actions.edit.undoredo;
 
-import org.hamcrest.StringDescription;
 
-public interface UndoRedoableInterface {
-	public void undoAction();
-	public void redoAction();
-	public String description();
+public abstract class UndoRedoableInterface {
+	public abstract void undoAction();
+	public abstract void redoAction();
+	public String description(){
+		return commandName() + " -- " + commandDescription();
+	}
+	protected abstract String commandName();
+	protected abstract String commandDescription();
 }
