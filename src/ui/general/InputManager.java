@@ -72,7 +72,6 @@ public class InputManager {
 		}
 	}
 	
-	// TODO askForClass
 	public void askForClass(PaintPanel panel, InputManagerDelegate<Class> delegate) {
 		ClassSearchFrame classSearchFrame = new ClassSearchFrame();
 		classSearchFrame.setDelegate(new ClassSearchFrameDelegateInterface() {
