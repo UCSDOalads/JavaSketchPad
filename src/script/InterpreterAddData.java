@@ -4,7 +4,9 @@ import paintcomponents.PaintComponent;
 import paintcomponents.data.DataDisplayPaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
-
+import actions.AddDataDisplayBoxAction;
+import actions.AddDataInputBoxAction;
+import actions.AddTextBoxAction;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 
@@ -47,53 +49,14 @@ public class InterpreterAddData {
 	}
 
 	private PaintComponent performAddDisplayBoxAction() {
-		DataDisplayPaintComponent comp = new DataDisplayPaintComponent(
-				"Data Display", panel.getWidth() / 2, panel.getHeight() / 2);
-		panel.addPaintComponent(comp);
-
-		// push action to manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
-
-					@Override
-					public void undoAction() {
-						comp.remove(panel);
-						panel.repaint();
-					}
-
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(comp);
-						panel.repaint();
-					}
-				});
-		panel.repaint();
-		return comp;
+		AddDataDisplayBoxAction action = new AddDataDisplayBoxAction(panel);
+		action.performAction();
+		return panel.getPaintComponents().get(panel.getPaintComponents().size() -1);
 	}
 
 	private PaintComponent performAddInputBoxAction() {
-		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent(
-				"Data Input", panel.getWidth() / 2, panel.getHeight() / 2);
-		panel.addPaintComponent(comp);
-
-		// push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
-
-					@Override
-					public void undoAction() {
-						comp.remove(panel);
-						panel.repaint();
-					}
-
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(comp);
-						panel.repaint();
-
-					}
-				});
-		panel.repaint();
-		return comp;
+		AddTextBoxAction action = new AddTextBoxAction(panel);
+		action.performAction();
+		return panel.getPaintComponents().get(panel.getPaintComponents().size() -1);
 	}
 }
