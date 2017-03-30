@@ -19,6 +19,7 @@ public class KeyHandler implements KeyListener {
 	private PaintPanel paintPanel;
 	private boolean inCommandMode;
 	Interpreter interpreter ;
+	private int curIndex;
 	
 	
 	JTextField textField;
@@ -85,6 +86,7 @@ public class KeyHandler implements KeyListener {
 				this.commandHistoryIter.next();
 			
 			commandHistoryIter.add(textField.getText());
+			curIndex++;
 			
 			executeCommand(textField.getText().substring(PROMPT.length()));
 			exitCommandMode();
@@ -102,12 +104,20 @@ public class KeyHandler implements KeyListener {
 			exitCommandMode();
 
 			//if it is up arrow, go back in history
-		} else if (e.getKeyCode() == KeyEvent.VK_UP){
+		} else if (e.getKeyCode() == KeyEvent.VK_UP ){
 			if(commandHistoryIter.hasPrevious()){
+				if(curIndex == commandHistoryIter.previousIndex()){
+					commandHistoryIter.previous();
+				}
+				curIndex--;
 				this.textField.setText(commandHistoryIter.previous());
 			}
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN){
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN ){
 			if(commandHistoryIter.hasNext()){
+				if(curIndex == commandHistoryIter.nextIndex()){
+					commandHistoryIter.next();
+				}
+				curIndex++;
 				this.textField.setText(commandHistoryIter.next());
 			}
 		}
