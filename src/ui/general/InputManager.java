@@ -1,8 +1,12 @@
 package ui.general;
 
+import java.awt.Dimension;
+
 import javax.swing.JOptionPane;
 
 import ui.PaintPanel;
+import ui.helper.classsearch.ClassSearchFrame;
+import ui.helper.classsearch.ClassSearchFrameDelegateInterface;
 
 /**
  * Ask for things from user.
@@ -69,15 +73,31 @@ public class InputManager {
 	}
 	
 	// TODO askForClass
-	public void askForClass(PaintPanel panel, InputManagerDelegate<Integer> delegate) {
-		String input = JOptionPane.showInputDialog("Please Input A Class");
-		try{
-			//TODO Class
-			//delegate.didFinishInput(inputInt);
-		} catch (NumberFormatException exp){
-			exp.printStackTrace();
-			askForClass(panel, delegate);
-		}
+	public void askForClass(PaintPanel panel, InputManagerDelegate<Class> delegate) {
+		ClassSearchFrame classSearchFrame = new ClassSearchFrame();
+		classSearchFrame.setDelegate(new ClassSearchFrameDelegateInterface() {
+				
+			@Override
+			public void didSelectClass(String classname) {
+					
+				try {
+					Class classInput = Class.forName(classname);
+					delegate.didFinishInput(classInput);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(panel,
+							classname + " :: Class Not Found");
+				}
+				
+			}
+		});
+			
+			
+		classSearchFrame.setVisible(true);
+		classSearchFrame.setSize(new Dimension(300, 200));
+
 	}
+	
+	
 
 }
