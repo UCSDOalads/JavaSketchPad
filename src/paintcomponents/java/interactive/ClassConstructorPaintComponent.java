@@ -22,10 +22,15 @@ import paintcomponents.data.DataToPoint;
 import typesystem.JavaType;
 import ui.PaintPanel;
 
+/*
+ * This is the interactive constructor paint component, must call evaluate
+ * to update the instance this component manipulates before use the output.
+ */
 public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 		implements DataFromPointDataProvider {
 
 	private Constructor displayingConstructor;
+	//Store a reference to the object this component operates.
 	private Object instance;
 
 
@@ -63,7 +68,7 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 	/**
 	 * Calculate the input data and store it.
 	 */
-	public void evaluate(DataFromPoint dataFromPoint){
+	public void evaluate(){
 		// prepare argument list
 				ArrayList<DataToPoint> toPoints = getToPoints();
 				Object[] args = new Object[toPoints.size()];
@@ -114,6 +119,14 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 	
 	public Class getSelectedClass() {
 		return displayingConstructor.getDeclaringClass();
+	}
+
+	public Class getDisplayingClass() {
+		return displayingConstructor.getDeclaringClass();
+	}
+
+	public Object getInstance() {
+		return instance;
 	}
 
 }
