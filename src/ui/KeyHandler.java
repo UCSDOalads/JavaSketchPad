@@ -1,66 +1,60 @@
 package ui;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
-import paintcomponents.TextPaintComponent;
+import javax.swing.JTextField;
+
 import script.ExecutionErrorException;
 import script.Interpreter;
 
-public class KeyHandler {
+public class KeyHandler implements KeyListener {
 
-	private static final int VERTICAL_OFFSET = 5;
+	//the prompt does not work, i.e. focusing issues
+	private static final String PROMPT = "";
 	private PaintPanel paintPanel;
-	private String pendingCommand;
 	private boolean inCommandMode;
-	private TextPaintComponent component;
 	Interpreter interpreter ;
+	
+	
+	JTextField textField;
+	
+	ListIterator<String> commandHistoryIter;
+	
+	
+	
 	public KeyHandler(PaintPanel paintPanel) {
-		pendingCommand = "";
 		this.paintPanel = paintPanel;
-		
-		//initialize text component
-		this.component = new TextPaintComponent("", 0, 0);
-		this.paintPanel.addPaintComponent(this.component);
 		
 		interpreter = new Interpreter(paintPanel);
 		
 		
-		//not in command
-		inCommandMode = false;
+		this.textField = new JTextField("Press : to enter commands");
+		this.paintPanel.add(textField, BorderLayout.SOUTH);
+		
+		this.textField.addKeyListener(this);
+		
+		this.commandHistoryIter = new LinkedList<String>().listIterator();
+		
+		
+//		exitCommandMode();
 	}
 
-	public void keyPressed(KeyEvent e) {
+	private void enterCommandMode() {
+		inCommandMode = true;
+		textField.setVisible(true);
+		textField.requestFocusInWindow();
+		textField.setText(PROMPT);
+	}
 
-		// backspace
-		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE && inCommandMode) {
-			if (pendingCommand.length() != 0) {
-				pendingCommand = pendingCommand.substring(0,
-						pendingCommand.length() - 1);
-			} else {
-				inCommandMode = false;
-			}
-
-		} else if (e.getKeyCode() == KeyEvent.VK_ENTER && inCommandMode) {
-
-			executeCommand(pendingCommand);
-			pendingCommand = "";
-			inCommandMode = false;
-		} else {
-
-			char keyChar = e.getKeyChar();
-
-			if (keyChar == ':') {
-				pendingCommand = "";
-				inCommandMode = true;
-			} else if (e.getKeyChar() != KeyEvent.CHAR_UNDEFINED
-					&& inCommandMode)/* if(e.isActionKey()) */{
-				pendingCommand += e.getKeyChar();
-			}
-
-		}
-
-		update();
-
+	private void exitCommandMode() {
+		inCommandMode = false;
+		textField.setVisible(false);
+		paintPanel.requestFocusInWindow();
 	}
 
 	private void executeCommand(String pendingCommand2) {
@@ -72,18 +66,57 @@ public class KeyHandler {
 		}
 	}
 
-	private void update() {
-		if (inCommandMode) {
-			component.setDisplayingText(": " + pendingCommand);
+	public void keyEntered(KeyEvent e) {
+		char keyChar = e.getKeyChar();
+	
+		if (keyChar == ':') {
+			enterCommandMode();
+		} 
+	}
 
-		} else {
-			component.setDisplayingText(pendingCommand);
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if(e.getKeyChar() == '\n'){
+			//get rid of the prompt
+			
+			//record command
+
+			while(commandHistoryIter.hasNext())
+				this.commandHistoryIter.next();
+			
+			commandHistoryIter.add(textField.getText());
+			
+			executeCommand(textField.getText().substring(PROMPT.length()));
+			exitCommandMode();
+		} else if (e.getKeyChar() == '\b' && textField.getText().length() < PROMPT.length()){
+			//do not allow prompt to be deleted
+			textField.setText(PROMPT);
+			
+			//if it is escape
+		} 
+		
+	}
+
+	public void keyPressed(KeyEvent e) {
+	if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			exitCommandMode();
+
+			//if it is up arrow, go back in history
+		} else if (e.getKeyCode() == KeyEvent.VK_UP){
+			if(commandHistoryIter.hasPrevious()){
+				this.textField.setText(commandHistoryIter.previous());
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN){
+			if(commandHistoryIter.hasNext()){
+				this.textField.setText(commandHistoryIter.next());
+			}
 		}
-		int height = paintPanel.getHeight();
-		int rowHeight = component.getRowHeight();
-		component.setX(0);
-		component.setY(height - rowHeight - VERTICAL_OFFSET);
-		paintPanel.repaint();
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
 	}
 
 }
