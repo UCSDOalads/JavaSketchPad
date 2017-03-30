@@ -9,9 +9,10 @@ import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
+import ui.general.InputManager;
+import ui.general.InputManagerDelegate;
 import ui.helper.classsearch.ClassSearchFrame;
 import ui.helper.classsearch.ClassSearchFrameDelegateInterface;
-
 public class AddLazyJavaClassAction extends PaintAction {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {
@@ -25,11 +26,11 @@ public class AddLazyJavaClassAction extends PaintAction {
 	
 	@Override
 	public void performAction() {
-		
-		ClassSearchFrame classSearchFrame = new ClassSearchFrame();
-		classSearchFrame.setDelegate(new ClassSearchFrameDelegateInterface() {
+		InputManager im = new InputManager();
+		im.askForClass(panel,new InputManagerDelegate<Class>() {
 			
 			@Override
+<<<<<<< HEAD
 			public void didSelectClass(String classname) {
 				
 				try {
@@ -68,16 +69,31 @@ public class AddLazyJavaClassAction extends PaintAction {
 					JOptionPane.showMessageDialog(panel,
 							classname + " :: Class Not Found");
 				}
+=======
+			public void didFinishInput(Class input) {
+				ClassPaintComponent comp = new ClassPaintComponent(input,
+						panel.getWidth() / 2, panel.getHeight() / 2);
+				panel.addPaintComponent(comp);
+				// add action to undo redo manager
+				SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+			
+					@Override
+					public void undoAction() {
+						comp.remove(panel);
+						panel.repaint();
+					}
+			
+					@Override
+					public void redoAction() {
+						panel.addPaintComponent(comp);
+						panel.repaint();
+					}
+				});
+				panel.repaint();
+>>>>>>> b98205a7902a523ee24a46ded1dbeeb3ce3fd604
 			}
-		});
-		
-		
-		classSearchFrame.setVisible(true);
-		classSearchFrame.setSize(new Dimension(300, 200));
-		
-		
-		
-
+		} );
+			
 	}
 
 	@Override

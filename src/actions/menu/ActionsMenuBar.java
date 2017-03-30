@@ -14,6 +14,7 @@ import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddHaskellComponent;
 import actions.AddHaskellEvaluatorComponentAction;
+import actions.AddInstanceMethodAction;
 import actions.AddLazyJavaClassAction;
 import actions.AddLazyJavaConstructorAction;
 import actions.AddLazyJavaFieldsComponentAction;
@@ -21,8 +22,10 @@ import actions.AddLazyJavaMethodComponentAction;
 import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
+import actions.EditAnnotationSizeAction;
 import actions.EditRedoAction;
 import actions.EditUndoAction;
+import actions.EnterScriptAction;
 import actions.FileOpen;
 import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
@@ -32,12 +35,17 @@ import actions.RemoveAnnotationAction;
 import actions.RemovePaintComponent;
 import actions.ShowHistory;
 import actions.UpdateDataDisplayBoxAction;
+import actions.singleinstanceoperations.ExecuteJavaInteractiveConstructor;
+import actions.singleinstanceoperations.ExecuteJavaInteractiveMethod;
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
+import actions.AddInstanceOperationAction;
+import actions.AddInteractiveConstructorAction;
+import actions.AddInteractiveJavaMethodComponentAction;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -60,6 +68,14 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddLazyJavaConstructorAction(panel));
 		addAction(new AddLazyJavaMethodComponentAction(panel));
 		addAction(new AddLazyJavaFieldsComponentAction(panel));
+		addAction(new AddInstanceOperationAction(panel));
+		addAction(new AddInstanceMethodAction(panel));
+		
+		//interactive
+		addAction(new AddInteractiveConstructorAction(panel));
+		addAction(new AddInteractiveJavaMethodComponentAction(panel));
+		addAction(new ExecuteJavaInteractiveConstructor(panel));
+		addAction(new ExecuteJavaInteractiveMethod(panel));
 		
 		//edit 
 		addAction(new EditRedoAction(panel));
@@ -72,6 +88,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddHaskellComponent(panel));
 		addAction(new AddHaskellEvaluatorComponentAction(panel));
 		
+		
+		
 		//file
 		addAction(new FileSaveAs(panel));
 		addAction(new FileOpen(panel));
@@ -83,12 +101,20 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
 
+
+		//script
+		addAction(new EnterScriptAction(panel));
+
 		// add data annotation
 		addAction(new AddAnnotationAction(panel));
 		addAction(new RemoveAnnotationAction(panel));
 		
+<<<<<<< HEAD
 		//view
 		addAction(new ShowHistory(panel));
+=======
+		addAction(new EditAnnotationSizeAction(panel));
+>>>>>>> b98205a7902a523ee24a46ded1dbeeb3ce3fd604
 	}
 
 	private void addAction(PaintAction action) {

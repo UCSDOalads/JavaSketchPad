@@ -5,44 +5,48 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import actions.menu.ActionsMenuBarTitles;
+import actions.singleinstanceoperations.SingleInstanceOperation;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
 import paintcomponents.data.DataTextPaintComponent;
 import ui.PaintPanel;
 
-public class AddAnnotationAction extends PaintAction{
+/**
+ * add the annotation to a component
+ * 
+ * @author muchi
+ *
+ */
+public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>{
 
+	/**
+	 * ctor
+	 * @param panel the panel
+	 */
 	public AddAnnotationAction(PaintPanel panel) {
 		super(panel);
 	}
 
-	@Override
-	public boolean canPerformAction() {
-		//get selected components
-		ArrayList<PaintComponent> items = panel.getSelectTool().getSelectedComponents();
-		
-		if(items.size() != 1){
-			return false;
-		}
-		if(!(items.get(0) instanceof DataTextPaintComponent)){
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public void performAction() {
-		ArrayList<PaintComponent> items = panel.getSelectTool().getSelectedComponents();
-		String annotations = JOptionPane
-				.showInputDialog("Please specify the annotation of the component");
-		new TextAnnotation(items.get(0), annotations);
-		
-		panel.repaint();
-	}
-
+	/**
+	 * @return the location of the button
+	 */
 	@Override
 	public String locationString() {
 		return ActionsMenuBarTitles.Data().Annotations().Add().toString();
+	}
+
+	@Override
+	protected void performActionOnInstance(PaintComponent instance) {
+		// TODO Auto-generated method stub
+		String annotations = JOptionPane
+				.showInputDialog("Please specify the annotation of the component");
+		new TextAnnotation(instance, annotations);
+		
+	}
+
+	@Override
+	protected Class<PaintComponent> getGenericClassType() {
+		return PaintComponent.class;
 	}
 
 

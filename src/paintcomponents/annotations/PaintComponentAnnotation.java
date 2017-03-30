@@ -35,12 +35,10 @@ public abstract class PaintComponentAnnotation extends PaintComponent{
 		this.attachedComponent = attachedComponent;
 	}
 	
-	
-	
-
-
-
-
-	
-
+	/**
+	 * set the font size of the annotation
+	 * 
+	 * @param input the new size
+	 */
+	abstract public void setFontSize(float input);
 }
