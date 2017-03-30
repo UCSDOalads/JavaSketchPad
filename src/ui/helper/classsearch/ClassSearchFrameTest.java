@@ -12,7 +12,7 @@ public class ClassSearchFrameTest {
 
 	@Test
 	public void test() throws InterruptedException {
-		SwingUtilities.invokeLater(new Runnable() {
+		Runnable t = (new Runnable() {
 			
 			@Override
 			public void run() {
@@ -29,10 +29,29 @@ public class ClassSearchFrameTest {
 				classSearchFrame.setVisible(true);
 				classSearchFrame.setSize(new Dimension(300, 200));
 				
+				/* Comment below to test the framework */
+				/* Added for the purpose of continuous integration */
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(5000);
+							classSearchFrame.setVisible(false);
+							classSearchFrame.dispose();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
+					}
+				}).start();
 				
 			}
 		});
-		Thread.sleep(Long.MAX_VALUE);
+		SwingUtilities.invokeLater(t);
+		Thread.sleep(10000);
+
+
 	}
 
 }

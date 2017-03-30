@@ -16,10 +16,15 @@ public class HistoryUITest {
 	
 	@Before
 	public void setUp(){
-		String[] arr = {"cacel","revert","confirm"};
+		String[] arr = {"delete","exit","clear","revert","confirm"};
 		historyUI = new HistoryUI(arr);
 		historyUI.insert(new HistoryDataObject("AAAA"));
 		historyUI.insert(new HistoryDataObject("BBB"));
+		historyUI.insert(new HistoryDataObject("Test 1"));
+		historyUI.insert(new HistoryDataObject("This is a item"));
+		historyUI.insert(new HistoryDataObject("turn right"));
+		historyUI.insert(new HistoryDataObject("112345"));
+		
 	}
 	
 	@Test
@@ -41,12 +46,30 @@ public class HistoryUITest {
 				
 				
 				historyUI.setVisible(true);
-				historyUI.setSize(new Dimension(300, 200));
+				historyUI.setSize(new Dimension(500, 400));
+				
+				
+				/* Comment below to test the framework */
+				/* Added for the purpose of continuous integration */
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						
+						try {
+							Thread.sleep(5000);
+							historyUI.dispose();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
+				
 				
 				
 			}
 		});
-		Thread.sleep(Long.MAX_VALUE);
+		Thread.sleep(10000);
 	}
 
 	
