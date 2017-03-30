@@ -43,7 +43,7 @@ public class EnterScriptAction extends PaintAction {
       // TODO Auto-generated catch block
       e.printStackTrace();
     } catch (ExecutionErrorException e) {
-      System.out.println("Invalid script");
+      e.printStackTrace();
     }
 	}
 
