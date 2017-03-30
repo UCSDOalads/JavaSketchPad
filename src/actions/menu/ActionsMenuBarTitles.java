@@ -153,4 +153,9 @@ public class ActionsMenuBarTitles {
 		append("Add Instance Method");
 		return this;
 	}
+	
+	public ActionsMenuBarTitles Annotation_Font_Size() {
+		append("Annotation Font Size");
+		return this;
+	}
 }

@@ -22,6 +22,7 @@ import actions.AddLazyJavaMethodComponentAction;
 import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
+import actions.EditAnnotationSizeAction;
 import actions.EditRedoAction;
 import actions.EditUndoAction;
 import actions.FileOpen;
@@ -88,6 +89,8 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		// add data annotation
 		addAction(new AddAnnotationAction(panel));
 		addAction(new RemoveAnnotationAction(panel));
+		
+		addAction(new EditAnnotationSizeAction(panel));
 	}
 
 	private void addAction(PaintAction action) {
