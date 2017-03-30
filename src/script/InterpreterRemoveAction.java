@@ -46,21 +46,6 @@ public class InterpreterRemoveAction {
 			}
 		}
 
-		// push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-
-			@Override
-			public void undoAction() {
-				for (PaintComponent comp : comps)
-					panel.addPaintComponent(comp);
-			}
-
-			@Override
-			public void redoAction() {
-				for (PaintComponent comp : comps)
-					comp.remove(panel);
-			}
-		});
 		panel.repaint();
 	}
 }
