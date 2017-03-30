@@ -4,6 +4,8 @@ import java.lang.reflect.Constructor;
 
 import javax.swing.JOptionPane;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.lazy.ClassConstructorPaintComponent;
 import paintcomponents.java.lazy.ClassPaintComponent;
@@ -41,8 +43,32 @@ public class AddLazyJavaConstructorAction extends PaintAction {
 				cons[desiaredConstructorIndex], panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(consComp);
-		panel.repaint();
+		// add action to undo redo manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+					
+			@Override
+			public void undoAction() {
+				consComp.remove(panel);
+				panel.repaint();
+			}
+					
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(consComp);
+				panel.repaint();
+			}
 
+			@Override
+			protected String commandName() {
+				return "add lazy javaConstructor";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a lazily evaludated java constructor";
+			}
+		});
+		panel.repaint();
 	}
 
 	public String getConstructorsSelectionUI(Constructor[] cons) {

@@ -3,7 +3,14 @@ package paintcomponents.java.lazy;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
+
+import javax.swing.JOptionPane;
+
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataFromPoint;
@@ -12,6 +19,8 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
 import paintcomponents.data.DataToPoint;
+import typesystem.JavaType;
+import ui.PaintPanel;
 
 public class MethodPaintComponent extends DataTextIOPaintComponent
 		implements DataFromPointDataProvider {
@@ -49,20 +58,25 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 
 		// line 0 is signature
 		// line 1 is the operating instance
-		addToPoint(1);
+		addToPoint(1, new JavaType(this.displayingMethod.getDeclaringClass()));
 		// parameters take place from line 2 to length+1
 		Class[] paramTypes = displayingMethod.getParameterTypes();
-		for (int i = 2; i < paramTypes.length + 2; i++) {
-			addToPoint(i);
+		for (int i = 0; i < paramTypes.length ; i++) {
+			addToPoint(i + 2, new JavaType(paramTypes[i]));
 		}
 
+		//the instance after performing this method after taking in
+		addFromPoint(this, 1, new JavaType(displayingMethod.getDeclaringClass()));
+
 		// method's return value take line length+2
-		addFromPoint(this, paramTypes.length + 2);
+		addFromPoint(this, paramTypes.length + 2, new JavaType(displayingMethod.getReturnType()));
+		
+		
 
 		// prepare String
 		StringBuilder s = new StringBuilder();
 		s.append(this.displayingMethod.toString() + "\n");
-		s.append(">>> Operating Instance  " 
+		s.append(">>> Operating Instance  >>>" 
 				+ "\n");
 		for (int i = 0; i < paramTypes.length; i++) {
 			s.append("arg" + i + " :: " + paramTypes[i].getName() + "\n");
@@ -113,7 +127,13 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		}
 
 		try {
-			return this.displayingMethod.invoke(operatingInstance, args);
+			Object returnValue =  this.displayingMethod.invoke(operatingInstance, args);
+			//depends on the position, return either the operating instance or the return value
+			if(getFromPoints().indexOf(dataFromPoint) == 0){
+				return operatingInstance;
+			} else {
+				return returnValue;
+			}
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			// TODO Auto-generated catch block
@@ -146,5 +166,60 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		}
 		return true;
 	}
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		// build the structure
+		Element main = doc.createElement("methodcomponent");
+		Element className = doc.createElement("classname");
+		Element methodInfoElem = doc
+				.createElement("methodinfo");
 
+		main.appendChild(className);
+		main.appendChild(methodInfoElem);
+		rootElement.appendChild(main);
+
+		// store the class name in the classname element
+		className.setTextContent(displayingMethod.getDeclaringClass().getName());
+
+		/* Index approach */
+		methodInfoElem
+				.setAttribute("index",
+						Integer.toString(Arrays.asList(this.displayingMethod
+								.getDeclaringClass().getMethods())
+								.indexOf(displayingMethod)));
+
+	}
+
+	public  MethodPaintComponent(Element rootElement,
+			PaintPanel panel) {
+		super(rootElement, panel);
+		Element main = (Element) rootElement
+				.getElementsByTagName("methodcomponent").item(0);
+		Element classNameElem = (Element) main
+				.getElementsByTagName("classname").item(0);
+		Element methodInfoElem = (Element) main
+				.getElementsByTagName("methodinfo").item(0);
+
+
+
+		String className = classNameElem.getTextContent();
+		
+		//index appproach
+		try {
+			Class mtdClass = Class.forName(className);
+			this.displayingMethod = mtdClass.getMethods()[Integer.parseInt(methodInfoElem.getAttribute("index"))];
+			this.setDisplayingText(displayingMethod.toString());
+			init();
+			linkPoints(rootElement);
+
+		} catch (ClassNotFoundException | DOMException | SecurityException e) {
+			JOptionPane.showMessageDialog(panel, e.toString());
+			e.printStackTrace();
+		}
+		
+		
+		
+
+	}
 }

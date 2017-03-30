@@ -8,9 +8,11 @@ public class PaintActionMenuItem extends JMenuItem{
 
 	
 	private PaintAction associatedAction;
+	private ActionsMenuBar actionsMenuBar;
 
-	public PaintActionMenuItem(PaintAction associatedAction) {
+	public PaintActionMenuItem(PaintAction associatedAction, ActionsMenuBar actionsMenuBar) {
 		this.setAssociatedAction(associatedAction);
+		this.actionsMenuBar = actionsMenuBar;
 
 	}
 
@@ -20,5 +22,12 @@ public class PaintActionMenuItem extends JMenuItem{
 
 	public void setAssociatedAction(PaintAction associatedAction) {
 		this.associatedAction = associatedAction;
+	}
+
+	public void performAction() {
+		associatedAction.performAction();
+		//update menu bar status
+		actionsMenuBar.updateEnableStatusForAllMenuItems();
+
 	}
 }

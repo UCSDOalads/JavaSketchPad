@@ -4,10 +4,15 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.Stroke;
+import java.util.ArrayList;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import file.PanelIO;
 import settings.Defaults;
+import ui.PaintPanel;
 
 //TODO DEfault color, width selection
 public class LineSegment extends PaintComponent {
@@ -131,5 +136,78 @@ public class LineSegment extends PaintComponent {
 		}
 
 	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		super.saveToElement(rootElement, doc);
+		
+		//build elements
+		Element main = doc.createElement("linesegment");
+
+		Element fromPointElem = doc.createElement("frompoint");
+		Element toPointElem = doc.createElement("topoint");
+		Element defaultColorElem = doc.createElement("defaultcolor");
+		Element selectColorElem = doc.createElement("selectcolor");
+		Element strokeWidthElem = doc.createElement("strokewidth");
+		
+		//append relationship
+		main.appendChild(fromPointElem);
+		main.appendChild(toPointElem);
+		main.appendChild(defaultColorElem);
+		main.appendChild(selectColorElem);
+		main.appendChild(strokeWidthElem);
+		rootElement.appendChild(main);
+		
+		//fill data
+		fromPointElem.setAttribute("id", Long.toString(fromPoint.getComponentID()));
+		toPointElem.setAttribute("id", Long.toString(toPoint.getComponentID()));
+		XMLEncodingUtilForPaintComponents.attachRGB(defaultColor, defaultColorElem, doc);
+		XMLEncodingUtilForPaintComponents.attachRGB(selectColor, selectColorElem, doc);
+		strokeWidthElem.appendChild(doc.createTextNode(Double.toString(strokeWidth)));
+		
+	}
+
+	/**
+	 * 
+	 * Recover the line segment from a element that should be operated by saveToElement
+	 * 
+	 * The implementation searches all panel's paintcomponents to find the matching ids using PanelIO.idMapping
+	 * 
+	 * @param rootElement
+	 * @param panel
+	 */
+	public LineSegment(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		Element main = (Element) rootElement.getElementsByTagName("linesegment").item(0);
+		Element fromPointElement = (Element) main.getElementsByTagName("frompoint").item(0);
+		Element toPointElem = (Element) main.getElementsByTagName("topoint").item(0);
+		Element defaultColorElem = (Element) main.getElementsByTagName("defaultcolor").item(0);
+		Element selectColorElem = (Element) main.getElementsByTagName("selectcolor").item(0);
+		Element strokeWidthElem = (Element) main.getElementsByTagName("strokewidth").item(0);
+		
+		
+		defaultColor = XMLEncodingUtilForPaintComponents.getRGB(defaultColorElem);
+		selectColor = XMLEncodingUtilForPaintComponents.getRGB(selectColorElem);
+		strokeWidth = Double.parseDouble(strokeWidthElem.getTextContent());
+		stroke = new BasicStroke((float) strokeWidth);
+		
+		//append from and to points
+		
+		ArrayList<PaintComponent> paintComponents = panel.getPaintComponents();
+		
+		
+		//select only the paint components to check ID
+		long fromPointID = PanelIO.idMapping.get(Long.parseLong(fromPointElement.getAttribute("id")));
+		long toPointID = PanelIO.idMapping.get(Long.parseLong(toPointElem.getAttribute("id")));
+		
+		for (PaintComponent paintComponent : paintComponents) {
+			if(paintComponent.getComponentID() == fromPointID){
+				fromPoint = (SimplePoint) paintComponent;
+			} else if (paintComponent.getComponentID() == toPointID){
+				toPoint  = (SimplePoint) paintComponent;
+			}
+		}
+	}
+	
 
 }

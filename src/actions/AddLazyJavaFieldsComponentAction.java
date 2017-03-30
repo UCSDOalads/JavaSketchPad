@@ -1,5 +1,7 @@
 package actions;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.FieldsPaintComponent;
@@ -33,6 +35,30 @@ public AddLazyJavaFieldsComponentAction(PaintPanel panel) {
 				panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(fieldsComp);
+		//push action to the manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+				
+			@Override
+			public void undoAction() {
+				fieldsComp.remove(panel);
+			}
+				
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(fieldsComp);
+					
+			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaFieldsComponent";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a java fields component";
+			}
+		});
 		panel.repaint();
 	}
 

@@ -1,2 +1,5 @@
 *.class
 /bin/
+.DS_Store
+.settings
+.settings/*

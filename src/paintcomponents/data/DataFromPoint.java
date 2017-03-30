@@ -1,9 +1,11 @@
 package paintcomponents.data;
 
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import paintcomponents.SimplePoint;
+import typesystem.Type;
+import ui.PaintPanel;
 
 /**
  * This point consumes data and tries to pass the data along a connecting line
@@ -16,6 +18,7 @@ public class DataFromPoint extends SimplePoint {
 
 	private DataLineSegment lineSegment;
 	private DataFromPointDataProvider provider;
+	private Type expectedType;
 
 	/**
 	 * @return the lineSegment
@@ -32,8 +35,9 @@ public class DataFromPoint extends SimplePoint {
 		this.lineSegment = lineSegment;
 	}
 
-	public DataFromPoint(int x, int y) {
+	public DataFromPoint(int x, int y, Type expectedType) {
 		super(x, y);
+		this.expectedType = expectedType;
 	}
 
 	/**
@@ -60,6 +64,25 @@ public class DataFromPoint extends SimplePoint {
 
 	public void setProvider(DataFromPointDataProvider provider) {
 		this.provider = provider;
+	}
+
+	public Type getExpectedType() {
+		return expectedType;
+	}
+
+	public void setExpectedType(Type expectedType) {
+		this.expectedType = expectedType;
+	}
+	
+	@Override
+	public void saveToElement(Element rootElement, Document doc) {
+		// TODO Auto-generated method stub
+		super.saveToElement(rootElement, doc);
+	}
+
+	public DataFromPoint(Element rootElement, PaintPanel panel) {
+		super(rootElement, panel);
+		// TODO Auto-generated constructor stub
 	}
 
 
