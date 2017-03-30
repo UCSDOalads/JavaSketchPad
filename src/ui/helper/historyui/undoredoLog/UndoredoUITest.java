@@ -42,10 +42,19 @@ public class UndoredoUITest {
 				undoredoLog.setVisible(true);
 				undoredoLog.setSize(new Dimension(500, 400));
 				
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				undoredoLog.dispose();
+				
+				
 				
 			}
 		});
-		Thread.sleep(Long.MAX_VALUE);
+		Thread.sleep(5000);
 	}
 
 	
