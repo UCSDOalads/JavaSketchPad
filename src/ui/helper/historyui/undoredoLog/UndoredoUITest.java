@@ -13,7 +13,7 @@ import ui.helper.historyui.HistoryDataObject;
 
 public class UndoredoUITest {
 
-	UndoredoLog undoredoLog;
+	UndoredoDialog undoredoLog;
 	
 	
 	@Before
