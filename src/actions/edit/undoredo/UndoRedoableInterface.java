@@ -1,7 +1,9 @@
 package actions.edit.undoredo;
 
+import ui.helper.historyui.HistoryDataObject;
 
-public abstract class UndoRedoableInterface {
+public abstract class UndoRedoableInterface extends HistoryDataObject {
+
 	public abstract void undoAction();
 	public abstract void redoAction();
 	public String description(){
