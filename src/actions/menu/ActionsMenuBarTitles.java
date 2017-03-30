@@ -152,6 +152,11 @@ public class ActionsMenuBarTitles {
 		append("Annotations");
 		return this;
 	}
+	
+	public ActionsMenuBarTitles RedoUndoHisotry(){
+		append("Redo/Undo Hisotry");
+		return this;
+	}
 
 	public ActionsMenuBarTitles Instance_Operation() {
 		append("Instance Operation Component");

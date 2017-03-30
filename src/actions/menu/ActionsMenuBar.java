@@ -33,6 +33,7 @@ import actions.InputDataForDataInputBoxAction;
 import actions.PaintAction;
 import actions.RemoveAnnotationAction;
 import actions.RemovePaintComponent;
+import actions.ShowHistory;
 import actions.UpdateDataDisplayBoxAction;
 import actions.singleinstanceoperations.ExecuteJavaInteractiveConstructor;
 import actions.singleinstanceoperations.ExecuteJavaInteractiveMethod;
@@ -81,6 +82,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new EditUndoAction(panel));
 		addAction(new ZoomInAction(panel));
 		addAction(new ZoomOutAction(panel));
+		
 
 		//haskell
 		addAction(new AddHaskellComponent(panel));
@@ -98,6 +100,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		//edit
 		addAction(new UpdateFontSizeOperation(panel));
 		addAction(new SetPointSizeOperation(panel));
+		addAction(new EditAnnotationSizeAction(panel));
 
 
 		//script
@@ -107,7 +110,11 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new AddAnnotationAction(panel));
 		addAction(new RemoveAnnotationAction(panel));
 		
-		addAction(new EditAnnotationSizeAction(panel));
+		//view
+		addAction(new ShowHistory(panel));
+		
+		
+	
 	}
 
 	private void addAction(PaintAction action) {

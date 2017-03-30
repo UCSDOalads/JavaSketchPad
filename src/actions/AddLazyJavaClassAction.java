@@ -36,7 +36,7 @@ public class AddLazyJavaClassAction extends PaintAction {
 				panel.addPaintComponent(comp);
 				// add action to undo redo manager
 				SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
+					
 					@Override
 					public void undoAction() {
 						comp.remove(panel);
@@ -47,6 +47,16 @@ public class AddLazyJavaClassAction extends PaintAction {
 					public void redoAction() {
 						panel.addPaintComponent(comp);
 						panel.repaint();
+					}
+
+					@Override
+					protected String commandName() {
+						return "add lazy javaClass";
+					}
+
+					@Override
+					protected String commandDescription() {
+						return "add a java class component";
 					}
 				});
 				panel.repaint();

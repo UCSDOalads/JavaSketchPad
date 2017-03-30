@@ -52,20 +52,20 @@ public class AddInteractiveJavaMethodComponentAction extends PaintAction {
 				panel.getHeight() / 2);
 		panel.addPaintComponent(methodComp);
 		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-					
-			@Override
-			public void undoAction() {
-				methodComp.remove(panel);
-				panel.repaint();
-			}
-					
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(methodComp);
-				panel.repaint();
-			}
-		});
+//		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+//					
+//			@Override
+//			public void undoAction() {
+//				methodComp.remove(panel);
+//				panel.repaint();
+//			}
+//					
+//			@Override
+//			public void redoAction() {
+//				panel.addPaintComponent(methodComp);
+//				panel.repaint();
+//			}
+//		});
 		panel.repaint();
 	}
 	public String getMethodsSelectionUI(Method[] methods) {

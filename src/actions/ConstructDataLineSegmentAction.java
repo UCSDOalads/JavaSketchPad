@@ -80,6 +80,17 @@ public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {
 				panel.addPaintComponent(seg);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "construct dataLineSegment";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "construct a line segment that flows data";
+			}
+
 		});
 	}
 

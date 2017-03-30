@@ -48,6 +48,16 @@ public AddLazyJavaFieldsComponentAction(PaintPanel panel) {
 				panel.addPaintComponent(fieldsComp);
 					
 			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaFieldsComponent";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a java fields component";
+			}
 		});
 		panel.repaint();
 	}

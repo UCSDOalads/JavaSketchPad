@@ -38,6 +38,17 @@ public class AddDataInputBoxAction extends PaintAction {
 				panel.repaint();
 				
 			}
+
+			@Override
+			protected String commandName() {
+				return "add data inputBox";
+			}
+
+			@Override
+			protected String commandDescription() {
+				// TODO Auto-generated method stub
+				return "add a string input";
+			}
 		});
 		panel.repaint();
 	}
