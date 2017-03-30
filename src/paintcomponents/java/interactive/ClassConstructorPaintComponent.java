@@ -34,7 +34,6 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 		super(displayingContructor.toString(), x, y);
 		this.displayingConstructor = displayingContructor;
 		init();
-		System.out.println("interactive ctor");
 	}
 
 	private void init() {
