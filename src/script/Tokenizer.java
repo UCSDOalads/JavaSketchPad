@@ -21,10 +21,10 @@ public class Tokenizer {
 
 	// ctor
 	public Tokenizer(String input) {
+		output = new ArrayList<String>();
 		if (input != null) {
 			state = State.INIT;
 			array = input.toCharArray();
-			output = new ArrayList<String>();
 			pending = "";
 
 			// interpret characters
