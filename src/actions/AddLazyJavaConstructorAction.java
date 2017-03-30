@@ -57,6 +57,16 @@ public class AddLazyJavaConstructorAction extends PaintAction {
 				panel.addPaintComponent(consComp);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaConstructor";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a lazily evaludated java constructor";
+			}
 		});
 		panel.repaint();
 	}

@@ -44,6 +44,14 @@ public class RemovePaintComponent extends PaintAction{
 				for( PaintComponent comp: comps ) 
 					comp.remove(panel);
 			}
+			@Override
+			protected String commandName() {
+				return "remove";
+			}
+			@Override
+			protected String commandDescription() {
+				return "removes a paint component";
+			}
 		});
 		panel.repaint();
 	}

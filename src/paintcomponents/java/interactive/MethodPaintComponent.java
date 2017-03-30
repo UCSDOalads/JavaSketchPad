@@ -93,7 +93,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		Object[] args = new Object[toPoints.size()];
 
 		//Get the input data from each the input points
-		for (int i = 0; i < toPoints.size() ; i++) {
+		for (int i = 0; i < toPoints.size(); i++) {
 			DataToPoint toPoint = toPoints.get(i);
 			try {
 				args[i] = toPoint.fetchData();

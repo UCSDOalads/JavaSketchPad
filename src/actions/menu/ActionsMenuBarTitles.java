@@ -1,9 +1,9 @@
 package actions.menu;
 
 public class ActionsMenuBarTitles {
-	
+
 	public String pending;
-	
+
 	public ActionsMenuBarTitles(String string) {
 		pending = string;
 	}
@@ -12,70 +12,75 @@ public class ActionsMenuBarTitles {
 	public String toString() {
 		return pending;
 	}
-	
-	public static ActionsMenuBarTitles Data(){
+
+	public static ActionsMenuBarTitles Data() {
 		return new ActionsMenuBarTitles("Data");
 	}
-	
+
 	public static ActionsMenuBarTitles Edit() {
 		return new ActionsMenuBarTitles("Edit");
 	}
+
 	/**
 	 * Returns the string construct for Developer Only Feature
-	 * @param remainingTitle the remaining menu titles, this should not begin with /
+	 * 
+	 * @param remainingTitle
+	 *            the remaining menu titles, this should not begin with /
 	 * @return
 	 */
-	public static ActionsMenuBarTitles Developer(String remainingTitle){
+	public static ActionsMenuBarTitles Developer(String remainingTitle) {
 		return new ActionsMenuBarTitles("Developer" + "/" + remainingTitle);
 	}
-	
-	public static ActionsMenuBarTitles File(){
+
+	public static ActionsMenuBarTitles File() {
 		return new ActionsMenuBarTitles("File");
 	}
-	
-	
-	public ActionsMenuBarTitles Save(){
+
+	public ActionsMenuBarTitles Save() {
 		append("Save...");
 		return this;
 	}
 
-	private void append(String str){
+	private void append(String str) {
 		this.pending += "/" + str;
 	}
-	
-	
-	public ActionsMenuBarTitles Input_Box(){
+
+	public ActionsMenuBarTitles Input_Box() {
 		append("Input Box");
 		return this;
 	}
-	
-	public ActionsMenuBarTitles Display_Box(){
+
+	public ActionsMenuBarTitles Display_Box() {
 		append("Display Box");
 		return this;
 	}
-	
-	public ActionsMenuBarTitles Add(){
+
+	public ActionsMenuBarTitles Add() {
 		append("Add");
 		return this;
 	}
-	
-	public ActionsMenuBarTitles Update(){
+
+	public ActionsMenuBarTitles Update() {
 		append("Update");
 		return this;
 	}
-	
-	public ActionsMenuBarTitles Construct(){
+
+	public ActionsMenuBarTitles Construct() {
 		append("Construct");
 		return this;
 	}
-	
-	public ActionsMenuBarTitles Line_Segment(){
+
+	public ActionsMenuBarTitles Line_Segment() {
 		append("Line Segment");
 		return this;
 	}
 
 	public static ActionsMenuBarTitles Lazy() {
 		return new ActionsMenuBarTitles("Lazy");
+	}
+
+	public static ActionsMenuBarTitles Script() {
+		return new ActionsMenuBarTitles("Script");
 	}
 
 	public ActionsMenuBarTitles Java_Class() {
@@ -87,7 +92,7 @@ public class ActionsMenuBarTitles {
 		append("Java Constructor");
 		return this;
 	}
-	
+
 	public ActionsMenuBarTitles Java_Method() {
 		append("Java Method");
 		return this;
@@ -97,17 +102,17 @@ public class ActionsMenuBarTitles {
 		append("Java Fields");
 		return this;
 	}
-	
+
 	public ActionsMenuBarTitles Undo() {
 		append("Undo");
 		return this;
 	}
-	
+
 	public ActionsMenuBarTitles Redo() {
 		append("Redo");
-    return this;
-  }
-  
+		return this;
+	}
+
 	public ActionsMenuBarTitles Remove() {
 		append("Remove");
 		return this;
@@ -125,14 +130,14 @@ public class ActionsMenuBarTitles {
 
 	public ActionsMenuBarTitles Point_Size() {
 		append("Point Size...");
-    return this;
-  }
+		return this;
+	}
 
 	public ActionsMenuBarTitles Zoom_In() {
 		append("Zoom In");
 		return this;
 	}
-	
+
 	public ActionsMenuBarTitles Zoom_Out() {
 		append("Zoom Out");
 		return this;
@@ -140,16 +145,30 @@ public class ActionsMenuBarTitles {
 
 
 
+
+
+	public ActionsMenuBarTitles Enter_Script() {
+		append("Enter Script");
+		return this;
+	}
+
+
 	
+	public ActionsMenuBarTitles RedoUndoHisotry(){
+		append("Redo/Undo Hisotry");
+		return this;
+	}
+
 	public ActionsMenuBarTitles Instance_Operation() {
 		append("Instance Operation Component");
 		return this;
 	}
-	
+
 	public ActionsMenuBarTitles Add_Instance_Method() {
 		append("Add Instance Method");
 		return this;
 	}
+
 
 	public ActionsMenuBarTitles Execute_Instance_Constructor() {
 		append("Execute Constructor");
@@ -166,5 +185,12 @@ public class ActionsMenuBarTitles {
 		return this;
 	}
 
+
+
+	public ActionsMenuBarTitles Annotation_Font_Size() {
+		append("Annotation Font Size");
+
+		return this;
+	}
 
 }

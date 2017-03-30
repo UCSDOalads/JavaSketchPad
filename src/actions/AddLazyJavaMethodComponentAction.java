@@ -60,6 +60,16 @@ public class AddLazyJavaMethodComponentAction extends PaintAction {
 				panel.addPaintComponent(methodComp);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaMethodComponent";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a lazily evaluated java method component";
+			}
 		});
 		panel.repaint();
 	}

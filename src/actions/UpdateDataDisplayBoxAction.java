@@ -34,20 +34,39 @@ public class UpdateDataDisplayBoxAction extends PaintAction {
 	public void performAction() {
 		DataDisplayPaintComponent comp = (DataDisplayPaintComponent) panel.getSelectTool().getSelectedComponents().get(0) ;
 		try {
+			String original = comp.getDisplayingText();
 			comp.updateDisplayText();
 			//push action to the manager
+			//TODO This may cause a bug. Redo only replaces text occurances.
 			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 				
 				@Override
 				public void undoAction() {
-					comp.remove(panel);
+					comp.setDisplayingText(original);
 					panel.repaint();
 				}
 				
 				@Override
 				public void redoAction() {
-					panel.addPaintComponent(comp);
+					try {
+						comp.updateDisplayText();
+					} catch (NoSuchElementException
+							| NoConnectingLineSegmentException
+							| DataFromPointNoDataProviderException
+							| DataFromPointProviderCannotProvideDataException e) {
+						e.printStackTrace();
+					}
 					panel.repaint();
+				}
+
+				@Override
+				protected String commandName() {
+					return "update dataBox";
+				}
+
+				@Override
+				protected String commandDescription() {
+					return "update the data display box using the connecting input";
 				}
 			});
 			panel.repaint();
