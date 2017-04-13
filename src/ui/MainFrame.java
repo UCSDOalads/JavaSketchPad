@@ -32,6 +32,7 @@ public class MainFrame extends JFrame{
 		
 		//add components
 		add(toolBar, BorderLayout.WEST);
+		
 		add(paintPanel, BorderLayout.CENTER);
 		setJMenuBar(menuBar);
 		
