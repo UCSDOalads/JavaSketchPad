@@ -4,7 +4,7 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.interactive.MethodPaintComponent;
 import ui.PaintPanel;
 
-public class ExecuteInstanceMethodAction extends PaintAction {
+public class ExecuteInstanceMethodAction extends MenuBarPaintAction {
 
 	public ExecuteInstanceMethodAction(PaintPanel panel) {
 		super(panel);

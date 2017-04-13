@@ -1,11 +1,13 @@
-package actions;
+package actions.singleinstanceoperations;
 
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintAction;
+import actions.global.globalactions.SingleInstanceOperationGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
-import actions.singleinstanceoperations.SingleInstanceOperation;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
 import paintcomponents.data.DataTextPaintComponent;
@@ -36,17 +38,13 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 	}
 
 	@Override
-	protected void performActionOnInstance(PaintComponent instance) {
-		// TODO Auto-generated method stub
-		String annotations = JOptionPane
-				.showInputDialog("Please specify the annotation of the component");
-		new TextAnnotation(instance, annotations);
-		
+	protected Class<PaintComponent> getGenericClassType() {
+		return PaintComponent.class;
 	}
 
 	@Override
-	protected Class<PaintComponent> getGenericClassType() {
-		return PaintComponent.class;
+	protected ActionName getExecutingAction() {
+		return ActionName.ADD_ANNOTATION_ACTION;
 	}
 
 

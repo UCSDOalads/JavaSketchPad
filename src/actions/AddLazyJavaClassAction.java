@@ -13,7 +13,7 @@ import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
 import ui.helper.classsearch.ClassSearchFrame;
 import ui.helper.classsearch.ClassSearchFrameDelegateInterface;
-public class AddLazyJavaClassAction extends PaintAction {
+public class AddLazyJavaClassAction extends MenuBarPaintAction {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {
 		super(panel);
