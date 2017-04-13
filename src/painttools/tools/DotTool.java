@@ -30,6 +30,7 @@ public class DotTool extends PaintTool {
 	@Override
 	public JButton getButton() {
 		JButton button = super.getButton();
+		button.setText("Dot  ");
 		button.setIcon(new Icon() {
 			
 			@Override
