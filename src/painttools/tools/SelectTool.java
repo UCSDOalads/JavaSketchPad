@@ -252,6 +252,7 @@ public class SelectTool extends PaintTool {
 	@Override
 	public JButton getButton() {
 		JButton button = super.getButton();
+		button.setText("Select  ");
 		button.setIcon(LeftArrow.iconFromPolygon(LeftArrow.getPolygon(),
 				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
 		return button;
