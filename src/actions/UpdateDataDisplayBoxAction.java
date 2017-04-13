@@ -14,7 +14,7 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import ui.PaintPanel;
 
-public class UpdateDataDisplayBoxAction extends PaintAction {
+public class UpdateDataDisplayBoxAction extends MenuBarPaintAction {
 
 	public UpdateDataDisplayBoxAction(PaintPanel panel) {
 		super(panel);

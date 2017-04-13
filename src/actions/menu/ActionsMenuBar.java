@@ -7,14 +7,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import painttools.tools.SelectionToolListener;
-import ui.PaintPanel;
-import actions.AddAnnotationAction;
 import actions.AddDataDisplayBoxAction;
 import actions.AddDataInputBoxAction;
 import actions.AddHaskellComponent;
 import actions.AddHaskellEvaluatorComponentAction;
 import actions.AddInstanceMethodAction;
+import actions.AddInstanceOperationAction;
 import actions.AddLazyJavaClassAction;
 import actions.AddLazyJavaConstructorAction;
 import actions.AddLazyJavaFieldsComponentAction;
@@ -23,31 +21,27 @@ import actions.AddTextBoxAction;
 import actions.ConstructDataLineSegmentAction;
 import actions.ConstructLineSegmentAction;
 import actions.EditAnnotationSizeAction;
-import actions.EditRedoAction;
-import actions.EditUndoAction;
-import actions.EnterScriptAction;
+import actions.ExecuteInstanceConstructorAction;
+import actions.ExecuteInstanceMethodAction;
+import actions.ExecuteScriptAction;
 import actions.FileOpen;
 import actions.FileSaveAs;
 import actions.GeneratePolygonSourceJava;
 import actions.InputDataForDataInputBoxAction;
-import actions.PaintAction;
+import actions.MenuBarPaintAction;
+import actions.RedoAction;
 import actions.RemoveAnnotationAction;
 import actions.RemovePaintComponent;
 import actions.ShowHistory;
+import actions.UndoAction;
 import actions.UpdateDataDisplayBoxAction;
-import actions.singleinstanceoperations.ExecuteJavaInteractiveConstructor;
-import actions.singleinstanceoperations.ExecuteJavaInteractiveMethod;
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
+import actions.singleinstanceoperations.AddAnnotationAction;
 import actions.singleinstanceoperations.SetPointSizeOperation;
 import actions.singleinstanceoperations.UpdateFontSizeOperation;
-import actions.ZoomInAction;
-import actions.ZoomOutAction;
-import actions.ZoomInAction;
-import actions.ZoomOutAction;
-import actions.AddInstanceOperationAction;
-import actions.AddInteractiveConstructorAction;
-import actions.AddInteractiveJavaMethodComponentAction;
-import actions.ExecuteInstanceConstructorAction;
-import actions.ExecuteInstanceMethodAction;
+import painttools.tools.SelectionToolListener;
+import ui.PaintPanel;
 
 public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 	
@@ -75,15 +69,10 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 		addAction(new ExecuteInstanceConstructorAction(panel));
 		addAction(new ExecuteInstanceMethodAction(panel));
 		
-		//interactive
-		addAction(new AddInteractiveConstructorAction(panel));
-		addAction(new AddInteractiveJavaMethodComponentAction(panel));
-		addAction(new ExecuteJavaInteractiveConstructor(panel));
-		addAction(new ExecuteJavaInteractiveMethod(panel));
 		
 		//edit 
-		addAction(new EditRedoAction(panel));
-		addAction(new EditUndoAction(panel));
+		addAction(new RedoAction(panel));
+		addAction(new UndoAction(panel));
 		addAction(new ZoomInAction(panel));
 		addAction(new ZoomOutAction(panel));
 		
@@ -108,7 +97,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 
 
 		//script
-		addAction(new EnterScriptAction(panel));
+		addAction(new ExecuteScriptAction(panel));
 
 		// add data annotation
 		addAction(new AddAnnotationAction(panel));
@@ -123,7 +112,7 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener{
 
 	}
 
-	private void addAction(PaintAction action) {
+	private void addAction(MenuBarPaintAction action) {
 		String[] strings = action.locationString().split("/");
 		JMenu insertionMenu = null;
 		// look for existing i menus, determine where to insert

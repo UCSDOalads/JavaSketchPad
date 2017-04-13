@@ -18,7 +18,7 @@ import ui.PaintPanel;
 import javax.swing.JFileChooser;
 import java.io.File;
 
-public class FileSaveAs extends PaintAction {
+public class FileSaveAs extends MenuBarPaintAction {
 
 	public FileSaveAs(PaintPanel panel) {
 		super(panel);
