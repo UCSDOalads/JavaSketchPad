@@ -4,14 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-<<<<<<< HEAD:src/actions/AddAnnotationAction.java
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
-=======
-import actions.global.ActionName;
-import actions.global.GlobalPaintAction;
-import actions.global.globalactions.SingleInstanceOperationGlobalAction;
->>>>>>> 02b1d78f9f2b7b350607b5352e27bc2c0d066cee:src/actions/singleinstanceoperations/AddAnnotationAction.java
+
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
@@ -43,7 +36,6 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 	}
 
 	@Override
-<<<<<<< HEAD:src/actions/AddAnnotationAction.java
 	protected void performActionOnInstance(PaintComponent instance) {
 		// TODO Auto-generated method stub
 		String annotations = JOptionPane
@@ -78,11 +70,12 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 			
 		});
 		panel.repaint();
+	}
 		
-=======
+
 	protected Class<PaintComponent> getGenericClassType() {
 		return PaintComponent.class;
->>>>>>> 02b1d78f9f2b7b350607b5352e27bc2c0d066cee:src/actions/singleinstanceoperations/AddAnnotationAction.java
+
 	}
 
 	@Override
