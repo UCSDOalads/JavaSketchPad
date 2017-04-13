@@ -41,7 +41,6 @@ public class MainFrame extends JFrame{
 		add(westPanel,BorderLayout.WEST);
 
 		//add westPanel components
-		westPanel.setPreferredSize(new Dimension(260, 300));
 		westPanel.add(toolBar, BorderLayout.WEST);
 		westPanel.add(undoredoDialog);
 		toolBar.addToolBarListener(paintPanel);

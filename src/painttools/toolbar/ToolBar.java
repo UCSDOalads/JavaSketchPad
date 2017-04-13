@@ -30,7 +30,7 @@ public class ToolBar extends JPanel {
 		listeners = new ArrayList<>();
 		
 		//sets the box layout
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());
