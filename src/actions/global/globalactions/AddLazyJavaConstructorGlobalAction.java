@@ -14,13 +14,14 @@ public class AddLazyJavaConstructorGlobalAction extends GlobalPaintAction {
 	private ClassPaintComponent comp;
 	private int desiaredConstructorIndex;
 	private UndoRedoableInterface undoRedoBlock;
+	private int x;
+	private int y;
 
 	@Override
 	protected void execute(PaintPanel panel) {
 		Constructor[] cons = comp.getDisplayingClass().getConstructors();
 		ClassConstructorPaintComponent consComp = new ClassConstructorPaintComponent(
-				cons[desiaredConstructorIndex], panel.getWidth() / 2,
-				panel.getHeight() / 2);
+				cons[desiaredConstructorIndex], x, y);
 		panel.addPaintComponent(consComp);
 		// add action to undo redo manager
 		undoRedoBlock = new UndoRedoableInterface() {
@@ -67,5 +68,10 @@ public class AddLazyJavaConstructorGlobalAction extends GlobalPaintAction {
 
 	protected UndoRedoableInterface getUndoRedoBlock() {
 		return undoRedoBlock;
+	}
+
+	public void setCoord(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 }

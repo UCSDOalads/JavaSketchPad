@@ -32,11 +32,14 @@ public class AddLazyJavaFieldsComponentGlobalActionTest {
 		assiciatedAction.setComponent(comp);
 
 		// test
-		assertEquals(1, panel.getPaintComponents().size());
+		assertEquals("test number of components before", 1, panel
+				.getPaintComponents().size());
 		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
 				panel);
-		assertEquals(2, panel.getPaintComponents().size());
-		assertTrue(panel.getPaintComponents().get(1) instanceof FieldsPaintComponent);
+		assertEquals("test number of components after", 2, panel
+				.getPaintComponents().size());
+		assertTrue("test type of component added", panel.getPaintComponents()
+				.get(1) instanceof FieldsPaintComponent);
 	}
 
 }

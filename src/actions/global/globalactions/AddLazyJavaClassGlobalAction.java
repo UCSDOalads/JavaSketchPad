@@ -10,6 +10,8 @@ public class AddLazyJavaClassGlobalAction extends GlobalPaintAction {
 
 	private Class classToCreate;
 	private UndoRedoableInterface undoRedoBlock;
+	private int x;
+	private int y;
 
 	/**
 	 * @param classToCreate
@@ -21,8 +23,7 @@ public class AddLazyJavaClassGlobalAction extends GlobalPaintAction {
 
 	@Override
 	protected void execute(PaintPanel panel) {
-		ClassPaintComponent comp = new ClassPaintComponent(classToCreate,
-				panel.getWidth() / 2, panel.getHeight() / 2);
+		ClassPaintComponent comp = new ClassPaintComponent(classToCreate, x, y);
 		panel.addPaintComponent(comp);
 
 		// add action to undo redo manager
@@ -59,5 +60,10 @@ public class AddLazyJavaClassGlobalAction extends GlobalPaintAction {
 
 	protected UndoRedoableInterface getUndoRedoBlock() {
 		return undoRedoBlock;
+	}
+
+	public void setCoord(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 }

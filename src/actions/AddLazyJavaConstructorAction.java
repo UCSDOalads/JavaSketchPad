@@ -42,6 +42,7 @@ public class AddLazyJavaConstructorAction extends MenuBarPaintAction {
 								+ getConstructorsSelectionUI(assiciatedAction
 										.getConstructor())));
 		assiciatedAction.setConstructorIndex(desiaredConstructorIndex);
+		assiciatedAction.setCoord(panel.getWidth() / 2, panel.getHeight() / 2);
 		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
 				panel);
 	}
