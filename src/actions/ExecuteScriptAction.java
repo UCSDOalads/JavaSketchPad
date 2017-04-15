@@ -1,12 +1,11 @@
 package actions;
 
-import java.awt.HeadlessException;
-
 import javax.swing.JOptionPane;
 
-import script.ExecutionErrorException;
-import script.Interpreter;
 import ui.PaintPanel;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.ExecuteScriptGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 
 public class ExecuteScriptAction extends MenuBarPaintAction {
@@ -22,7 +21,6 @@ public class ExecuteScriptAction extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		Interpreter interpreter = new Interpreter(panel);
 		/*
 		 * Scanner scanner = new Scanner(System.in);
 		 * 
@@ -31,15 +29,14 @@ public class ExecuteScriptAction extends MenuBarPaintAction {
 		 * (ExecutionErrorException e) { System.out.println("Invalid script"); }
 		 * System.out.println("Enter script:"); } scanner.close();
 		 */
-		try {
-			interpreter.interpreteLine(JOptionPane.showInputDialog(panel,
-					"Enter Script: "));
-		} catch (HeadlessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionErrorException e) {
-			e.printStackTrace();
-		}
+		String command = JOptionPane.showInputDialog(panel, "Enter Script: ");
+		ExecuteScriptGlobalAction assiciatedAction = (ExecuteScriptGlobalAction) ActionName.EXECUTE_SCRIPT_ACTION
+				.getAssiciatedAction();
+
+		assiciatedAction.setCommand(command);
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+				panel);
+
 	}
 
 	@Override

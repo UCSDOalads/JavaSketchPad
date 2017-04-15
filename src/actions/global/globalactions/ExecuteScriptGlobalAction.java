@@ -5,6 +5,7 @@ import java.awt.HeadlessException;
 import script.ExecutionErrorException;
 import script.Interpreter;
 import ui.PaintPanel;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.global.GlobalPaintAction;
 
 public class ExecuteScriptGlobalAction extends GlobalPaintAction {
@@ -16,21 +17,23 @@ public class ExecuteScriptGlobalAction extends GlobalPaintAction {
 
 		Interpreter interpreter = new Interpreter(panel);
 
-		System.out.println("Enter script:");
-
 		try {
 			interpreter.interpreteLine(command);
 		} catch (HeadlessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionErrorException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void setCommand(String command) {
 		this.command = command;
+	}
+
+	@Override
+	protected UndoRedoableInterface getUndoRedoBlock() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

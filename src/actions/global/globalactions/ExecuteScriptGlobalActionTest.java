@@ -3,6 +3,8 @@
  */
 package actions.global.globalactions;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import ui.PaintPanel;
@@ -22,19 +24,14 @@ public class ExecuteScriptGlobalActionTest {
 	public void testExecute() {
 		ExecuteScriptGlobalAction action = new ExecuteScriptGlobalAction();
 		PaintPanel panel = new PaintPanel();
-		action.setCommand("add lazy Javaclass");
-		try {
-			action.execute(panel);
-		} catch (Exception e) {
-
-		}
-		action.setCommand("not valid command");
-		try {
-			action.execute(panel);
-			// fail("should have exception"); doesn't throw
-		} catch (Exception e) {
-
-		}
+		assertEquals(0, panel.getPaintComponents().size());
+		action.setCommand("add data displayBox");
+		action.execute(panel);
+		assertEquals(1, panel.getPaintComponents().size());
+		// action.setCommand("construct dataLineSegment"); this line create null
+		// pointer exception bug
+		action.execute(panel);
+		assertEquals(2, panel.getPaintComponents().size());
 	}
 
 }
