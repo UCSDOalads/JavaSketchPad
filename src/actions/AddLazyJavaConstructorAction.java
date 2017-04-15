@@ -1,5 +1,9 @@
 package actions;
 
+import java.lang.reflect.Constructor;
+
+import javax.swing.JOptionPane;
+
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
 import actions.global.ActionName;
@@ -9,36 +13,51 @@ import actions.menu.ActionsMenuBarTitles;
 
 public class AddLazyJavaConstructorAction extends MenuBarPaintAction {
 
-    public AddLazyJavaConstructorAction(PaintPanel panel) {
-	super(panel);
-    }
-
-    @Override
-    public boolean canPerformAction() {
-	if (panel.getSelectTool().getSelectedComponents().size() != 1) {
-	    return false;
+	public AddLazyJavaConstructorAction(PaintPanel panel) {
+		super(panel);
 	}
-	if (panel.getSelectTool().getSelectedComponents().get(0) instanceof ClassPaintComponent) {
-	    return true;
+
+	@Override
+	public boolean canPerformAction() {
+		if (panel.getSelectTool().getSelectedComponents().size() != 1) {
+			return false;
+		}
+		if (panel.getSelectTool().getSelectedComponents().get(0) instanceof ClassPaintComponent) {
+			return true;
+		}
+		return false;
 	}
-	return false;
-    }
 
-    @Override
-    public void performAction() {
-	ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
-		.getSelectedComponents().get(0);
+	@Override
+	public void performAction() {
+		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
+				.getSelectedComponents().get(0);
 
-	AddLazyJavaConstructorGlobalAction assiciatedAction = (AddLazyJavaConstructorGlobalAction) ActionName.ADD_LAZY_JAVA_CONSTRUCTOR_ACTION
-		.getAssiciatedAction();
-	assiciatedAction.setComponent(comp);
-	GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-		panel);
-    }
+		AddLazyJavaConstructorGlobalAction assiciatedAction = (AddLazyJavaConstructorGlobalAction) ActionName.ADD_LAZY_JAVA_CONSTRUCTOR_ACTION
+				.getAssiciatedAction();
+		assiciatedAction.setComponent(comp);
+		int desiaredConstructorIndex = Integer
+				.parseInt(JOptionPane
+						.showInputDialog("Please enter the index of the constructor you would like to use: \n\n\n"
+								+ getConstructorsSelectionUI(assiciatedAction
+										.getConstructor())));
+		assiciatedAction.setConstructorIndex(desiaredConstructorIndex);
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+				panel);
+	}
 
-    @Override
-    public String locationString() {
-	return ActionsMenuBarTitles.Lazy().Add().Java_Constructor().toString();
-    }
+	@Override
+	public String locationString() {
+		return ActionsMenuBarTitles.Lazy().Add().Java_Constructor().toString();
+	}
 
+	public String getConstructorsSelectionUI(Constructor[] cons) {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < cons.length; i++) {
+			Constructor constructor = cons[i];
+			builder.append(i + " : " + constructor.toString() + "\n");
+		}
+		return builder.toString();
+
+	}
 }

@@ -13,30 +13,30 @@ import actions.global.GlobalPaintActionExecuter;
 
 public class AddLazyJavaFieldsComponentGlobalActionTest {
 
-    @Test
-    public void test() {
-	PaintPanel panel = new PaintPanel();
+	@Test
+	public void test() {
+		PaintPanel panel = new PaintPanel();
 
-	// add a class
-	AddLazyJavaClassGlobalAction classAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-		.getAssiciatedAction();
-	classAction.setClassToCreate("string".getClass());
-	GlobalPaintActionExecuter.getSharedInstance().execute(classAction,
-		panel);
+		// add a class
+		AddLazyJavaClassGlobalAction classAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
+				.getAssiciatedAction();
+		classAction.setClassToCreate("string".getClass());
+		GlobalPaintActionExecuter.getSharedInstance().execute(classAction,
+				panel);
 
-	// set up
-	ClassPaintComponent comp = (ClassPaintComponent) panel
-		.getPaintComponents().get(0);
-	AddLazyJavaFieldsComponentGlobalAction assiciatedAction = (AddLazyJavaFieldsComponentGlobalAction) ActionName.ADD_LAZY_JAVA_FIELDS_ACTION
-		.getAssiciatedAction();
-	assiciatedAction.setComponent(comp);
+		// set up
+		ClassPaintComponent comp = (ClassPaintComponent) panel
+				.getPaintComponents().get(0);
+		AddLazyJavaFieldsComponentGlobalAction assiciatedAction = (AddLazyJavaFieldsComponentGlobalAction) ActionName.ADD_LAZY_JAVA_FIELDS_ACTION
+				.getAssiciatedAction();
+		assiciatedAction.setComponent(comp);
 
-	// test
-	assertEquals(0, panel.getPaintComponents().size());
-	GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-		panel);
-	assertEquals(1, panel.getPaintComponents().size());
-	assertTrue(panel.getPaintComponents().get(0) instanceof FieldsPaintComponent);
-    }
+		// test
+		assertEquals(1, panel.getPaintComponents().size());
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+				panel);
+		assertEquals(2, panel.getPaintComponents().size());
+		assertTrue(panel.getPaintComponents().get(1) instanceof FieldsPaintComponent);
+	}
 
 }

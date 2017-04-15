@@ -1,8 +1,7 @@
 package actions.global.globalactions;
 
-import static org.junit.Assert.*;
-
-import java.lang.reflect.Constructor;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,6 +11,10 @@ import ui.PaintPanel;
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 
+/**
+ * AddLazyJavaConstructorGlobalActionTest. Author: Xiaoquan Jiang Test
+ * AddLazyJavaConstructorGlobalAction
+ */
 public class AddLazyJavaConstructorGlobalActionTest {
 
 	@Test
@@ -33,11 +36,11 @@ public class AddLazyJavaConstructorGlobalActionTest {
 		assiciatedAction.setComponent(comp);
 
 		// test
-		assertEquals(0, panel.getPaintComponents().size());
+		assertEquals(1, panel.getPaintComponents().size());
 		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
 				panel);
-		assertEquals(1, panel.getPaintComponents().size());
-		assertTrue(panel.getPaintComponents().get(0) instanceof ClassConstructorPaintComponent);
+		assertEquals(2, panel.getPaintComponents().size());
+		assertTrue(panel.getPaintComponents().get(1) instanceof ClassConstructorPaintComponent);
 	}
 
 }
