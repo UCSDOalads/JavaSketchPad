@@ -42,8 +42,4 @@ public abstract class PaintComponentAnnotation extends PaintComponent {
 	 *            the new size
 	 */
 	abstract public void setFontSize(float input);
-
-	/**
-	 * 
-	 */
 }
