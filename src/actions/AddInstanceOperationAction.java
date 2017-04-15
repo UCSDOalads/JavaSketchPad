@@ -1,16 +1,15 @@
 package actions;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
-import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.java.interactive.InstanceOperationComponent;
-import paintcomponents.java.lazy.ClassPaintComponent;
-import ui.PaintPanel;
 
 import javax.swing.JOptionPane;
+
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddInstanceOperationGlobalAction;
+import actions.menu.ActionsMenuBarTitles;
+import paintcomponents.java.lazy.ClassPaintComponent;
+import ui.PaintPanel;
 
 
 public class AddInstanceOperationAction extends MenuBarPaintAction {
@@ -42,26 +41,13 @@ public class AddInstanceOperationAction extends MenuBarPaintAction {
 				.parseInt(JOptionPane.showInputDialog(
 						"Please enter the index of the constructor you would like to use: \n\n\n"
 								+ getConstructorsSelectionUI(cons)));
-		InstanceOperationComponent consComp = new InstanceOperationComponent(
-				cons[desiaredConstructorIndex], panel.getWidth() / 2,
-				panel.getHeight() / 2);
-		panel.addPaintComponent(consComp);
-//		// add action to undo redo manager
-//		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-//					
-//			@Override
-//			public void undoAction() {
-//				consComp.remove(panel);
-//				panel.repaint();
-//			}
-//					
-//			@Override
-//			public void redoAction() {
-//				panel.addPaintComponent(consComp);
-//				panel.repaint();
-//			}
-//		});
-		panel.repaint();
+		
+		AddInstanceOperationGlobalAction assiciatedAction = 
+				(AddInstanceOperationGlobalAction) ActionName.ADD_INSTANCE_OPERATION_ACTION
+				.getAssiciatedAction();
+		assiciatedAction.setConstructorToSet(cons[desiaredConstructorIndex]);
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+		
 	}
 	
 	public String getConstructorsSelectionUI(Constructor[] cons) {
