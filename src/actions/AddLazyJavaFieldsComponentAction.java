@@ -7,7 +7,7 @@ import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.FieldsPaintComponent;
 import ui.PaintPanel;
 
-public class AddLazyJavaFieldsComponentAction extends PaintAction {
+public class AddLazyJavaFieldsComponentAction extends MenuBarPaintAction {
 
 public AddLazyJavaFieldsComponentAction(PaintPanel panel) {
 		super(panel);

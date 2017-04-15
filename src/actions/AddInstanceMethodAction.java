@@ -11,7 +11,13 @@ import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.interactive.InstanceOperationComponent;
 import paintcomponents.java.lazy.MethodPaintComponent;
 
-public class AddInstanceMethodAction extends PaintAction {
+/**
+ * These two are instance methods (Together not seperate) for operation.
+ * 
+ * @author chenzb
+ *
+ */
+public class AddInstanceMethodAction extends MenuBarPaintAction {
 
 	public AddInstanceMethodAction(PaintPanel panel) {
 		super(panel);

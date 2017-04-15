@@ -11,7 +11,7 @@ import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
-public class ConstructLineSegmentAction extends PaintAction {
+public class ConstructLineSegmentAction extends MenuBarPaintAction {
 
 	public ConstructLineSegmentAction(PaintPanel panel) {
 		super(panel);

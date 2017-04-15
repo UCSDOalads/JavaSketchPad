@@ -11,7 +11,7 @@ import paintcomponents.java.lazy.ClassConstructorPaintComponent;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
 
-public class AddLazyJavaConstructorAction extends PaintAction {
+public class AddLazyJavaConstructorAction extends MenuBarPaintAction {
 
 	public AddLazyJavaConstructorAction(PaintPanel panel) {
 		super(panel);

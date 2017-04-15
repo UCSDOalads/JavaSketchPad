@@ -6,7 +6,7 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataDisplayPaintComponent;
 import ui.PaintPanel;
 
-public class AddDataDisplayBoxAction extends PaintAction {
+public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 
 	public AddDataDisplayBoxAction(PaintPanel panel) {
 		super(panel);

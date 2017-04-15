@@ -11,7 +11,7 @@ import paintcomponents.PaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
-public class InputDataForDataInputBoxAction extends PaintAction {
+public class InputDataForDataInputBoxAction extends MenuBarPaintAction {
 
 	public InputDataForDataInputBoxAction(PaintPanel panel) {
 		super(panel);
