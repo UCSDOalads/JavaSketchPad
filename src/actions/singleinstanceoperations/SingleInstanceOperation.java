@@ -52,7 +52,7 @@ public abstract class SingleInstanceOperation<T extends PaintComponent>
 				.get(0);
 
 		// retrieve the right action to execute, and use executer to execute the instance
-		SingleInstanceOperationGlobalAction<GlobalPaintAction<?>> executingAction = getExecutingAction().getAssiciatedAction();
+		SingleInstanceOperationGlobalAction<GlobalPaintAction<?>> executingAction = (SingleInstanceOperationGlobalAction<GlobalPaintAction<?>>) getExecutingAction().getAssiciatedAction();
 		executingAction.setOperatingInstance(comp);
 		GlobalPaintActionExecuter.getSharedInstance().execute(executingAction,
 				panel);

@@ -1,17 +1,16 @@
 package actions;
 
 import java.awt.HeadlessException;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import actions.menu.ActionsMenuBarTitles;
-import ui.PaintPanel;
 import script.ExecutionErrorException;
 import script.Interpreter;
+import ui.PaintPanel;
+import actions.menu.ActionsMenuBarTitles;
 
 public class ExecuteScriptAction extends MenuBarPaintAction {
-	
+
 	public ExecuteScriptAction(PaintPanel panel) {
 		super(panel);
 	}
@@ -24,27 +23,23 @@ public class ExecuteScriptAction extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 		Interpreter interpreter = new Interpreter(panel);
-		/*Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Enter script:");
-		while (scanner.hasNextLine()) {
-			try {
-				interpreter.interpreteLine(scanner.nextLine());
-			} catch (ExecutionErrorException e) {
-				System.out.println("Invalid script");
-			}
-			System.out.println("Enter script:");
-		}
-		scanner.close();
-		*/
+		/*
+		 * Scanner scanner = new Scanner(System.in);
+		 * 
+		 * System.out.println("Enter script:"); while (scanner.hasNextLine()) {
+		 * try { interpreter.interpreteLine(scanner.nextLine()); } catch
+		 * (ExecutionErrorException e) { System.out.println("Invalid script"); }
+		 * System.out.println("Enter script:"); } scanner.close();
+		 */
 		try {
-      interpreter.interpreteLine(JOptionPane.showInputDialog(panel, "Enter Script: "));
-    } catch (HeadlessException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (ExecutionErrorException e) {
-      e.printStackTrace();
-    }
+			interpreter.interpreteLine(JOptionPane.showInputDialog(panel,
+					"Enter Script: "));
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionErrorException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
