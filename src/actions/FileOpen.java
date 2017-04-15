@@ -14,7 +14,7 @@ import ui.PaintPanel;
 import javax.swing.JFileChooser;
 import java.io.File;
 
-public class FileOpen extends PaintAction {
+public class FileOpen extends MenuBarPaintAction {
 
 	public FileOpen(PaintPanel panel) {
 		super(panel);

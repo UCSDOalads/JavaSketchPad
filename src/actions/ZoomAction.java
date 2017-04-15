@@ -3,7 +3,7 @@ package actions;
 import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
-public abstract class ZoomAction extends PaintAction{
+public abstract class ZoomAction extends MenuBarPaintAction{
 
 	private double zoomValue;
 	private int centerX, centerY;

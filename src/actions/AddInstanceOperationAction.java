@@ -13,7 +13,7 @@ import ui.PaintPanel;
 import javax.swing.JOptionPane;
 
 
-public class AddInstanceOperationAction extends PaintAction {
+public class AddInstanceOperationAction extends MenuBarPaintAction {
 
 	
 	public AddInstanceOperationAction(PaintPanel panel) {

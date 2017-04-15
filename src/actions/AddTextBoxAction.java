@@ -8,7 +8,7 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 
-public class AddTextBoxAction extends PaintAction {
+public class AddTextBoxAction extends MenuBarPaintAction {
 
 	public AddTextBoxAction(PaintPanel panel) {
 		super(panel);

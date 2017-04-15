@@ -15,11 +15,11 @@ import ui.PaintPanel;
  * @author chenzb
  *
  */
-public abstract class PaintAction {
+public abstract class MenuBarPaintAction {
 
 	protected PaintPanel panel;
 
-	public PaintAction(PaintPanel panel) {
+	public MenuBarPaintAction(PaintPanel panel) {
 		this.panel = panel;
 	}
 

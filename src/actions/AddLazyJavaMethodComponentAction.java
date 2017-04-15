@@ -12,7 +12,7 @@ import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.MethodPaintComponent;
 import ui.PaintPanel;
 
-public class AddLazyJavaMethodComponentAction extends PaintAction {
+public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 
 	public AddLazyJavaMethodComponentAction(PaintPanel panel) {
 		super(panel);

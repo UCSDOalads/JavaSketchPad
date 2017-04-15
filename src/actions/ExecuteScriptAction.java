@@ -10,9 +10,9 @@ import ui.PaintPanel;
 import script.ExecutionErrorException;
 import script.Interpreter;
 
-public class EnterScriptAction extends PaintAction {
+public class ExecuteScriptAction extends MenuBarPaintAction {
 	
-	public EnterScriptAction(PaintPanel panel) {
+	public ExecuteScriptAction(PaintPanel panel) {
 		super(panel);
 	}
 
