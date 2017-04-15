@@ -17,6 +17,10 @@ import actions.global.GlobalPaintActionExecuter;
  */
 public class AddLazyJavaConstructorGlobalActionTest {
 
+	/**
+	 * Test the number of components on the panel and the type of component
+	 * added to verify adding a component
+	 */
 	@Test
 	public void test() {
 		PaintPanel panel = new PaintPanel();

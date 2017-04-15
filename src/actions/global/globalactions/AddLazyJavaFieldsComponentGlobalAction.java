@@ -10,7 +10,6 @@ import actions.global.GlobalPaintAction;
 public class AddLazyJavaFieldsComponentGlobalAction extends GlobalPaintAction {
 
 	private ClassPaintComponent comp;
-	private UndoRedoableInterface undoRedoBlock;
 	private int x;
 	private int y;
 
@@ -20,7 +19,7 @@ public class AddLazyJavaFieldsComponentGlobalAction extends GlobalPaintAction {
 				comp.getDisplayingClass(), x, y);
 		panel.addPaintComponent(fieldsComp);
 		// push action to the manager
-		undoRedoBlock = new UndoRedoableInterface() {
+		UndoRedoableInterface undoRedoBlock = new UndoRedoableInterface() {
 
 			@Override
 			public void undoAction() {
@@ -51,10 +50,6 @@ public class AddLazyJavaFieldsComponentGlobalAction extends GlobalPaintAction {
 
 	public void setComponent(ClassPaintComponent comp) {
 		this.comp = comp;
-	}
-
-	protected UndoRedoableInterface getUndoRedoBlock() {
-		return undoRedoBlock;
 	}
 
 	public void setCoord(int x, int y) {

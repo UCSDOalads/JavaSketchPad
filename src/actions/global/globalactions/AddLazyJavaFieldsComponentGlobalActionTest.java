@@ -11,8 +11,16 @@ import ui.PaintPanel;
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 
+/**
+ * AddLazyJavaFieldsComponentGlobalActionTest. Author: Xiaoquan Jiang Test
+ * AddLazyJavaFieldsComponentGlobalAction
+ */
 public class AddLazyJavaFieldsComponentGlobalActionTest {
 
+	/**
+	 * Test the number of components on the panel and the type of component
+	 * added to verify adding a component
+	 */
 	@Test
 	public void test() {
 		PaintPanel panel = new PaintPanel();
