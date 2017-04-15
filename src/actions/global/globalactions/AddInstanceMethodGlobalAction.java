@@ -10,5 +10,7 @@ public class AddInstanceMethodGlobalAction extends GlobalPaintAction {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 
 }
