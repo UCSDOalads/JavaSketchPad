@@ -2,6 +2,10 @@ package actions;
 
 import java.util.ArrayList;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddAnnotationGlobalAction;
+import actions.global.globalactions.RemoveAnnotationGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import actions.singleinstanceoperations.SingleInstanceOperation;
 import paintcomponents.PaintComponent;
@@ -51,7 +55,11 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 	@Override
 	protected void performActionOnInstance(PaintComponent instance) {
 		// TODO Auto-generated method stub
-		instance.setOptionalAnnotation(null);
+		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
+				.getAssiciatedAction();
+		
+		associatedAction.setInstance(instance);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 	@Override
@@ -59,7 +67,5 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 		// TODO Auto-generated method stub
 		return PaintComponent.class;
 	}
-
-
 
 }

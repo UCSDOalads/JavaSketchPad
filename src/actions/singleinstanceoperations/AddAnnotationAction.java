@@ -6,6 +6,9 @@ import javax.swing.JOptionPane;
 
 import actions.global.ActionName;
 import actions.global.GlobalPaintAction;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddAnnotationGlobalAction;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
 import actions.global.globalactions.SingleInstanceOperationGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.PaintComponent;
@@ -42,9 +45,26 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 		return PaintComponent.class;
 	}
 
+
 	@Override
-	protected ActionName getExecutingAction() {
-		return ActionName.ADD_ANNOTATION_ACTION;
+	protected void performActionOnInstance(PaintComponent instance) {
+		// TODO Auto-generated method stub
+		/*String annotations = JOptionPane
+				.showInputDialog("Please specify the annotation of the component");
+		new TextAnnotation(instance, annotations);
+		AddLazyJavaClassGlobalAction assiciatedAction 
+		= (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
+				.getAssiciatedAction();
+		assiciatedAction.setClassToCreate(input);
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);*/
+		String annotations = JOptionPane
+				.showInputDialog("Please specify the annotation of the component");
+		
+		AddAnnotationGlobalAction associatedAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
+				.getAssiciatedAction();
+		associatedAction.setAnnotationToAdd(annotations);
+		associatedAction.setOperatingInstance(instance);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 
