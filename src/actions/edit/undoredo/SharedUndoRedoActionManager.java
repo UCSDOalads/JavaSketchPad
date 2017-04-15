@@ -32,14 +32,18 @@ public class SharedUndoRedoActionManager {
 		UndoRedoableInterface undoableAction = undoStack.pop();
 		undoableAction.undoAction();
 		redoStack.add(undoableAction);
-		delegate.didUndoAction(undoableAction);
+	if (delegate != null) {
+	    delegate.didUndoAction(undoableAction);
+	}
 	}
 	
 	public void redo() {
 		UndoRedoableInterface redoableAction = redoStack.pop();
 		redoableAction.redoAction();
 		undoStack.add(redoableAction);
-		delegate.didRedoAction(redoableAction);
+	if (delegate != null) {
+	    delegate.didRedoAction(redoableAction);
+	}
 	}
 	
 	public boolean canUndo() {
