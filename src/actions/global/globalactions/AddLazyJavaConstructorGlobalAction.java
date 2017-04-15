@@ -13,6 +13,7 @@ public class AddLazyJavaConstructorGlobalAction extends GlobalPaintAction {
 
 	private ClassPaintComponent comp;
 	private int desiaredConstructorIndex;
+	private UndoRedoableInterface undoRedoBlock;
 
 	@Override
 	protected void execute(PaintPanel panel) {
@@ -22,31 +23,33 @@ public class AddLazyJavaConstructorGlobalAction extends GlobalPaintAction {
 				panel.getHeight() / 2);
 		panel.addPaintComponent(consComp);
 		// add action to undo redo manager
+		undoRedoBlock = new UndoRedoableInterface() {
+
+			@Override
+			public void undoAction() {
+				consComp.remove(panel);
+				panel.repaint();
+			}
+
+			@Override
+			public void redoAction() {
+				panel.addPaintComponent(consComp);
+				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaConstructor";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a lazily evaludated java constructor";
+			}
+		};
+
 		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
-				new UndoRedoableInterface() {
-
-					@Override
-					public void undoAction() {
-						consComp.remove(panel);
-						panel.repaint();
-					}
-
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(consComp);
-						panel.repaint();
-					}
-
-					@Override
-					protected String commandName() {
-						return "add lazy javaConstructor";
-					}
-
-					@Override
-					protected String commandDescription() {
-						return "add a lazily evaludated java constructor";
-					}
-				});
+				undoRedoBlock);
 		panel.repaint();
 	}
 
@@ -62,4 +65,7 @@ public class AddLazyJavaConstructorGlobalAction extends GlobalPaintAction {
 		return comp.getDisplayingClass().getConstructors();
 	}
 
+	protected UndoRedoableInterface getUndoRedoBlock() {
+		return undoRedoBlock;
+	}
 }
