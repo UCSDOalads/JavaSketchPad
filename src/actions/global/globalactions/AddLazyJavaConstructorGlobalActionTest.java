@@ -34,6 +34,7 @@ public class AddLazyJavaConstructorGlobalActionTest {
 		AddLazyJavaConstructorGlobalAction assiciatedAction = (AddLazyJavaConstructorGlobalAction) ActionName.ADD_LAZY_JAVA_CONSTRUCTOR_ACTION
 				.getAssiciatedAction();
 		assiciatedAction.setComponent(comp);
+		assiciatedAction.setConstructorIndex(0);
 
 		// test
 		assertEquals(1, panel.getPaintComponents().size());
