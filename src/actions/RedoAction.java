@@ -6,6 +6,9 @@ import actions.menu.ActionsMenuBarTitles;
 
 public class RedoAction extends MenuBarPaintAction {
 
+	
+	
+	
 	SharedUndoRedoActionManager manager = SharedUndoRedoActionManager.getSharedInstance();
 	
 	public RedoAction(PaintPanel panel) {

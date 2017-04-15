@@ -26,11 +26,11 @@ public class AddLazyJavaClassAction extends MenuBarPaintAction {
 
 			@Override
 			public void didFinishInput(Class input) {
-				AddLazyJavaClassGlobalAction assiciatedAction 
-				= (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
+				AddLazyJavaClassGlobalAction assiciatedAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
 						.getAssiciatedAction();
 				assiciatedAction.setClassToCreate(input);
-				GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+				GlobalPaintActionExecuter.getSharedInstance().execute(
+						assiciatedAction, panel);
 
 			}
 		});
