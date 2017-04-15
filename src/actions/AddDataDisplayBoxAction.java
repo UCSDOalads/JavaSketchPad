@@ -2,9 +2,15 @@ package actions;
 
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddDataDisplayBoxGlobalAction;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataDisplayPaintComponent;
 import ui.PaintPanel;
+import ui.general.InputManager;
+import ui.general.InputManagerDelegate;
 
 public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 
@@ -19,37 +25,15 @@ public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		DataDisplayPaintComponent comp = new DataDisplayPaintComponent("Data Display", panel.getWidth() /2, panel.getHeight()/2);
-		panel.addPaintComponent(comp);
 		
-		//push action to manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
-			@Override
-			public void undoAction() {
-				comp.remove(panel);
-				panel.repaint();
-			}
-			
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(comp);
-				panel.repaint();
-			}
+				AddDataDisplayBoxGlobalAction assiciatedAction 
+				= (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
+						.getAssiciatedAction();
+				assiciatedAction.setDataDisplay("Data Input");
+				assiciatedAction.setX(panel.getWidth()/2);
+				assiciatedAction.setY(panel.getHeight()/2);
+				GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
 
-			@Override
-			protected String commandName() {
-				return "add data displayBox";
-			}
-
-			@Override
-			protected String commandDescription() {
-				return "add a string display";
-			}
-
-			
-		});
-		panel.repaint();
 	}
 
 	@Override
