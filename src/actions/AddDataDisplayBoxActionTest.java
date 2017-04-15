@@ -8,6 +8,11 @@ import paintcomponents.data.DataDisplayPaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
+/**
+ * AddDataDisplayBoxAction tester
+ * @author Joe Helen
+ * test getPaintcomponents size. paintComponents goes from 0 to 1 when it performs the action.
+ */
 public class AddDataDisplayBoxActionTest {
 
 	@Test
