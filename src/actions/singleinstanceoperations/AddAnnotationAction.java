@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;

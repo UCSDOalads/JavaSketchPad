@@ -47,7 +47,7 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 	}
 	
 	@Override
-	protected void performAction(PaintComponent instance) {
+	protected void performActionOnInstance(PaintComponent instance) {
 		InputManager.sharedInstance().askForFloat(panel, new InputManagerDelegate<Float>() {
 			
 			@Override

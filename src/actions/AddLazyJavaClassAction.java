@@ -1,18 +1,13 @@
 package actions;
 
-import java.awt.Dimension;
-
-import javax.swing.JOptionPane;
-
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
-import ui.helper.classsearch.ClassSearchFrame;
-import ui.helper.classsearch.ClassSearchFrameDelegateInterface;
+
 public class AddLazyJavaClassAction extends MenuBarPaintAction {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {
@@ -23,10 +18,11 @@ public class AddLazyJavaClassAction extends MenuBarPaintAction {
 	public boolean canPerformAction() {
 		return true;
 	}
-	
+
 	@Override
 	public void performAction() {
 		InputManager im = new InputManager();
+<<<<<<< HEAD
 		im.askForClass(panel,new InputManagerDelegate<Class>() {
 			
 			public void didSelectClass(String classname) {
@@ -69,30 +65,19 @@ public class AddLazyJavaClassAction extends MenuBarPaintAction {
 				}
 
 			}
+=======
+		im.askForClass(panel, new InputManagerDelegate<Class>() {
+
+			@Override
+>>>>>>> 8aa58ac4b86c1ea26278a3423379212bc90329af
 			public void didFinishInput(Class input) {
-				ClassPaintComponent comp = new ClassPaintComponent(input,
-						panel.getWidth() / 2, panel.getHeight() / 2);
-				panel.addPaintComponent(comp);
-				// add action to undo redo manager
-				SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-					
-					@Override
-					public void undoAction() {
-						comp.remove(panel);
-						panel.repaint();
-					}
-			
-					@Override
-					public void redoAction() {
-						panel.addPaintComponent(comp);
-						panel.repaint();
-					}
+				AddLazyJavaClassGlobalAction assiciatedAction 
+				= (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
+						.getAssiciatedAction();
+				assiciatedAction.setClassToCreate(input);
+				GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
 
-					@Override
-					protected String commandName() {
-						return "add lazy javaClass";
-					}
-
+<<<<<<< HEAD
 					@Override
 					protected String commandDescription() {
 						return "add a java class component";
@@ -100,9 +85,11 @@ public class AddLazyJavaClassAction extends MenuBarPaintAction {
 				});
 				panel.repaint();
 
+=======
+>>>>>>> 8aa58ac4b86c1ea26278a3423379212bc90329af
 			}
-		} );
-			
+		});
+
 	}
 	
 
