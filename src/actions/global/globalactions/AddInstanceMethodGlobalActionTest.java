@@ -10,11 +10,15 @@ import paintcomponents.java.interactive.MethodPaintComponent;
 import ui.PaintPanel;
 
 public class AddInstanceMethodGlobalActionTest {
-
+	
+	/**
+	 * Test adding instance method to an instance operation component
+	 */
 	@Test
 	public void test() {
 		
 		//first add a instance operation component
+		//Same as the test case in AddInstanceOperationGlobalActionTest
 		PaintPanel panel = new PaintPanel();
 		AddInstanceOperationGlobalAction addInsCompAction = new AddInstanceOperationGlobalAction();
 		assertEquals(0, panel.getPaintComponents().size());
@@ -25,7 +29,9 @@ public class AddInstanceMethodGlobalActionTest {
 		
 		//add a method based on the operation component
 		AddInstanceMethodGlobalAction addInsMthAction = new AddInstanceMethodGlobalAction();
+		//specify the instance operation component to add method on
 		addInsMthAction.setInsComp(addInsCompAction.getInsComp());
+		//take the first method of String for example
 		addInsMthAction.setMethodToSet(String.class.getMethods()[0]);
 		addInsMthAction.execute(panel);
 		assertEquals(2, panel.getPaintComponents().size());

@@ -17,31 +17,7 @@ public class AddInstanceOperationGlobalAction extends GlobalPaintAction {
 				constructorToSet, panel.getWidth() / 2,
 				panel.getHeight() / 2);
 		panel.addPaintComponent(insComp);
-		// add action to undo redo manager
-//		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-//					
-//			@Override
-//			public void undoAction() {
-//				consComp.remove(panel);
-//				panel.repaint();
-//			}
-//					
-//			@Override
-//			public void redoAction() {
-//				panel.addPaintComponent(consComp);
-//				panel.repaint();
-//			}
-//
-//			@Override
-//			protected String commandName() {
-//				return "NOT YET IMPLEMENTED";
-//			}
-//
-//			@Override
-//			protected String commandDescription() {
-//				return "NOT YET IMPLEMENTED";
-//			}
-//		});
+		//TODO: add action to undo redo manager
 		panel.repaint();
 	}
 
