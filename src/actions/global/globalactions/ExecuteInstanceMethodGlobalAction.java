@@ -17,6 +17,8 @@ public class ExecuteInstanceMethodGlobalAction extends GlobalPaintAction {
 		methodComp.executeMethod();
 		
 	}
+	
+
 
 	
 }
