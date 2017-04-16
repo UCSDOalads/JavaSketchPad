@@ -1,51 +1,89 @@
 package actions.global.globalactions;
 
 import static org.junit.Assert.*;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import paintcomponents.java.interactive.InstanceOperationComponent;
-import paintcomponents.java.interactive.MethodPaintComponent;
+import actions.ExecuteInstanceConstructorAction;
+import painttools.tools.SelectTool;
 import ui.PaintPanel;
 
 public class ExecuteInstanceMethodGlobalActionTest {
 	PaintPanel panel;
-	
+	AddInstanceMethodGlobalAction addInsMthAction;
+	AddInstanceOperationGlobalAction addInstance;
 	@Before
 	public void setUp() {
 		// TODO Auto-generated method stub
-
-		//first add a instance operation component
 		panel = new PaintPanel();
-		AddInstanceOperationGlobalAction addInsCompAction = new AddInstanceOperationGlobalAction();
-		assertEquals(0, panel.getPaintComponents().size());
-		addInsCompAction.setConstructorToSet(String.class.getConstructors()[0]);
-		addInsCompAction.execute(panel);
-		assertEquals(1, panel.getPaintComponents().size());
-		assertTrue(panel.getPaintComponents().get(0) instanceof InstanceOperationComponent);
-		
-		//add a method based on the operation component
-		AddInstanceMethodGlobalAction addInsMthAction = new AddInstanceMethodGlobalAction();
-		addInsMthAction.setInsComp(addInsCompAction.getInsComp());
-		addInsMthAction.setMethodToSet(String.class.getMethods()[0]);
-		addInsMthAction.execute(panel);
-		assertEquals(2, panel.getPaintComponents().size());
-		assertTrue(panel.getPaintComponents().get(1) instanceof MethodPaintComponent);
+
+
 	}
 
 
+	//test String length method
 	@Test
 	public void test() {
+		//first add a instance operation component
 		
-		
-		AddLazyJavaClassGlobalAction addClassAction = new AddLazyJavaClassGlobalAction();
+		addInstance = new AddInstanceOperationGlobalAction();
+		addInstance.setConstructorToSet(String.class.getConstructors()[9]);//String();
+		addInstance.execute(panel);
 		
 
-
-		assertEquals(2,panel.getPaintComponents().size());
 		
+		//set select tool
+		panel.setSelectTool(new SelectTool(panel));
+		
+		
+		//initial constructor
+		ExecuteInstanceConstructorAction constructor = new ExecuteInstanceConstructorAction(panel);
+		panel.getSelectTool().addSelectedComponent(panel.getPaintComponents().get(0));
+		constructor.performAction();
+		
+		//add a method based on the operation component
+		addInsMthAction = new AddInstanceMethodGlobalAction();
+		addInsMthAction.setInsComp(addInstance.getInsComp());
+		addInsMthAction.setMethodToSet(String.class.getMethods()[18]);//String.length();
+		addInsMthAction.execute(panel);
+		
+		//execute method
+		ExecuteInstanceMethodGlobalAction executeMethod = new ExecuteInstanceMethodGlobalAction();
+		panel.getSelectTool().removeSelectedComponent(panel.getPaintComponents().get(0));
+		panel.getSelectTool().addSelectedComponent(panel.getPaintComponents().get(1));
+		assertEquals(0,executeMethod.doExecute(panel));
+		
+	}
 	
+	//test ArrayList isEmpty
+	@Test
+	public void test1(){
+		//first add an ArrayList instance operation component
+		addInstance = new AddInstanceOperationGlobalAction();
+		addInstance.setConstructorToSet(ArrayList.class.getConstructors()[1]);//String();
+		addInstance.execute(panel);
 		
+		//set select tool
+		panel.setSelectTool(new SelectTool(panel));
+		
+		
+		//initial constructor
+		ExecuteInstanceConstructorAction constructor = new ExecuteInstanceConstructorAction(panel);
+		panel.getSelectTool().addSelectedComponent(panel.getPaintComponents().get(0));
+		constructor.performAction();
+		
+		//add ArrayList isEmpty method based on the operation component
+		addInsMthAction = new AddInstanceMethodGlobalAction();
+		addInsMthAction.setInsComp(addInstance.getInsComp());
+		addInsMthAction.setMethodToSet(ArrayList.class.getMethods()[8]);//String.length();
+		addInsMthAction.execute(panel);
+		
+		//execute method
+		ExecuteInstanceMethodGlobalAction executeMethod = new ExecuteInstanceMethodGlobalAction();
+		panel.getSelectTool().removeSelectedComponent(panel.getPaintComponents().get(0));
+		panel.getSelectTool().addSelectedComponent(panel.getPaintComponents().get(1));
+		assertEquals(true,executeMethod.doExecute(panel));
 	}
 }
