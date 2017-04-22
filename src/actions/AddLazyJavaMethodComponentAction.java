@@ -41,6 +41,12 @@ public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool().getSelectedComponents().get(0);
+		Method[] methods = comp.getDisplayingClass().getMethods();
+
+		int desiaredConstructorIndex = Integer
+				.parseInt(JOptionPane.showInputDialog(
+						"Please enter the index of the constructor you would like to use: \n\n\n"
+								+ getMethodsSelectionUI(methods)));
 		
 		AddLazyJavaMethodComponentGlobalAction assiciatedAction 
 		= (AddLazyJavaMethodComponentGlobalAction) ActionName.ADD_LAZY_JAVA_METHOD_ACTION.getAssiciatedAction();

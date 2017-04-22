@@ -18,20 +18,15 @@ public class AddLazyJavaMethodComponentGlobalActionTest {
 		
 		PaintPanel panel = new PaintPanel();
 		
-		AddLazyJavaClassGlobalAction classAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-		.getAssiciatedAction();
-		classAction.setClassToCreate("string".getClass());
-		GlobalPaintActionExecuter.getSharedInstance().execute(classAction, panel);
+		AddLazyJavaMethodComponentGlobalAction action = new AddLazyJavaMethodComponentGlobalAction();
+		assertEquals(0, panel.getPaintComponents().size());
 		
-		ClassPaintComponent comp = (ClassPaintComponent) panel.getPaintComponents().get(0);
-		AddLazyJavaMethodComponentGlobalAction assiciatedAction = (AddLazyJavaMethodComponentGlobalAction) ActionName.ADD_LAZY_JAVA_METHOD_ACTION.getAssiciatedAction();
-		assiciatedAction.setMethodComponent(comp);
-		
+		//use first method to test
+		action.setMethod(String.class.getMethods()[0]);
+		action.execute(panel);
 		assertEquals(1, panel.getPaintComponents().size());
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-		panel);
-		assertEquals(2, panel.getPaintComponents().size());
-		assertTrue(panel.getPaintComponents().get(1) instanceof MethodPaintComponent);
+		assertTrue(panel.getPaintComponents().get(0) instanceof MethodPaintComponent);
+		
 	}
 }
 
