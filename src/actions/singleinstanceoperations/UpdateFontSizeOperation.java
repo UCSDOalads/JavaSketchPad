@@ -12,7 +12,7 @@ public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintCo
 		super(panel);
 	}
 
-	@Override
+	
 	protected void performActionOnInstance(TextPaintComponent instance) {
 		 InputManager.sharedInstance().askForFloat(panel, new InputManagerDelegate<Float>() {
 			

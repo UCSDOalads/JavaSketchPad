@@ -7,6 +7,7 @@ import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
+import actions.global.ActionName;
 import actions.menu.ActionsMenuBarTitles;
 import actions.singleinstanceoperations.SingleInstanceOperation;
 import paintcomponents.annotations.*;
@@ -45,7 +46,7 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 		return true;
 	}
 	
-	@Override
+	
 	protected void performActionOnInstance(PaintComponent instance) {
 		InputManager.sharedInstance().askForFloat(panel, new InputManagerDelegate<Float>() {
 			
@@ -70,6 +71,12 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 	@Override
 	public String locationString() {
 		return ActionsMenuBarTitles.Edit().Annotation_Font_Size().toString();
+	}
+
+	@Override
+	protected ActionName getExecutingAction() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

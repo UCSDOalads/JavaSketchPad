@@ -13,7 +13,7 @@ import ui.PaintPanel;
 /**
  * Single Instance Operation defines operation on a single instance.
  * 
- * i.e., 1. One and Only One Instance must be selected to perform operaion.
+ * i.e., 1. One and Only One Instance must be selected to perform operation.
  * 
  * 2. The operation only changes the instance itself but nothing else
  *
@@ -25,8 +25,8 @@ import ui.PaintPanel;
  * @author chenzb
  *
  */
-public abstract class SingleInstanceOperation<T extends PaintComponent>
-		extends MenuBarPaintAction {
+public abstract class SingleInstanceOperation<T extends PaintComponent> extends
+		MenuBarPaintAction {
 
 	public SingleInstanceOperation(PaintPanel panel) {
 		super(panel);
@@ -51,8 +51,10 @@ public abstract class SingleInstanceOperation<T extends PaintComponent>
 		PaintComponent comp = panel.getSelectTool().getSelectedComponents()
 				.get(0);
 
-		// retrieve the right action to execute, and use executer to execute the instance
-		SingleInstanceOperationGlobalAction<GlobalPaintAction<?>> executingAction = getExecutingAction().getAssiciatedAction();
+		// retrieve the right action to execute, and use executer to execute the
+		// instance
+		SingleInstanceOperationGlobalAction<GlobalPaintAction<?>> executingAction = getExecutingAction()
+				.getAssiciatedAction();
 		executingAction.setOperatingInstance(comp);
 		GlobalPaintActionExecuter.getSharedInstance().execute(executingAction,
 				panel);

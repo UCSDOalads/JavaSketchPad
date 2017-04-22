@@ -49,16 +49,20 @@ public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {
 				.getSelectedComponents();
 		DataFromPoint fromPoint = (DataFromPoint) comps.get(0);
 		DataToPoint toPoint = (DataToPoint) comps.get(1);
-		//if (!fromPoint.getExpectedType().equals(toPoint.getExpectedType())) {
-		if(!toPoint.getExpectedType().canBeAssignedFrom(fromPoint.getExpectedType())){
-			int result = JOptionPane.showConfirmDialog(panel,
-					"The source type is " + fromPoint.getExpectedType()
-							+ ", the destination type is "
-							+ toPoint.getExpectedType()
-							+ ". Do you want to proceed and create the connection anyway?",
+		// if (!fromPoint.getExpectedType().equals(toPoint.getExpectedType())) {
+		if (!toPoint.getExpectedType().canBeAssignedFrom(
+				fromPoint.getExpectedType())) {
+			int result = JOptionPane
+					.showConfirmDialog(
+							panel,
+							"The source type is "
+									+ fromPoint.getExpectedType()
+									+ ", the destination type is "
+									+ toPoint.getExpectedType()
+									+ ". Do you want to proceed and create the connection anyway?",
 
-					"Type Mismatch", JOptionPane.YES_NO_OPTION,
-					JOptionPane.WARNING_MESSAGE);
+							"Type Mismatch", JOptionPane.YES_NO_OPTION,
+							JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.NO_OPTION) {
 				return;
 			}
@@ -66,32 +70,33 @@ public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {
 		}
 		DataLineSegment seg = new DataLineSegment(fromPoint, toPoint);
 		addLineSegment(seg);
-		//push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
-			@Override
-			public void undoAction() {
-				seg.remove(panel);
-				panel.repaint();
-			}
-			
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(seg);
-				panel.repaint();
-			}
+		// push action to the manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
+				new UndoRedoableInterface() {
 
-			@Override
-			protected String commandName() {
-				return "construct dataLineSegment";
-			}
+					@Override
+					public void undoAction() {
+						seg.remove(panel);
+						panel.repaint();
+					}
 
-			@Override
-			protected String commandDescription() {
-				return "construct a line segment that flows data";
-			}
+					@Override
+					public void redoAction() {
+						panel.addPaintComponent(seg);
+						panel.repaint();
+					}
 
-		});
+					@Override
+					protected String commandName() {
+						return "construct dataLineSegment";
+					}
+
+					@Override
+					protected String commandDescription() {
+						return "construct a line segment that flows data";
+					}
+
+				});
 	}
 
 	@Override
