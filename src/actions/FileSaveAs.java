@@ -11,6 +11,10 @@ import javax.xml.transform.TransformerException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.FileOpenGlobalAction;
+import actions.global.globalactions.FileSaveAsGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import file.PanelIO;
 import ui.PaintPanel;
@@ -47,13 +51,11 @@ public class FileSaveAs extends MenuBarPaintAction {
 			return;
 		}
 		
-		PanelIO io = new PanelIO();
-		try {
-			io.constructDocumentFromPanel(panel, filePath);
-		} catch (ParserConfigurationException | TransformerException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(panel, e.toString());
-		}
+		FileSaveAsGlobalAction associatedAction 
+		= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
+				.getAssiciatedAction();
+		associatedAction.setFilePath(filePath);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 	@Override

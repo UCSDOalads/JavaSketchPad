@@ -13,4 +13,5 @@ public abstract class GlobalPaintAction<T extends GlobalPaintAction<?>> {
 	protected abstract void execute(PaintPanel panel);
 
 
+
 }

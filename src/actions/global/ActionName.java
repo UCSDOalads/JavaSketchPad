@@ -200,6 +200,21 @@ public enum ActionName {
 			return new RemoveAnnotationGlobalAction();
 		}
 	}
+	,
+	FILE_OPEN_GLOBAL_ACTION {
+		@Override
+		public GlobalPaintAction getAssiciatedAction() {
+			return new FileOpenGlobalAction();
+		}
+	}
+	,
+	FILE_SAVE_AS_GLOBAL_ACTION {
+		@Override
+		public GlobalPaintAction getAssiciatedAction() {
+			return new FileSaveAsGlobalAction();
+		}
+	}
+	
 	;
 
 	
