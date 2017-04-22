@@ -43,7 +43,7 @@ public class DialogInputChecker {
 	}
 	
 	/**
-	 * Check if str is a valid number input within min and max inclusive
+	 * Check if str is a valid number input within min and max (inclusive)
 	 * @param str string to be checked
 	 * @param min 
 	 * @param max
