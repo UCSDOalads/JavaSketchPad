@@ -42,16 +42,20 @@ public class AddInstanceMethodAction extends MenuBarPaintAction {
 				getSelectedComponents().get(0);
 		Method[] methods = insComp.getDisplayingClass().getMethods();
 		
-		int desiaredConstructorIndex = Integer
-				.parseInt(JOptionPane.showInputDialog(
+		String desiaredConstructorIndex = JOptionPane.showInputDialog(
 						"Please enter the index of the constructor you would like to use: \n\n\n"
-								+ getMethodsSelectionUI(methods)));
-		AddInstanceMethodGlobalAction assiciatedAction = 
-				(AddInstanceMethodGlobalAction) ActionName.ADD_INSTANCE_METHOD_ACTION
-				.getAssiciatedAction();
-		assiciatedAction.setInsComp(insComp);
-		assiciatedAction.setMethodToSet(methods[desiaredConstructorIndex]);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+								+ getMethodsSelectionUI(methods));
+		
+		//call DialogInputChecker to check input
+		DialogInputChecker inputChecker = new DialogInputChecker();
+		if(inputChecker.isValidNumber(desiaredConstructorIndex, 0, methods.length -1)){
+			AddInstanceMethodGlobalAction assiciatedAction = 
+					(AddInstanceMethodGlobalAction) ActionName.ADD_INSTANCE_METHOD_ACTION
+					.getAssiciatedAction();
+			assiciatedAction.setInsComp(insComp);
+			assiciatedAction.setMethodToSet(methods[Integer.parseInt(desiaredConstructorIndex)]);
+			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+		}
 	}
 
 	@Override

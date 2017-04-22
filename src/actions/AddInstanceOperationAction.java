@@ -37,16 +37,18 @@ public class AddInstanceOperationAction extends MenuBarPaintAction {
 				.getSelectedComponents().get(0);
 		Constructor[] cons = comp.getDisplayingClass().getConstructors();
 		
-		int desiaredConstructorIndex = Integer
-				.parseInt(JOptionPane.showInputDialog(
+		String desiaredConstructorIndex = JOptionPane.showInputDialog(
 						"Please enter the index of the constructor you would like to use: \n\n\n"
-								+ getConstructorsSelectionUI(cons)));
-		
-		AddInstanceOperationGlobalAction assiciatedAction = 
-				(AddInstanceOperationGlobalAction) ActionName.ADD_INSTANCE_OPERATION_ACTION
-				.getAssiciatedAction();
-		assiciatedAction.setConstructorToSet(cons[desiaredConstructorIndex]);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+								+ getConstructorsSelectionUI(cons));
+		//call inputChecker to check if input is valid
+		DialogInputChecker inputChecker = new DialogInputChecker();
+		if(inputChecker.isValidNumber(desiaredConstructorIndex, 0, cons.length -1)){
+			AddInstanceOperationGlobalAction assiciatedAction = 
+					(AddInstanceOperationGlobalAction) ActionName.ADD_INSTANCE_OPERATION_ACTION
+					.getAssiciatedAction();
+			assiciatedAction.setConstructorToSet(cons[Integer.parseInt(desiaredConstructorIndex)]);
+			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+		}
 		
 	}
 	
