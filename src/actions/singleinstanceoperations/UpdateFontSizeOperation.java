@@ -4,7 +4,6 @@ import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
-import actions.global.ActionName;
 import actions.menu.ActionsMenuBarTitles;
 
 public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintComponent>{
@@ -35,15 +34,5 @@ public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintCo
 	protected Class<TextPaintComponent> getGenericClassType() {
 		return TextPaintComponent.class;
 	}
-
-	@Override
-	protected ActionName getExecutingAction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-	
 
 }
