@@ -8,6 +8,8 @@ import actions.global.GlobalPaintAction;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.SingleInstanceOperationGlobalAction;
 import paintcomponents.PaintComponent;
+import paintcomponents.SimplePoint;
+import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 
 /**
@@ -71,5 +73,6 @@ public abstract class SingleInstanceOperation<T extends PaintComponent> extends
 	 * @return
 	 */
 	protected abstract Class<T> getGenericClassType();
+
 
 }

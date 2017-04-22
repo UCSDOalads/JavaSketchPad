@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import actions.global.ActionName;
-import actions.global.GlobalPaintAction;
-import actions.global.globalactions.SingleInstanceOperationGlobalAction;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
@@ -38,8 +37,46 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 	}
 
 	@Override
+	protected void performActionOnInstance(PaintComponent instance) {
+		// TODO Auto-generated method stub
+		String annotations = JOptionPane
+				.showInputDialog("Please specify the annotation of the component");
+		new TextAnnotation(instance, annotations);
+		instance.setText(annotations);
+		//push action to manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+			
+			@Override
+			public void undoAction() {
+				instance.setOptionalAnnotation(null);
+				panel.repaint();
+			}
+			
+			@Override
+			public void redoAction() {
+				new TextAnnotation(instance, annotations);
+				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "add an annotation";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add an annotation";
+			}
+
+			
+		});
+		panel.repaint();
+	}
+		
+
 	protected Class<PaintComponent> getGenericClassType() {
 		return PaintComponent.class;
+
 	}
 
 	@Override
