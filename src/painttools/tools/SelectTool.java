@@ -264,4 +264,19 @@ public class SelectTool extends PaintTool {
 
 	}
 
+	/**
+	 * add a component to selected
+	 * @param pc
+	 */
+	public void addSelectedComponent(PaintComponent pc){
+		selectedComponents.add(pc);
+	}
+	
+	/**
+	 * remove a selected component
+	 * 
+	 */
+	public void removeSelectedComponent(PaintComponent pc){
+		selectedComponents.remove(pc);
+	}
 }

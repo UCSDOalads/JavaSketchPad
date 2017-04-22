@@ -13,7 +13,7 @@ import paintcomponents.TextPaintComponent;
 public class TextAnnotation extends PaintComponentAnnotation {
 
 	private TextPaintComponent textPaintComponent;
-	
+
 	/**
 	 * create the annotation of a component with information
 	 * 
@@ -68,5 +68,16 @@ public class TextAnnotation extends PaintComponentAnnotation {
 	@Override
 	public void setFontSize(float input) {
 		textPaintComponent.setFontSize(input);
+	}
+	
+	/**
+	 * 
+	 */
+	public String getStringContent(){
+		return textPaintComponent.getStringContent();
+	}
+	
+	public TextPaintComponent getTextPaintComponent() {
+		return textPaintComponent;
 	}
 }

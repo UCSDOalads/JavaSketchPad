@@ -1,15 +1,16 @@
 package actions.global.globalactions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import actions.global.ActionName;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import paintcomponents.java.interactive.InstanceOperationComponent;
 import paintcomponents.java.interactive.MethodPaintComponent;
 import ui.PaintPanel;
+
 
 public class ExecuteInstanceMethodGlobalActionTest extends ExecuteInstanceMethodGlobalAction {
 	
@@ -53,5 +54,4 @@ public class ExecuteInstanceMethodGlobalActionTest extends ExecuteInstanceMethod
 
 		}
 	}
-
 

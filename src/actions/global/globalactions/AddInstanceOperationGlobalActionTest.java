@@ -22,6 +22,7 @@ public class AddInstanceOperationGlobalActionTest {
 		
 		assertEquals(0, panel.getPaintComponents().size());
 		
+		//use the first constructor of String as example
 		action.setConstructorToSet(String.class.getConstructors()[0]);
 		
 		action.execute(panel);
