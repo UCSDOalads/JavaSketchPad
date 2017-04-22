@@ -2,7 +2,6 @@ package actions.global.globalactions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,9 +34,5 @@ public class AddHaskellEvaluatorComponentGlobalActionTest {
 		assertTrue(panel.getPaintComponents().get(0) instanceof EvaluateHaskellPaintComponent);
 	}
 
-	@Test
-	public void testSetClassToCreate() {
-		fail("Not yet implemented"); // TODO
-	}
 
 }
