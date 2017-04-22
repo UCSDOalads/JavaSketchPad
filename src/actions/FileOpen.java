@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
+import actions.global.globalactions.FileOpenGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import file.PanelIO;
 import ui.PaintPanel;
@@ -39,18 +43,11 @@ public class FileOpen extends MenuBarPaintAction {
 			return;
 		}
 		
-		PanelIO io = new PanelIO();
-		try {
-			io.constructPanelFromDocument(panel, filePath, true);
-			panel.repaint();
-		} catch (ParserConfigurationException | SAXException | IOException
-				| ClassNotFoundException | NoSuchMethodException
-				| SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(panel, e.toString());
-		}
+		FileOpenGlobalAction associatedAction 
+		= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
+				.getAssiciatedAction();
+		associatedAction.setFileToOpen(filePath);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 	@Override
