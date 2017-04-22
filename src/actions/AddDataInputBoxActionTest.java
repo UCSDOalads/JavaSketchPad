@@ -1,6 +1,7 @@
 package actions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -15,12 +16,15 @@ public class AddDataInputBoxActionTest {
 
 		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
 
+		// panel has 0 component
 		assertEquals(0, panel.getPaintComponents().size());
 
 		action.performAction();
 
+		// after perform action, panel now has 1 component
 		assertEquals(1, panel.getPaintComponents().size());
 
+		// check if the component is a DataDisplayPaintComponent
 		assertTrue(panel.getPaintComponents().get(0) instanceof DataInputTextfieldPaintComponent);
 
 	}
