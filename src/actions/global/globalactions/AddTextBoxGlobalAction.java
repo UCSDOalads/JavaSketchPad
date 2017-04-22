@@ -1,12 +1,10 @@
 package actions.global.globalactions;
 
-import javax.swing.JOptionPane;
-
 import paintcomponents.TextPaintComponent;
+import ui.PaintPanel;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.global.GlobalPaintAction;
-import ui.PaintPanel;
 
 /**
  * add text box to panel in global
@@ -48,7 +46,6 @@ public class AddTextBoxGlobalAction extends GlobalPaintAction {
 	 */
 	@Override
 	protected void execute(PaintPanel panel) {
-		// TODO Auto-generated method stub
 		TextPaintComponent comp = new TextPaintComponent(textDisplay, x, y);
 		panel.addPaintComponent(comp);
 		// push action to the manager
