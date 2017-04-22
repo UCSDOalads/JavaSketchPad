@@ -18,7 +18,7 @@ import ui.PaintPanel;
 /*
  * @author Yidong Luo
  */
-public class FileOpenGlobalActionTest {
+public class FileOpenAndSaveGlobalActionTest {
 
 	@Test
 	public void test() {

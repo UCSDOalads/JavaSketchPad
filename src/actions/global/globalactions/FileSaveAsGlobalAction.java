@@ -21,7 +21,6 @@ public class FileSaveAsGlobalAction extends GlobalPaintAction {
 	
 	@Override
 	protected void execute(PaintPanel panel) {
-		// TODO Auto-generated method stub
 		//Copied from FileSaveAs.java
 		PanelIO io = new PanelIO();
 		try {
