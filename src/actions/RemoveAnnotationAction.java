@@ -3,7 +3,10 @@ package actions;
 import java.util.ArrayList;
 
 import paintcomponents.PaintComponent;
+import paintcomponents.annotations.TextAnnotation;
 import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.RemoveAnnotationGlobalAction;
@@ -60,6 +63,34 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 		// perform the action
 		associatedAction.setInstance(instance);
 		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
+
+		//push action to manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+			
+			@Override
+			public void undoAction() {
+				String annotation = instance.getText();
+				new TextAnnotation(instance, annotation);
+				panel.repaint();
+			}
+			
+			@Override
+			public void redoAction() {
+				instance.setOptionalAnnotation(null);
+				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "remove an annotation";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "remove an annotation";
+			}
+		});
+		panel.repaint();
 	}
 
 	@Override

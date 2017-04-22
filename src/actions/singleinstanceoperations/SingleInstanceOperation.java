@@ -1,6 +1,8 @@
 package actions.singleinstanceoperations;
 
 import paintcomponents.PaintComponent;
+import paintcomponents.SimplePoint;
+import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 import actions.MenuBarPaintAction;
 
@@ -60,5 +62,6 @@ public abstract class SingleInstanceOperation<T> extends MenuBarPaintAction {
 	 */
 	protected abstract Class<T> getGenericClassType();
 		
+
 
 }
