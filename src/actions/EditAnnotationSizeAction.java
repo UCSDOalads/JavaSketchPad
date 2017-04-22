@@ -2,11 +2,6 @@ package actions;
 
 import java.util.ArrayList;
 
-import paintcomponents.PaintComponent;
-import paintcomponents.annotations.TextAnnotation;
-import ui.PaintPanel;
-import ui.general.InputManager;
-import ui.general.InputManagerDelegate;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.global.ActionName;
@@ -14,6 +9,11 @@ import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.EditAnnotationSizeGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import actions.singleinstanceoperations.SingleInstanceOperation;
+import paintcomponents.PaintComponent;
+import paintcomponents.annotations.TextAnnotation;
+import ui.PaintPanel;
+import ui.general.InputManager;
+import ui.general.InputManagerDelegate;
 
 /**
  * edit the size of the component
@@ -49,7 +49,7 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 		return true;	
 	}
 	
-	@Override
+	
 	protected void performActionOnInstance(PaintComponent instance) {
 		InputManager.sharedInstance().askForFloat(panel, new InputManagerDelegate<Float>() {
 			
@@ -104,5 +104,6 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 	public String locationString() {
 		return ActionsMenuBarTitles.Edit().Annotation_Font_Size().toString();
 	}
+
 
 }

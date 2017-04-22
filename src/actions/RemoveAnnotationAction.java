@@ -54,7 +54,7 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 		return ActionsMenuBarTitles.Data().Annotations().Remove().toString();
 	}
 
-	@Override
+	
 	protected void performActionOnInstance(PaintComponent instance) {
 		// prepare the associated action
 		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
