@@ -1,8 +1,8 @@
 package actions.global.globalactions;
 
-import actions.global.GlobalPaintAction;
 import paintcomponents.haskell.EvaluateHaskellPaintComponent;
 import ui.PaintPanel;
+import actions.global.GlobalPaintAction;
 
 public class AddHaskellEvaluatorComponentGlobalAction
 		extends GlobalPaintAction {
@@ -11,14 +11,6 @@ public class AddHaskellEvaluatorComponentGlobalAction
 	// Error: typesystem.HaskellType cannot be cast to typesystem.JavaType
 
 	private Class classToCreate;
-
-	/**
-	 * @param classToCreate
-	 *            the classToCreate to set
-	 */
-	public void setClassToCreate(Class classToCreate) {
-		this.classToCreate = classToCreate;
-	}
 
 	@Override
 	protected void execute(PaintPanel panel) {
