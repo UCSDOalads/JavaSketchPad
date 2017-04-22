@@ -16,6 +16,7 @@ public class AddLazyJavaMethodComponentGlobalAction extends GlobalPaintAction {
 	private Method methodToSet;
 	@Override
 	protected void execute(PaintPanel panel) {
+<<<<<<< HEAD
 		
 		MethodPaintComponent methodComp = new MethodPaintComponent(
 				methodToSet, panel.getWidth() / 2,
@@ -23,6 +24,23 @@ public class AddLazyJavaMethodComponentGlobalAction extends GlobalPaintAction {
 		panel.addPaintComponent(methodComp);
 		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 			
+=======
+		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
+				.getSelectedComponents().get(0);
+		Method[] methods = comp.getDisplayingClass().getMethods();
+
+		int desiaredConstructorIndex = Integer
+				.parseInt(JOptionPane.showInputDialog(
+						"Please enter the index of the constructor you would like to use: \n\n\n"
+								+ getMethodsSelectionUI(methods)));
+		MethodPaintComponent methodComp = new MethodPaintComponent(
+				methods[desiaredConstructorIndex], panel.getWidth() / 2,
+				panel.getHeight() / 2);
+		panel.addPaintComponent(methodComp);
+		// add action to undo redo manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+					
+>>>>>>> develop
 			@Override
 			public void undoAction() {
 				methodComp.remove(panel);
@@ -39,6 +57,7 @@ public class AddLazyJavaMethodComponentGlobalAction extends GlobalPaintAction {
 			protected String commandName() {
 				return "add lazy javaMethodComponent";
 			}
+<<<<<<< HEAD
 
 			@Override
 			protected String commandDescription() {
@@ -59,4 +78,24 @@ public class AddLazyJavaMethodComponentGlobalAction extends GlobalPaintAction {
 		return comp;
 	}
 	
+=======
+
+			@Override
+			protected String commandDescription() {
+				return "add a lazily evaluated java method component";
+			}
+		});
+		panel.repaint();
+	}
+	
+	public String getMethodsSelectionUI(Method[] methods) {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < methods.length; i++) {
+			Method constructor = methods[i];
+			builder.append(i + " : " + constructor.toString() + "\n");
+		}
+		return builder.toString();
+
+	}
+>>>>>>> develop
 }

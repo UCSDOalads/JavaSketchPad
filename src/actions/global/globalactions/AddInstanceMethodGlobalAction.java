@@ -24,5 +24,7 @@ public class AddInstanceMethodGlobalAction extends GlobalPaintAction {
 	public void setMethodToSet(Method methodToSet) {
 		this.methodToSet = methodToSet;
 	}
+	
+	
 
 }
