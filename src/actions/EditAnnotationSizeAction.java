@@ -2,15 +2,18 @@ package actions;
 
 import java.util.ArrayList;
 
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.EditAnnotationSizeGlobalAction;
+import actions.menu.ActionsMenuBarTitles;
+import actions.singleinstanceoperations.SingleInstanceOperation;
 import paintcomponents.PaintComponent;
-import paintcomponents.TextPaintComponent;
+import paintcomponents.annotations.TextAnnotation;
 import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
-import actions.global.ActionName;
-import actions.menu.ActionsMenuBarTitles;
-import actions.singleinstanceoperations.SingleInstanceOperation;
-import paintcomponents.annotations.*;
 
 /**
  * edit the size of the component
@@ -43,7 +46,7 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 			return false;
 		}
 		
-		return true;
+		return true;	
 	}
 	
 	
@@ -52,7 +55,37 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 			
 			@Override
 			public void didFinishInput(Float input) {
-				instance.getOptionalAnnotation().setFontSize(input);
+						EditAnnotationSizeGlobalAction associatedAction = (EditAnnotationSizeGlobalAction) ActionName.EDIT_ANNOTATION_SIZE_ACTION
+								.getAssiciatedAction();
+						associatedAction.setTextSize(input);
+						associatedAction.setInstance(instance);
+				GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
+				//push action to manager
+				SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+					
+					@Override
+					public void undoAction() {
+						String annotation = instance.getText();
+						new TextAnnotation(instance, annotation);
+						panel.repaint();
+					}
+					
+					@Override
+					public void redoAction() {
+						instance.setOptionalAnnotation(null);
+						panel.repaint();
+					}
+
+					@Override
+					protected String commandName() {
+						return "remove an annotation";
+					}
+
+					@Override
+					protected String commandDescription() {
+						return "remove an annotation";
+					}
+				});
 				panel.repaint();
 			}
 		});
@@ -61,7 +94,6 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 
 	@Override
 	protected Class<PaintComponent> getGenericClassType() {
-		// TODO Auto-generated method stub
 		return PaintComponent.class;
 	}
 
@@ -73,10 +105,5 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 		return ActionsMenuBarTitles.Edit().Annotation_Font_Size().toString();
 	}
 
-	@Override
-	protected ActionName getExecutingAction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

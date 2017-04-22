@@ -1,16 +1,16 @@
 package actions.singleinstanceoperations;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
-import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
-import paintcomponents.data.DataTextPaintComponent;
 import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddAnnotationGlobalAction;
+import actions.menu.ActionsMenuBarTitles;
 
 /**
  * add the annotation to a component
@@ -41,8 +41,13 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 		// TODO Auto-generated method stub
 		String annotations = JOptionPane
 				.showInputDialog("Please specify the annotation of the component");
-		new TextAnnotation(instance, annotations);
-		instance.setText(annotations);
+		// perform the action
+		AddAnnotationGlobalAction associatedAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
+				.getAssiciatedAction();
+		associatedAction.setAnnotationToAdd(annotations);
+		associatedAction.setOperatingInstance(instance);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,
+				panel);
 		//push action to manager
 		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 			
@@ -79,10 +84,13 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 
 	}
 
-	@Override
-	protected ActionName getExecutingAction() {
-		return ActionName.ADD_ANNOTATION_ACTION;
-	}
-
+	/*
+	 * @Override protected void performActionOnInstance(PaintComponent instance)
+	 * { // ask for user input String annotations = JOptionPane
+	 * .showInputDialog("Please specify the annotation of the component");
+	 * 
+	 * 
+	 * }
+	 */
 
 }
