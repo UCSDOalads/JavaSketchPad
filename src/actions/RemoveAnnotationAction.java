@@ -2,13 +2,16 @@ package actions;
 
 import java.util.ArrayList;
 
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
-import actions.menu.ActionsMenuBarTitles;
-import actions.singleinstanceoperations.SingleInstanceOperation;
 import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
 import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.RemoveAnnotationGlobalAction;
+import actions.menu.ActionsMenuBarTitles;
+import actions.singleinstanceoperations.SingleInstanceOperation;
 
 /**
  * remove the annotation of the component
@@ -53,8 +56,14 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 
 	@Override
 	protected void performActionOnInstance(PaintComponent instance) {
-		// TODO Auto-generated method stub
-		instance.setOptionalAnnotation(null);
+		// prepare the associated action
+		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
+				.getAssiciatedAction();
+		
+		// perform the action
+		associatedAction.setInstance(instance);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
+
 		//push action to manager
 		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
 			
@@ -86,10 +95,8 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 
 	@Override
 	protected Class<PaintComponent> getGenericClassType() {
-		// TODO Auto-generated method stub
+		// get the class of the paint component
 		return PaintComponent.class;
 	}
-
-
 
 }
