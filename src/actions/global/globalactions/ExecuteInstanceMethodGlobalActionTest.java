@@ -1,6 +1,7 @@
 package actions.global.globalactions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -9,6 +10,9 @@ import org.junit.Test;
 import actions.ExecuteInstanceConstructorAction;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
+
+
+
 
 public class ExecuteInstanceMethodGlobalActionTest {
 	PaintPanel panel;

@@ -18,7 +18,7 @@ public class SetPointSizeOperation extends SingleInstanceOperation<SimplePoint> 
 		return ActionsMenuBarTitles.Edit().Point_Size().toString();
 	}
 
-	@Override
+	
 	protected void performActionOnInstance(SimplePoint instance) {
 		InputManager.sharedInstance().askForInt(panel, new InputManagerDelegate<Integer>() {
 			
@@ -35,5 +35,6 @@ public class SetPointSizeOperation extends SingleInstanceOperation<SimplePoint> 
 	protected Class<SimplePoint> getGenericClassType() {
 		return SimplePoint.class;
 	}
+
 
 }
