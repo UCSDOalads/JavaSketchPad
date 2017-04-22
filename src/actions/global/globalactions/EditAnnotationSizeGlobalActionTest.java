@@ -9,9 +9,15 @@ import paintcomponents.data.DataDisplayPaintComponent;
 import ui.PaintPanel;
 import actions.global.ActionName;
 
+/**
+ * Test editAnnotationSizeGlobalAction by adding annotations and then edit the
+ * size. Then check if the size changes as desired
+ * 
+ * @author muchi
+ *
+ */
 public class EditAnnotationSizeGlobalActionTest {
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void test() {
 		PaintPanel panel = new PaintPanel();
@@ -19,6 +25,7 @@ public class EditAnnotationSizeGlobalActionTest {
 		AddAnnotationGlobalAction addAnnotationGlobalAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
 				.getAssiciatedAction();
 
+		// add component and annotations
 		DataDisplayPaintComponent add = new DataDisplayPaintComponent("", 0, 0);
 		addAnnotationGlobalAction.setAnnotationToAdd("hello");
 		addAnnotationGlobalAction.setOperatingInstance(add);
@@ -26,9 +33,10 @@ public class EditAnnotationSizeGlobalActionTest {
 
 		panel.addPaintComponent(add);
 
+		// edit the size
 		EditAnnotationSizeGlobalAction associatedAction = (EditAnnotationSizeGlobalAction) ActionName.EDIT_ANNOTATION_SIZE_ACTION
 				.getAssiciatedAction();
-		associatedAction.setInput((float) 40.0);
+		associatedAction.setTextSize((float) 40.0);
 		associatedAction.setInstance(add);
 
 		associatedAction.execute(panel);

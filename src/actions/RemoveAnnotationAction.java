@@ -2,14 +2,13 @@ package actions;
 
 import java.util.ArrayList;
 
+import paintcomponents.PaintComponent;
+import ui.PaintPanel;
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
-import actions.global.globalactions.AddAnnotationGlobalAction;
 import actions.global.globalactions.RemoveAnnotationGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import actions.singleinstanceoperations.SingleInstanceOperation;
-import paintcomponents.PaintComponent;
-import ui.PaintPanel;
 
 /**
  * remove the annotation of the component
@@ -54,17 +53,18 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 
 	@Override
 	protected void performActionOnInstance(PaintComponent instance) {
-		// TODO Auto-generated method stub
+		// prepare the associated action
 		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
 				.getAssiciatedAction();
 		
+		// perform the action
 		associatedAction.setInstance(instance);
 		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 	@Override
 	protected Class<PaintComponent> getGenericClassType() {
-		// TODO Auto-generated method stub
+		// get the class of the paint component
 		return PaintComponent.class;
 	}
 

@@ -1,6 +1,6 @@
 package actions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -11,6 +11,12 @@ import ui.PaintPanel;
 import actions.global.ActionName;
 import actions.global.globalactions.AddAnnotationGlobalAction;
 
+/**
+ * test the removeAnnotationAction by adding and then deleting the annotation.
+ * Then check if the annotation is null
+ * 
+ * @author muchi
+ */
 public class RemoveAnnotationActionTest {
 
 	@Test
@@ -21,6 +27,7 @@ public class RemoveAnnotationActionTest {
 		SimplePoint test = new SimplePoint (0, 0);
 		panel.addPaintComponent(test);
 
+		// add the annotation to be removed
 		AddAnnotationGlobalAction addAnnotationGlobalAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
 				.getAssiciatedAction();
 
@@ -30,8 +37,7 @@ public class RemoveAnnotationActionTest {
 		addAnnotationGlobalAction.execute(panel);
 		test.select(tool);
 		
-		System.out.println(tool.getSelectedComponents().get(0));
-		
+		// perform the remove action
 		RemoveAnnotationAction action = new RemoveAnnotationAction(panel);
 		
 		action.performAction();

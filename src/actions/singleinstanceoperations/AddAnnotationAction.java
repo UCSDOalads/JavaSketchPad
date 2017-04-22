@@ -1,20 +1,13 @@
 package actions.singleinstanceoperations;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
+import paintcomponents.PaintComponent;
+import ui.PaintPanel;
 import actions.global.ActionName;
-import actions.global.GlobalPaintAction;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.AddAnnotationGlobalAction;
-import actions.global.globalactions.AddLazyJavaClassGlobalAction;
-import actions.global.globalactions.SingleInstanceOperationGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.PaintComponent;
-import paintcomponents.annotations.TextAnnotation;
-import paintcomponents.data.DataTextPaintComponent;
-import ui.PaintPanel;
 
 /**
  * add the annotation to a component
@@ -48,18 +41,11 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 
 	@Override
 	protected void performActionOnInstance(PaintComponent instance) {
-		// TODO Auto-generated method stub
-		/*String annotations = JOptionPane
-				.showInputDialog("Please specify the annotation of the component");
-		new TextAnnotation(instance, annotations);
-		AddLazyJavaClassGlobalAction assiciatedAction 
-		= (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-				.getAssiciatedAction();
-		assiciatedAction.setClassToCreate(input);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);*/
+		// ask for user input
 		String annotations = JOptionPane
 				.showInputDialog("Please specify the annotation of the component");
 		
+		// perform the action
 		AddAnnotationGlobalAction associatedAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
 				.getAssiciatedAction();
 		associatedAction.setAnnotationToAdd(annotations);

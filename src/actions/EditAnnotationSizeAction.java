@@ -3,7 +3,6 @@ package actions;
 import java.util.ArrayList;
 
 import paintcomponents.PaintComponent;
-import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
@@ -12,7 +11,6 @@ import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.EditAnnotationSizeGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import actions.singleinstanceoperations.SingleInstanceOperation;
-import paintcomponents.annotations.*;
 
 /**
  * edit the size of the component
@@ -54,10 +52,10 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 			
 			@Override
 			public void didFinishInput(Float input) {
-				EditAnnotationSizeGlobalAction associatedAction = (EditAnnotationSizeGlobalAction) ActionName.EDIT_ANNOTATION_SIZE_ACTION
-						.getAssiciatedAction();
-				associatedAction.setInput(input);
-				associatedAction.setInstance(instance);
+						EditAnnotationSizeGlobalAction associatedAction = (EditAnnotationSizeGlobalAction) ActionName.EDIT_ANNOTATION_SIZE_ACTION
+								.getAssiciatedAction();
+						associatedAction.setTextSize(input);
+						associatedAction.setInstance(instance);
 				GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 				panel.repaint();
 			}
@@ -67,7 +65,6 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 
 	@Override
 	protected Class<PaintComponent> getGenericClassType() {
-		// TODO Auto-generated method stub
 		return PaintComponent.class;
 	}
 

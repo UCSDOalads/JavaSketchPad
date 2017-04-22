@@ -1,8 +1,8 @@
 package actions.global.globalactions;
 
 import paintcomponents.PaintComponent;
-import actions.global.GlobalPaintAction;
 import ui.PaintPanel;
+import actions.global.GlobalPaintAction;
 
 /**
  * the global action of editting annotation size 
@@ -11,7 +11,7 @@ import ui.PaintPanel;
  */
 public class EditAnnotationSizeGlobalAction extends GlobalPaintAction {
 
-	private Float input;
+	private Float textSize;
 	private PaintComponent instance;
 	
 	/**
@@ -28,15 +28,14 @@ public class EditAnnotationSizeGlobalAction extends GlobalPaintAction {
 	 */
 	@Override
 	protected void execute(PaintPanel panel) {
-		// TODO Auto-generated method stub
-		instance.getOptionalAnnotation().setFontSize(input);
+		instance.getOptionalAnnotation().setFontSize(textSize);
 	}
 
 	/**
 	 * @param input the input to set
 	 */
-	public void setInput(Float input) {
-		this.input = input;
+	public void setTextSize(Float newTextSize) {
+		this.textSize = newTextSize;
 	}
 
 }
