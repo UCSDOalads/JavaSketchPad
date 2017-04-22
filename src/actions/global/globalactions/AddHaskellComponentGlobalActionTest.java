@@ -21,6 +21,7 @@ public class AddHaskellComponentGlobalActionTest {
 
 		action = (AddHaskellComponentGlobalAction) ActionName.ADD_HASKELL_EXPRESSION_COMPONENT
 				.getAssiciatedAction();
+		action.setHaskellExpression("2");
 	}
 
 	@Test
