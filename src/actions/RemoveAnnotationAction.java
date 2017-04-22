@@ -2,10 +2,16 @@ package actions;
 
 import java.util.ArrayList;
 
+import paintcomponents.PaintComponent;
+import paintcomponents.annotations.TextAnnotation;
+import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.RemoveAnnotationGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import actions.singleinstanceoperations.SingleInstanceOperation;
-import paintcomponents.PaintComponent;
-import ui.PaintPanel;
 
 /**
  * remove the annotation of the component
@@ -48,18 +54,49 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 		return ActionsMenuBarTitles.Data().Annotations().Remove().toString();
 	}
 
-	@Override
+	
 	protected void performActionOnInstance(PaintComponent instance) {
-		// TODO Auto-generated method stub
-		instance.setOptionalAnnotation(null);
+		// prepare the associated action
+		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
+				.getAssiciatedAction();
+		
+		// perform the action
+		associatedAction.setInstance(instance);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
+
+		//push action to manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+			
+			@Override
+			public void undoAction() {
+				String annotation = instance.getText();
+				new TextAnnotation(instance, annotation);
+				panel.repaint();
+			}
+			
+			@Override
+			public void redoAction() {
+				instance.setOptionalAnnotation(null);
+				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "remove an annotation";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "remove an annotation";
+			}
+		});
+		panel.repaint();
 	}
 
 	@Override
 	protected Class<PaintComponent> getGenericClassType() {
-		// TODO Auto-generated method stub
+		// get the class of the paint component
 		return PaintComponent.class;
 	}
-
-
 
 }
