@@ -10,8 +10,6 @@ public class AddHaskellEvaluatorComponentGlobalAction
 	// currently cannot be evaluated by creating the line seg
 	// Error: typesystem.HaskellType cannot be cast to typesystem.JavaType
 
-	private Class classToCreate;
-
 	@Override
 	protected void execute(PaintPanel panel) {
 
