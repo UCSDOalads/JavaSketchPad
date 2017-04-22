@@ -9,6 +9,7 @@ import actions.global.GlobalPaintAction;
 
 public class AddLazyJavaFieldsComponentGlobalAction extends GlobalPaintAction {
 
+
 	private ClassPaintComponent comp;
 	private int x;
 	private int y;
