@@ -33,10 +33,7 @@ public class AddLazyJavaClassAction extends MenuBarPaintAction {
 						panel.getHeight() / 2);
 				GlobalPaintActionExecuter.getSharedInstance().execute(
 						assiciatedAction, panel);
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
 			}
 		});
 

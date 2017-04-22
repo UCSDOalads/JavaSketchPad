@@ -8,22 +8,12 @@ import actions.edit.undoredo.UndoRedoableInterface;
 import actions.global.GlobalPaintAction;
 
 public class AddLazyJavaFieldsComponentGlobalAction extends GlobalPaintAction {
-<<<<<<< HEAD
-        private Class 
-=======
+
 
 	private ClassPaintComponent comp;
 	private int x;
 	private int y;
 
-<<<<<<< HEAD
->>>>>>> develop
-=======
-	private ClassPaintComponent comp;
-	private int x;
-	private int y;
-
->>>>>>> develop
 	@Override
 	protected void execute(PaintPanel panel) {
 		FieldsPaintComponent fieldsComp = new FieldsPaintComponent(
