@@ -97,13 +97,12 @@ public class ActionsMenuBar extends JMenuBar implements SelectionToolListener {
 		// add data annotation
 		addAction(new AddAnnotationAction(panel));
 		addAction(new RemoveAnnotationAction(panel));
-		
 
-		//view
+		// view
 		addAction(new ShowHistory(panel));
 
-		addAction(new EditAnnotationSizeAction(panel));
 
+		addAction(new EditAnnotationSizeAction(panel));
 
 	}
 

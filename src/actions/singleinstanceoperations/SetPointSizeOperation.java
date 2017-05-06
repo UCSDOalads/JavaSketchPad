@@ -1,6 +1,5 @@
 package actions.singleinstanceoperations;
 
-import actions.global.ActionName;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
@@ -37,11 +36,5 @@ public class SetPointSizeOperation extends SingleInstanceOperation<SimplePoint> 
 		return SimplePoint.class;
 	}
 
-
-	@Override
-	protected ActionName getExecutingAction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
