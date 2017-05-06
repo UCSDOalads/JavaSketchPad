@@ -138,12 +138,4 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 		
 	}
 	
-	/**
-	 * Sync button array
-	 */
-	public void syncButtonArray(ArrayList<JButton> buttonList) {
-
-		buttonArray = buttonList;
-
-	}
 }
