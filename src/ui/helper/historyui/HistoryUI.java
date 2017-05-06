@@ -4,11 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,6 +27,7 @@ public class HistoryUI extends JPanel
 	private DefaultTableModel defaultTableModel;
 	private JScrollPane scrollPane;
 	private JPanel button_panel;
+	private ArrayList<JButton> buttonArray = new ArrayList<JButton>();
 	
 	private HistoryUIInterface delegate;
 
@@ -80,6 +81,9 @@ public class HistoryUI extends JPanel
 		for (String title : titles){
 			JButton button = new JButton(title);
 			button_panel.add(button);
+			buttonArray.add(button);
+			button.setEnabled(false);
+			button.setEnabled(false);
 			button.addActionListener(new ActionListener() {
 				
 				@Override
@@ -147,5 +151,11 @@ public class HistoryUI extends JPanel
 		};
 	}
 
+	/**
+	 * Getting the array of buttons available
+	 */
+	public ArrayList<JButton> getButtonArray() {
+		return buttonArray;
+	}
 }
 
