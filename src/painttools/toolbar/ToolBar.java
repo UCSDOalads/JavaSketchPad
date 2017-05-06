@@ -13,9 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.tools.Tool;
 
-import painttools.tools.DotTool;
-import painttools.tools.PaintTool;
-import painttools.tools.SelectTool;
+import painttools.tools.*;
 import ui.PaintPanel;
 
 public class ToolBar extends JPanel {
@@ -35,6 +33,7 @@ public class ToolBar extends JPanel {
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());
 		addTool(selectTool);
+		addTool(new LineTool());
 	}
 
 	/**
