@@ -20,8 +20,10 @@ public class AddDataInputBoxAction extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent("Data Input", panel.getWidth() /2, panel.getHeight()/2);
-		panel.getSelectTool().clearSelection();
-		panel.getSelectTool().selectComponent(comp);
+		if (panel.getSelectTool() != null) {
+		    panel.getSelectTool().clearSelection();
+		    panel.getSelectTool().selectComponent(comp);
+		}
 		panel.addPaintComponent(comp);
 		
 		
