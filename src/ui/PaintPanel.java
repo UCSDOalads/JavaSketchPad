@@ -45,7 +45,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	/**
-	 * Sets a temporary component. Temporary component is the compoennt this
+	 * Sets a temporary component. Temporary component is the component this
 	 * panel paints when tools are selected. When tools are not in operation,
 	 * i.e. when user hits esc key, the temporary component is discarded The
 	 * Point tool sets the temp component to a moving point on screen by calling
