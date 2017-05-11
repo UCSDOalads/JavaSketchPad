@@ -35,8 +35,9 @@ public class SharedUndoRedoActionManager {
 			redoStack.add(undoableAction);
 			delegate.didUndoAction(undoableAction);
 		}
-		else
+		else {
 			System.out.println("empty undo stack");
+		}
 	}
 	
 	public void redo() {
@@ -46,8 +47,10 @@ public class SharedUndoRedoActionManager {
 			undoStack.add(redoableAction);
 			delegate.didRedoAction(redoableAction);
 		}
-		else
+		else {
 			System.out.println("empty redo stack");
+		}
+
 	}
 	
 	public boolean canUndo() {

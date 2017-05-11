@@ -2,14 +2,10 @@ package ui.helper.historyui.undoredoLog;
 
 
 
-import java.awt.event.ActionEvent;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Stack;
-import java.util.stream.IntStream;
-
 
 import javax.swing.JButton;
-import javax.swing.undo.UndoManager;
 
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.SharedUndoRedoActionManagerDelegate;
@@ -22,15 +18,23 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 	
 	private static final String BUTTON_TITLE_REDO = "Redo";
 	private static final String BUTTON_TITLE_UNDO = "Undo";
+	private ArrayList<JButton> buttonArray;
+	private static final int UNDO_INDEX = 0;
+	private static final int REDO_INDEX = 1;
 	SharedUndoRedoActionManager undoRedoManager;
 	
 	private UndoredoDialog(String[] titles) {
 		super(titles);
+<<<<<<< HEAD
+=======
+		buttonArray = super.getButtonArray();
+		num_undo = new Stack<>();
+>>>>>>> b9c9bf0f2e87812b4992a6a8d6bbfba88bfd0408
 		setDelegate(this);
 		
 		undoRedoManager = SharedUndoRedoActionManager.getSharedInstance();
 		undoRedoManager.setDelegate(new SharedUndoRedoActionManagerDelegate() {
-			
+
 			@Override
 			public void didUndoAction(UndoRedoableInterface obj) {
 				update();
@@ -53,7 +57,7 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 		});
 	}
 
-	static UndoredoDialog instance = new UndoredoDialog(new String[]{BUTTON_TITLE_UNDO, BUTTON_TITLE_REDO});
+	static UndoredoDialog instance = new UndoredoDialog(new String[] { BUTTON_TITLE_UNDO, BUTTON_TITLE_REDO });
 	
 	public static UndoredoDialog sharedInstance(){
 		return instance;
@@ -64,12 +68,22 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 		clear();
 		Stack<UndoRedoableInterface> undoStack = undoRedoManager.getUndoStack();
 		
+		if (undoStack.size() != 0) {
+			buttonArray.get(UNDO_INDEX).setEnabled(true);
+		}
 		for(int i = 0; i < undoStack.size(); i ++){
 			insert(new HistoryDataObject(undoStack.get(i).description()));
 		}
 		
 		
 		Stack<UndoRedoableInterface> redoStack = undoRedoManager.getRedoStack();
+
+		if (redoStack.size() != 0) {
+			buttonArray.get(REDO_INDEX).setEnabled(true);
+		}
+		else {
+			buttonArray.get(REDO_INDEX).setEnabled(false);
+		}
 		for(int i = redoStack.size() - 1 ; i >= 0; i --){
 			HistoryDataObject historyDataObject = new HistoryDataObject(redoStack.get(i).description());
 			historyDataObject.setUntraced(true);
@@ -87,6 +101,10 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 		case BUTTON_TITLE_UNDO:
 			if(selectedRow == -1){
 				undoRedoManager.undo();
+				if (!undoRedoManager.canUndo()) {
+					buttonArray.get(UNDO_INDEX).setEnabled(false);
+				}
+				buttonArray.get(REDO_INDEX).setEnabled(true);
 			} else {
 				//undo until reached this action
 				if(selectedRow < undoRedoManager.getUndoStack().size() ){
@@ -100,6 +118,10 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 		case BUTTON_TITLE_REDO:
 			if (selectedRow == -1 ){
 				undoRedoManager.redo();
+				if (!undoRedoManager.canRedo()) {
+					buttonArray.get(REDO_INDEX).setEnabled(false);
+				}
+				buttonArray.get(UNDO_INDEX).setEnabled(true);
 			} else {
 				//if select on redo
 				if(selectedRow >= undoRedoManager.getUndoStack().size() ){
