@@ -171,7 +171,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 		int x = this.getX() + HORIZONTAL_OFFSET, y = this.getY();
 		if (selectTool.getLastMouseEvent() != null) {
 		    x = selectTool.getLastMouseEvent().getX();
-            y = selectTool.getLastMouseEvent().getY();
+            	    y = selectTool.getLastMouseEvent().getY();
 		}
 		// try to select every from and toPoints
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
@@ -196,7 +196,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 		int x = this.getX() + HORIZONTAL_OFFSET, y = this.getY();
 		if (selectTool.getLastMouseEvent() != null) {
 		    x = selectTool.getLastMouseEvent().getX();
-	        y = selectTool.getLastMouseEvent().getY();
+	            y = selectTool.getLastMouseEvent().getY();
 		}
 		// try to deselect every from and toPoints
 		for (DataFromPointInfo dataFromPointInfo : fromPoints) {
