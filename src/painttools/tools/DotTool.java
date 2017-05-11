@@ -34,7 +34,7 @@ public class DotTool extends PaintTool {
 			
 			@Override
 			public void paintIcon(Component c, Graphics g, int x, int y) {
-				g.fillOval(10, 10, 20, 20);
+				g.fillOval(15, 15, 20, 20);
 				
 			}
 			
