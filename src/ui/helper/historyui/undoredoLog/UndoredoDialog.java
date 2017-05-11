@@ -25,11 +25,8 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 	
 	private UndoredoDialog(String[] titles) {
 		super(titles);
-<<<<<<< HEAD
-=======
+
 		buttonArray = super.getButtonArray();
-		num_undo = new Stack<>();
->>>>>>> b9c9bf0f2e87812b4992a6a8d6bbfba88bfd0408
 		setDelegate(this);
 		
 		undoRedoManager = SharedUndoRedoActionManager.getSharedInstance();
