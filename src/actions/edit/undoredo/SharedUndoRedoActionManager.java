@@ -50,7 +50,6 @@ public class SharedUndoRedoActionManager {
 		else {
 			System.out.println("empty redo stack");
 		}
-
 	}
 	
 	public boolean canUndo() {
