@@ -33,7 +33,7 @@ public class RedoActionTest {
 		// determine whether can redo or not
 		assertFalse(action1.canPerformAction());
 		// do an undo action
-		/*
+		
 		new UndoAction(panel).performAction();
 		// can redo now
 		assertTrue(action1.canPerformAction());
@@ -41,7 +41,7 @@ public class RedoActionTest {
 		action1.performAction();
 		// cannot redo
 		assertFalse(action1.canPerformAction());
-		*/
+		
 
 	}
 
