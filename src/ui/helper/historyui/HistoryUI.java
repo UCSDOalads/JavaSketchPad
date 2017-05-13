@@ -1,17 +1,19 @@
 package ui.helper.historyui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -19,13 +21,13 @@ import javax.swing.table.DefaultTableModel;
  * create historyUI
  *
  */
-public class HistoryUI extends JFrame 
+public class HistoryUI extends JPanel 
 		{
 	private JTable resultsTable;
 	private DefaultTableModel defaultTableModel;
-	private JPanel panel;
 	private JScrollPane scrollPane;
 	private JPanel button_panel;
+	private ArrayList<JButton> buttonArray = new ArrayList<JButton>();
 	
 	private HistoryUIInterface delegate;
 
@@ -44,10 +46,7 @@ public class HistoryUI extends JFrame
 			}
 		});
 
-		// big JPanel window
-		panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));
 
 		// show result
 		this.resultsTable= (new JTable());
@@ -56,9 +55,18 @@ public class HistoryUI extends JFrame
 		
 		// scroll option
 		scrollPane = new JScrollPane(resultsTable);
-		panel.add(scrollPane, BorderLayout.CENTER);
+		add(scrollPane, BorderLayout.CENTER);
 
-		
+		//set title for table
+		TitledBorder border = new TitledBorder("Actions History");
+	    border.setTitleJustification(TitledBorder.CENTER);
+	    border.setTitlePosition(TitledBorder.TOP);
+	    setBorder(border);
+	    resultsTable.setTableHeader(null);
+	    
+	    //set size
+	    setPreferredSize(new Dimension(160, 300));
+	    
 		//create buttons for panel
 		createButtons(titles);
 	}
@@ -67,12 +75,15 @@ public class HistoryUI extends JFrame
 	private void createButtons(String[] titles){
 		// add small JPanel for buttons
 		button_panel= new JPanel();
-		getContentPane().add(button_panel, BorderLayout.SOUTH);
+		add(button_panel, BorderLayout.SOUTH);
 
 		//loop through arr and add buttons
 		for (String title : titles){
 			JButton button = new JButton(title);
 			button_panel.add(button);
+			buttonArray.add(button);
+			button.setEnabled(false);
+			button.setEnabled(false);
 			button.addActionListener(new ActionListener() {
 				
 				@Override
@@ -140,5 +151,11 @@ public class HistoryUI extends JFrame
 		};
 	}
 
+	/**
+	 * Getting the array of buttons available
+	 */
+	public ArrayList<JButton> getButtonArray() {
+		return buttonArray;
+	}
 }
 

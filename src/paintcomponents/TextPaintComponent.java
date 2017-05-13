@@ -246,5 +246,11 @@ public class TextPaintComponent extends PaintComponent{
 		return width;
 	}
 
+	/**
+	 * 
+	 */
+	public String getStringContent(){
+		return displayingText;
+	}
 
 }

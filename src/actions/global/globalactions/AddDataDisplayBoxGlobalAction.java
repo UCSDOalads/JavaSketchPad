@@ -1,5 +1,8 @@
 package actions.global.globalactions;
 
+import java.util.ArrayList;
+
+import paintcomponents.SimplePoint;
 import paintcomponents.data.DataDisplayPaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
