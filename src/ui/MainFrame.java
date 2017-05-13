@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -16,18 +17,20 @@ public class MainFrame extends JFrame{
 	
 	
 	public MainFrame(){
+		
+
+		//meke the frame full screen
+		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
 		getContentPane().setForeground(Color.BLACK);
 
 		//set up toolbar and main panel and undoredo panel
 		PaintPanel paintPanel = new PaintPanel();
-		paintPanel.setForeground(Color.BLACK);
 		ToolBar toolBar = new ToolBar(paintPanel);
-		toolBar.setBackground(Color.LIGHT_GRAY);
 		UndoredoDialog undoredoDialog = UndoredoDialog.sharedInstance();
 		JPanel westPanel = new JPanel();
-		westPanel.setBackground(Color.LIGHT_GRAY);
 		
 		//link select tool
 		paintPanel.setSelectTool(toolBar.getSelectTool());
@@ -36,8 +39,6 @@ public class MainFrame extends JFrame{
 		ActionsMenuBar menuBar = new ActionsMenuBar(paintPanel);
 		toolBar.getSelectTool().addSelectionToolListener(menuBar);
 
-		//set background
-		paintPanel.setBackground(Color.LIGHT_GRAY);
 		
 		getContentPane().add(paintPanel, BorderLayout.CENTER);
 		setJMenuBar(menuBar);
@@ -51,14 +52,22 @@ public class MainFrame extends JFrame{
 		westPanel.add(undoredoDialog);
 		toolBar.addToolBarListener(paintPanel);
 		
+		//change theme
+		changeTheme();
 		
-		setSize(new Dimension(800, 600));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	
 	public static void main(String[] args){
 		new MainFrame().setVisible(true);
+	}
+	
+	
+	
+	public void changeTheme(){
+		//getContentPane().setBackground(new Color(82,86,90));
+		getContentPane().setBackground(new Color(80,120,160));
 	}
 
 }
