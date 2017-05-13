@@ -1,15 +1,10 @@
 package script;
 
-import java.util.ArrayList;
-
 import ui.PaintPanel;
-import paintcomponents.data.DataDisplayPaintComponent;
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
-import paintcomponents.*;
 
 /**
- * Interpret and execute scripts 
+ * Interpret and execute scripts
+ * 
  * @author Xiaoquan Jiang
  */
 public class Interpreter {
@@ -23,8 +18,9 @@ public class Interpreter {
 	private static final String EDIT = "edit";
 	private static final String CONSTRUCT = "construct";
 	private static final String ADD = "add";
+	private static final String NAME = "name";
 	protected PaintPanel panel;
-	
+
 	public Interpreter(PaintPanel panel) {
 		this.panel = panel;
 	}
@@ -39,35 +35,39 @@ public class Interpreter {
 			case ADD:
 				new InterpreterAddActions(tokenizer, panel);
 				break;
-				
+
 			case CONSTRUCT:
 				new InterpreterConstructActions(tokenizer, panel);
 				break;
-				
+
 			case EDIT:
 				new InterpreterEditActions(tokenizer, panel);
 				break;
-				
+
 			case FILE:
 				new InterpreterFileActions(tokenizer, panel);
 				break;
-				
+
 			case GENERATE_POLYGON:
 				new InterpreterGeneratePolygonAction(tokenizer, panel);
 				break;
-				
+
 			case UPDATE:
-        new InterpreterUpdateActions(tokenizer, panel);
-        break;
-        
+				new InterpreterUpdateActions(tokenizer, panel);
+				break;
+
 			case REMOVE:
-        new InterpreterRemoveAction(tokenizer, panel);
-        break;
-        
+				new InterpreterRemoveAction(tokenizer, panel);
+				break;
+
 			case SELECT:
 				new InterpreterSelectAction(tokenizer, panel);
 				break;
-				
+
+			case NAME:
+				new InterpreterNameAction(tokenizer, panel);
+				break;
+
 			default:
 				throw new ExecutionErrorException("invalid script");
 			}
@@ -77,32 +77,9 @@ public class Interpreter {
 	}
 }
 
-/* Scripts:
-add
-  data
-    displayBox
-    inputBox
-  haskell
-    component
-    haskellCompoment
-  lazy
-    javaClass
-    javaConstructor
-    javaFieldsComponent
-    javaMethodComponent
-  textBox
-construct
-  dataLineSegment
-  lineSegment
-edit
-  redo
-  undo
-file
-  saveAs == save
-  open
-generatePolygon
-update
-  dataBox
-  inputBox
-remove
-*/
+/*
+ * Scripts: add data displayBox inputBox haskell component haskellCompoment lazy
+ * javaClass javaConstructor javaFieldsComponent javaMethodComponent textBox
+ * construct dataLineSegment lineSegment edit redo undo file saveAs == save open
+ * generatePolygon update dataBox inputBox remove
+ */
