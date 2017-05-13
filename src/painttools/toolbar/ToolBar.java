@@ -40,7 +40,7 @@ public class ToolBar extends JPanel {
 		addTool(new AddClassTool(panel));
 		addTool(new AddInputBoxTool(panel));
 		addTool(new AddOutputBoxTool(panel));
-		
+		addTool(new AddMethodTool(panel));
 	}
 
 	/**
