@@ -20,7 +20,10 @@ public class InterpreterRemoveAction {
 			throws ExecutionErrorException {
 
 		// check if name of a component is specified
-		new InterpreterSelectAction(tokenizer, panel);
+		if (tokenizer.hasNext()) {
+			panel.getSelectTool().clearSelection();
+			new InterpreterSelectAction(tokenizer, panel);
+		}
 
 		for (PaintComponent comp : panel.getSelectTool()
 				.getSelectedComponents()) {
