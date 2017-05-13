@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
+import icons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
@@ -28,8 +29,8 @@ public class DotTool extends PaintTool {
 
 	
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
+	public ToolButton getButton() {
+		ToolButton button = super.getButton();
 		button.setIcon(new Icon() {
 			
 			@Override

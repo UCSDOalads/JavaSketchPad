@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.text.html.HTMLEditorKit.InsertHTMLTextAction;
 import javax.xml.stream.events.StartDocument;
 
+import icons.ToolButton;
 import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
@@ -25,7 +26,7 @@ public abstract class PaintTool implements MouseListener, MouseMotionListener {
 	public abstract void reset();
 	
 
-	public JButton getButton() {
-		return new JButton(this.getClass().getName());
+	public ToolButton getButton() {
+		return new ToolButton(this.getClass().getName());
 	}
 }

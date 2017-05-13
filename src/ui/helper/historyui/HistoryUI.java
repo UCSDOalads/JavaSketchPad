@@ -41,7 +41,6 @@ public class HistoryUI extends JPanel
 	 * Setup historyUI
 	 */
 	public HistoryUI(String[] titles){
-		setBackground(Color.LIGHT_GRAY);
 
 		// set the defaultTableModel to non editable by user clicking around
 		this.defaultTableModel = (new DefaultTableModel(0, 1) {
@@ -57,9 +56,6 @@ public class HistoryUI extends JPanel
 
 		// show result
 		this.resultsTable= (new JTable());
-		resultsTable.setBorder(null);
-		resultsTable.setForeground(Color.BLACK);
-		resultsTable.setBackground(Color.LIGHT_GRAY);
 		resultsTable.setModel(defaultTableModel);
 		resultsTable.setSelectionModel(new ForcedListSelectionModel());
 		
@@ -85,7 +81,6 @@ public class HistoryUI extends JPanel
 	private void createButtons(String[] titles){
 		// add small JPanel for buttons
 		button_panel= new JPanel();
-		button_panel.setBackground(Color.LIGHT_GRAY);
 		add(button_panel, BorderLayout.SOUTH);
 
 		//loop through arr and add buttons
@@ -168,5 +163,6 @@ public class HistoryUI extends JPanel
 	public ArrayList<JButton> getButtonArray() {
 		return buttonArray;
 	}
+	
 }
 

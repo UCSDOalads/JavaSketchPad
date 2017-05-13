@@ -4,10 +4,11 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.colorchooser.DefaultColorSelectionModel;
 
 import icons.LeftArrow;
+import icons.ToolButton;
 import paintcomponents.PaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
@@ -250,11 +251,17 @@ public class SelectTool extends PaintTool {
 	}
 
 	@Override
-	public JButton getButton() {
+	public ToolButton getButton() {
+		/*
 		JButton button = super.getButton();
 		button.setIcon(LeftArrow.iconFromPolygon(LeftArrow.getPolygon(),
 				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
-		return button;
+				*/
+
+		ToolButton b = new ToolButton();
+		b.setSelectedImage(new ImageIcon("./images/arrow3.png"));
+		b.setOriginalImage(new ImageIcon("./images/arrow1.png"));
+		return b;
 	}
 
 	@Override

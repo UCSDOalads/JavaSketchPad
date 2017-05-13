@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.ConstructLineSegmentGlobalAction;
+import icons.ToolButton;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
@@ -23,8 +24,8 @@ public class LineTool extends PaintTool {
 	private PaintPanel panel;
 
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
+	public ToolButton getButton() {
+		ToolButton button = super.getButton();
 		button.setIcon(new Icon() {
 
 			@Override

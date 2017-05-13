@@ -1,18 +1,23 @@
 package painttools.toolbar;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.tools.Tool;
 
+import icons.ToolButton;
 import painttools.tools.*;
 import ui.PaintPanel;
 
@@ -34,6 +39,8 @@ public class ToolBar extends JPanel {
 		addTool(new DotTool());
 		addTool(selectTool);
 		addTool(new LineTool());
+	
+		
 	}
 
 	/**
@@ -43,7 +50,7 @@ public class ToolBar extends JPanel {
 	 * @param tool
 	 */
 	private void addTool(PaintTool tool) {
-		JButton button = tool.getButton();
+		ToolButton button = tool.getButton();
 		button.addActionListener(new ActionListener() {
 
 			@Override
