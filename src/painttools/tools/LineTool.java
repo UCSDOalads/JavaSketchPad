@@ -15,6 +15,7 @@ import actions.global.globalactions.ConstructLineSegmentGlobalAction;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
+import paintcomponents.data.DataToPoint;
 import ui.PaintPanel;
 
 public class LineTool extends PaintTool {
@@ -51,36 +52,63 @@ public class LineTool extends PaintTool {
 	public void mouseClicked(MouseEvent e) {
 		// If no point is selected, select the point(if any) at the mouse's
 		// location.
-		if (panel.getSelectTool().getSelectedComponents().size() == 0) {
+		ArrayList<PaintComponent> items = panel.getSelectTool()
+				.getSelectedComponents();
+		
+		if (items.size() == 0) {
 			PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 
-			if (comp instanceof SimplePoint) {
+			//System.out.println(comp instanceof DataToPoint);
+			if (comp instanceof SimplePoint && !(comp instanceof DataToPoint)) {
 				panel.getSelectTool().selectComponent(comp);
 			}
 		}
 
-		// If 1 point has been selected, select the point(if any) at the mouse's
+		// If 1 point has been selected, check condition, select the point(if
+		// any) at the mouse's
 		// location and draw the line segment.
 		else {
 			PaintComponent comp = panel.componentUnderPoint(e.getX(), e.getY());
 
-			if (comp instanceof SimplePoint) {
-				ArrayList<PaintComponent> items = panel.getSelectTool()
-						.getSelectedComponents();
+			// If the component under mouse is a SimplePoint and is not the
+			// previously selected point.
+			if (comp instanceof SimplePoint && comp != items.get(0)) {
 
-				ConstructLineSegmentGlobalAction associatedAction = (ConstructLineSegmentGlobalAction) ActionName.CONSTRUCT_LINE_SEGMENT_ACTION
-						.getAssiciatedAction();
+				boolean canPaint = true;
+				// Check if line segment already exists.
+				ArrayList<PaintComponent> components = panel
+						.getPaintComponents();
+				LineSegment testLine = null;
 
-				associatedAction.setFromPoint((SimplePoint) (items.get(0)));
-				associatedAction.setToPoint((SimplePoint) (comp));
-				GlobalPaintActionExecuter.getSharedInstance().execute(
-						associatedAction, panel);
+				// get all paintComponents
+				for (PaintComponent paintComponent : components) {
+					if (paintComponent instanceof LineSegment) {
+						testLine = (LineSegment) paintComponent;
+						// check front point and to point similarities
+						if (items.get(0) == testLine.getFromPoint()
+								&& comp == testLine.getToPoint())
+							canPaint = false;
+						if (comp == testLine.getFromPoint()
+								&& items.get(0) == testLine.getToPoint())
+							canPaint = false;
+					}
+				}
 
-				// change selection
-				panel.getSelectTool().clearSelection();
-				panel.repaint();
-				panel.setTempComponent(null);
-				panel.showCursor();
+				if (canPaint) {
+					ConstructLineSegmentGlobalAction associatedAction = (ConstructLineSegmentGlobalAction) ActionName.CONSTRUCT_LINE_SEGMENT_ACTION
+							.getAssiciatedAction();
+
+					associatedAction.setFromPoint((SimplePoint) (items.get(0)));
+					associatedAction.setToPoint((SimplePoint) (comp));
+					GlobalPaintActionExecuter.getSharedInstance().execute(
+							associatedAction, panel);
+
+					// change selection
+					panel.getSelectTool().clearSelection();
+					panel.repaint();
+					panel.setTempComponent(null);
+					panel.showCursor();
+				}
 			}
 		}
 	}
@@ -139,7 +167,7 @@ public class LineTool extends PaintTool {
 			SimplePoint currPoint = new SimplePoint(e.getX(), e.getY());
 			line = new LineSegment((SimplePoint) panel.getSelectTool()
 					.getSelectedComponents().get(0), currPoint);
-			
+
 			panel.setTempComponent(line);
 			panel.repaint();
 
