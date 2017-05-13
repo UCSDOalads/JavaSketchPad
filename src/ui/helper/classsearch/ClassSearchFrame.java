@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,12 +17,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import classpathutil.ClassSearch;
-
-import javax.swing.DefaultListSelectionModel;
-import javax.swing.JButton;
 
 public class ClassSearchFrame extends JFrame
 		implements
@@ -100,6 +98,7 @@ public class ClassSearchFrame extends JFrame
 				String searchText;
 				synchronized (searchingTextField) {
 					searchText = searchingTextField.getText();
+					searchText = searchText.toLowerCase();
 				}
 				// start Search
 				ArrayList<String> classesForName = searchUtil
@@ -109,7 +108,8 @@ public class ClassSearchFrame extends JFrame
 				synchronized (searchingTextField) {
 					equals =
 							// if text has not changed
-							searchingTextField.getText().equals(searchText);
+					searchingTextField.getText().toLowerCase()
+							.equals(searchText);
 				}
 
 				if (equals) {

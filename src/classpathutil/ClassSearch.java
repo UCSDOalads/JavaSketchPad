@@ -1,8 +1,6 @@
 package classpathutil;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class ClassSearch {
 	private static ClassSearch sharedInstance = new ClassSearch();
@@ -36,8 +34,10 @@ public class ClassSearch {
 	public ArrayList<String> classesForName(String name) {
 		
 		ArrayList<String> result = new ArrayList<>();
+		String temp;
 		for (String string : allClasses) {
-			if(string.contains(name)){
+			temp = string.toLowerCase();
+			if (temp.contains(name)) {
 				result.add(string); 
 			}
 		}
