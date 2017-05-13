@@ -96,13 +96,24 @@ public class TextPaintComponent extends PaintComponent{
 
 	@Override
 	protected void paintNotSelected(Graphics g) {
-		g.setFont(g.getFont().deriveFont(fontSize));
 		g.setColor(defaultTextColor);
 
 		//draw string starts from bottom left corner, shift to top left
 		updateBoundsAndDrawString(g);
 	}
 	private void updateBoundsAndDrawString(Graphics g) {
+		updateBounds(g);
+		drawString(g);
+		
+	}
+
+	/**
+	 * Update bounds updates the width and row height of this text paint component
+	 * @param g Graphics Object
+	 */
+	public void updateBounds(Graphics g) {
+		g.setFont(g.getFont().deriveFont(fontSize));
+
 		//reset bounds to begin calculation
 		width = 0;
 		//derive row Height
@@ -120,6 +131,20 @@ public class TextPaintComponent extends PaintComponent{
 			if( curStringWidth > width){
 				width = curStringWidth;
 			}
+		}
+	}
+	
+	/**
+	 * Draws the string, do not update bounds
+	 * @param g
+	 */
+	private void drawString(Graphics g){
+		
+		//get number of rows
+		String[] rows = this.displayingText.split("\n");
+		
+		for (int i = 0; i < rows.length; i++) {
+			String string = rows[i];
 			
 			g.drawString(string, getX(), (int) (getY() + rowHeight * (i + 1)));
 		}
@@ -131,7 +156,6 @@ public class TextPaintComponent extends PaintComponent{
 
 	@Override
 	protected void paintSelected(Graphics g) {
-		g.setFont(g.getFont().deriveFont(fontSize));
 		g.setColor(selectedTextColor);
 
 		//draw string starts from bottom left corner, shift to top left

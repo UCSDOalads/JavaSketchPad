@@ -2,26 +2,25 @@ package actions.menu;
 
 import javax.swing.JMenuItem;
 
-import actions.PaintAction;
+import actions.MenuBarPaintAction;
 
 public class PaintActionMenuItem extends JMenuItem{
 
 	
-	private PaintAction associatedAction;
+	private MenuBarPaintAction associatedAction;
 	private ActionsMenuBar actionsMenuBar;
 
-	public PaintActionMenuItem(PaintAction associatedAction, ActionsMenuBar actionsMenuBar) {
+	public PaintActionMenuItem(MenuBarPaintAction associatedAction, ActionsMenuBar actionsMenuBar) {
 		this.setAssociatedAction(associatedAction);
 		this.actionsMenuBar = actionsMenuBar;
 	}
-	public PaintActionMenuItem(PaintAction associatedAction) {
-		this.setAssociatedAction(associatedAction);
-	}
-	public PaintAction getAssociatedAction() {
+
+
+	public MenuBarPaintAction getAssociatedAction() {
 		return associatedAction;
 	}
 
-	public void setAssociatedAction(PaintAction associatedAction) {
+	public void setAssociatedAction(MenuBarPaintAction associatedAction) {
 		this.associatedAction = associatedAction;
 	}
 

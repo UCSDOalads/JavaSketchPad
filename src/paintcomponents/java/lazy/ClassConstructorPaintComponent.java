@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataFromPoint;
@@ -20,6 +19,7 @@ import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import paintcomponents.data.DataTextIOPaintComponent;
 import paintcomponents.data.DataToPoint;
+import typesystem.JavaType;
 import ui.PaintPanel;
 
 public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
@@ -39,12 +39,12 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 		// parameters take place from line 1 to length
 		Class[] paramTypes = displayingConstructor.getParameterTypes();
 		for (int i = 0; i < paramTypes.length; i++) {
-			addToPoint(i + 1, paramTypes[i].getName());
+			addToPoint(i + 1, new JavaType(paramTypes[i]));
 		}
 
 		// constructed instance take line length+1
 		addFromPoint(this, paramTypes.length + 1,
-				this.displayingConstructor.getDeclaringClass().getName());
+				new JavaType(this.displayingConstructor.getDeclaringClass()));
 
 		// prepare String
 		StringBuilder s = new StringBuilder();
@@ -197,5 +197,6 @@ public class ClassConstructorPaintComponent extends DataTextIOPaintComponent
 //		}
 
 	}
+	
 
 }

@@ -1,15 +1,14 @@
 package actions;
 
-import javax.swing.JOptionPane;
-
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
-import actions.menu.PaintActionMenuItem;
-import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
+import ui.general.InputManager;
+import ui.general.InputManagerDelegate;
 
-public class AddLazyJavaClassAction extends PaintAction {
+public class AddLazyJavaClassAction extends MenuBarPaintAction {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {
 		super(panel);
@@ -22,36 +21,19 @@ public class AddLazyJavaClassAction extends PaintAction {
 
 	@Override
 	public void performAction() {
-		String className = JOptionPane
-				.showInputDialog("Please specify the name of the Java Class");
-		try {
-			Class classObj = Class.forName(className);
-			ClassPaintComponent comp = new ClassPaintComponent(classObj,
-					panel.getWidth() / 2, panel.getHeight() / 2);
-			panel.addPaintComponent(comp);
-			// add action to undo redo manager
-			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-				
-				@Override
-				public void undoAction() {
-					comp.remove(panel);
-					panel.repaint();
-				}
-				
-				@Override
-				public void redoAction() {
-					panel.addPaintComponent(comp);
-					panel.repaint();
-				}
-			});
-			panel.repaint();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(panel,
-					className + " :: Class Not Found");
-		}
-		
-		
+		InputManager im = new InputManager();
+		im.askForClass(panel, new InputManagerDelegate<Class>() {
+
+			@Override
+			public void didFinishInput(Class input) {
+				AddLazyJavaClassGlobalAction assiciatedAction 
+				= (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
+						.getAssiciatedAction();
+				assiciatedAction.setClassToCreate(input);
+				GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+
+			}
+		});
 
 	}
 

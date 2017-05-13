@@ -6,7 +6,7 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataDisplayPaintComponent;
 import ui.PaintPanel;
 
-public class AddDataDisplayBoxAction extends PaintAction {
+public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 
 	public AddDataDisplayBoxAction(PaintPanel panel) {
 		super(panel);
@@ -36,6 +36,18 @@ public class AddDataDisplayBoxAction extends PaintAction {
 				panel.addPaintComponent(comp);
 				panel.repaint();
 			}
+
+			@Override
+			protected String commandName() {
+				return "add data displayBox";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a string display";
+			}
+
+			
 		});
 		panel.repaint();
 	}

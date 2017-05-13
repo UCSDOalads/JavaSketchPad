@@ -12,7 +12,7 @@ import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.MethodPaintComponent;
 import ui.PaintPanel;
 
-public class AddLazyJavaMethodComponentAction extends PaintAction {
+public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 
 	public AddLazyJavaMethodComponentAction(PaintPanel panel) {
 		super(panel);
@@ -59,6 +59,16 @@ public class AddLazyJavaMethodComponentAction extends PaintAction {
 			public void redoAction() {
 				panel.addPaintComponent(methodComp);
 				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaMethodComponent";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a lazily evaluated java method component";
 			}
 		});
 		panel.repaint();

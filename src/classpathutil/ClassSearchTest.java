@@ -1,5 +1,7 @@
 package classpathutil;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -11,7 +13,8 @@ public class ClassSearchTest {
 		ClassSearch search = ClassSearch.sharedInstance();
 		ArrayList<String> classesForName = search.classesForName("System");
 		
-		classesForName.forEach(System.out :: println);
+		assertTrue(classesForName.contains("java.lang.System"));
+		
 	}
 
 }

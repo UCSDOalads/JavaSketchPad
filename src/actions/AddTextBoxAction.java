@@ -8,7 +8,7 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 
-public class AddTextBoxAction extends PaintAction {
+public class AddTextBoxAction extends MenuBarPaintAction {
 
 	public AddTextBoxAction(PaintPanel panel) {
 		super(panel);
@@ -37,6 +37,16 @@ public class AddTextBoxAction extends PaintAction {
 			public void redoAction() {
 				panel.addPaintComponent(comp);
 				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "add textBox";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "[Deprecated] add a generic textbox";
 			}
 		});
 		panel.repaint();

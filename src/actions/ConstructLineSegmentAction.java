@@ -11,7 +11,7 @@ import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
-public class ConstructLineSegmentAction extends PaintAction {
+public class ConstructLineSegmentAction extends MenuBarPaintAction {
 
 	public ConstructLineSegmentAction(PaintPanel panel) {
 		super(panel);
@@ -93,6 +93,16 @@ public class ConstructLineSegmentAction extends PaintAction {
 			public void redoAction() {
 				panel.addPaintComponent(lineSegment);
 				panel.repaint();
+			}
+
+			@Override
+			protected String commandName() {
+				return "construct lineSegment";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "[Deprecated] construct a generic line segment";
 			}
 		});
 		panel.repaint();

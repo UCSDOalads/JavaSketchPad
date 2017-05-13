@@ -4,7 +4,7 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.haskell.EvaluateHaskellPaintComponent;
 import ui.PaintPanel;
 
-public class AddHaskellEvaluatorComponentAction extends PaintAction {
+public class AddHaskellEvaluatorComponentAction extends MenuBarPaintAction {
 
 	public AddHaskellEvaluatorComponentAction(PaintPanel panel) {
 		super(panel);

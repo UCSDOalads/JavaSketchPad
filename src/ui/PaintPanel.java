@@ -1,8 +1,10 @@
 package ui;
 
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +13,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import paintcomponents.PaintComponent;
@@ -21,8 +24,9 @@ import painttools.tools.SelectToolInterface;
 
 public class PaintPanel extends JPanel implements ToolBarListener {
 
-	public ArrayList<PaintComponent> components;
+	private ArrayList<PaintComponent> components;
 
+	
 	enum State {
 		TOOLS, DEFAULT
 	}
@@ -31,7 +35,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	private PaintTool tool;
 	private PaintComponent tempComponent;
 
-	private SelectToolInterface selectTool;
+	private SelectTool selectTool;
+	private KeyHandler keyHandler;
 
 	/**
 	 * @return the tempComponent
@@ -80,7 +85,13 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	public PaintPanel() {
 		requestFocusInWindow();
+
+		
+		setLayout(new BorderLayout());
+		
+		
 		this.components = new ArrayList<>();
+		this.keyHandler = new KeyHandler(this);
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -122,17 +133,22 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 		this.addKeyListener(new KeyListener() {
 
+			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
-
+					keyHandler.keyEntered(e);
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_ESCAPE:
-					resetTool();
+					
+					if(state == State.TOOLS)
+						resetTool();
 					break;
+				
 
 				default:
 					break;
@@ -177,7 +193,6 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	public void addPaintComponent(PaintComponent comp) {
 		components.add(comp);
-
 	}
 	
 	public ArrayList<PaintComponent> getPaintComponents() {

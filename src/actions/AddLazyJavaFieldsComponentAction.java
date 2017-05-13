@@ -7,7 +7,7 @@ import paintcomponents.java.lazy.ClassPaintComponent;
 import paintcomponents.java.lazy.FieldsPaintComponent;
 import ui.PaintPanel;
 
-public class AddLazyJavaFieldsComponentAction extends PaintAction {
+public class AddLazyJavaFieldsComponentAction extends MenuBarPaintAction {
 
 public AddLazyJavaFieldsComponentAction(PaintPanel panel) {
 		super(panel);
@@ -47,6 +47,16 @@ public AddLazyJavaFieldsComponentAction(PaintPanel panel) {
 			public void redoAction() {
 				panel.addPaintComponent(fieldsComp);
 					
+			}
+
+			@Override
+			protected String commandName() {
+				return "add lazy javaFieldsComponent";
+			}
+
+			@Override
+			protected String commandDescription() {
+				return "add a java fields component";
 			}
 		});
 		panel.repaint();

@@ -11,7 +11,10 @@ import actions.menu.ActionsMenuBarTitles;
 import file.PanelIO;
 import ui.PaintPanel;
 
-public class FileOpen extends PaintAction {
+import javax.swing.JFileChooser;
+import java.io.File;
+
+public class FileOpen extends MenuBarPaintAction {
 
 	public FileOpen(PaintPanel panel) {
 		super(panel);
@@ -24,7 +27,18 @@ public class FileOpen extends PaintAction {
 
 	@Override
 	public void performAction() {
-		String filePath = JOptionPane.showInputDialog("Please input file path");
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Select the file to open");
+		int userSelection = fileChooser.showOpenDialog(panel);
+		
+		String filePath;
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    filePath = fileToSave.getAbsolutePath();
+		} else {
+			return;
+		}
+		
 		PanelIO io = new PanelIO();
 		try {
 			io.constructPanelFromDocument(panel, filePath, true);
