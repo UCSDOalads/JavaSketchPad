@@ -36,7 +36,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	private SelectTool selectTool;
 	private KeyHandler keyHandler;
-
+	private ShortcutHandler shortcutHandler;
+	
 	/**
 	 * @return the tempComponent
 	 */
@@ -90,6 +91,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		
 		this.components = new ArrayList<>();
 		this.keyHandler = new KeyHandler(this);
+		this.shortcutHandler = new ShortcutHandler(this);
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -156,7 +158,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				shortcutHandler.keyPressed(e);
 			}
 		});
 	}
