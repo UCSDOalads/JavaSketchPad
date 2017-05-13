@@ -25,12 +25,13 @@ public class AddLazyJavaFieldsComponentGlobalAction extends GlobalPaintAction {
 			@Override
 			public void undoAction() {
 				fieldsComp.remove(panel);
+				panel.repaint();
 			}
 
 			@Override
 			public void redoAction() {
 				panel.addPaintComponent(fieldsComp);
-
+				panel.repaint();
 			}
 
 			@Override
