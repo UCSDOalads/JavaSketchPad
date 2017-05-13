@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 
 import paintcomponents.annotations.PaintComponentAnnotation;
 import painttools.tools.SelectTool;
+import painttools.tools.SelectToolInterface;
 import ui.PaintPanel;
 
 /**
