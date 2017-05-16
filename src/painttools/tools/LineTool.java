@@ -2,10 +2,12 @@ package painttools.tools;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
@@ -25,6 +27,18 @@ public class LineTool extends PaintTool {
 
 	@Override
 	public ToolButton getButton() {
+
+		ToolButton b = new ToolButton();
+		
+		
+		ImageIcon icon = new ImageIcon("./images/line.png");
+		b.setOriginalImage(icon);
+		
+		
+		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
+		b.setSelectedImage(icon2);
+		return b;
+		/*
 		ToolButton button = super.getButton();
 		button.setIcon(new Icon() {
 
@@ -45,7 +59,7 @@ public class LineTool extends PaintTool {
 				return 40;
 			}
 		});
-		return button;
+		return button;*/
 	}
 
 	@Override

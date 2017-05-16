@@ -1,6 +1,7 @@
 package painttools.tools;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -258,9 +259,20 @@ public class SelectTool extends PaintTool {
 				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
 				*/
 
+
 		ToolButton b = new ToolButton();
-		b.setSelectedImage(new ImageIcon("./images/arrow3.png"));
-		b.setOriginalImage(new ImageIcon("./images/arrow1.png"));
+		
+		
+		ImageIcon icon = new ImageIcon("./images/arrow.png");
+		b.setOriginalImage(icon);
+		
+		
+		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
+		b.setSelectedImage(icon2);
+		
+
+		
+		
 		return b;
 	}
 

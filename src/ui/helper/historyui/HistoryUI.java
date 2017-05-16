@@ -2,6 +2,7 @@ package ui.helper.historyui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class HistoryUI extends JPanel
 
 		//set title for table
 		TitledBorder border = new TitledBorder("Actions History");
+		border.setTitleColor(Color.WHITE);
 	    border.setTitleJustification(TitledBorder.CENTER);
 	    border.setTitlePosition(TitledBorder.TOP);
 	    setBorder(border);
@@ -80,7 +82,9 @@ public class HistoryUI extends JPanel
 
 	private void createButtons(String[] titles){
 		// add small JPanel for buttons
-		button_panel= new JPanel();
+		button_panel= new JPanel(new FlowLayout());
+
+		button_panel.setBackground(new Color(100,100,100));
 		add(button_panel, BorderLayout.SOUTH);
 
 		//loop through arr and add buttons

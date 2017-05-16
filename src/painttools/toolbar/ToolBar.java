@@ -3,6 +3,7 @@ package painttools.toolbar;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,7 +34,7 @@ public class ToolBar extends JPanel {
 		listeners = new ArrayList<>();
 		
 		//sets the box layout
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new FlowLayout());
 		
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());

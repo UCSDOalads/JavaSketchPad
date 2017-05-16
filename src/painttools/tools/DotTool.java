@@ -1,10 +1,12 @@
 package painttools.tools;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import icons.ToolButton;
@@ -30,6 +32,18 @@ public class DotTool extends PaintTool {
 	
 	@Override
 	public ToolButton getButton() {
+
+		ToolButton b = new ToolButton();
+		
+		
+		ImageIcon icon = new ImageIcon("./images/dot.png");
+		b.setOriginalImage(icon);
+		
+		
+		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
+		b.setSelectedImage(icon2);
+		return b;
+		/*
 		ToolButton button = super.getButton();
 		button.setIcon(new Icon() {
 			
@@ -50,7 +64,7 @@ public class DotTool extends PaintTool {
 				return 40;
 			}
 		});
-		return button;
+		return button;*/
 	}
 
 	@Override

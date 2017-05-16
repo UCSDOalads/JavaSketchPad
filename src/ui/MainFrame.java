@@ -15,13 +15,10 @@ import painttools.toolbar.ToolBar;
 import ui.helper.historyui.undoredoLog.UndoredoDialog;
 
 public class MainFrame extends JFrame{
-	ArrayList<JPanel> panelList;
 	Color color = new Color(100,100,100);
 	
 	
 	public MainFrame(){
-		//temp
-		panelList = new ArrayList<>();
 		
 
 		//meke the frame full screen
@@ -39,6 +36,7 @@ public class MainFrame extends JFrame{
 		UndoredoDialog undoredoDialog = UndoredoDialog.sharedInstance();
 		undoredoDialog.setBackground(color);
 		JPanel westPanel = new JPanel();
+		westPanel.setPreferredSize(new Dimension(300,MAXIMIZED_VERT));
 		westPanel.setBackground(color);
 		
 		//link select tool
@@ -52,17 +50,21 @@ public class MainFrame extends JFrame{
 		getContentPane().add(paintPanel, BorderLayout.CENTER);
 		setJMenuBar(menuBar);
 		
+		//
+		add(toolBar, BorderLayout.NORTH);
+		
+		
+		
+		
+		
 		//set and add westPanel
 		westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.PAGE_AXIS));
-		getContentPane().add(westPanel,BorderLayout.WEST);
+		add(westPanel,BorderLayout.WEST);
 
 		//add westPanel components
-		westPanel.add(toolBar, BorderLayout.WEST);
 		westPanel.add(undoredoDialog);
 		toolBar.addToolBarListener(paintPanel);
 		
-		//change theme
-		changeTheme();
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -73,10 +75,6 @@ public class MainFrame extends JFrame{
 	}
 	
 	
-	
-	public void changeTheme(){
-		//getContentPane().setBackground(new Color(82,86,90));
-		getContentPane().setBackground(new Color(80,120,160));
-	}
+
 
 }
