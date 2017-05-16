@@ -1,15 +1,12 @@
 package painttools.tools;
 
-import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.colorchooser.DefaultColorSelectionModel;
 
+import buttons.ToolButton;
 import icons.LeftArrow;
-import icons.ToolButton;
 import paintcomponents.PaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;

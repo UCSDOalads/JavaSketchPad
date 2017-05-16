@@ -2,11 +2,9 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,9 +14,11 @@ import ui.helper.historyui.undoredoLog.UndoredoDialog;
 
 public class MainFrame extends JFrame{
 	Color color = new Color(100,100,100);
+	ArrayList<JPanel> panelList;
 	
 	
 	public MainFrame(){
+		panelList = new ArrayList<JPanel>();
 		
 
 		//meke the frame full screen
@@ -26,45 +26,39 @@ public class MainFrame extends JFrame{
 		
 		setForeground(color);
 		setBackground(color);
-		getContentPane().setForeground(color);
 
-		//set up toolbar and main panel and undoredo panel
+		//set up paintPanel
 		PaintPanel paintPanel = new PaintPanel();
-		paintPanel.setBackground(color);
+		panelList.add(paintPanel);
+		getContentPane().add(paintPanel, BorderLayout.CENTER);
+		
+		//set up toolBar panel
 		ToolBar toolBar = new ToolBar(paintPanel);
-		toolBar.setBackground(color);
+		panelList.add(toolBar);
+		add(toolBar, BorderLayout.NORTH);
+		
+		//set up undoredoDialog panel
 		UndoredoDialog undoredoDialog = UndoredoDialog.sharedInstance();
-		undoredoDialog.setBackground(color);
-		JPanel westPanel = new JPanel();
-		westPanel.setPreferredSize(new Dimension(300,MAXIMIZED_VERT));
-		westPanel.setBackground(color);
+		undoredoDialog.setPreferredSize(new Dimension(300, MAXIMIZED_VERT));
+		panelList.add(undoredoDialog);
+		add(undoredoDialog,BorderLayout.WEST);
+		
 		
 		//link select tool
 		paintPanel.setSelectTool(toolBar.getSelectTool());
 		
 		//menubar
 		ActionsMenuBar menuBar = new ActionsMenuBar(paintPanel);
-		toolBar.getSelectTool().addSelectionToolListener(menuBar);
-
-		
-		getContentPane().add(paintPanel, BorderLayout.CENTER);
 		setJMenuBar(menuBar);
 		
-		//
-		add(toolBar, BorderLayout.NORTH);
-		
-		
-		
-		
-		
-		//set and add westPanel
-		westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.PAGE_AXIS));
-		add(westPanel,BorderLayout.WEST);
-
-		//add westPanel components
-		westPanel.add(undoredoDialog);
+		//tool bar
+		toolBar.getSelectTool().addSelectionToolListener(menuBar);
 		toolBar.addToolBarListener(paintPanel);
+
 		
+
+		//change backgrounds setting
+		changeTheme();
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -72,6 +66,15 @@ public class MainFrame extends JFrame{
 	
 	public static void main(String[] args){
 		new MainFrame().setVisible(true);
+	}
+	
+	
+	
+	/* change the background setting for JPanels */
+	public void changeTheme(){
+		for(JPanel panel: panelList){
+			panel.setBackground(color);
+		}
 	}
 	
 	

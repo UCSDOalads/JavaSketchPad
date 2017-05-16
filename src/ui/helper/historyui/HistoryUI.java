@@ -1,6 +1,7 @@
 package ui.helper.historyui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -16,12 +17,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Color;
-import java.awt.SystemColor;
-import java.awt.Component;
-import javax.swing.border.LineBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.UIManager;
 
 
 /**

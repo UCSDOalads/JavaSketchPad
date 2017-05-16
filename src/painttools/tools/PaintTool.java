@@ -1,14 +1,8 @@
 package painttools.tools;
-import java.awt.Panel;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.JButton;
-import javax.swing.text.html.HTMLEditorKit.InsertHTMLTextAction;
-import javax.xml.stream.events.StartDocument;
-
-import icons.ToolButton;
-import paintcomponents.PaintComponent;
+import buttons.ToolButton;
 import ui.PaintPanel;
 
 public abstract class PaintTool implements MouseListener, MouseMotionListener {

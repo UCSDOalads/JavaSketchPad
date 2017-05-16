@@ -3,6 +3,7 @@ package painttools.toolbar;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -15,10 +16,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 import javax.tools.Tool;
 
-import icons.ToolButton;
+import buttons.ToolButton;
 import painttools.tools.*;
 import ui.PaintPanel;
 
@@ -26,12 +29,14 @@ public class ToolBar extends JPanel {
 
 	public ArrayList<ToolBarListener> listeners;
 	private SelectTool selectTool;
+	public ArrayList<ToolButton> buttons;
 
 	/**
 	 * Creates a default toolbar and add necessary tools
 	 */
 	public ToolBar(PaintPanel panel) {
 		listeners = new ArrayList<>();
+		buttons = new ArrayList<>();
 		
 		//sets the box layout
 		setLayout(new FlowLayout());
@@ -40,10 +45,14 @@ public class ToolBar extends JPanel {
 		addTool(new DotTool());
 		addTool(selectTool);
 		addTool(new LineTool());
+		
+
+		addSeprator();
 	
 		
 	}
 
+	
 	/**
 	 * Adds a tool to the toolbar. This method will add specific tool to the
 	 * tool bar, and an action listener associated with it
@@ -52,13 +61,16 @@ public class ToolBar extends JPanel {
 	 */
 	private void addTool(PaintTool tool) {
 		ToolButton button = tool.getButton();
+		buttons.add(button);
 		button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				setButtonSelection(e);
 				select(tool);
 			}
 		});
+		addSeprator();
 		add(button);
 	}
 
@@ -85,5 +97,27 @@ public class ToolBar extends JPanel {
 	}
 
 	
+	/**
+	 * this method will set one selected button, and rest buttons 
+	 * in the tool bar to be unselected
+	 * @param e
+	 */
+	public void setButtonSelection(ActionEvent e){
+		for(ToolButton button: buttons){
+			if(!button.equals(e.getSource())){
+				button.setSelected(false);
+			}
+			else{
+				button.setSelected(true);
+			}
+		}
+	}
+	
+	public void addSeprator(){
+		JSeparator j = new JSeparator(SwingConstants.VERTICAL);
+		j.setBackground(Color.white);
+		j.setPreferredSize(new Dimension(5,33));
+		add(j);
+	}
 
 }

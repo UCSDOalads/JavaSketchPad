@@ -1,15 +1,9 @@
 package painttools.tools;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
-import icons.ToolButton;
+import buttons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 

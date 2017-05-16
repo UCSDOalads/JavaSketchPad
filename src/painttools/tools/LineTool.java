@@ -1,20 +1,15 @@
 package painttools.tools;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.ConstructLineSegmentGlobalAction;
-import icons.ToolButton;
+import buttons.ToolButton;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;

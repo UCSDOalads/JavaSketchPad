@@ -1,5 +1,6 @@
-package icons;
+package buttons;
 
+import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -7,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 public class ToolButton extends JToggleButton {
+	Dimension d = new Dimension(60,60);
 	
 	public ToolButton(String str){
 		super(str);
@@ -18,7 +20,7 @@ public class ToolButton extends JToggleButton {
 		setOpaque(false);
 		setFocusPainted(false);
 		setBorderPainted(false);
-		setSize(60,60);
+		setButtonSize(new Dimension(60,60));
 	}
 	
 	
@@ -34,6 +36,11 @@ public class ToolButton extends JToggleButton {
 		Image newimg = img.getScaledInstance( this.getWidth(), this.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
 		setIcon(icon);
+	}
+	
+	public void setButtonSize(Dimension d){
+		setSize(d);
+		
 	}
 
 }
