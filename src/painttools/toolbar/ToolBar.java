@@ -12,6 +12,7 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import buttons.ToolButton;
+
 import painttools.tools.AddClassTool;
 import painttools.tools.AddInputBoxTool;
 import painttools.tools.AddOutputBoxTool;
@@ -20,6 +21,7 @@ import painttools.tools.LineTool;
 import painttools.tools.PaintTool;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
+import ui.ShortcutHandler;
 
 public class ToolBar extends JPanel {
 
@@ -51,7 +53,9 @@ public class ToolBar extends JPanel {
 		addTool(new LineTool());
 
 		addSeprator();
-	
+
+		
+		this.addKeyListener(new ShortcutHandler(panel));
 	}
 
 	

@@ -245,7 +245,6 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-
 	}
 
 	@Override

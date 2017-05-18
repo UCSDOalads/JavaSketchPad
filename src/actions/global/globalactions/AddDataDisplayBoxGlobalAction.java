@@ -15,6 +15,7 @@ public class AddDataDisplayBoxGlobalAction extends GlobalPaintAction {
 	private String dataDisplay;
 	private int x;
 	private int y;
+	private DataDisplayPaintComponent comp;
 
 	public void setDisplayString(String dataDisplay) {
 		this.dataDisplay = dataDisplay;
@@ -38,8 +39,12 @@ public class AddDataDisplayBoxGlobalAction extends GlobalPaintAction {
 
 	@Override
 	protected void execute(PaintPanel panel) {
-		DataDisplayPaintComponent comp = new DataDisplayPaintComponent(
+		comp = new DataDisplayPaintComponent(
 				dataDisplay, x, y);
+		if (panel.getSelectTool() != null) {
+		    panel.getSelectTool().clearSelection();
+		    panel.getSelectTool().selectComponent(comp);
+		}
 		panel.addPaintComponent(comp);
 
 		// push action to manager
@@ -70,6 +75,10 @@ public class AddDataDisplayBoxGlobalAction extends GlobalPaintAction {
 
 				});
 		panel.repaint();
+	}
+	
+	public DataDisplayPaintComponent getComponent() {
+		return comp;
 	}
 
 }
