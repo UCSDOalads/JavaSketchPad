@@ -56,7 +56,7 @@ public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 
 		panel.repaint();
 	}
-		
+		 
 	public String getMethodsSelectionUI(Method[] methods) {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < methods.length; i++) {
