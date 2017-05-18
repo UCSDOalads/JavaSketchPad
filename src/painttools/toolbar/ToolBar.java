@@ -8,10 +8,15 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import painttools.tools.*;
-
-
+import painttools.tools.AddClassTool;
+import painttools.tools.AddInputBoxTool;
+import painttools.tools.AddOutputBoxTool;
+import painttools.tools.DotTool;
+import painttools.tools.LineTool;
+import painttools.tools.PaintTool;
+import painttools.tools.SelectTool;
 import ui.PaintPanel;
+import ui.ShortcutHandler;
 
 public class ToolBar extends JPanel {
 
@@ -39,7 +44,8 @@ public class ToolBar extends JPanel {
 		addTool(new AddOutputBoxTool(panel));
 
 		addTool(new LineTool());
-
+		
+		this.addKeyListener(new ShortcutHandler(panel));
 	}
 
 	/**
