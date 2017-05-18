@@ -1,28 +1,24 @@
 package painttools.toolbar;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
-import javax.tools.Tool;
 
 import buttons.ToolButton;
-import painttools.tools.*;
+import painttools.tools.AddClassTool;
+import painttools.tools.AddInputBoxTool;
+import painttools.tools.AddOutputBoxTool;
+import painttools.tools.DotTool;
+import painttools.tools.LineTool;
+import painttools.tools.PaintTool;
+import painttools.tools.SelectTool;
 import ui.PaintPanel;
 
 public class ToolBar extends JPanel {
@@ -30,13 +26,15 @@ public class ToolBar extends JPanel {
 	public ArrayList<ToolBarListener> listeners;
 	private SelectTool selectTool;
 	public ArrayList<ToolButton> buttons;
-
+	private PaintPanel panel;
+	
 	/**
 	 * Creates a default toolbar and add necessary tools
 	 */
 	public ToolBar(PaintPanel panel) {
 		listeners = new ArrayList<>();
 		buttons = new ArrayList<>();
+		this.panel = panel;
 		
 		//sets the box layout
 		setLayout(new FlowLayout());
@@ -44,12 +42,16 @@ public class ToolBar extends JPanel {
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());
 		addTool(selectTool);
+
+
+		addTool(new AddClassTool(panel));
+		addTool(new AddInputBoxTool(panel));
+		addTool(new AddOutputBoxTool(panel));
+
 		addTool(new LineTool());
-		
 
 		addSeprator();
 	
-		
 	}
 
 	
@@ -95,7 +97,6 @@ public class ToolBar extends JPanel {
 	public SelectTool getSelectTool() {
 		return selectTool;
 	}
-
 	
 	/**
 	 * this method will set one selected button, and rest buttons 

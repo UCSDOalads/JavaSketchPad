@@ -1,14 +1,15 @@
 package actions.global.globalactions;
 
-import actions.global.GlobalPaintAction;
 import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.global.GlobalPaintAction;
 
 public class EditRedoGlobalAction extends GlobalPaintAction {
-
+	SharedUndoRedoActionManager manager = SharedUndoRedoActionManager
+			.getSharedInstance();
 	@Override
 	protected void execute(PaintPanel panel) {
-		// TODO Auto-generated method stub
-
+		manager.redo();
 	}
 
 }
