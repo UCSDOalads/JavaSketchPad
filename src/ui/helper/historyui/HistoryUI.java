@@ -60,7 +60,7 @@ public class HistoryUI extends JPanel
 		resultsTable.setShowVerticalLines(false);
 		resultsTable.setShowGrid(false);
 		resultsTable.setBorder(null);
-		resultsTable.setBackground(new Color(100,100,100));
+		resultsTable.setBackground(new Color(150,150,150));
 		resultsTable.setForeground(Color.WHITE);
 		resultsTable.setModel(defaultTableModel);
 		resultsTable.setSelectionModel(new ForcedListSelectionModel());
@@ -97,7 +97,7 @@ public class HistoryUI extends JPanel
 		button_panel= new JPanel(fl_button_panel);
 		button_panel.setBorder(null);
 
-		button_panel.setBackground(new Color(100,100,100));
+		button_panel.setBackground(new Color(150,150,150));
 		add(button_panel, BorderLayout.SOUTH);
 
 		//loop through arr and add buttons

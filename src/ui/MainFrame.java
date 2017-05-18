@@ -14,7 +14,7 @@ import ui.helper.historyui.undoredoLog.UndoredoDialog;
 import java.awt.Font;
 
 public class MainFrame extends JFrame{
-	Color color = new Color(100,100,100);
+	Color color = new Color(150,150,150);
 	ArrayList<JPanel> panelList;
 	
 	
