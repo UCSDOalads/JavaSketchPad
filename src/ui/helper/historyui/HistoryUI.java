@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
+import java.awt.Font;
 
 
 /**
@@ -49,17 +51,29 @@ public class HistoryUI extends JPanel
 		});
 
 		setLayout(new BorderLayout(0, 0));
+	
 
 		// show result
 		this.resultsTable= (new JTable());
+		resultsTable.setFont(new Font("Apple LiSung", Font.PLAIN, 16));
+		resultsTable.setShowHorizontalLines(false);
+		resultsTable.setShowVerticalLines(false);
+		resultsTable.setShowGrid(false);
+		resultsTable.setBorder(null);
+		resultsTable.setBackground(new Color(100,100,100));
+		resultsTable.setForeground(Color.WHITE);
 		resultsTable.setModel(defaultTableModel);
 		resultsTable.setSelectionModel(new ForcedListSelectionModel());
 		
+		
 		// scroll option
 		scrollPane = new JScrollPane(resultsTable);
+		scrollPane.setEnabled(false);
+		scrollPane.setViewportBorder(null);
 		add(scrollPane, BorderLayout.CENTER);
 
 		//set title for table
+	
 		TitledBorder border = new TitledBorder("Actions History");
 		border.setTitleColor(Color.WHITE);
 	    border.setTitleJustification(TitledBorder.CENTER);
@@ -72,12 +86,16 @@ public class HistoryUI extends JPanel
 	    
 		//create buttons for panel
 		createButtons(titles);
+		
+		setBackground(Color.black);
 	}
 	
 
 	private void createButtons(String[] titles){
 		// add small JPanel for buttons
-		button_panel= new JPanel(new FlowLayout());
+		FlowLayout fl_button_panel = new FlowLayout();
+		button_panel= new JPanel(fl_button_panel);
+		button_panel.setBorder(null);
 
 		button_panel.setBackground(new Color(100,100,100));
 		add(button_panel, BorderLayout.SOUTH);

@@ -33,28 +33,6 @@ public class LineTool extends PaintTool {
 		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
 		b.setSelectedImage(icon2);
 		return b;
-		/*
-		ToolButton button = super.getButton();
-		button.setIcon(new Icon() {
-
-			@Override
-			public void paintIcon(Component c, Graphics g, int x, int y) {
-				g.fillRect(10, 20, 40, 8);
-
-			}
-
-			@Override
-			public int getIconWidth() {
-				return 40;
-			}
-
-			@Override
-			public int getIconHeight() {
-				// TODO Auto-generated method stub
-				return 40;
-			}
-		});
-		return button;*/
 	}
 
 	@Override

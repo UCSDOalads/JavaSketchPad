@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import actions.menu.ActionsMenuBar;
 import painttools.toolbar.ToolBar;
 import ui.helper.historyui.undoredoLog.UndoredoDialog;
+import java.awt.Font;
 
 public class MainFrame extends JFrame{
 	Color color = new Color(100,100,100);
@@ -29,19 +30,21 @@ public class MainFrame extends JFrame{
 
 		//set up paintPanel
 		PaintPanel paintPanel = new PaintPanel();
+		paintPanel.setBorder(null);
+		paintPanel.setBackground(Color.WHITE);
 		panelList.add(paintPanel);
 		getContentPane().add(paintPanel, BorderLayout.CENTER);
 		
 		//set up toolBar panel
 		ToolBar toolBar = new ToolBar(paintPanel);
 		panelList.add(toolBar);
-		add(toolBar, BorderLayout.NORTH);
+		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//set up undoredoDialog panel
 		UndoredoDialog undoredoDialog = UndoredoDialog.sharedInstance();
 		undoredoDialog.setPreferredSize(new Dimension(300, MAXIMIZED_VERT));
 		panelList.add(undoredoDialog);
-		add(undoredoDialog,BorderLayout.WEST);
+		getContentPane().add(undoredoDialog,BorderLayout.WEST);
 		
 		
 		//link select tool
@@ -49,6 +52,11 @@ public class MainFrame extends JFrame{
 		
 		//menubar
 		ActionsMenuBar menuBar = new ActionsMenuBar(paintPanel);
+		menuBar.setOpaque(true);
+		menuBar.setFont(new Font("Apple LiSung", Font.PLAIN, 14));
+		menuBar.setBorderPainted(false);
+		menuBar.setForeground(Color.BLACK);
+		menuBar.setBackground(Color.GRAY);
 		setJMenuBar(menuBar);
 		
 		//tool bar

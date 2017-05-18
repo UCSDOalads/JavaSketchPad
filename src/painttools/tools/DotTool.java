@@ -37,28 +37,6 @@ public class DotTool extends PaintTool {
 		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
 		b.setSelectedImage(icon2);
 		return b;
-		/*
-		ToolButton button = super.getButton();
-		button.setIcon(new Icon() {
-			
-			@Override
-			public void paintIcon(Component c, Graphics g, int x, int y) {
-				g.fillOval(15, 15, 20, 20);
-				
-			}
-			
-			@Override
-			public int getIconWidth() {
-				return 40;
-			}
-			
-			@Override
-			public int getIconHeight() {
-				// TODO Auto-generated method stub
-				return 40;
-			}
-		});
-		return button;*/
 	}
 
 	@Override
