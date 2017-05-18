@@ -22,9 +22,10 @@ public class UpdateDataDisplayBoxAction extends MenuBarPaintAction {
 
 	@Override
 	public boolean canPerformAction() {
+		
 		if(panel.getSelectTool().getSelectedComponents().size() == 1){
 			if(panel.getSelectTool().getSelectedComponents().get(0) instanceof DataDisplayPaintComponent){
-				return true;
+				return ((DataDisplayPaintComponent) panel.getSelectTool().getSelectedComponents().get(0)).canUpdate();
 			}
 		}
 		return false;
