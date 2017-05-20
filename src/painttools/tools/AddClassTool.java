@@ -6,34 +6,35 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
-import actions.AddLazyJavaClassAction;
 import ui.PaintPanel;
+import actions.AddLazyJavaClassAction;
 
 public class AddClassTool extends PaintTool {
-	
-	private JButton button;	
-	
+
+	private JButton button;
+
 	public AddClassTool(PaintPanel panel) {
 		button = new JButton("Add Class");
-		
+
 		AddLazyJavaClassAction action = new AddLazyJavaClassAction(panel);
-		
+
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (action.canPerformAction()) {
 					action.performAction();
+					panel.toolSelected(panel.getSelectTool());
 				}
-				
+
 			}
 		});
 	}
-	
+
 	@Override
 	public void start(PaintPanel panel) {
 	}
-	
+
 	@Override
 	public JButton getButton() {
 		return button;
@@ -41,49 +42,49 @@ public class AddClassTool extends PaintTool {
 
 	@Override
 	public void reset() {
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

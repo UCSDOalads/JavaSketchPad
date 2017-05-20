@@ -9,13 +9,13 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import actions.global.ActionName;
-import actions.global.GlobalPaintActionExecuter;
-import actions.global.globalactions.ConstructLineSegmentGlobalAction;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.ConstructLineSegmentGlobalAction;
 
 public class LineTool extends PaintTool {
 
@@ -81,6 +81,7 @@ public class LineTool extends PaintTool {
 				panel.repaint();
 				panel.setTempComponent(null);
 				panel.showCursor();
+				panel.toolSelected(panel.getSelectTool());
 			}
 		}
 	}
@@ -139,7 +140,7 @@ public class LineTool extends PaintTool {
 			SimplePoint currPoint = new SimplePoint(e.getX(), e.getY());
 			line = new LineSegment((SimplePoint) panel.getSelectTool()
 					.getSelectedComponents().get(0), currPoint);
-			
+
 			panel.setTempComponent(line);
 			panel.repaint();
 
