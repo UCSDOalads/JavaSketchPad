@@ -94,15 +94,15 @@ public class LeftArrow{
 
 		Polygon p = new Polygon();
 
-		p.addPoint(8, 0);
-		p.addPoint(0, 9);
-		p.addPoint(8, 20);
-		p.addPoint(8, 17);
-		p.addPoint(8, 14);
-		p.addPoint(40, 15);
-		p.addPoint(40, 8);
-		p.addPoint(8, 7);
-		p.addPoint(8, 1);
+		p.addPoint(8, 5);
+		p.addPoint(0, 14);
+		p.addPoint(8, 25);
+		p.addPoint(8, 22);
+		p.addPoint(8, 19);
+		p.addPoint(40, 20);
+		p.addPoint(40, 13);
+		p.addPoint(8, 12);
+		p.addPoint(8, 6);
 
 
 		return p;
