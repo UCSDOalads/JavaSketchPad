@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
-import actions.global.ActionName;
-import actions.global.GlobalPaintActionExecuter;
-import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
-import actions.global.globalactions.ConstructLineSegmentGlobalAction;
-import buttons.ToolButton;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
@@ -19,6 +14,11 @@ import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataTextPaintComponent;
 import paintcomponents.data.DataToPoint;
 import ui.PaintPanel;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
+import actions.global.globalactions.ConstructLineSegmentGlobalAction;
+import buttons.ToolButton;
 
 public class LineTool extends PaintTool {
 
@@ -29,12 +29,10 @@ public class LineTool extends PaintTool {
 	public ToolButton getButton() {
 
 		ToolButton b = new ToolButton();
-		
-		
+
 		ImageIcon icon = new ImageIcon("./images/line.png");
 		b.setOriginalImage(icon);
-		
-		
+
 		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
 		b.setSelectedImage(icon2);
 		return b;
@@ -132,6 +130,7 @@ public class LineTool extends PaintTool {
 					panel.repaint();
 					panel.setTempComponent(null);
 					panel.showCursor();
+					panel.toolSelected(panel.getSelectTool());
 				}
 
 				// If the first point is dataFrom point and the point under
@@ -152,6 +151,7 @@ public class LineTool extends PaintTool {
 					panel.repaint();
 					panel.setTempComponent(null);
 					panel.showCursor();
+					panel.toolSelected(panel.getSelectTool());
 				}
 			}
 		}
@@ -186,6 +186,7 @@ public class LineTool extends PaintTool {
 				panel.setTempComponent(null);
 				panel.showCursor();
 				panel.repaint();
+				panel.toolSelected(panel.getSelectTool());
 			}
 		}
 
