@@ -264,6 +264,22 @@ public class SelectTool extends PaintTool implements SelectToolInterface{
 
 	}
 
+	/**
+	 * add a component to selected
+	 * @param pc
+	 */
+	public void addSelectedComponent(PaintComponent pc){
+		selectedComponents.add(pc);
+	}
+	
+	/**
+	 * remove a selected component
+	 * 
+	 */
+	public void removeSelectedComponent(PaintComponent pc){
+		selectedComponents.remove(pc);
+	}
+
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		// TODO Auto-generated method stub

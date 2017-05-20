@@ -6,14 +6,26 @@ import paintcomponents.PaintComponent;
 import paintcomponents.annotations.TextAnnotation;
 import ui.PaintPanel;
 
-public class AddAnnotationGlobalAction extends SingleInstanceOperationGlobalAction<AddAnnotationGlobalAction> {
+public class AddAnnotationGlobalAction extends SingleInstanceOperationGlobalAction {
 
-
+	private String annotationToAdd;
 	@Override
-	public void execute(PaintPanel panel, PaintComponent instance) {
-		String annotations = JOptionPane
-				.showInputDialog("Please specify the annotation of the component");
-		new TextAnnotation(instance, annotations);
+	public void execute(PaintPanel panel){
+		new TextAnnotation(getOperatingInstance(), annotationToAdd);
+	}
+	/**
+	 * @return the annotationToAdd
+	 */
+	public String getAnnotationToAdd() {
+		return annotationToAdd;
+	}
+	
+	/**
+	 * @param annotationToAdd the annotationToAdd to set
+	 */
+	public void setAnnotationToAdd(String annotationToAdd) {
+		this.annotationToAdd = annotationToAdd;
 	}
 
+	
 }
