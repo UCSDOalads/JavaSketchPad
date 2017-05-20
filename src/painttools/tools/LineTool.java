@@ -16,6 +16,7 @@ import actions.global.globalactions.ConstructLineSegmentGlobalAction;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
+import paintcomponents.TextPaintComponent;
 import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataTextPaintComponent;
 import paintcomponents.data.DataToPoint;
@@ -53,6 +54,7 @@ public class LineTool extends PaintTool {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.print(panel.getSelectTool().getSelectedComponents() + "\n");
 		// If no point is selected, select the point(if any) at the mouse's
 		// location.
 		ArrayList<PaintComponent> items = panel.getSelectTool()
@@ -70,7 +72,8 @@ public class LineTool extends PaintTool {
 			else if (comp instanceof DataTextPaintComponent) {
 				panel.getSelectTool().mousePressed(e);
 
-				if (items.size() == 1 && items.get(0) instanceof DataToPoint) {
+				if (items.size() == 1
+						&& (items.get(0) instanceof DataToPoint || items.get(0) instanceof TextPaintComponent)) {
 					panel.getSelectTool().clearSelection();
 				}
 			}
