@@ -28,6 +28,7 @@ public class AddDataInputBoxAction extends MenuBarPaintAction {
 		}
 		panel.addPaintComponent(comp);
 		
+	    
 		
 		//push action to the manager
 		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {

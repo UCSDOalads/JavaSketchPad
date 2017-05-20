@@ -1,31 +1,35 @@
 package painttools.toolbar;
 
-import java.awt.Button;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.tools.Tool;
 
-import painttools.tools.*;
+import painttools.tools.AddClassTool;
+import painttools.tools.AddInputBoxTool;
+import painttools.tools.AddOutputBoxTool;
+import painttools.tools.DotTool;
+import painttools.tools.LineTool;
+import painttools.tools.PaintTool;
+import painttools.tools.SelectTool;
 import ui.PaintPanel;
+import ui.ShortcutHandler;
 
 public class ToolBar extends JPanel {
 
 	public ArrayList<ToolBarListener> listeners;
 	private SelectTool selectTool;
-
+	private PaintPanel panel;
+	
 	/**
 	 * Creates a default toolbar and add necessary tools
 	 */
 	public ToolBar(PaintPanel panel) {
 		listeners = new ArrayList<>();
+		this.panel = panel;
 		
 		//sets the box layout
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -33,7 +37,15 @@ public class ToolBar extends JPanel {
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());
 		addTool(selectTool);
+
+
+		addTool(new AddClassTool(panel));
+		addTool(new AddInputBoxTool(panel));
+		addTool(new AddOutputBoxTool(panel));
+
 		addTool(new LineTool());
+		
+		this.addKeyListener(new ShortcutHandler(panel));
 	}
 
 	/**
@@ -75,7 +87,6 @@ public class ToolBar extends JPanel {
 	public SelectTool getSelectTool() {
 		return selectTool;
 	}
-
 	
-
+	
 }
