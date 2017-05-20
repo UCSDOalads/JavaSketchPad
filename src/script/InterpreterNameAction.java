@@ -16,7 +16,7 @@ public class InterpreterNameAction {
 				.getAssiciatedAction();
 		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
 				panel);
-		assiciatedAction.setName(token);
+		assiciatedAction.setName(token, panel);
 
 		// AddAnnotationAction annoAct = new AddAnnotationAction(panel);
 
