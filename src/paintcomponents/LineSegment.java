@@ -102,22 +102,16 @@ public class LineSegment extends PaintComponent {
 		if (fromPoint.contains(x, y) || toPoint.contains(x, y)) {
 			return false;
 		}
-		// else return the D(curPoint , fromPoint) + D(curPoint, toPoint) ==
-		// D(fromPoint, toPoint)
-		double distanceBetweenXYandFrom = Math
-				.sqrt(Math.pow(fromPoint.getX() - x, 2)
-						+ Math.pow(fromPoint.getY() - y, 2));
-		double distanceBetweenXYandTo = Math
-				.sqrt(Math.pow(toPoint.getX() - x, 2)
-						+ Math.pow(toPoint.getY() - y, 2));
-		double distanceBetweenFromAndTo = Math
-				.sqrt(Math.pow(toPoint.getX() - fromPoint.getX(), 2)
-						+ Math.pow(toPoint.getY() - fromPoint.getY(), 2));
+		
+		double lineXDis = fromPoint.getX() - toPoint.getX();
+		double lineYDis = toPoint.getY() - fromPoint.getY();
+		double constantTerm = fromPoint.getY() * toPoint.getX() - toPoint.getY() * fromPoint.getX();
+		
+		// Calculate point to line distance with formula.
+		double pointToLineDis = Math.abs((lineYDis * x + lineXDis * y + constantTerm) / Math.sqrt(Math.pow(lineYDis, 2) + Math.pow(lineXDis, 2)));
 
-		// checking delta distance
-		// Note: this calculation is only an approximation
-		if (Math.abs(distanceBetweenFromAndTo - distanceBetweenXYandFrom
-				- distanceBetweenXYandTo) < Math.sqrt(strokeWidth)) {
+		// If the point is within 3 pixels of the line, return true.
+		if (pointToLineDis <= 3 + strokeWidth / 2) {
 			return true;
 
 		}
