@@ -20,6 +20,7 @@ public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 
 	@Override
 	public boolean canPerformAction() {
+		
 		return true;
 	}
 

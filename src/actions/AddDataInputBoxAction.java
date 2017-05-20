@@ -20,8 +20,15 @@ public class AddDataInputBoxAction extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent("Data Input", panel.getWidth() /2, panel.getHeight()/2);
+		
+		// auto-select the component just created by the user
+		if (panel.getSelectTool() != null) {
+		    panel.getSelectTool().clearSelection();
+		    panel.getSelectTool().selectComponent(comp);
+		}
 		panel.addPaintComponent(comp);
 		
+	    
 		
 		//push action to the manager
 		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {

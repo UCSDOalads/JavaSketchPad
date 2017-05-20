@@ -1,12 +1,9 @@
 package painttools.tools;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
+import buttons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
@@ -28,28 +25,18 @@ public class DotTool extends PaintTool {
 
 	
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
-		button.setIcon(new Icon() {
-			
-			@Override
-			public void paintIcon(Component c, Graphics g, int x, int y) {
-				g.fillOval(10, 10, 20, 20);
-				
-			}
-			
-			@Override
-			public int getIconWidth() {
-				return 40;
-			}
-			
-			@Override
-			public int getIconHeight() {
-				// TODO Auto-generated method stub
-				return 40;
-			}
-		});
-		return button;
+	public ToolButton getButton() {
+
+		ToolButton b = new ToolButton();
+		
+		
+		ImageIcon icon = new ImageIcon("./images/dot.png");
+		b.setOriginalImage(icon);
+		
+		
+		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
+		b.setSelectedImage(icon2);
+		return b;
 	}
 
 	@Override

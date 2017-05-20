@@ -36,15 +36,18 @@ public class AddLazyJavaConstructorAction extends MenuBarPaintAction {
 		AddLazyJavaConstructorGlobalAction assiciatedAction = (AddLazyJavaConstructorGlobalAction) ActionName.ADD_LAZY_JAVA_CONSTRUCTOR_ACTION
 				.getAssiciatedAction();
 		assiciatedAction.setComponent(comp);
-		int desiaredConstructorIndex = Integer
-				.parseInt(JOptionPane
+		String desiaredConstructorIndex = JOptionPane
 						.showInputDialog("Please enter the index of the constructor you would like to use: \n\n\n"
 								+ getConstructorsSelectionUI(assiciatedAction
-										.getConstructor())));
-		assiciatedAction.setConstructorIndex(desiaredConstructorIndex);
-		assiciatedAction.setCoord(panel.getWidth() / 2, panel.getHeight() / 2);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-				panel);
+										.getConstructor()));
+		//call DialogInputChecker to check input
+		DialogInputChecker inputChecker = new DialogInputChecker();
+		if(inputChecker.isValidNumber(desiaredConstructorIndex)){
+			assiciatedAction.setConstructorIndex(Integer.parseInt(desiaredConstructorIndex));
+			assiciatedAction.setCoord(panel.getWidth() / 2, panel.getHeight() / 2);
+			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+					panel);
+		}
 	}
 
 	@Override

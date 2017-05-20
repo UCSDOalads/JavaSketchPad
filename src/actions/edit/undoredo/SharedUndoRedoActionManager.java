@@ -33,10 +33,13 @@ public class SharedUndoRedoActionManager {
 			UndoRedoableInterface undoableAction = undoStack.pop();
 			undoableAction.undoAction();
 			redoStack.add(undoableAction);
-			delegate.didUndoAction(undoableAction);
+			if (delegate != null) {
+				delegate.didUndoAction(undoableAction);
+			}
 		}
-		else
+		else {
 			System.out.println("empty undo stack");
+		}
 	}
 	
 	public void redo() {
@@ -44,10 +47,13 @@ public class SharedUndoRedoActionManager {
 			UndoRedoableInterface redoableAction = redoStack.pop();
 			redoableAction.redoAction();
 			undoStack.add(redoableAction);
-			delegate.didRedoAction(redoableAction);
+			if (delegate != null) {
+				delegate.didRedoAction(redoableAction);
+			}
 		}
-		else
+		else {
 			System.out.println("empty redo stack");
+		}
 	}
 	
 	public boolean canUndo() {
@@ -61,7 +67,7 @@ public class SharedUndoRedoActionManager {
 	public void pushUndoableAction( UndoRedoableInterface undoredoableAction ) {
 		undoStack.push(undoredoableAction);
 		redoStack.clear();
-		if(delegate != null){
+		if( delegate != null){
 			delegate.didAddNewAction(undoredoableAction);
 		}
 	}

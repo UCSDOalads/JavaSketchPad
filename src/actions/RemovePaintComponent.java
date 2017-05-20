@@ -38,11 +38,14 @@ public class RemovePaintComponent extends MenuBarPaintAction{
 			public void undoAction() {
 				for( PaintComponent comp: comps )
 					panel.addPaintComponent(comp);
+				panel.repaint();
+				
 			}
 			@Override
 			public void redoAction() {
 				for( PaintComponent comp: comps ) 
 					comp.remove(panel);
+				panel.repaint();
 			}
 			@Override
 			protected String commandName() {

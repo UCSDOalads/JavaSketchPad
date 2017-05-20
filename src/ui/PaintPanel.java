@@ -36,7 +36,8 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 	private SelectTool selectTool;
 	private KeyHandler keyHandler;
-
+	private ShortcutHandler shortcutHandler;
+	
 	/**
 	 * @return the tempComponent
 	 */
@@ -45,7 +46,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	/**
-	 * Sets a temporary component. Temporary component is the compoennt this
+	 * Sets a temporary component. Temporary component is the component this
 	 * panel paints when tools are selected. When tools are not in operation,
 	 * i.e. when user hits esc key, the temporary component is discarded The
 	 * Point tool sets the temp component to a moving point on screen by calling
@@ -90,6 +91,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		
 		this.components = new ArrayList<>();
 		this.keyHandler = new KeyHandler(this);
+		this.shortcutHandler = new ShortcutHandler(this);
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -156,7 +158,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				shortcutHandler.keyPressed(e);
 			}
 		});
 	}
