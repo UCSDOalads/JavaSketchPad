@@ -4,21 +4,15 @@ import actions.global.GlobalPaintAction;
 import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
-public abstract class SingleInstanceOperationGlobalAction<T extends GlobalPaintAction<?>> extends GlobalPaintAction<T>{
+public abstract class SingleInstanceOperationGlobalAction extends GlobalPaintAction<SingleInstanceOperationGlobalAction>{
 	
 	private PaintComponent operatingInstance;
 	
 
-	@Override
-	protected void execute(PaintPanel panel) {
-		execute(panel, operatingInstance);
-		
+
+	public PaintComponent getOperatingInstance() {
+		return operatingInstance;
 	}
-
-
-
-	public abstract void execute(PaintPanel panel, PaintComponent instance);
-
 
 
 	/**

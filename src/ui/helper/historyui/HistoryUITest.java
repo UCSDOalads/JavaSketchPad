@@ -58,7 +58,7 @@ public class HistoryUITest {
 						
 						try {
 							Thread.sleep(5000);
-							historyUI.dispose();
+							
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

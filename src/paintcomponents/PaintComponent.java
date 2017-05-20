@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 
 import paintcomponents.annotations.PaintComponentAnnotation;
 import painttools.tools.SelectTool;
+import painttools.tools.SelectToolInterface;
 import ui.PaintPanel;
 
 /**
@@ -35,6 +36,7 @@ public abstract class PaintComponent {
 	private int x;
 	private int y;
 	private boolean selected;
+	private String text;
 
 	static private long UNIQUE_ID = 0;
 	long uid = ++UNIQUE_ID;
@@ -125,7 +127,7 @@ public abstract class PaintComponent {
 	 * @param selectTool
 	 *            TODO
 	 */
-	public void select(SelectTool selectTool) {
+	public void select(SelectToolInterface selectTool) {
 		selected = true;
 		if (selectTool != null)
 			selectTool.getSelectedComponents().add(this);
@@ -140,7 +142,7 @@ public abstract class PaintComponent {
 	 * @param selectTool
 	 *            TODO
 	 */
-	public void deselect(SelectTool selectTool) {
+	public void deselect(SelectToolInterface selectTool) {
 		selected = false;
 		if (selectTool != null)
 			selectTool.getSelectedComponents().remove(this);
@@ -152,7 +154,7 @@ public abstract class PaintComponent {
 	 * @param selectTool
 	 *            TODO
 	 */
-	public void toggleSelect(SelectTool selectTool) {
+	public void toggleSelect(SelectToolInterface selectTool) {
 		if (isSelected()) {
 			deselect(selectTool);
 		} else {
@@ -243,5 +245,23 @@ public abstract class PaintComponent {
 	 */
 	public void setOptionalAnnotation(PaintComponentAnnotation optionalAnnotation) {
 		this.optionalAnnotation = optionalAnnotation;
+	}
+	
+	/**
+	 * 
+	 * @param str set the text for component
+	 */
+	public void setText(String str){
+		if(str!=null)
+			text = str;
+	}
+	
+	/**
+	 * @return return text of this component
+	 */
+	public String getText(){
+		if(text !=null)
+			return text;
+		return "";
 	}
 }

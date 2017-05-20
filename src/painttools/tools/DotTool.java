@@ -3,6 +3,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -108,6 +109,14 @@ public class DotTool extends PaintTool {
 		//do nothing on reset
 		//temporary component will automatically be removed
 		
+		
+	}
+
+
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
