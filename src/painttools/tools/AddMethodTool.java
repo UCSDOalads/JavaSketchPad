@@ -8,13 +8,14 @@ import javax.swing.JButton;
 
 import ui.PaintPanel;
 import actions.AddLazyJavaMethodComponentAction;
+import buttons.ToolButton;
 
 public class AddMethodTool extends PaintTool {
 
-	private JButton button;
+	private ToolButton button;
 	
 	public AddMethodTool(PaintPanel panel) {
-        button = new JButton("Add Method");
+        button = new ToolButton("Add Method");
 		
         AddLazyJavaMethodComponentAction action = new AddLazyJavaMethodComponentAction(panel);
 		
@@ -36,7 +37,7 @@ public class AddMethodTool extends PaintTool {
 	}
 	
 	@Override
-	public JButton getButton() {
+	public ToolButton getButton() {
 		return button;
 	}
 

@@ -67,7 +67,7 @@ public class SharedUndoRedoActionManager {
 	public void pushUndoableAction( UndoRedoableInterface undoredoableAction ) {
 		undoStack.push(undoredoableAction);
 		redoStack.clear();
-		if(delegate != null){
+		if( delegate != null){
 			delegate.didAddNewAction(undoredoableAction);
 		}
 	}

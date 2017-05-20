@@ -8,13 +8,14 @@ import javax.swing.JButton;
 
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
+import buttons.ToolButton;
 
 public class AddOutputBoxTool extends PaintTool {
 
-	private JButton button;
+	private ToolButton button;
 	
 	public AddOutputBoxTool(PaintPanel panel) {
-        button = new JButton("Add Output Box");
+        button = new ToolButton("Add Output Box");
 		
         AddDataDisplayBoxAction action = new AddDataDisplayBoxAction(panel);
 		
@@ -36,7 +37,7 @@ public class AddOutputBoxTool extends PaintTool {
 	}
 	
 	@Override
-	public JButton getButton() {
+	public ToolButton getButton() {
 		return button;
 	}
 

@@ -8,13 +8,14 @@ import javax.swing.JButton;
 
 import ui.PaintPanel;
 import actions.AddDataInputBoxAction;
+import buttons.ToolButton;
 
 public class AddInputBoxTool extends PaintTool {
 
-	private JButton button;
+	private ToolButton button;
 	
 	public AddInputBoxTool(PaintPanel panel) {
-        button = new JButton("Add Input Box");
+        button = new ToolButton("Add Input Box");
 		
         AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
 		
@@ -36,7 +37,7 @@ public class AddInputBoxTool extends PaintTool {
 	}
 	
 	@Override
-	public JButton getButton() {
+	public ToolButton getButton() {
 		return button;
 	}
 

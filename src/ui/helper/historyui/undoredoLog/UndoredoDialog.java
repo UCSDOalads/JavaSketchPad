@@ -22,12 +22,11 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 	private static final int UNDO_INDEX = 0;
 	private static final int REDO_INDEX = 1;
 	SharedUndoRedoActionManager undoRedoManager;
-	Stack<Integer> num_undo;
 	
 	private UndoredoDialog(String[] titles) {
 		super(titles);
+
 		buttonArray = super.getButtonArray();
-		num_undo = new Stack<>();
 		setDelegate(this);
 		
 		undoRedoManager = SharedUndoRedoActionManager.getSharedInstance();

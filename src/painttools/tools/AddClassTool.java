@@ -7,14 +7,15 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 import actions.AddLazyJavaClassAction;
+import buttons.ToolButton;
 import ui.PaintPanel;
 
 public class AddClassTool extends PaintTool {
 	
-	private JButton button;	
+	private ToolButton button;	
 	
 	public AddClassTool(PaintPanel panel) {
-		button = new JButton("Add Class");
+		button = new ToolButton("Add Class");
 		
 		AddLazyJavaClassAction action = new AddLazyJavaClassAction(panel);
 		
@@ -35,7 +36,7 @@ public class AddClassTool extends PaintTool {
 	}
 	
 	@Override
-	public JButton getButton() {
+	public ToolButton getButton() {
 		return button;
 	}
 

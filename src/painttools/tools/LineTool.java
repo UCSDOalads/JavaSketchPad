@@ -1,17 +1,15 @@
 package painttools.tools;
 
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.ConstructLineSegmentGlobalAction;
+import buttons.ToolButton;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
@@ -23,28 +21,18 @@ public class LineTool extends PaintTool {
 	private PaintPanel panel;
 
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
-		button.setIcon(new Icon() {
+	public ToolButton getButton() {
 
-			@Override
-			public void paintIcon(Component c, Graphics g, int x, int y) {
-				g.fillRect(10, 20, 40, 8);
-
-			}
-
-			@Override
-			public int getIconWidth() {
-				return 40;
-			}
-
-			@Override
-			public int getIconHeight() {
-				// TODO Auto-generated method stub
-				return 40;
-			}
-		});
-		return button;
+		ToolButton b = new ToolButton();
+		
+		
+		ImageIcon icon = new ImageIcon("./images/line.png");
+		b.setOriginalImage(icon);
+		
+		
+		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
+		b.setSelectedImage(icon2);
+		return b;
 	}
 
 	@Override

@@ -1,12 +1,17 @@
 package painttools.toolbar;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import buttons.ToolButton;
 
 import painttools.tools.AddClassTool;
 import painttools.tools.AddInputBoxTool;
@@ -22,6 +27,7 @@ public class ToolBar extends JPanel {
 
 	public ArrayList<ToolBarListener> listeners;
 	private SelectTool selectTool;
+	public ArrayList<ToolButton> buttons;
 	private PaintPanel panel;
 	
 	/**
@@ -29,10 +35,11 @@ public class ToolBar extends JPanel {
 	 */
 	public ToolBar(PaintPanel panel) {
 		listeners = new ArrayList<>();
+		buttons = new ArrayList<>();
 		this.panel = panel;
 		
 		//sets the box layout
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new FlowLayout());
 		
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());
@@ -44,10 +51,14 @@ public class ToolBar extends JPanel {
 		addTool(new AddOutputBoxTool(panel));
 
 		addTool(new LineTool());
+
+		addSeprator();
+
 		
 		this.addKeyListener(new ShortcutHandler(panel));
 	}
 
+	
 	/**
 	 * Adds a tool to the toolbar. This method will add specific tool to the
 	 * tool bar, and an action listener associated with it
@@ -55,14 +66,17 @@ public class ToolBar extends JPanel {
 	 * @param tool
 	 */
 	private void addTool(PaintTool tool) {
-		JButton button = tool.getButton();
+		ToolButton button = tool.getButton();
+		buttons.add(button);
 		button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				setButtonSelection(e);
 				select(tool);
 			}
 		});
+		addSeprator();
 		add(button);
 	}
 
@@ -88,5 +102,27 @@ public class ToolBar extends JPanel {
 		return selectTool;
 	}
 	
+	/**
+	 * this method will set one selected button, and rest buttons 
+	 * in the tool bar to be unselected
+	 * @param e
+	 */
+	public void setButtonSelection(ActionEvent e){
+		for(ToolButton button: buttons){
+			if(!button.equals(e.getSource())){
+				button.setSelected(false);
+			}
+			else{
+				button.setSelected(true);
+			}
+		}
+	}
 	
+	public void addSeprator(){
+		JSeparator j = new JSeparator(SwingConstants.VERTICAL);
+		j.setBackground(Color.white);
+		j.setPreferredSize(new Dimension(5,33));
+		add(j);
+	}
+
 }
