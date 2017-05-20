@@ -9,6 +9,8 @@ import org.w3c.dom.Element;
 
 import paintcomponents.RectanglePaintComponent;
 import paintcomponents.TextPaintComponent;
+import painttools.tools.SelectToolInterface;
+import settings.Defaults;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
 
@@ -56,7 +58,7 @@ public class DataTextPaintComponent extends TextPaintComponent {
 	}
 
 	@Override
-	public void select(SelectTool selectTool) {
+	public void select(SelectToolInterface selectTool) {
 		super.select(selectTool);
 		// pass in null to prevent current selection from being modified
 		// only causes changes in apperance
@@ -64,7 +66,7 @@ public class DataTextPaintComponent extends TextPaintComponent {
 	}
 
 	@Override
-	public void deselect(SelectTool selectTool) {
+	public void deselect(SelectToolInterface selectTool) {
 		// TODO Auto-generated method stub
 		super.deselect(selectTool);
 		rect.deselect(null);
