@@ -38,8 +38,11 @@ public class ConstructDataLineSegmentGlobalAction extends GlobalPaintAction {
 
 	@Override
 	protected void execute(PaintPanel panel) {
-
-		if (!toPoint.getExpectedType().canBeAssignedFrom(fromPoint.getExpectedType())) {
+		//Diagnostic
+		//System.out.println(fromPoint.getExpectedType().getCurClass().getName()); 
+		//System.out.println(toPoint.getExpectedType().getCurClass().getName());
+		/*if (!toPoint.getExpectedType().canBeAssignedFrom(fromPoint.getExpectedType())) {
+			
 			int result = JOptionPane.showConfirmDialog(panel,
 					"The source type is " + fromPoint.getExpectedType() + ", the destination type is "
 							+ toPoint.getExpectedType() + ". Do you want to proceed and create the connection anyway?",
@@ -47,8 +50,24 @@ public class ConstructDataLineSegmentGlobalAction extends GlobalPaintAction {
 					"Type Mismatch", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.NO_OPTION) {
 				return;
-			}
+			}*/
+			//Below method was deprecated
+		try{fromPoint.setExpectedType(toPoint.getExpectedType());}
+	
+		catch(ClassCastException e){
+			if (!toPoint.getExpectedType().canBeAssignedFrom(fromPoint.getExpectedType())) {
+				
+				int result = JOptionPane.showConfirmDialog(panel,
+						"The source type is " + fromPoint.getExpectedType() + ", the destination type is "
+								+ toPoint.getExpectedType() + ". Do you want to proceed and create the connection anyway?",
 
+						"Type Mismatch", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				if (result == JOptionPane.NO_OPTION) {
+					return;
+				}
+
+		}
+		
 		}
 
 		DataLineSegment seg = new DataLineSegment(fromPoint, toPoint);
