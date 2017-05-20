@@ -14,6 +14,8 @@ import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
+import java.io.File;
+import java.nio.file.Files;
 
 /*
  * @author Yidong Luo
@@ -62,7 +64,10 @@ public class FileOpenAndSaveGlobalActionTest {
 		assertTrue(panel.getPaintComponents().get(0) 
 				instanceof ClassPaintComponent);
 		
-			
+		File xml = new File("temp.xml");
+		
+		xml.delete();
+		
 	}
 
 }
