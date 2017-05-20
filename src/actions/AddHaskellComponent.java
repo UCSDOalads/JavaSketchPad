@@ -2,8 +2,10 @@ package actions;
 
 import javax.swing.JOptionPane;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddHaskellComponentGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.haskell.HaskellExpressionPaintComponent;
 import ui.PaintPanel;
 
 public class AddHaskellComponent extends MenuBarPaintAction {
@@ -19,19 +21,17 @@ public class AddHaskellComponent extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		String expr = JOptionPane
-				.showInputDialog("Please enter the haskell expression");
-		panel.addPaintComponent(new HaskellExpressionPaintComponent(
-				expr, panel.getWidth() / 2, panel.getHeight() / 2));
-		
-		panel.repaint();
+		String expr = JOptionPane.showInputDialog("Please enter the haskell expression");
+		AddHaskellComponentGlobalAction assiciatedAction = (AddHaskellComponentGlobalAction) ActionName.ADD_HASKELL_EXPRESSION_COMPONENT
+				.getAssiciatedAction();
+		assiciatedAction.setHaskellExpression(expr);
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
 
 	}
 
 	@Override
 	public String locationString() {
-		return ActionsMenuBarTitles.Developer("Haskell/Add Haskell Expression")
-				.toString();
+		return ActionsMenuBarTitles.Developer("Haskell/Add Haskell Expression").toString();
 	}
 
 }

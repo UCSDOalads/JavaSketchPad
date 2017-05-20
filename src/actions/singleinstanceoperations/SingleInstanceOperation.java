@@ -1,10 +1,8 @@
 package actions.singleinstanceoperations;
 
-import paintcomponents.PaintComponent;
-import paintcomponents.SimplePoint;
-import paintcomponents.TextPaintComponent;
-import ui.PaintPanel;
 import actions.MenuBarPaintAction;
+import paintcomponents.PaintComponent;
+import ui.PaintPanel;
 
 /**
  * Single Instance Operation defines operation on a single instance. 
@@ -45,7 +43,6 @@ public abstract class SingleInstanceOperation<T> extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		T comp = (T) panel.getSelectTool().getSelectedComponents().get(0);
 		performActionOnInstance(comp);

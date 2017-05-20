@@ -1,13 +1,12 @@
 package painttools.tools;
 
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.colorchooser.DefaultColorSelectionModel;
+import javax.swing.ImageIcon;
 
+import buttons.ToolButton;
 import icons.LeftArrow;
 import paintcomponents.PaintComponent;
 import settings.Defaults;
@@ -250,11 +249,14 @@ public class SelectTool extends PaintTool implements SelectToolInterface{
 	}
 
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
-		button.setIcon(LeftArrow.iconFromPolygon(LeftArrow.getPolygon(),
-				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
-		return button;
+	public ToolButton getButton() {
+		
+		ToolButton b = new ToolButton();
+		ImageIcon icon = new ImageIcon("./images/arrow.png");
+		b.setOriginalImage(icon);		
+		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
+		b.setSelectedImage(icon2);
+		return b;
 	}
 
 	@Override

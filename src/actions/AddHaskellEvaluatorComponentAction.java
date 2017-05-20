@@ -1,8 +1,10 @@
 package actions;
 
-import actions.menu.ActionsMenuBarTitles;
-import paintcomponents.haskell.EvaluateHaskellPaintComponent;
 import ui.PaintPanel;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddHaskellEvaluatorComponentGlobalAction;
+import actions.menu.ActionsMenuBarTitles;
 
 public class AddHaskellEvaluatorComponentAction extends MenuBarPaintAction {
 
@@ -17,9 +19,10 @@ public class AddHaskellEvaluatorComponentAction extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		EvaluateHaskellPaintComponent comp = new EvaluateHaskellPaintComponent("Use Data Display/Update to compute expression result", panel.getWidth() /2, panel.getHeight()/2);
-		panel.addPaintComponent(comp);
-		panel.repaint();
+		AddHaskellEvaluatorComponentGlobalAction assiciatedAction = (AddHaskellEvaluatorComponentGlobalAction) ActionName.ADD_HASKELL_EVALUATOR_COMPONENT
+						.getAssiciatedAction();
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+				panel);
 	}
 
 	@Override

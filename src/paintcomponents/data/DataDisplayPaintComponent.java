@@ -42,6 +42,17 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 		}
 	}
 	
+	public boolean canUpdate(){
+		try {
+			Object data = getToPoints().get(0).fetchData();
+			if(data instanceof String){
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return false;
+	}
 	@Override
 	public void saveToElement(Element rootElement, Document doc) {
 		super.saveToElement(rootElement, doc);
