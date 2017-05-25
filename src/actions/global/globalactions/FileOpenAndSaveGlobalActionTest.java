@@ -14,6 +14,8 @@ import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
+import java.io.File;
+import java.nio.file.Files;
 
 /*
  * @author Yidong Luo
@@ -39,7 +41,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		FileSaveAsGlobalAction fileSaveAssociatedAction 
 	 	= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
 					.getAssiciatedAction();
-		fileSaveAssociatedAction.setFilePath("temp.xml");
+		fileSaveAssociatedAction.setFilePath("tempFileOpenAndSaveGlobalActionTest.xml");
 		fileSaveAssociatedAction.execute(panel);
 		
 		
@@ -54,7 +56,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		FileOpenGlobalAction fileOpenAssociatedAction 
 	 	= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
 					.getAssiciatedAction();
-		fileOpenAssociatedAction.setFileToOpen("temp.xml");
+		fileOpenAssociatedAction.setFileToOpen("tempFileOpenAndSaveGlobalActionTest.xml");
 		fileOpenAssociatedAction.execute(panel);
 		
 		//Components on the panel should be the same as what was saved to be
@@ -63,6 +65,9 @@ public class FileOpenAndSaveGlobalActionTest {
 				instanceof ClassPaintComponent);
 		
 			
+		File xml = new File("tempFileOpenAndSaveGlobalActionTest.xml");
+		
+		xml.delete();
 	}
 
 }

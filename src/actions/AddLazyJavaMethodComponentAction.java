@@ -53,7 +53,7 @@ public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 			AddLazyJavaMethodComponentGlobalAction assiciatedAction 
 			= (AddLazyJavaMethodComponentGlobalAction) ActionName.ADD_LAZY_JAVA_METHOD_ACTION.getAssiciatedAction();
 			assiciatedAction.setMethodComponent(comp);
-			assiciatedAction.setMethod(String.class.getMethods()[Integer.parseInt(desiaredConstructorIndex)]);
+			assiciatedAction.setMethod(comp.getDisplayingClass().getMethods()[Integer.parseInt(desiaredConstructorIndex)]);
 			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
 		}
 	}
