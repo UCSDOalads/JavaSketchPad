@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+
 import ui.PaintPanel;
 import actions.AddDataInputBoxAction;
 import buttons.ToolButton;
@@ -11,13 +13,33 @@ import buttons.ToolButton;
 public class AddInputBoxTool extends PaintTool {
 
 	private ToolButton button;
+	private PaintPanel panel;
 
 	public AddInputBoxTool(PaintPanel panel) {
-		button = new ToolButton("Add Input Box");
+		this.panel = panel;
+		button = getButton();
 
+
+	}
+
+	@Override
+	public void start(PaintPanel panel) {
+	}
+
+	@Override
+	public ToolButton getButton() {
+		
+		ToolButton b = new ToolButton();
+
+		ImageIcon icon = new ImageIcon("./images/dot.png");
+		b.setOriginalImage(icon);
+
+		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
+		b.setSelectedImage(icon2);
+		
 		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
 
-		button.addActionListener(new ActionListener() {
+		b.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -28,15 +50,7 @@ public class AddInputBoxTool extends PaintTool {
 
 			}
 		});
-	}
-
-	@Override
-	public void start(PaintPanel panel) {
-	}
-
-	@Override
-	public ToolButton getButton() {
-		return button;
+		return b;
 	}
 
 	@Override

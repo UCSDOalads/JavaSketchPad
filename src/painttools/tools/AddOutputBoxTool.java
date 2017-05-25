@@ -1,8 +1,13 @@
 package painttools.tools;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
@@ -11,13 +16,31 @@ import buttons.ToolButton;
 public class AddOutputBoxTool extends PaintTool {
 
 	private ToolButton button;
+	private PaintPanel panel;
 
 	public AddOutputBoxTool(PaintPanel panel) {
-		button = new ToolButton("Add Output Box");
+		this.panel = panel;
+		button = getButton();
 
+
+	}
+
+	@Override
+	public void start(PaintPanel panel) {
+	}
+
+	@Override
+	public ToolButton getButton() {
+		ToolButton b = new ToolButton();
+
+		ImageIcon icon = new ImageIcon("./images/dot.png");
+		b.setOriginalImage(icon);
+
+		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
+		b.setSelectedImage(icon2);
 		AddDataDisplayBoxAction action = new AddDataDisplayBoxAction(panel);
 
-		button.addActionListener(new ActionListener() {
+		b.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -28,15 +51,7 @@ public class AddOutputBoxTool extends PaintTool {
 
 			}
 		});
-	}
-
-	@Override
-	public void start(PaintPanel panel) {
-	}
-
-	@Override
-	public ToolButton getButton() {
-		return button;
+		return b;
 	}
 
 	@Override
