@@ -41,7 +41,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		FileSaveAsGlobalAction fileSaveAssociatedAction 
 	 	= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
 					.getAssiciatedAction();
-		fileSaveAssociatedAction.setFilePath("temp.xml");
+		fileSaveAssociatedAction.setFilePath("JSPFileSaveOpenTest.xml");
 		fileSaveAssociatedAction.execute(panel);
 		
 		
@@ -56,7 +56,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		FileOpenGlobalAction fileOpenAssociatedAction 
 	 	= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
 					.getAssiciatedAction();
-		fileOpenAssociatedAction.setFileToOpen("temp.xml");
+		fileOpenAssociatedAction.setFileToOpen("JSPFileSaveOpenTest.xml");
 		fileOpenAssociatedAction.execute(panel);
 		
 		//Components on the panel should be the same as what was saved to be
@@ -64,7 +64,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		assertTrue(panel.getPaintComponents().get(0) 
 				instanceof ClassPaintComponent);
 		
-		File xml = new File("temp.xml");
+		File xml = new File("JSPFileSaveOpenTest.xml");
 		
 		xml.delete();
 		
