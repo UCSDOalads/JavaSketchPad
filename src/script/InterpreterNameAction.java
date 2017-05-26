@@ -1,18 +1,22 @@
 package script;
 
 //import actions.singleinstanceoperations.AddAnnotationAction;
-import paintcomponents.PaintComponent;
 import ui.PaintPanel;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.NameGlobalAction;
 
 public class InterpreterNameAction {
 
 	public InterpreterNameAction(Tokenizer tokenizer, PaintPanel panel)
 			throws ExecutionErrorException {
 		String token = tokenizer.next();
-		PaintComponent comp = panel.getPaintComponents().get(
-				panel.getPaintComponents().size() - 1);
 
-		ComponentMap.map.put(token, comp);
+		NameGlobalAction assiciatedAction = (NameGlobalAction) ActionName.NAME
+				.getAssiciatedAction();
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+				panel);
+		assiciatedAction.setName(token, panel);
 
 		// AddAnnotationAction annoAct = new AddAnnotationAction(panel);
 

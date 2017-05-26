@@ -1,7 +1,9 @@
 package ui.helper.historyui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
+import java.awt.Font;
 
 
 /**
@@ -47,18 +51,31 @@ public class HistoryUI extends JPanel
 		});
 
 		setLayout(new BorderLayout(0, 0));
+	
 
 		// show result
 		this.resultsTable= (new JTable());
+		resultsTable.setFont(new Font("Apple LiSung", Font.PLAIN, 16));
+		resultsTable.setShowHorizontalLines(false);
+		resultsTable.setShowVerticalLines(false);
+		resultsTable.setShowGrid(false);
+		resultsTable.setBorder(null);
+		resultsTable.setBackground(new Color(150,150,150));
+		resultsTable.setForeground(Color.WHITE);
 		resultsTable.setModel(defaultTableModel);
 		resultsTable.setSelectionModel(new ForcedListSelectionModel());
 		
+		
 		// scroll option
 		scrollPane = new JScrollPane(resultsTable);
+		scrollPane.setEnabled(false);
+		scrollPane.setViewportBorder(null);
 		add(scrollPane, BorderLayout.CENTER);
 
 		//set title for table
+	
 		TitledBorder border = new TitledBorder("Actions History");
+		border.setTitleColor(Color.WHITE);
 	    border.setTitleJustification(TitledBorder.CENTER);
 	    border.setTitlePosition(TitledBorder.TOP);
 	    setBorder(border);
@@ -69,12 +86,18 @@ public class HistoryUI extends JPanel
 	    
 		//create buttons for panel
 		createButtons(titles);
+		
+		setBackground(Color.black);
 	}
 	
 
 	private void createButtons(String[] titles){
 		// add small JPanel for buttons
-		button_panel= new JPanel();
+		FlowLayout fl_button_panel = new FlowLayout();
+		button_panel= new JPanel(fl_button_panel);
+		button_panel.setBorder(null);
+
+		button_panel.setBackground(new Color(150,150,150));
 		add(button_panel, BorderLayout.SOUTH);
 
 		//loop through arr and add buttons
@@ -157,5 +180,6 @@ public class HistoryUI extends JPanel
 	public ArrayList<JButton> getButtonArray() {
 		return buttonArray;
 	}
+	
 }
 

@@ -25,6 +25,11 @@ public class AddLazyJavaClassGlobalAction extends GlobalPaintAction {
 		ClassPaintComponent comp = new ClassPaintComponent(classToCreate, x, y);
 		panel.addPaintComponent(comp);
 
+		if (panel.getSelectTool() != null) {
+			panel.getSelectTool().clearSelection();
+			panel.getSelectTool().selectComponent(comp);
+		}
+
 		// add action to undo redo manager
 		UndoRedoableInterface undoRedoBlock = new UndoRedoableInterface() {
 

@@ -44,13 +44,18 @@ public class AddTextBoxAction extends MenuBarPaintAction {
 	public void performAction() {
 		String s = JOptionPane
 				.showInputDialog("Please enter the text to display");
-		AddTextBoxGlobalAction assiciatedAction = (AddTextBoxGlobalAction) ActionName.ADD_TEXT_BOX_ACTION
-				.getAssiciatedAction();
-		assiciatedAction.setDisplayString(s);
-		assiciatedAction.setX(panel.getWidth() / 2);
-		assiciatedAction.setY(panel.getHeight() / 2);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-				panel);
+		
+		//call DialogInputChecker to check input
+		DialogInputChecker inputChecker = new DialogInputChecker();
+		if(!inputChecker.isEmpty(s)){
+			AddTextBoxGlobalAction assiciatedAction = (AddTextBoxGlobalAction) ActionName.ADD_TEXT_BOX_ACTION
+					.getAssiciatedAction();
+			assiciatedAction.setDisplayString(s);
+			assiciatedAction.setX(panel.getWidth() / 2);
+			assiciatedAction.setY(panel.getHeight() / 2);
+			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+					panel);
+		}
 	}
 
 	/**
