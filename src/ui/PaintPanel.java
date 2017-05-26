@@ -235,5 +235,12 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	public void setSelectTool(SelectTool selectTool) {
 		this.selectTool = selectTool;
 	}
+	
+	/**
+	 * change selectedTool to be selectTool
+	 */
+	public void setDefaultSelectTool(){
+		selectTool.getButton().doClick();
+	}
 
 }

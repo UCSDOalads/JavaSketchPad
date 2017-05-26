@@ -1,18 +1,13 @@
 package painttools.tools;
 
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
-
-import javax.swing.ImageIcon;
 
 import actions.AddDataInputBoxAction;
 import buttons.ToolButton;
 import ui.PaintPanel;
 import ui.cursor.CustomCursors;
+import ui.icons.CustomIcons;
 
 public class AddInputBoxTool implements ActionToolsInterface {
 
@@ -30,17 +25,13 @@ public class AddInputBoxTool implements ActionToolsInterface {
 	public void start(PaintPanel panel) {
 	}
 
+	
 	@Override
 	public void createButton() {
 		// TODO Auto-generated method stub
 		button = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/dot.png");
-		button.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		button.setSelectedImage(icon2);
-		
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
 		button.addActionListener(this);
 	}
 	
@@ -57,13 +48,14 @@ public class AddInputBoxTool implements ActionToolsInterface {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
 		if(action.canPerformAction()){
 			action.setXY(e.getX(), e.getY());
 			action.performAction();
 			action.setDefaultXY();
 		}
+		panel.setDefaultSelectTool();
 
 	}
 

@@ -9,6 +9,7 @@ import actions.AddDataDisplayBoxAction;
 import buttons.ToolButton;
 import ui.PaintPanel;
 import ui.cursor.CustomCursors;
+import ui.icons.CustomIcons;
 
 public class AddOutputBoxTool implements ActionToolsInterface {
 
@@ -29,14 +30,8 @@ public class AddOutputBoxTool implements ActionToolsInterface {
 	public void createButton() {
 		// TODO Auto-generated method stub
 		button = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/dot.png");
-		button.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		button.setSelectedImage(icon2);
-
-
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
 		button.addActionListener(this);
 		
 	}
@@ -58,8 +53,8 @@ public class AddOutputBoxTool implements ActionToolsInterface {
 			action.setXY(e.getX(), e.getY());
 			action.performAction();
 			action.setDefaultXY();
-			//panel.toolSelected(panel.getSelectTool());
 		}
+		panel.setDefaultSelectTool();
 
 	}
 

@@ -11,7 +11,7 @@ import buttons.ToolButton;
 import ui.PaintPanel;
 import ui.cursor.CustomCursors;
 
-public class AddMethodTool implements PaintToolsInterface {
+public class AddMethodTool implements ActionToolsInterface {
 
 	private ToolButton button;
 	private PaintPanel panel;
@@ -102,7 +102,14 @@ public class AddMethodTool implements PaintToolsInterface {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
 		panel.setNewCursor (CustomCursors.addComponentcursor());
+		
 	}
 
 

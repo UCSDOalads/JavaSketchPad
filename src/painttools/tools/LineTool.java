@@ -14,6 +14,7 @@ import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataTextPaintComponent;
 import paintcomponents.data.DataToPoint;
 import ui.PaintPanel;
+import ui.icons.CustomIcons;
 import actions.global.ActionName;
 import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
@@ -35,12 +36,8 @@ public class LineTool implements PaintToolsInterface {
 		// TODO Auto-generated method stub
 
 		button = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/line.png");
-		button.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
-		button.setSelectedImage(icon2);
+		button.setOriginalImage(CustomIcons.line());
+		button.setSelectedImage(CustomIcons.selectedLine());
 		
 	}
 	
@@ -259,7 +256,6 @@ public class LineTool implements PaintToolsInterface {
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-
 		panel.getSelectTool().clearSelection();
 	}
 

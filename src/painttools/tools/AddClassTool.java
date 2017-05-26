@@ -9,6 +9,7 @@ import actions.AddLazyJavaClassAction;
 import buttons.ToolButton;
 import ui.PaintPanel;
 import ui.cursor.CustomCursors;
+import ui.icons.CustomIcons;
 
 public class AddClassTool implements ActionToolsInterface {
 
@@ -30,12 +31,8 @@ public class AddClassTool implements ActionToolsInterface {
 	public void createButton() {
 		// TODO Auto-generated method stub
 		button = new ToolButton();
-		
-		ImageIcon icon = new ImageIcon("./images/dot.png");
-		button.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		button.setSelectedImage(icon2);
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
 
 		button.addActionListener(this);
 
@@ -59,6 +56,7 @@ public class AddClassTool implements ActionToolsInterface {
 			action.setXY(e.getX(), e.getY());
 			action.performAction();
 		}
+		panel.setDefaultSelectTool();
 
 	}
 

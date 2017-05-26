@@ -9,6 +9,7 @@ import buttons.ToolButton;
 import paintcomponents.PaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
+import ui.icons.CustomIcons;
 import ui.icons.LeftArrow;
 
 public class SelectTool implements PaintToolsInterface {
@@ -252,10 +253,8 @@ public class SelectTool implements PaintToolsInterface {
 	@Override
 	public void createButton() {
 		button = new ToolButton();
-		ImageIcon icon = new ImageIcon("./images/arrow.png");
-		button.setOriginalImage(icon);		
-		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
-		button.setSelectedImage(icon2);
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
 		
 	}
 	@Override

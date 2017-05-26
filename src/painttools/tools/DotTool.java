@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
+import ui.icons.CustomIcons;
 import buttons.ToolButton;
 
 public class DotTool implements PaintToolsInterface {
@@ -31,12 +32,8 @@ public class DotTool implements PaintToolsInterface {
 		// TODO Auto-generated method stub
 
 		button = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/dot.png");
-		button.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		button.setSelectedImage(icon2);
+		button.setOriginalImage(CustomIcons.dot());
+		button.setSelectedImage(CustomIcons.selectedDot());
 		
 	}
 	@Override

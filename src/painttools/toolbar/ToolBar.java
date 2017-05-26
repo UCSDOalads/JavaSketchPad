@@ -79,29 +79,6 @@ public class ToolBar extends JPanel {
 		addSeprator();
 		add(button);
 	}
-
-	/**
-	 * Adds a component tool to the toolbar. This method will add specific tool to the
-	 * tool bar, and an action listener associated with it
-	 * 
-	 * @param tool
-	 */
-	private void addComponentTool(PaintToolsInterface tool) {
-		ToolButton button = tool.getButton();
-		buttons.add(button);
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setButtonSelection(e);
-				select(tool);
-				
-				//buttons.get(1).doClick();
-			}
-		});
-		addSeprator();
-		add(button);
-	}
 	
 	/**
 	 * Adds a ToolBarListener to this toolbar
@@ -148,10 +125,4 @@ public class ToolBar extends JPanel {
 		add(j);
 	}
 
-	/**
-	 * change click selectTool button
-	 */
-	public void setSelectTool(){
-		buttons.get(1).doClick();
-	}
 }
