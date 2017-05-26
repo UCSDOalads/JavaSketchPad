@@ -12,6 +12,7 @@ public abstract class ZoomAction extends MenuBarPaintAction{
 		super(panel);
 		centerX = panel.getWidth() / 2;
 		centerY = panel.getHeight() / 2;
+
 	}
 	
 	public boolean canPerformAction() {

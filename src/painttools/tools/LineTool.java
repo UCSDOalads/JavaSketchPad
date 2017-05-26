@@ -1,6 +1,7 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -256,6 +257,12 @@ public class LineTool extends PaintTool {
 	public void reset() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

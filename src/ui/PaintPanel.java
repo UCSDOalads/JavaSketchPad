@@ -68,6 +68,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		this.state = State.TOOLS;
 		this.addMouseListener(this.tool);
 		this.addMouseMotionListener(this.tool);
+		this.addMouseWheelListener(this.tool);
 	}
 
 	private void resetTool() {

@@ -1,6 +1,7 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import javax.swing.ImageIcon;
 
@@ -47,6 +48,7 @@ public class DotTool extends PaintTool {
 
 		panel.addPaintComponent(pointToAdd);
 		panel.toolSelected(panel.getSelectTool());
+
 	}
 
 	@Override
@@ -91,6 +93,12 @@ public class DotTool extends PaintTool {
 		// do nothing on reset
 		// temporary component will automatically be removed
 
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

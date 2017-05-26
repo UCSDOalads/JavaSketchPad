@@ -7,7 +7,7 @@ public class ZoomInAction extends ZoomAction {
 		
 	public ZoomInAction (PaintPanel panel) {
 		super(panel);
-		this.setZoomValue(0.5);
+		this.setZoomValue(0.1);
 	}
 
 	@Override

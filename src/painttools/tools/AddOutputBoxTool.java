@@ -3,6 +3,7 @@ package painttools.tools;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
@@ -84,6 +85,12 @@ public class AddOutputBoxTool extends PaintTool {
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

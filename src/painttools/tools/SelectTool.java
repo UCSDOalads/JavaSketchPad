@@ -1,10 +1,13 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
 import buttons.ToolButton;
 import icons.LeftArrow;
 import paintcomponents.PaintComponent;
@@ -279,5 +282,22 @@ public class SelectTool extends PaintTool {
 	 */
 	public void removeSelectedComponent(PaintComponent pc){
 		selectedComponents.remove(pc);
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		ZoomInAction zoomIn = new ZoomInAction(panel);
+		ZoomOutAction zoomOut = new ZoomOutAction(panel);
+
+		if (e.getWheelRotation() > 0) {
+			zoomIn.setCenterX(e.getX());
+			zoomIn.setCenterY(e.getY());
+			zoomIn.performAction();
+		} else {
+			zoomOut.setCenterX(e.getX());
+			zoomOut.setCenterY(e.getY());
+			zoomOut.performAction();
+		}
 	}
 }
