@@ -8,7 +8,7 @@ import actions.global.GlobalPaintActionExecuter;
 import actions.global.globalactions.AddLazyJavaClassGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 
-public class AddLazyJavaClassAction extends MenuBarPaintAction {
+public class AddLazyJavaClassAction extends AddComponentActions {
 
 	public AddLazyJavaClassAction(PaintPanel panel) {
 		super(panel);
@@ -29,8 +29,7 @@ public class AddLazyJavaClassAction extends MenuBarPaintAction {
 				AddLazyJavaClassGlobalAction assiciatedAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
 						.getAssiciatedAction();
 				assiciatedAction.setClassToCreate(input);
-				assiciatedAction.setCoord(panel.getWidth() / 2,
-						panel.getHeight() / 2);
+				assiciatedAction.setCoord(x,y);
 				GlobalPaintActionExecuter.getSharedInstance().execute(
 						assiciatedAction, panel);
 

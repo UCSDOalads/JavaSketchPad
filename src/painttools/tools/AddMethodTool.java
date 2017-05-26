@@ -5,19 +5,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
-import ui.PaintPanel;
 import actions.AddLazyJavaMethodComponentAction;
 import buttons.ToolButton;
+import ui.PaintPanel;
+import ui.cursor.CustomCursors;
 
-public class AddMethodTool extends PaintTool {
+public class AddMethodTool implements PaintToolsInterface {
 
 	private ToolButton button;
 	private PaintPanel panel;
 	public AddMethodTool(PaintPanel panel) {
 		this.panel = panel;
-        button = getButton();
+        createButton();
 		
 
 	}
@@ -28,17 +28,18 @@ public class AddMethodTool extends PaintTool {
 	}
 	
 	@Override
-	public ToolButton getButton() {
-		ToolButton b = new ToolButton();
+	public void createButton() {
+		// TODO Auto-generated method stub
+		button = new ToolButton();
 
 		ImageIcon icon = new ImageIcon("./images/dot.png");
-		b.setOriginalImage(icon);
+		button.setOriginalImage(icon);
 
 		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		b.setSelectedImage(icon2);
+		button.setSelectedImage(icon2);
         AddLazyJavaMethodComponentAction action = new AddLazyJavaMethodComponentAction(panel);
 		
-		b.addActionListener(new ActionListener() {
+		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -48,7 +49,14 @@ public class AddMethodTool extends PaintTool {
 				
 			}
 		});
-		return b;
+		
+		
+		
+	}
+	@Override
+	public ToolButton getButton() {
+
+		return button;
 	}
 
 	@Override
@@ -94,9 +102,11 @@ public class AddMethodTool extends PaintTool {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		panel.setNewCursor (CustomCursors.addComponentcursor());
 	}
+
+
+
 
 	
 }

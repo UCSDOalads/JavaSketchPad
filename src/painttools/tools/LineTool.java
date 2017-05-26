@@ -20,22 +20,33 @@ import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
 import actions.global.globalactions.ConstructLineSegmentGlobalAction;
 import buttons.ToolButton;
 
-public class LineTool extends PaintTool {
+public class LineTool implements PaintToolsInterface {
 
 	LineSegment line;
 	private PaintPanel panel;
+	private ToolButton button;
 
+	public LineTool(){
+
+		createButton();
+	}
 	@Override
-	public ToolButton getButton() {
+	public void createButton() {
+		// TODO Auto-generated method stub
 
-		ToolButton b = new ToolButton();
+		button = new ToolButton();
 
 		ImageIcon icon = new ImageIcon("./images/line.png");
-		b.setOriginalImage(icon);
+		button.setOriginalImage(icon);
 
 		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
-		b.setSelectedImage(icon2);
-		return b;
+		button.setSelectedImage(icon2);
+		
+	}
+	
+	@Override
+	public ToolButton getButton() {
+		return button;
 	}
 
 	@Override
@@ -257,5 +268,7 @@ public class LineTool extends PaintTool {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 }

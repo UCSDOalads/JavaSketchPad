@@ -1,23 +1,27 @@
 package painttools.tools;
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 
-import ui.PaintPanel;
 import actions.AddDataInputBoxAction;
 import buttons.ToolButton;
+import ui.PaintPanel;
+import ui.cursor.CustomCursors;
 
-public class AddInputBoxTool extends PaintTool {
+public class AddInputBoxTool implements ActionToolsInterface {
 
 	private ToolButton button;
 	private PaintPanel panel;
 
 	public AddInputBoxTool(PaintPanel panel) {
 		this.panel = panel;
-		button = getButton();
+		createButton();
 
 
 	}
@@ -27,30 +31,23 @@ public class AddInputBoxTool extends PaintTool {
 	}
 
 	@Override
-	public ToolButton getButton() {
-		
-		ToolButton b = new ToolButton();
+	public void createButton() {
+		// TODO Auto-generated method stub
+		button = new ToolButton();
 
 		ImageIcon icon = new ImageIcon("./images/dot.png");
-		b.setOriginalImage(icon);
+		button.setOriginalImage(icon);
 
 		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		b.setSelectedImage(icon2);
+		button.setSelectedImage(icon2);
 		
-		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
+		button.addActionListener(this);
+	}
+	
+	@Override
+	public ToolButton getButton() {
 
-		b.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if (action.canPerformAction()) {
-					action.performAction();
-					panel.toolSelected(panel.getSelectTool());
-				}
-
-			}
-		});
-		return b;
+		return button;
 	}
 
 	@Override
@@ -61,6 +58,12 @@ public class AddInputBoxTool extends PaintTool {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
+		if(action.canPerformAction()){
+			action.setXY(e.getX(), e.getY());
+			action.performAction();
+			action.setDefaultXY();
+		}
 
 	}
 
@@ -99,5 +102,14 @@ public class AddInputBoxTool extends PaintTool {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		panel.setNewCursor (CustomCursors.addComponentcursor());
+		
+	}
+
+
 
 }

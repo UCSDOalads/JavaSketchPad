@@ -6,14 +6,15 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import buttons.ToolButton;
-import icons.LeftArrow;
 import paintcomponents.PaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
+import ui.icons.LeftArrow;
 
-public class SelectTool extends PaintTool {
+public class SelectTool implements PaintToolsInterface {
 
 	private PaintPanel panel;
+	private ToolButton button;
 
 	private ArrayList<PaintComponent> selectedComponents;
 	private ArrayList<SelectionToolListener> listeners;
@@ -49,6 +50,7 @@ public class SelectTool extends PaintTool {
 		selectedComponents = new ArrayList<>();
 		listeners = new ArrayList<>();
 		this.panel = panel;
+		createButton();
 	}
 
 	@Override
@@ -248,14 +250,19 @@ public class SelectTool extends PaintTool {
 	}
 
 	@Override
+	public void createButton() {
+		button = new ToolButton();
+		ImageIcon icon = new ImageIcon("./images/arrow.png");
+		button.setOriginalImage(icon);		
+		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
+		button.setSelectedImage(icon2);
+		
+	}
+	@Override
 	public ToolButton getButton() {
 		
-		ToolButton b = new ToolButton();
-		ImageIcon icon = new ImageIcon("./images/arrow.png");
-		b.setOriginalImage(icon);		
-		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
-		b.setSelectedImage(icon2);
-		return b;
+
+		return button;
 	}
 
 	@Override
@@ -280,4 +287,5 @@ public class SelectTool extends PaintTool {
 	public void removeSelectedComponent(PaintComponent pc){
 		selectedComponents.remove(pc);
 	}
+
 }

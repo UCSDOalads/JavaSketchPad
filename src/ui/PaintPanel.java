@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 import paintcomponents.PaintComponent;
 import painttools.toolbar.ToolBarListener;
-import painttools.tools.PaintTool;
+import painttools.tools.PaintToolsInterface;
 import painttools.tools.SelectTool;
 
 public class PaintPanel extends JPanel implements ToolBarListener {
@@ -31,7 +31,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	private State state = State.DEFAULT;
-	private PaintTool tool;
+	private PaintToolsInterface tool;
 	private PaintComponent tempComponent;
 
 	private SelectTool selectTool;
@@ -59,7 +59,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		this.tempComponent = tempComponent;
 	}
 
-	private void setTool(PaintTool tool) {
+	private void setTool(PaintToolsInterface tool) {
 		if (this.state == State.TOOLS) {
 			resetTool();
 		}
@@ -176,7 +176,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	@Override
-	public void toolSelected(PaintTool tool) {
+	public void toolSelected(PaintToolsInterface tool) {
 		this.setTool(tool);
 
 	}
@@ -187,6 +187,9 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 				new Point(), null));
 	}
 
+	public void setNewCursor(Cursor c){
+		setCursor(c);
+	}
 	public void showCursor() {
 		setCursor(Cursor.getDefaultCursor());
 	}

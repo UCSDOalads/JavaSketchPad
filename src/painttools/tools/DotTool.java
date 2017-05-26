@@ -8,11 +8,15 @@ import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 import buttons.ToolButton;
 
-public class DotTool extends PaintTool {
+public class DotTool implements PaintToolsInterface {
 
 	SimplePoint p;
 	private PaintPanel panel;
+	private ToolButton button;
 
+	public DotTool(){
+		createButton();
+	}
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
@@ -22,18 +26,23 @@ public class DotTool extends PaintTool {
 		panel.setTempComponent(p);
 
 	}
+	@Override
+	public void createButton() {
+		// TODO Auto-generated method stub
 
+		button = new ToolButton();
+
+		ImageIcon icon = new ImageIcon("./images/dot.png");
+		button.setOriginalImage(icon);
+
+		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
+		button.setSelectedImage(icon2);
+		
+	}
 	@Override
 	public ToolButton getButton() {
 
-		ToolButton b = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/dot.png");
-		b.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		b.setSelectedImage(icon2);
-		return b;
+		return button;
 	}
 
 	@Override
@@ -46,7 +55,7 @@ public class DotTool extends PaintTool {
 		panel.getSelectTool().selectComponent(pointToAdd);
 
 		panel.addPaintComponent(pointToAdd);
-		panel.toolSelected(panel.getSelectTool());
+		//panel.toolSelected(panel.getSelectTool());
 	}
 
 	@Override
@@ -92,5 +101,7 @@ public class DotTool extends PaintTool {
 		// temporary component will automatically be removed
 
 	}
+
+
 
 }

@@ -1,23 +1,23 @@
 package painttools.tools;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 
-import ui.PaintPanel;
 import actions.AddLazyJavaClassAction;
 import buttons.ToolButton;
+import ui.PaintPanel;
+import ui.cursor.CustomCursors;
 
-public class AddClassTool extends PaintTool {
+public class AddClassTool implements ActionToolsInterface {
 
 	private ToolButton button;
 	private PaintPanel panel;
 
 	public AddClassTool(PaintPanel panel) {
 		this.panel = panel;
-		button = getButton();
+		createButton();
 
 
 	}
@@ -27,30 +27,23 @@ public class AddClassTool extends PaintTool {
 	}
 
 	@Override
-	public ToolButton getButton() {
-		ToolButton b = new ToolButton();
+	public void createButton() {
+		// TODO Auto-generated method stub
+		button = new ToolButton();
 		
-		
-
 		ImageIcon icon = new ImageIcon("./images/dot.png");
-		b.setOriginalImage(icon);
+		button.setOriginalImage(icon);
 
 		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		b.setSelectedImage(icon2);
-		AddLazyJavaClassAction action = new AddLazyJavaClassAction(panel);
+		button.setSelectedImage(icon2);
 
-		b.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button.addActionListener(this);
 
-				if (action.canPerformAction()) {
-					action.performAction();
-					panel.toolSelected(panel.getSelectTool());
-				}
-
-			}
-		});
-		return b;
+		
+	}
+	@Override
+	public ToolButton getButton() {
+		return button;
 	}
 
 	@Override
@@ -61,6 +54,11 @@ public class AddClassTool extends PaintTool {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		AddLazyJavaClassAction action = new AddLazyJavaClassAction(panel);
+		if (action.canPerformAction()) {
+			action.setXY(e.getX(), e.getY());
+			action.performAction();
+		}
 
 	}
 
@@ -99,5 +97,12 @@ public class AddClassTool extends PaintTool {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		panel.setNewCursor (CustomCursors.addComponentcursor());
+	}
+
+
 
 }

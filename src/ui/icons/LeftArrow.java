@@ -1,4 +1,4 @@
-package icons;
+package ui.icons;
 
 import java.awt.Color;
 import java.awt.Component;
