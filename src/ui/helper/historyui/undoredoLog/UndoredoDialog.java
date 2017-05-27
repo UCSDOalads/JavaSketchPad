@@ -14,12 +14,12 @@ import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.SharedUndoRedoActionManagerDelegate;
 import actions.edit.undoredo.UndoRedoableInterface;
 import buttons.CustomJButton;
-import ui.helper.historyui.HistoryDataObject;
-import ui.helper.historyui.HistoryUI;
-import ui.helper.historyui.HistoryUIInterface;
+import ui.helper.historyui.TableUIDataObject;
+import ui.helper.historyui.TableUITemplate;
+import ui.helper.historyui.TableUITemplateInterface;
 import ui.icons.CustomIcons;
 
-public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
+public class UndoredoDialog extends TableUITemplate implements TableUITemplateInterface{
 	
 	private static final String BUTTON_TITLE_REDO = "Redo";
 	private static final String BUTTON_TITLE_UNDO = "Undo";
@@ -53,7 +53,7 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 			@Override
 			public void didAddNewAction(
 					UndoRedoableInterface undoredoableAction) {
-				insert(new HistoryDataObject(undoRedoManager.undoPeek().description()));
+				insert(new TableUIDataObject(undoRedoManager.undoPeek().description()));
 				updateButtonStatus();
 			}
 			
@@ -63,7 +63,8 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 	/**
 	 * add undo and redo button to button panel
 	 */
-	private void addButtons(){
+	@Override
+	public void addButtons(){
 		undoButton = new CustomJButton(BUTTON_TITLE_UNDO);
 		undoButton.setIcon(CustomIcons.undo());
 		undoButton.addActionListener(new ActionListener() {
@@ -100,22 +101,59 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 	public void didPressButton(String buttonName, int selectedRow) {
 		switch (buttonName) {
 		case BUTTON_TITLE_UNDO:
-			undoRedoManager.undo();
+			undoContinuousRow();
 			break;
 			
 		case BUTTON_TITLE_REDO:
-			undoRedoManager.redo();
+			redoContinuousRow();
 
 		default:
 			break;
 		}
 		
 	}
+	/**
+	 * redo continuous row to selectedRow
+	 * or redo a row if no row is selected by user
+	 */
+	public void redoContinuousRow(){
+		int selectedRow = getSelectedRow();
+		if( getSelectedRow() == -1){
+			undoRedoManager.redo();
+		}
+		else{
+			for( int i = getIndex()+1; i <= selectedRow; i++){
+				undoRedoManager.redo();
+			}
+		}
+	}
+	
+	/**
+	 * undo continuous row from selectedRow to the end of list
+	 * or undo last row if no row is selected by user
+	 */
+	public void undoContinuousRow(){
+		int selectedRow = getSelectedRow();
+		if( getSelectedRow() == -1){
+			undoRedoManager.undo();
+		}
+		else{
+			for(int i = getIndex(); i >= selectedRow; i--){
+				undoRedoManager.undo();
+			}
+		}
+	}
+	
+	/*
+	public void redoContinuousRow(){
+		int selected
+	}*/
 	
 	/**
 	 * disable undoButton when there is no actions to undo
 	 * disable redoButton when there is no actions to redo
 	 */
+	@Override
 	public void updateButtonStatus(){
 		if(getIndex() == -1 || getNumRow() == 0){
 			undoButton.setEnabled(false);

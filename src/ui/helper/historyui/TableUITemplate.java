@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,21 +29,22 @@ import buttons.CustomJButton;
  * 	use getter and setter
  *
  */
-public class HistoryUI extends JPanel {
+public class TableUITemplate extends JPanel {
 	
 	private JTable resultsTable;
 	private DefaultTableModel defaultTableModel;
 	private JScrollPane scrollPane;
 	private JPanel button_panel;
 	private ArrayList<JButton> buttonArray = new ArrayList<JButton>();
-	private Color color = new Color(150,150,150);
-	protected HistoryUIInterface delegate;
+	private Color color;
+	protected TableUITemplateInterface delegate;
 	private int index = -1; //value of last item that is not untraced
+	protected ArrayList<JComponent> jcomponents = new ArrayList<JComponent>();
 
 	/**
 	 * Setup historyUI
 	 */
-	public HistoryUI(String[] titles){
+	public TableUITemplate(String[] titles){
 
 		// set the defaultTableModel to non editable by user clicking around
 		this.setDefaultTableModel((new DefaultTableModel(0, 1) {
@@ -54,7 +56,6 @@ public class HistoryUI extends JPanel {
 			}
 		}));
 		
-
 		setLayout(new BorderLayout(0, 0));
 	    
 	    //set size
@@ -72,22 +73,20 @@ public class HistoryUI extends JPanel {
 	    //create panel for buttons
 	    setButtonPanel();
 		
-		setForeground(getColor());
-		setBackground(getColor());
 	}
 
 
 	protected void setTable() {
-		this.setResultsTable((new JTable()));
+		resultsTable = new JTable();
 		getResultsTable().setTableHeader(null);
-		getResultsTable().setFont(new Font("Apple LiSung", Font.PLAIN, 16));
 		getResultsTable().setShowHorizontalLines(false);
 		getResultsTable().setShowVerticalLines(false);
 		getResultsTable().setShowGrid(false);
 		getResultsTable().setBorder(null);
 		getResultsTable().setBackground(getColor());
-		getResultsTable().setForeground(Color.WHITE);
+		getResultsTable().setForeground(Color.BLACK);
 		getResultsTable().setModel(getDefaultTableModel());
+		jcomponents.add(resultsTable);
 	}
 	
 	/**
@@ -112,14 +111,16 @@ public class HistoryUI extends JPanel {
 		scrollPane.setBackground(getColor());
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		add(scrollPane, BorderLayout.CENTER);
+		jcomponents.add(scrollPane);
 	}
 
 	private void setButtonPanel() {
 		FlowLayout fl_button_panel = new FlowLayout();
-		setButton_panel(new JPanel(fl_button_panel));
+		button_panel = new JPanel(fl_button_panel);
 	    getButton_panel().setBorder(BorderFactory.createLineBorder(Color.black));
 		getButton_panel().setBackground(getColor());
 		add(getButton_panel(), BorderLayout.SOUTH);
+		jcomponents.add(button_panel);
 	}
 
 	/**
@@ -133,10 +134,11 @@ public class HistoryUI extends JPanel {
 	 * set redo for specific row
 	 */
 	public void redo(int r,int c){
-		HistoryDataObject o = (HistoryDataObject) getDefaultTableModel().getValueAt(r,c );
+		TableUIDataObject o = (TableUIDataObject) getDefaultTableModel().getValueAt(r,c );
 		o.setUntraced(false);
 		getDefaultTableModel().fireTableDataChanged();
 	}
+
 	
 	/**
 	 * set undo for last row, last col
@@ -150,17 +152,18 @@ public class HistoryUI extends JPanel {
 	 * @param r
 	 */
 	public void undo(int r, int c){
-		HistoryDataObject o = (HistoryDataObject) getDefaultTableModel().getValueAt(r, c);
+		TableUIDataObject o = (TableUIDataObject) getDefaultTableModel().getValueAt(r, c);
 		o.setUntraced(true);
 		getDefaultTableModel().fireTableDataChanged();
 		index--;
 	}
 	
+
 	/**
 	 * add a row to the end of table
 	 * receive a HistoryDataObject
 	 */
-	public void insert(HistoryDataObject e){
+	public void insert(TableUIDataObject e){
 		clearUntraced();
 		int r = getNumRow();
 		insert(e,r);
@@ -169,7 +172,7 @@ public class HistoryUI extends JPanel {
 	/**
 	 * insert a row into specific row
 	 */
-	public void insert(HistoryDataObject e, int r){
+	public void insert(TableUIDataObject e, int r){
 		clearUntraced();
 		getDefaultTableModel().insertRow(r,new Object[] {e});
 		getDefaultTableModel().fireTableDataChanged();
@@ -246,7 +249,7 @@ public class HistoryUI extends JPanel {
 		getDefaultTableModel().fireTableDataChanged();
 	}
 
-	public void setDelegate(HistoryUIInterface delegate) {
+	public void setDelegate(TableUITemplateInterface delegate) {
 		this.delegate = delegate;
 	}
 
@@ -345,6 +348,18 @@ public class HistoryUI extends JPanel {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	@Override
+	public void setBackground(Color c){
+		super.setBackground(c);
+		color = c;
+
+	}
+	
+
+	public int getSelectedRow(){
+		return resultsTable.getSelectedRow();
 	}
 }
 

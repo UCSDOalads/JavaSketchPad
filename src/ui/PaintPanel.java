@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -240,5 +241,6 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	public void setDefaultSelectTool(){
 		selectTool.getButton().doClick();
 	}
+
 
 }
