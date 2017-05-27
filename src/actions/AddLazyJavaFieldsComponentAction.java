@@ -31,11 +31,11 @@ public class AddLazyJavaFieldsComponentAction extends MenuBarPaintAction {
 		ClassPaintComponent comp = (ClassPaintComponent) panel.getSelectTool()
 				.getSelectedComponents().get(0);
 
-		AddLazyJavaFieldsComponentGlobalAction assiciatedAction = (AddLazyJavaFieldsComponentGlobalAction) ActionName.ADD_LAZY_JAVA_FIELDS_ACTION
-				.getAssiciatedAction();
-		assiciatedAction.setComponent(comp);
-		assiciatedAction.setCoord(panel.getWidth() / 2, panel.getHeight() / 2);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+		AddLazyJavaFieldsComponentGlobalAction associatedAction = (AddLazyJavaFieldsComponentGlobalAction) ActionName.ADD_LAZY_JAVA_FIELDS_ACTION
+				.getAssociatedAction();
+		associatedAction.setComponent(comp);
+		associatedAction.setCoord(panel.getWidth() / 2, panel.getHeight() / 2);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,
 				panel);
 	}
 

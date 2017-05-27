@@ -49,12 +49,12 @@ public class AddInstanceMethodAction extends MenuBarPaintAction {
 		//call DialogInputChecker to check input
 		DialogInputChecker inputChecker = new DialogInputChecker();
 		if(inputChecker.isValidNumber(desiaredConstructorIndex, 0, methods.length -1)){
-			AddInstanceMethodGlobalAction assiciatedAction = 
+			AddInstanceMethodGlobalAction associatedAction = 
 					(AddInstanceMethodGlobalAction) ActionName.ADD_INSTANCE_METHOD_ACTION
-					.getAssiciatedAction();
-			assiciatedAction.setInsComp(insComp);
-			assiciatedAction.setMethodToSet(methods[Integer.parseInt(desiaredConstructorIndex)]);
-			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+					.getAssociatedAction();
+			associatedAction.setInsComp(insComp);
+			associatedAction.setMethodToSet(methods[Integer.parseInt(desiaredConstructorIndex)]);
+			GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 		}
 	}
 

@@ -58,7 +58,7 @@ public class RemoveAnnotationAction extends SingleInstanceOperation<PaintCompone
 	protected void performActionOnInstance(PaintComponent instance) {
 		// prepare the associated action
 		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		
 		// perform the action
 		associatedAction.setInstance(instance);

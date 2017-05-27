@@ -23,7 +23,7 @@ public class RedoActionTest {
 
 		// perform one action
 		AddLazyJavaClassGlobalAction action = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		action.setClassToCreate(this.getClass());
 		GlobalPaintActionExecuter.getSharedInstance().execute(action, panel);
 
