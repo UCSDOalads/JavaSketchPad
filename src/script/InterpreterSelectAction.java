@@ -3,7 +3,7 @@ package script;
 import ui.PaintPanel;
 
 public class InterpreterSelectAction {
-	
+
 	public InterpreterSelectAction(Tokenizer tokenizer, PaintPanel panel)
 			throws ExecutionErrorException {
 		String token = tokenizer.next();
@@ -12,5 +12,6 @@ public class InterpreterSelectAction {
 		} else {
 			throw new ExecutionErrorException("component not found");
 		}
+		panel.repaint();
 	}
 }

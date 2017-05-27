@@ -42,6 +42,7 @@ public class FileOpenAndSaveGlobalActionTest {
 	 	= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
 					.getAssociatedAction();
 		fileSaveAssociatedAction.setFilePath("JSPFileSaveOpenTest.xml");
+
 		fileSaveAssociatedAction.execute(panel);
 		
 		
@@ -57,6 +58,7 @@ public class FileOpenAndSaveGlobalActionTest {
 	 	= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
 					.getAssociatedAction();
 		fileOpenAssociatedAction.setFileToOpen("JSPFileSaveOpenTest.xml");
+
 		fileOpenAssociatedAction.execute(panel);
 		
 		//Components on the panel should be the same as what was saved to be
@@ -68,6 +70,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		
 		xml.delete();
 		
+
 	}
 
 }
