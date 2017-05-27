@@ -144,11 +144,6 @@ public class UndoredoDialog extends TableUITemplate implements TableUITemplateIn
 		}
 	}
 	
-	/*
-	public void redoContinuousRow(){
-		int selected
-	}*/
-	
 	/**
 	 * disable undoButton when there is no actions to undo
 	 * disable redoButton when there is no actions to redo
