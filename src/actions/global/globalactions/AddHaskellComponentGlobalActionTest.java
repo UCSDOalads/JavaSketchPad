@@ -20,7 +20,7 @@ public class AddHaskellComponentGlobalActionTest {
 		panel = new PaintPanel();
 
 		action = (AddHaskellComponentGlobalAction) ActionName.ADD_HASKELL_EXPRESSION_COMPONENT
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		action.setHaskellExpression("2");
 	}
 
