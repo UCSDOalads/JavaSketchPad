@@ -1,12 +1,15 @@
 package ui.general;
 
 import java.awt.Dimension;
+import java.lang.reflect.Method;
 
 import javax.swing.JOptionPane;
 
 import ui.PaintPanel;
 import ui.helper.classsearch.ClassSearchFrame;
 import ui.helper.classsearch.ClassSearchFrameDelegateInterface;
+import ui.helper.methodinput.MethodInputFrame;
+import ui.helper.methodinput.MethodSearchFrameDelegateInterface;
 
 /**
  * Ask for things from user.
@@ -94,6 +97,37 @@ public class InputManager {
 			
 		classSearchFrame.setVisible(true);
 		classSearchFrame.setSize(new Dimension(300, 200));
+
+	}
+	
+	
+	public void askForMethod(PaintPanel panel, InputManagerDelegate<Method> delegate, Class c) {
+		MethodInputFrame methodSearchFrame = new MethodInputFrame(c);
+		
+		methodSearchFrame.setTitle("Add a Method");
+		
+		methodSearchFrame.setDelegate(new MethodSearchFrameDelegateInterface() {
+				
+			@Override
+			public void didSelectMethod(String methodName) {
+				
+				for (Method method : c.getMethods()) {
+					if (methodName.equals(method.toString())) {
+						delegate.didFinishInput(method);
+						return;
+					}
+				}
+				
+				JOptionPane.showMessageDialog(panel, methodName + " :: Method Not Found");
+				
+			}
+		});
+			
+			
+		methodSearchFrame.setVisible(true);
+		methodSearchFrame.setSize(new Dimension(600, 400));
+		methodSearchFrame.setLocation(panel.getX() + panel.getWidth() / 2 - 300, 
+				panel.getY() + panel.getHeight() / 2 - 200);
 
 	}
 	
