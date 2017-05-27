@@ -20,10 +20,13 @@ public abstract class ZoomAction extends MenuBarPaintAction{
 	}
 	
 	public void performAction() {
+		
+		
 		for ( PaintComponent com: panel.getPaintComponents() ) {
 			int xDifference = com.getX() - centerX;
 			int yDifference = com.getY() - centerY;
-			com.translate((int)(xDifference * getZoomValue()), (int)(yDifference * getZoomValue()));
+			
+			com.translate((int)Math.floor((xDifference * getZoomValue())), (int)Math.floor(yDifference * getZoomValue()));
 		}
 		panel.repaint();
 	}
