@@ -19,9 +19,9 @@ public class AddHaskellEvaluatorComponentAction extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		AddHaskellEvaluatorComponentGlobalAction assiciatedAction = (AddHaskellEvaluatorComponentGlobalAction) ActionName.ADD_HASKELL_EVALUATOR_COMPONENT
-						.getAssiciatedAction();
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+		AddHaskellEvaluatorComponentGlobalAction associatedAction = (AddHaskellEvaluatorComponentGlobalAction) ActionName.ADD_HASKELL_EVALUATOR_COMPONENT
+						.getAssociatedAction();
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,
 				panel);
 	}
 

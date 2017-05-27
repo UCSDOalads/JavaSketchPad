@@ -8,9 +8,11 @@ import javax.swing.ImageIcon;
 
 import actions.ZoomInAction;
 import actions.ZoomOutAction;
+import actions.InputDataForDataInputBoxAction;
 import buttons.ToolButton;
 import icons.LeftArrow;
 import paintcomponents.PaintComponent;
+import paintcomponents.data.DataInputTextfieldPaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
 
@@ -66,10 +68,17 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void selectComponent(PaintComponent comp) {
+		
 		comp.select(this);
+		
+		// update the components listening to select tool
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
+
+		// prompt data input if user double clicked on a selected data box
+		doubleClickAction(comp);
+
 		panel.repaint();
 	}
 
@@ -80,6 +89,11 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void deselectComponent(PaintComponent comp) {
+
+		// check if double clicked, if so perform the action on the data box
+		doubleClickAction(comp);
+
+		// then deselect the component
 		comp.deselect(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
@@ -242,7 +256,6 @@ public class SelectTool extends PaintTool {
 			panel.showCursor();
 			panel.repaint();
 		}
-
 	}
 
 	@Override
@@ -298,6 +311,24 @@ public class SelectTool extends PaintTool {
 			zoomOut.setCenterX(e.getX());
 			zoomOut.setCenterY(e.getY());
 			zoomOut.performAction();
+    }
+  }
+  
+  /**
+	 * Check if user double clicked a data box and it will prompt user to type
+	 * data if double clicked on a selected or de-selected data box
+	 * 
+	 * @param comp
+	 */
+	private void doubleClickAction(PaintComponent comp) {
+
+		// data input box prompt right after a double click on the box
+		if (comp instanceof DataInputTextfieldPaintComponent && getLastMouseEvent().getClickCount() == 2
+				&& !getLastMouseEvent().isConsumed()) {
+
+			InputDataForDataInputBoxAction newAction = new InputDataForDataInputBoxAction(panel);
+			newAction.performAction();
+			getLastMouseEvent().consume();
 		}
 	}
 }

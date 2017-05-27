@@ -27,12 +27,12 @@ public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 
-		AddDataDisplayBoxGlobalAction assiciatedAction = (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
-				.getAssiciatedAction();
-		assiciatedAction.setDisplayString("Data Display");
-		assiciatedAction.setX(panel.getWidth() / 2);
-		assiciatedAction.setY(panel.getHeight() / 2);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+		AddDataDisplayBoxGlobalAction associatedAction = (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
+				.getAssociatedAction();
+		associatedAction.setDisplayString("Data Display");
+		associatedAction.setX(panel.getWidth() / 2);
+		associatedAction.setY(panel.getHeight() / 2);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,
 				panel);
 
 	}

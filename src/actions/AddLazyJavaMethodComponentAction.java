@@ -46,15 +46,16 @@ public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 		String desiaredConstructorIndex = JOptionPane.showInputDialog(
 						"Please enter the index of the constructor you would like to use: \n\n\n"
 
+
 								+ getMethodsSelectionUI(methods));
 		//call DialogInputChecker to check input
 		DialogInputChecker inputChecker = new DialogInputChecker();
 		if(inputChecker.isValidNumber(desiaredConstructorIndex, 0, methods.length -1)){
-			AddLazyJavaMethodComponentGlobalAction assiciatedAction 
-			= (AddLazyJavaMethodComponentGlobalAction) ActionName.ADD_LAZY_JAVA_METHOD_ACTION.getAssiciatedAction();
-			assiciatedAction.setMethodComponent(comp);
-			assiciatedAction.setMethod(String.class.getMethods()[Integer.parseInt(desiaredConstructorIndex)]);
-			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+			AddLazyJavaMethodComponentGlobalAction associatedAction 
+			= (AddLazyJavaMethodComponentGlobalAction) ActionName.ADD_LAZY_JAVA_METHOD_ACTION.getAssociatedAction();
+			associatedAction.setMethodComponent(comp);
+			associatedAction.setMethod(comp.getDisplayingClass().getMethods()[Integer.parseInt(desiaredConstructorIndex)]);
+			GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 		}
 	}
 		

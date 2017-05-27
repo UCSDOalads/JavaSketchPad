@@ -62,7 +62,7 @@ public class ConstructLineSegmentAction extends MenuBarPaintAction {
 		
 		ConstructLineSegmentGlobalAction associatedAction = 
 		(ConstructLineSegmentGlobalAction) 
-		ActionName.CONSTRUCT_LINE_SEGMENT_ACTION.getAssiciatedAction();
+		ActionName.CONSTRUCT_LINE_SEGMENT_ACTION.getAssociatedAction();
 		
 		associatedAction.setFromPoint((SimplePoint)(items.get(0)));
 		associatedAction.setToPoint((SimplePoint)(items.get(1)));

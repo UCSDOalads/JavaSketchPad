@@ -13,7 +13,7 @@ public class InterpreterNameAction {
 		String token = tokenizer.next();
 
 		NameGlobalAction assiciatedAction = (NameGlobalAction) ActionName.NAME
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
 				panel);
 		assiciatedAction.setName(token, panel);

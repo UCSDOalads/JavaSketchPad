@@ -29,7 +29,7 @@ public class RemoveAnnotationActionTest {
 
 		// add the annotation to be removed
 		AddAnnotationGlobalAction addAnnotationGlobalAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 
 		addAnnotationGlobalAction.setAnnotationToAdd("hello");
 		addAnnotationGlobalAction.setOperatingInstance(test);

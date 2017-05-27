@@ -18,11 +18,14 @@ import actions.menu.ActionsMenuBarTitles;
  * @author muchi
  *
  */
-public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>{
+public class AddAnnotationAction extends
+		SingleInstanceOperation<PaintComponent> {
 
 	/**
 	 * ctor
-	 * @param panel the panel
+	 * 
+	 * @param panel
+	 *            the panel
 	 */
 	public AddAnnotationAction(PaintPanel panel) {
 		super(panel);
@@ -43,41 +46,40 @@ public class AddAnnotationAction extends SingleInstanceOperation<PaintComponent>
 				.showInputDialog("Please specify the annotation of the component");
 		// perform the action
 		AddAnnotationGlobalAction associatedAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		associatedAction.setAnnotationToAdd(annotations);
 		associatedAction.setOperatingInstance(instance);
 		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,
 				panel);
-		//push action to manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
-			@Override
-			public void undoAction() {
-				instance.setOptionalAnnotation(null);
-				panel.repaint();
-			}
-			
-			@Override
-			public void redoAction() {
-				new TextAnnotation(instance, annotations);
-				panel.repaint();
-			}
+		// push action to manager
+		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(
+				new UndoRedoableInterface() {
 
-			@Override
-			protected String commandName() {
-				return "add an annotation";
-			}
+					@Override
+					public void undoAction() {
+						instance.setOptionalAnnotation(null);
+						panel.repaint();
+					}
 
-			@Override
-			protected String commandDescription() {
-				return "add an annotation";
-			}
+					@Override
+					public void redoAction() {
+						new TextAnnotation(instance, annotations);
+						panel.repaint();
+					}
 
-			
-		});
+					@Override
+					protected String commandName() {
+						return "add an annotation";
+					}
+
+					@Override
+					protected String commandDescription() {
+						return "add an annotation";
+					}
+
+				});
 		panel.repaint();
 	}
-		
 
 	protected Class<PaintComponent> getGenericClassType() {
 		return PaintComponent.class;
