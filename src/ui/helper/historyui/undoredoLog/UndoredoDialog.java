@@ -113,8 +113,8 @@ public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
 	}
 	
 	/**
-	 * disable undoButton when there is no actions to be undo
-	 * disable redoButton when there is no actions to be redo
+	 * disable undoButton when there is no actions to undo
+	 * disable redoButton when there is no actions to redo
 	 */
 	public void updateButtonStatus(){
 		if(getIndex() == -1 || getNumRow() == 0){

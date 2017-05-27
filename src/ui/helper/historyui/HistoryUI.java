@@ -100,28 +100,6 @@ public class HistoryUI extends JPanel {
 		//getButton_panel().repaint();
 	}
 	
-
-	protected void setButtons(String[] titles){
-		// add small JPanel for buttons
-
-
-		//loop through arr and add buttons
-		for (String title : titles){
-			JButton button = new JButton(title);
-			getButton_panel().add(button);
-			getButtonArray().add(button);
-			button.setEnabled(false);
-			button.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					delegate.didPressButton(title, getResultsTable().getSelectedRow());
-				}
-			});
-		}
-	}
-
-	
 	protected void setSelectionMode(){
 		getResultsTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
