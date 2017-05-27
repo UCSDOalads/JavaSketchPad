@@ -3,7 +3,6 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 

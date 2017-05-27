@@ -57,7 +57,7 @@ public class HistoryUITest {
 					public void run() {
 						
 						try {
-							Thread.sleep(5000);
+							Thread.sleep(50);
 							
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -69,7 +69,7 @@ public class HistoryUITest {
 				
 			}
 		});
-		Thread.sleep(10000);
+		Thread.sleep(50);
 	}
 
 	

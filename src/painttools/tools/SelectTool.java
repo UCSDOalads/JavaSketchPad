@@ -3,8 +3,6 @@ package painttools.tools;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-
 import buttons.ToolButton;
 import paintcomponents.PaintComponent;
 import settings.Defaults;

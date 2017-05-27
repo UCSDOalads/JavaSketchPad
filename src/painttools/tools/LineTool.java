@@ -3,9 +3,13 @@ package painttools.tools;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
+import actions.global.globalactions.ConstructLineSegmentGlobalAction;
+import buttons.ToolButton;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
@@ -15,11 +19,6 @@ import paintcomponents.data.DataTextPaintComponent;
 import paintcomponents.data.DataToPoint;
 import ui.PaintPanel;
 import ui.icons.CustomIcons;
-import actions.global.ActionName;
-import actions.global.GlobalPaintActionExecuter;
-import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
-import actions.global.globalactions.ConstructLineSegmentGlobalAction;
-import buttons.ToolButton;
 
 public class LineTool implements PaintToolsInterface {
 
@@ -138,7 +137,7 @@ public class LineTool implements PaintToolsInterface {
 					panel.repaint();
 					panel.setTempComponent(null);
 					panel.showCursor();
-					panel.toolSelected(panel.getSelectTool());
+					panel.setDefaultSelectTool();
 				}
 
 				// If the first point is dataFrom point and the point under
@@ -159,7 +158,7 @@ public class LineTool implements PaintToolsInterface {
 					panel.repaint();
 					panel.setTempComponent(null);
 					panel.showCursor();
-					panel.toolSelected(panel.getSelectTool());
+					panel.setDefaultSelectTool();
 				}
 			}
 		}

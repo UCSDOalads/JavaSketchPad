@@ -3,8 +3,6 @@ package painttools.tools;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
-
 import actions.AddLazyJavaClassAction;
 import buttons.ToolButton;
 import ui.PaintPanel;
@@ -27,6 +25,9 @@ public class AddClassTool implements ActionToolsInterface {
 	public void start(PaintPanel panel) {
 	}
 
+	/**
+	 * create a toolButton for this tool, and set icons
+	 */
 	@Override
 	public void createButton() {
 		// TODO Auto-generated method stub
@@ -48,11 +49,15 @@ public class AddClassTool implements ActionToolsInterface {
 
 	}
 
+	/**
+	 * when mouse click paintPanel, add class dialog will pop up, and a class
+	 * component will be added to where mouse was clicked
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		AddLazyJavaClassAction action = new AddLazyJavaClassAction(panel);
 		if (action.canPerformAction()) {
+			// set the starting point for class component
 			action.setXY(e.getX(), e.getY());
 			action.performAction();
 		}
@@ -96,6 +101,9 @@ public class AddClassTool implements ActionToolsInterface {
 
 	}
 
+	/**
+	 * change the cursor when add button is clicked
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		panel.setNewCursor (CustomCursors.addComponentcursor());

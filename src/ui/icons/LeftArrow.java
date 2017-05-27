@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Polygon;
-import java.awt.Rectangle;
 
 import javax.swing.Icon;
 

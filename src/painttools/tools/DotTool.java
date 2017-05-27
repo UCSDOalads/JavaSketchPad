@@ -2,12 +2,10 @@ package painttools.tools;
 
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
-
+import buttons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 import ui.icons.CustomIcons;
-import buttons.ToolButton;
 
 public class DotTool implements PaintToolsInterface {
 
@@ -29,8 +27,6 @@ public class DotTool implements PaintToolsInterface {
 	}
 	@Override
 	public void createButton() {
-		// TODO Auto-generated method stub
-
 		button = new ToolButton();
 		button.setOriginalImage(CustomIcons.dot());
 		button.setSelectedImage(CustomIcons.selectedDot());

@@ -17,15 +17,15 @@ public class AddInputBoxTool implements ActionToolsInterface {
 	public AddInputBoxTool(PaintPanel panel) {
 		this.panel = panel;
 		createButton();
-
-
 	}
 
 	@Override
 	public void start(PaintPanel panel) {
 	}
 
-	
+	/**
+	 * create a toolButton for this tool, and set icons
+	 */
 	@Override
 	public void createButton() {
 		// TODO Auto-generated method stub
@@ -46,11 +46,17 @@ public class AddInputBoxTool implements ActionToolsInterface {
 
 	}
 
+	
+	/**
+	 * when mouse click paintPanel, a input box will be added to 
+	 * where mouse was clicked
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
 		if(action.canPerformAction()){
+			//set starting point for paint component
 			action.setXY(e.getX(), e.getY());
 			action.performAction();
 			action.setDefaultXY();
@@ -95,6 +101,9 @@ public class AddInputBoxTool implements ActionToolsInterface {
 
 	}
 
+	/**
+	 * change the cursor when add button is clicked
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

@@ -29,4 +29,12 @@ public class CustomIcons {
 	public static ImageIcon selectedDot(){
 		return new ImageIcon("./images/dotselected.png");
 	}
+	
+	public static ImageIcon undo(){
+		return new ImageIcon("./images/undo.png");
+	}
+	
+	public static ImageIcon redo(){
+		return new ImageIcon("./images/redo.png");
+	}
 }
