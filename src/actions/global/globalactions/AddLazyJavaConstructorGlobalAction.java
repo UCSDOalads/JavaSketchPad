@@ -2,7 +2,7 @@ package actions.global.globalactions;
 
 import java.lang.reflect.Constructor;
 
-import paintcomponents.java.interactive.ClassConstructorPaintComponent;
+import paintcomponents.java.lazy.ClassConstructorPaintComponent;
 import paintcomponents.java.lazy.ClassPaintComponent;
 import ui.PaintPanel;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
