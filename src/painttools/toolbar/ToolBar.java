@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
@@ -20,6 +22,8 @@ import painttools.tools.DotTool;
 import painttools.tools.LineTool;
 import painttools.tools.PaintTool;
 import painttools.tools.SelectTool;
+import painttools.tools.SelectToolInterface;
+import painttools.tools.SmartTool;
 import ui.PaintPanel;
 import ui.ShortcutHandler;
 
@@ -44,16 +48,14 @@ public class ToolBar extends JPanel {
 		selectTool = new SelectTool(panel);
 		addTool(new DotTool());
 		addTool(selectTool);
+		addTool(new SmartTool(panel));
 		addTool(new LineTool());
-
 
 		addComponentTool(new AddClassTool(panel));
 		addComponentTool(new AddInputBoxTool(panel));
 		addComponentTool(new AddOutputBoxTool(panel));
 
-
 		addSeprator();
-
 		
 		this.addKeyListener(new ShortcutHandler(panel));
 	}
@@ -121,7 +123,7 @@ public class ToolBar extends JPanel {
 		}
 	}
 
-	public SelectTool getSelectTool() {
+	public SelectToolInterface getSelectTool() {
 		return selectTool;
 	}
 	

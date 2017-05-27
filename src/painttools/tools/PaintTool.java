@@ -1,11 +1,12 @@
 package painttools.tools;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 
 import buttons.ToolButton;
 import ui.PaintPanel;
 
-public abstract class PaintTool implements MouseListener, MouseMotionListener {
+public abstract class PaintTool implements MouseListener, MouseMotionListener, MouseWheelListener {
 
 	
 	/**

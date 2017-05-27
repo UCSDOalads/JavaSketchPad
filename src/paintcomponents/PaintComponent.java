@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 
 import paintcomponents.annotations.PaintComponentAnnotation;
 import painttools.tools.SelectTool;
+import painttools.tools.SelectToolInterface;
 import ui.PaintPanel;
 
 /**
@@ -126,7 +127,7 @@ public abstract class PaintComponent {
 	 * @param selectTool
 	 *            TODO
 	 */
-	public void select(SelectTool selectTool) {
+	public void select(SelectToolInterface selectTool) {
 		selected = true;
 		if (selectTool != null)
 			selectTool.getSelectedComponents().add(this);
@@ -141,7 +142,7 @@ public abstract class PaintComponent {
 	 * @param selectTool
 	 *            TODO
 	 */
-	public void deselect(SelectTool selectTool) {
+	public void deselect(SelectToolInterface selectTool) {
 		selected = false;
 		if (selectTool != null)
 			selectTool.getSelectedComponents().remove(this);
@@ -153,7 +154,7 @@ public abstract class PaintComponent {
 	 * @param selectTool
 	 *            TODO
 	 */
-	public void toggleSelect(SelectTool selectTool) {
+	public void toggleSelect(SelectToolInterface selectTool) {
 		if (isSelected()) {
 			deselect(selectTool);
 		} else {

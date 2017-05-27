@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import painttools.tools.SelectToolInterface;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -167,7 +168,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	}
 
 	@Override
-	public void select(SelectTool selectTool) {
+	public void select(SelectToolInterface selectTool) {
 		int x = this.getX() + HORIZONTAL_OFFSET, y = this.getY();
 		if (selectTool.getLastMouseEvent() != null) {
 		    x = selectTool.getLastMouseEvent().getX();
@@ -192,7 +193,7 @@ public class DataTextIOPaintComponent extends DataTextPaintComponent {
 	}
 
 	@Override
-	public void deselect(SelectTool selectTool) {
+	public void deselect(SelectToolInterface selectTool) {
 		int x = this.getX() + HORIZONTAL_OFFSET, y = this.getY();
 		if (selectTool.getLastMouseEvent() != null) {
 		    x = selectTool.getLastMouseEvent().getX();
