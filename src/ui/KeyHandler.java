@@ -20,8 +20,11 @@ import script.ExecutionErrorException;
 import script.Interpreter;
 
 public class KeyHandler implements KeyListener {
-	Color color = new Color(150, 150, 150);
+	
+	public static final String COMMAND_LINE_DISPLAY = "Press : to enter commands";
 	private static final String PROMPT = "";
+
+	Color color = new Color(150, 150, 150);
 	private PaintPanel paintPanel;
 	private boolean inCommandMode;
 	Interpreter interpreter ;
@@ -39,7 +42,7 @@ public class KeyHandler implements KeyListener {
 		interpreter = new Interpreter(paintPanel);
 		
 		
-		this.textField = new JTextField("Press : to enter commands");
+		this.textField = new JTextField(COMMAND_LINE_DISPLAY);
 		this.paintPanel.add(textField, BorderLayout.SOUTH);
 		
 		this.textField.addKeyListener(this);
@@ -52,7 +55,7 @@ public class KeyHandler implements KeyListener {
             @Override
             public void mouseClicked(MouseEvent e){
             	if (textField.getText().isEmpty() || 
-            			textField.getText().matches("Press : to enter commands")){
+            			textField.getText().matches(COMMAND_LINE_DISPLAY)){
                 	enterCommandMode();
                 }
             }
@@ -89,7 +92,7 @@ public class KeyHandler implements KeyListener {
 		inCommandMode = false;
 		paintPanel.requestFocusInWindow();
 		textField.setBackground(color);
-		textField.setText("Press : to enter commands");
+		textField.setText(COMMAND_LINE_DISPLAY);
 	}
 
 	private void executeCommand(String pendingCommand2) {
