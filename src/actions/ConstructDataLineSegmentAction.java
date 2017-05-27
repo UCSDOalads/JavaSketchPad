@@ -47,7 +47,7 @@ public class ConstructDataLineSegmentAction extends ConstructLineSegmentAction {
 				.getSelectedComponents();
 
 		ConstructDataLineSegmentGlobalAction associatedAction = (ConstructDataLineSegmentGlobalAction) ActionName.CONSTRUCT_DATA_LINE_SEGMENT_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 
 		DataFromPoint fromPoint = (DataFromPoint) comps.get(0);
 		DataToPoint toPoint = (DataToPoint) comps.get(1);

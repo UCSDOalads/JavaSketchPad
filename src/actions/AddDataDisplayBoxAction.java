@@ -27,13 +27,12 @@ public class AddDataDisplayBoxAction extends AddComponentActions {
 	@Override
 	public void performAction() {
 
-		AddDataDisplayBoxGlobalAction assiciatedAction = (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
-				.getAssiciatedAction();
-		assiciatedAction.setDisplayString("Data Display");
-		assiciatedAction.setX(x);
-		assiciatedAction.setY(y);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-				panel);
+		AddDataDisplayBoxGlobalAction associatedAction = (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
+				.getAssociatedAction();
+		associatedAction.setDisplayString("Data Display");
+		associatedAction.setX(x);
+		associatedAction.setY(y);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 
 	}
 

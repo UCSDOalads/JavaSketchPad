@@ -125,7 +125,7 @@ public class LineTool implements PaintToolsInterface {
 						&& (items.get(0).getClass() == SimplePoint.class)) {
 
 					ConstructLineSegmentGlobalAction associatedAction = (ConstructLineSegmentGlobalAction) ActionName.CONSTRUCT_LINE_SEGMENT_ACTION
-							.getAssiciatedAction();
+							.getAssociatedAction();
 
 					associatedAction.setFromPoint((SimplePoint) items.get(0));
 					associatedAction.setToPoint((SimplePoint) comp);
@@ -146,7 +146,7 @@ public class LineTool implements PaintToolsInterface {
 						&& (items.get(0).getClass() == DataFromPoint.class)) {
 
 					ConstructDataLineSegmentGlobalAction associatedAction = (ConstructDataLineSegmentGlobalAction) ActionName.CONSTRUCT_DATA_LINE_SEGMENT_ACTION
-							.getAssiciatedAction();
+							.getAssociatedAction();
 
 					associatedAction.setFromPoint((DataFromPoint) items.get(0));
 					associatedAction.setToPoint((DataToPoint) comp);

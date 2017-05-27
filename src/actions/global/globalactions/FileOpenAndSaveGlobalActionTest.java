@@ -29,7 +29,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		//Add string class to the panel
 		AddLazyJavaClassGlobalAction associatedAction 
 		 	= (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-						.getAssiciatedAction();
+						.getAssociatedAction();
 		associatedAction.setClassToCreate("string".getClass());
 		
 		assertEquals(0, panel.getPaintComponents().size());
@@ -40,7 +40,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		//Save them
 		FileSaveAsGlobalAction fileSaveAssociatedAction 
 	 	= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
-					.getAssiciatedAction();
+					.getAssociatedAction();
 		fileSaveAssociatedAction.setFilePath("JSPFileSaveOpenTest.xml");
 		fileSaveAssociatedAction.execute(panel);
 		
@@ -55,7 +55,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		//Try to open them again
 		FileOpenGlobalAction fileOpenAssociatedAction 
 	 	= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
-					.getAssiciatedAction();
+					.getAssociatedAction();
 		fileOpenAssociatedAction.setFileToOpen("JSPFileSaveOpenTest.xml");
 		fileOpenAssociatedAction.execute(panel);
 		

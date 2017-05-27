@@ -30,11 +30,11 @@ public class ExecuteScriptAction extends MenuBarPaintAction {
 		 * System.out.println("Enter script:"); } scanner.close();
 		 */
 		String command = JOptionPane.showInputDialog(panel, "Enter Script: ");
-		ExecuteScriptGlobalAction assiciatedAction = (ExecuteScriptGlobalAction) ActionName.EXECUTE_SCRIPT_ACTION
-				.getAssiciatedAction();
+		ExecuteScriptGlobalAction associatedAction = (ExecuteScriptGlobalAction) ActionName.EXECUTE_SCRIPT_ACTION
+				.getAssociatedAction();
 
-		assiciatedAction.setCommand(command);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
+		associatedAction.setCommand(command);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,
 				panel);
 
 	}

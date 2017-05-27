@@ -21,7 +21,7 @@ public class RemoveAnnotationGlobalActionTest {
 		PaintPanel panel = new PaintPanel();
 
 		AddAnnotationGlobalAction addAnnotationGlobalAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 
 		// add annotations
 		DataDisplayPaintComponent add = new DataDisplayPaintComponent("", 0, 0);
@@ -33,7 +33,7 @@ public class RemoveAnnotationGlobalActionTest {
 		
 		// remove annotations
 		RemoveAnnotationGlobalAction associatedAction = (RemoveAnnotationGlobalAction) ActionName.REMOVE_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		associatedAction.setInstance(add);
 						
 		associatedAction.execute(panel);
