@@ -52,7 +52,6 @@ public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 			}
 		}, comp.getDisplayingClass());
 
-		
 	}
 		
 	public String getMethodsSelectionUI(Method[] methods) {
