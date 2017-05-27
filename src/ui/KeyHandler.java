@@ -1,26 +1,31 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
+import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 import script.ExecutionErrorException;
 import script.Interpreter;
 
 public class KeyHandler implements KeyListener {
-
-	//the prompt does not work, i.e. focusing issues
+	Color color = new Color(150, 150, 150);
 	private static final String PROMPT = "";
 	private PaintPanel paintPanel;
 	private boolean inCommandMode;
 	Interpreter interpreter ;
 	private boolean isCurrentDirectionNext;
-	
 	
 	JTextField textField;
 	
@@ -39,6 +44,34 @@ public class KeyHandler implements KeyListener {
 		
 		this.textField.addKeyListener(this);
 		
+		textField.setBackground(color);
+		textField.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		
+		//click and make text disappear
+		textField.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+            	if (textField.getText().isEmpty() || 
+            			textField.getText().matches("Press : to enter commands")){
+                	enterCommandMode();
+                }
+            }
+        });
+		
+		textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+            	
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()){
+                	exitCommandMode();
+                }
+            }
+        });
+		
 		this.commandHistoryIter = new LinkedList<String>().listIterator();
 		
 		
@@ -47,15 +80,16 @@ public class KeyHandler implements KeyListener {
 
 	private void enterCommandMode() {
 		inCommandMode = true;
-		textField.setVisible(true);
 		textField.requestFocusInWindow();
+		textField.setBackground(Color.WHITE);
 		textField.setText(PROMPT);
 	}
 
 	private void exitCommandMode() {
 		inCommandMode = false;
-		textField.setVisible(false);
 		paintPanel.requestFocusInWindow();
+		textField.setBackground(color);
+		textField.setText("Press : to enter commands");
 	}
 
 	private void executeCommand(String pendingCommand2) {
@@ -72,7 +106,7 @@ public class KeyHandler implements KeyListener {
 	
 		if (keyChar == ':') {
 			enterCommandMode();
-		} 
+		}
 	}
 
 	@Override

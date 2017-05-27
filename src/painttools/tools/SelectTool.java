@@ -1,12 +1,11 @@
 package painttools.tools;
 
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.colorchooser.DefaultColorSelectionModel;
+import javax.swing.ImageIcon;
 
+import buttons.ToolButton;
 import icons.LeftArrow;
 import paintcomponents.PaintComponent;
 import settings.Defaults;
@@ -246,15 +245,17 @@ public class SelectTool extends PaintTool {
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-
 	}
 
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
-		button.setIcon(LeftArrow.iconFromPolygon(LeftArrow.getPolygon(),
-				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
-		return button;
+	public ToolButton getButton() {
+		
+		ToolButton b = new ToolButton();
+		ImageIcon icon = new ImageIcon("./images/arrow.png");
+		b.setOriginalImage(icon);		
+		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
+		b.setSelectedImage(icon2);
+		return b;
 	}
 
 	@Override
@@ -264,4 +265,19 @@ public class SelectTool extends PaintTool {
 
 	}
 
+	/**
+	 * add a component to selected
+	 * @param pc
+	 */
+	public void addSelectedComponent(PaintComponent pc){
+		selectedComponents.add(pc);
+	}
+	
+	/**
+	 * remove a selected component
+	 * 
+	 */
+	public void removeSelectedComponent(PaintComponent pc){
+		selectedComponents.remove(pc);
+	}
 }

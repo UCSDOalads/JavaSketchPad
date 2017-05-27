@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import ui.PaintPanel;
 import ui.helper.historyui.undoredoLog.UndoredoDialog;
 
-public class ShowHistory extends PaintAction {
+public class ShowHistory extends MenuBarPaintAction {
 	
 
 	public ShowHistory(PaintPanel panel) {

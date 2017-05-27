@@ -14,7 +14,7 @@ import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
-public class GeneratePolygonSourceJava extends PaintAction {
+public class GeneratePolygonSourceJava extends MenuBarPaintAction {
 
 	public GeneratePolygonSourceJava(PaintPanel panel) {
 		super(panel);

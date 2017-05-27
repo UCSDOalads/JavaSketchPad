@@ -12,4 +12,10 @@ public class HaskellType extends Type {
 		return false;
 	}
 
+	@Override
+	public Class getCurClass() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

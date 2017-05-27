@@ -8,7 +8,7 @@ import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.menu.ActionsMenuBarTitles;
 
-public class RemovePaintComponent extends PaintAction{
+public class RemovePaintComponent extends MenuBarPaintAction{
 
 	public RemovePaintComponent(PaintPanel panel) {
 		super(panel);
@@ -38,11 +38,14 @@ public class RemovePaintComponent extends PaintAction{
 			public void undoAction() {
 				for( PaintComponent comp: comps )
 					panel.addPaintComponent(comp);
+				panel.repaint();
+				
 			}
 			@Override
 			public void redoAction() {
 				for( PaintComponent comp: comps ) 
 					comp.remove(panel);
+				panel.repaint();
 			}
 			@Override
 			protected String commandName() {

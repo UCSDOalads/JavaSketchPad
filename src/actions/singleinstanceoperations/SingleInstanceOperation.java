@@ -1,6 +1,6 @@
 package actions.singleinstanceoperations;
 
-import actions.PaintAction;
+import actions.MenuBarPaintAction;
 import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
@@ -21,7 +21,7 @@ import ui.PaintPanel;
  * @author chenzb
  *
  */
-public abstract class SingleInstanceOperation<T> extends PaintAction {
+public abstract class SingleInstanceOperation<T> extends MenuBarPaintAction {
 
 	public SingleInstanceOperation(PaintPanel panel) {
 		super(panel);
@@ -43,7 +43,6 @@ public abstract class SingleInstanceOperation<T> extends PaintAction {
 
 	@Override
 	public void performAction() {
-		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		T comp = (T) panel.getSelectTool().getSelectedComponents().get(0);
 		performActionOnInstance(comp);
@@ -60,5 +59,6 @@ public abstract class SingleInstanceOperation<T> extends PaintAction {
 	 */
 	protected abstract Class<T> getGenericClassType();
 		
+
 
 }

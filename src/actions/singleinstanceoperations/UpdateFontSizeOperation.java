@@ -1,10 +1,10 @@
 package actions.singleinstanceoperations;
 
-import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.TextPaintComponent;
 import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
+import actions.menu.ActionsMenuBarTitles;
 
 public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintComponent>{
 
@@ -12,7 +12,7 @@ public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintCo
 		super(panel);
 	}
 
-	@Override
+	
 	protected void performActionOnInstance(TextPaintComponent instance) {
 		 InputManager.sharedInstance().askForFloat(panel, new InputManagerDelegate<Float>() {
 			
@@ -34,9 +34,5 @@ public class UpdateFontSizeOperation extends SingleInstanceOperation<TextPaintCo
 	protected Class<TextPaintComponent> getGenericClassType() {
 		return TextPaintComponent.class;
 	}
-
-	
-	
-	
 
 }

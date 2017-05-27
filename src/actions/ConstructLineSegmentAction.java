@@ -1,17 +1,17 @@
 package actions;
 
-import java.awt.Component;
 import java.util.ArrayList;
 
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.ConstructLineSegmentGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
 
-public class ConstructLineSegmentAction extends PaintAction {
+public class ConstructLineSegmentAction extends MenuBarPaintAction {
 
 	public ConstructLineSegmentAction(PaintPanel panel) {
 		super(panel);
@@ -57,54 +57,21 @@ public class ConstructLineSegmentAction extends PaintAction {
 
 	@Override
 	public void performAction() {
-		//get selected components
+
 		ArrayList<PaintComponent> items = panel.getSelectTool().getSelectedComponents();
 		
-		//construct line segment
-		LineSegment lineSegment = new LineSegment((SimplePoint)(items.get(0)), (SimplePoint)(items.get(1)));
+		ConstructLineSegmentGlobalAction associatedAction = 
+		(ConstructLineSegmentGlobalAction) 
+		ActionName.CONSTRUCT_LINE_SEGMENT_ACTION.getAssiciatedAction();
 		
-
-		addLineSegment(lineSegment);
-	}
-	/**
-	 * This method updates the panel's list of paint components and selection after a line segment is added
-	 * Subclasses should call this method to update the panel when customizing the addition of a line segment 
-	 * 
-	 * @param lineSegment the lineSegment to be added to the painting panel
-	 */
-	protected void  addLineSegment(LineSegment lineSegment) {
-		
-		//add to panel
-		panel.addPaintComponent(lineSegment);
+		associatedAction.setFromPoint((SimplePoint)(items.get(0)));
+		associatedAction.setToPoint((SimplePoint)(items.get(1)));
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 		
 		//change selection
 		panel.getSelectTool().clearSelection();
-		panel.getSelectTool().selectComponent(lineSegment);
-		//push action to the manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
-			@Override
-			public void undoAction() {
-				lineSegment.remove(panel);
-				panel.repaint();
-			}
-			
-			@Override
-			public void redoAction() {
-				panel.addPaintComponent(lineSegment);
-				panel.repaint();
-			}
-
-			@Override
-			protected String commandName() {
-				return "construct lineSegment";
-			}
-
-			@Override
-			protected String commandDescription() {
-				return "[Deprecated] construct a generic line segment";
-			}
-		});
+		panel.getSelectTool().selectComponent(associatedAction.getLineSeg());
+		
 		panel.repaint();
 	}
 
@@ -112,5 +79,4 @@ public class ConstructLineSegmentAction extends PaintAction {
 	public String locationString() {
 		return ActionsMenuBarTitles.Developer("Construct/Line Segment").toString();
 	}
-
 }

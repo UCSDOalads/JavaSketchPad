@@ -4,11 +4,14 @@ import ui.PaintPanel;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.menu.ActionsMenuBarTitles;
 
-public class EditRedoAction extends PaintAction {
+public class RedoAction extends MenuBarPaintAction {
 
+	
+	
+	
 	SharedUndoRedoActionManager manager = SharedUndoRedoActionManager.getSharedInstance();
 	
-	public EditRedoAction(PaintPanel panel) {
+	public RedoAction(PaintPanel panel) {
 		super(panel);
 	}
 

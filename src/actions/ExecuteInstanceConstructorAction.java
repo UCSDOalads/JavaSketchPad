@@ -1,10 +1,16 @@
 package actions;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
+import actions.global.globalactions.ExecuteInstanceConstructorGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.interactive.InstanceOperationComponent;
 import ui.PaintPanel;
+import ui.general.InputManager;
+import ui.general.InputManagerDelegate;
 
-public class ExecuteInstanceConstructorAction extends PaintAction {
+public class ExecuteInstanceConstructorAction extends MenuBarPaintAction {
 
 	public ExecuteInstanceConstructorAction(PaintPanel panel) {
 		super(panel);
@@ -24,10 +30,12 @@ public class ExecuteInstanceConstructorAction extends PaintAction {
 
 	@Override
 	public void performAction() {
-		InstanceOperationComponent insComp = 
-				(InstanceOperationComponent)panel.getSelectTool().
-				getSelectedComponents().get(0);
-		insComp.executeConstructor();
+		ExecuteInstanceConstructorGlobalAction  assiciatedAction 
+			= (ExecuteInstanceConstructorGlobalAction) ActionName.EXECUTE_INSTANCE_CONSTRUCTOR_ACTION
+				.getAssiciatedAction();
+		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+		
+		
 	}
 
 	@Override
