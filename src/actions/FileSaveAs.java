@@ -53,7 +53,7 @@ public class FileSaveAs extends MenuBarPaintAction {
 		
 		FileSaveAsGlobalAction associatedAction 
 		= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		associatedAction.setFilePath(filePath);
 		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}

@@ -27,7 +27,7 @@ public class AddLazyJavaFieldsComponentGlobalActionTest {
 
 		// add a class
 		AddLazyJavaClassGlobalAction classAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		classAction.setClassToCreate("string".getClass());
 		GlobalPaintActionExecuter.getSharedInstance().execute(classAction,
 				panel);
@@ -36,7 +36,7 @@ public class AddLazyJavaFieldsComponentGlobalActionTest {
 		ClassPaintComponent comp = (ClassPaintComponent) panel
 				.getPaintComponents().get(0);
 		AddLazyJavaFieldsComponentGlobalAction assiciatedAction = (AddLazyJavaFieldsComponentGlobalAction) ActionName.ADD_LAZY_JAVA_FIELDS_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		assiciatedAction.setComponent(comp);
 
 		// test

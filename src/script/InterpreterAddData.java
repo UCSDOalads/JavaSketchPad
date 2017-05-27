@@ -2,7 +2,7 @@ package script;
 
 import ui.PaintPanel;
 import actions.AddDataDisplayBoxAction;
-import actions.AddTextBoxAction;
+import actions.AddDataInputBoxAction;
 
 /**
  * Interpret and execute 'add data' scripts
@@ -43,7 +43,7 @@ public class InterpreterAddData {
 	}
 
 	private void performAddInputBoxAction() {
-		AddTextBoxAction action = new AddTextBoxAction(panel);
+		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
 		action.performAction();
 	}
 }
