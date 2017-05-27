@@ -13,7 +13,7 @@ public class ClassSearchTest {
 		ClassSearch search = ClassSearch.sharedInstance();
 		ArrayList<String> classesForName = search.classesForName("System");
 		
-		assertTrue(classesForName.contains("java.lang.System"));
+		assertTrue(classesForName.contains("System (java.lang)"));
 		
 	}
 
