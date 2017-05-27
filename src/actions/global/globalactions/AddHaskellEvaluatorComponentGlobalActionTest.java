@@ -20,7 +20,7 @@ public class AddHaskellEvaluatorComponentGlobalActionTest {
 		panel = new PaintPanel();
 
 		action = (AddHaskellEvaluatorComponentGlobalAction) ActionName.ADD_HASKELL_EVALUATOR_COMPONENT
-				.getAssiciatedAction();
+				.getAssociatedAction();
 	}
 
 	@Test

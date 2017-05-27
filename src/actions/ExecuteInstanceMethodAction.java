@@ -32,9 +32,9 @@ public class ExecuteInstanceMethodAction extends MenuBarPaintAction {
 	
 	@Override
 	public void performAction() {
-			ExecuteInstanceMethodGlobalAction assiciatedAction
-			=  (ExecuteInstanceMethodGlobalAction)ActionName.EXECUTE_INSTANCE_METHOD_ACTION.getAssiciatedAction();
-			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+			ExecuteInstanceMethodGlobalAction associatedAction
+			=  (ExecuteInstanceMethodGlobalAction)ActionName.EXECUTE_INSTANCE_METHOD_ACTION.getAssociatedAction();
+			GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 	@Override

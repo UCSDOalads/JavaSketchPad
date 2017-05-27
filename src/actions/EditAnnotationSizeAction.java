@@ -56,7 +56,7 @@ public class EditAnnotationSizeAction extends SingleInstanceOperation<PaintCompo
 			@Override
 			public void didFinishInput(Float input) {
 						EditAnnotationSizeGlobalAction associatedAction = (EditAnnotationSizeGlobalAction) ActionName.EDIT_ANNOTATION_SIZE_ACTION
-								.getAssiciatedAction();
+								.getAssociatedAction();
 						associatedAction.setTextSize(input);
 						associatedAction.setInstance(instance);
 				GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);

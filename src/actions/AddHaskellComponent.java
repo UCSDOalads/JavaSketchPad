@@ -22,10 +22,10 @@ public class AddHaskellComponent extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 		String expr = JOptionPane.showInputDialog("Please enter the haskell expression");
-		AddHaskellComponentGlobalAction assiciatedAction = (AddHaskellComponentGlobalAction) ActionName.ADD_HASKELL_EXPRESSION_COMPONENT
-				.getAssiciatedAction();
-		assiciatedAction.setHaskellExpression(expr);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+		AddHaskellComponentGlobalAction associatedAction = (AddHaskellComponentGlobalAction) ActionName.ADD_HASKELL_EXPRESSION_COMPONENT
+				.getAssociatedAction();
+		associatedAction.setHaskellExpression(expr);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 
 	}
 

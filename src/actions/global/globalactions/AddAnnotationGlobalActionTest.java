@@ -17,7 +17,7 @@ public class AddAnnotationGlobalActionTest {
 		PaintPanel panel = new PaintPanel();
 		
 		AddAnnotationGlobalAction addAnnotationGlobalAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 
 		DataDisplayPaintComponent test = new DataDisplayPaintComponent("", 0, 0);
 		addAnnotationGlobalAction.setAnnotationToAdd("hello");

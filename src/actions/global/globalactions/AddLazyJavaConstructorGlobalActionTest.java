@@ -27,7 +27,7 @@ public class AddLazyJavaConstructorGlobalActionTest {
 
 		// add a class
 		AddLazyJavaClassGlobalAction classAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		classAction.setClassToCreate("string".getClass());
 		GlobalPaintActionExecuter.getSharedInstance().execute(classAction,
 				panel);
@@ -36,7 +36,7 @@ public class AddLazyJavaConstructorGlobalActionTest {
 		ClassPaintComponent comp = (ClassPaintComponent) panel
 				.getPaintComponents().get(0);
 		AddLazyJavaConstructorGlobalAction assiciatedAction = (AddLazyJavaConstructorGlobalAction) ActionName.ADD_LAZY_JAVA_CONSTRUCTOR_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		assiciatedAction.setComponent(comp);
 		assiciatedAction.setConstructorIndex(0);
 

@@ -24,7 +24,7 @@ public class AddLazyJavaClassGlobalActionTest {
 	public void test() {
 		PaintPanel panel = new PaintPanel();
 		AddLazyJavaClassGlobalAction assiciatedAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		assiciatedAction.setClassToCreate("string".getClass());
 
 		assertEquals("test number of components before", 0, panel
