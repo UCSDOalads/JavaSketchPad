@@ -93,7 +93,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		this.keyHandler = new KeyHandler(this);
 		this.shortcutHandler = new ShortcutHandler(this);
 		this.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			}
@@ -114,7 +114,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				
 			}
 		});
 
