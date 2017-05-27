@@ -84,10 +84,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 	public void evaluate(){
 		
 		// prepare argument list
-		ArrayList<DataToPoint> toPoints = getToPoints();
-
-		Object operatingInstance = instance;
-		
+		ArrayList<DataToPoint> toPoints = getToPoints();		
 
 		// args takes toPoint 1 to size
 		Object[] args = new Object[toPoints.size()];
@@ -108,7 +105,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		}
 
 		try {
-			returnVal = this.displayingMethod.invoke(operatingInstance, args);
+			returnVal = this.displayingMethod.invoke(instance, args);
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			// TODO Auto-generated catch block
