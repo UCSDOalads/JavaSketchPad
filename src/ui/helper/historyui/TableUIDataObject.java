@@ -7,16 +7,16 @@ import java.security.UnrecoverableEntryException;
  * HistoryDataOjbect
  *
  */
-public class HistoryDataObject {
+public class TableUIDataObject {
 	
 	String data;
 	int row;
 	boolean untraced;
-	public HistoryDataObject(){
+	public TableUIDataObject(){
 		
 	}
 	
-	public HistoryDataObject(String data){
+	public TableUIDataObject(String data){
 		this.data = data;
 		untraced = false;
 	}
