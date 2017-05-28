@@ -41,6 +41,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		FileSaveAsGlobalAction fileSaveAssociatedAction 
 	 	= (FileSaveAsGlobalAction) ActionName.FILE_SAVE_AS_GLOBAL_ACTION
 					.getAssociatedAction();
+
 		fileSaveAssociatedAction.setFilePath("JSPFileSaveOpenTest.xml");
 
 		fileSaveAssociatedAction.execute(panel);
@@ -57,6 +58,7 @@ public class FileOpenAndSaveGlobalActionTest {
 		FileOpenGlobalAction fileOpenAssociatedAction 
 	 	= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
 					.getAssociatedAction();
+
 		fileOpenAssociatedAction.setFileToOpen("JSPFileSaveOpenTest.xml");
 
 		fileOpenAssociatedAction.execute(panel);
