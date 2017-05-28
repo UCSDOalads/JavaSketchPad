@@ -1,11 +1,12 @@
 package painttools.tools;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 
 import buttons.ToolButton;
 import ui.PaintPanel;
 
-public interface PaintToolsInterface extends MouseListener, MouseMotionListener {
+public interface PaintToolsInterface extends MouseListener, MouseMotionListener, MouseWheelListener {
 
 	
 	/**
@@ -18,7 +19,6 @@ public interface PaintToolsInterface extends MouseListener, MouseMotionListener 
 	 * or when esc is pressed.
 	 */
 	public abstract void reset();
-	
 
 	public ToolButton getButton();
 	

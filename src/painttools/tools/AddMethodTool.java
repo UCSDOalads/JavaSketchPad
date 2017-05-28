@@ -3,6 +3,7 @@ package painttools.tools;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import javax.swing.ImageIcon;
 
@@ -112,8 +113,10 @@ public class AddMethodTool implements ActionToolsInterface {
 		
 	}
 
-
-
-
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

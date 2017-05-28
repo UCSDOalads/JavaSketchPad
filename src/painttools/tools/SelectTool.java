@@ -1,11 +1,14 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 
 import javax.swing.ImageIcon;
 
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
 import actions.InputDataForDataInputBoxAction;
 import buttons.ToolButton;
 import paintcomponents.PaintComponent;
@@ -257,7 +260,6 @@ public class SelectTool implements PaintToolsInterface {
 			panel.showCursor();
 			panel.repaint();
 		}
-
 	}
 
 	@Override
@@ -302,8 +304,24 @@ public class SelectTool implements PaintToolsInterface {
 		selectedComponents.remove(pc);
 	}
 
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		ZoomInAction zoomIn = new ZoomInAction(panel);
+		ZoomOutAction zoomOut = new ZoomOutAction(panel);
 
-	/**
+		if (e.getWheelRotation() > 0) {
+			zoomIn.setCenterX(e.getX());
+			zoomIn.setCenterY(e.getY());
+			zoomIn.performAction();
+		} else {
+			zoomOut.setCenterX(e.getX());
+			zoomOut.setCenterY(e.getY());
+			zoomOut.performAction();
+    }
+  }
+  
+  /**
 	 * Check if user double clicked a data box and it will prompt user to type
 	 * data if double clicked on a selected or de-selected data box
 	 * 

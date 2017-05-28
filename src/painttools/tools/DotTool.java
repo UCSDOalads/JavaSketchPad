@@ -1,6 +1,7 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import buttons.ToolButton;
 import paintcomponents.SimplePoint;
@@ -48,7 +49,8 @@ public class DotTool implements PaintToolsInterface {
 		panel.getSelectTool().selectComponent(pointToAdd);
 
 		panel.addPaintComponent(pointToAdd);
-		//panel.toolSelected(panel.getSelectTool());
+		panel.toolSelected(panel.getSelectTool());
+
 	}
 
 	@Override
@@ -95,6 +97,10 @@ public class DotTool implements PaintToolsInterface {
 
 	}
 
-
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

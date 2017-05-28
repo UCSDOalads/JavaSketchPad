@@ -1,6 +1,7 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
@@ -264,6 +265,10 @@ public class LineTool implements PaintToolsInterface {
 
 	}
 
-
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
