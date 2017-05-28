@@ -6,12 +6,14 @@ import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
-public class AddDataInputBoxAction extends MenuBarPaintAction {
+public class AddDataInputBoxAction extends AddComponentActions {
+
 
 	public AddDataInputBoxAction(PaintPanel panel) {
 		super(panel);
 	}
 
+	
 	@Override
 	public boolean canPerformAction() {
 		return true;
@@ -19,7 +21,7 @@ public class AddDataInputBoxAction extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent("Data Input", panel.getWidth() /2, panel.getHeight()/2);
+		DataInputTextfieldPaintComponent comp = new DataInputTextfieldPaintComponent("Data Input", x,y);
 		
 		// auto-select the component just created by the user
 		if (panel.getSelectTool() != null) {

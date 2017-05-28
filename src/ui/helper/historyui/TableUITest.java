@@ -9,21 +9,21 @@ import javax.swing.SwingUtilities;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HistoryUITest {
+public class TableUITest {
 
-	HistoryUI historyUI;
+	TableUITemplate historyUI;
 	
 	
 	@Before
 	public void setUp(){
 		String[] arr = {"delete","exit","clear","revert","confirm"};
-		historyUI = new HistoryUI(arr);
-		historyUI.insert(new HistoryDataObject("AAAA"));
-		historyUI.insert(new HistoryDataObject("BBB"));
-		historyUI.insert(new HistoryDataObject("Test 1"));
-		historyUI.insert(new HistoryDataObject("This is a item"));
-		historyUI.insert(new HistoryDataObject("turn right"));
-		historyUI.insert(new HistoryDataObject("112345"));
+		historyUI = new TableUITemplate(arr);
+		historyUI.insert(new TableUIDataObject("AAAA"));
+		historyUI.insert(new TableUIDataObject("BBB"));
+		historyUI.insert(new TableUIDataObject("Test 1"));
+		historyUI.insert(new TableUIDataObject("This is a item"));
+		historyUI.insert(new TableUIDataObject("turn right"));
+		historyUI.insert(new TableUIDataObject("112345"));
 		
 	}
 	
@@ -35,11 +35,23 @@ public class HistoryUITest {
 			public void run() {
 				//ClassSearchFrame classSearchFrame = new ClassSearchFrame();
 				
-				historyUI.setDelegate(new HistoryUIInterface() {
+				historyUI.setDelegate(new TableUITemplateInterface() {
 					
 					@Override
 					public void didPressButton(String buttonName, int selectedRow) {
 						System.out.println("buttonname = " + buttonName + "; selectedRow = " + selectedRow);
+						
+					}
+
+					@Override
+					public void addButtons() {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void updateButtonStatus() {
+						// TODO Auto-generated method stub
 						
 					}
 				});
@@ -57,7 +69,7 @@ public class HistoryUITest {
 					public void run() {
 						
 						try {
-							Thread.sleep(5000);
+							Thread.sleep(50);
 							
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -69,7 +81,7 @@ public class HistoryUITest {
 				
 			}
 		});
-		Thread.sleep(10000);
+		Thread.sleep(50);
 	}
 
 	

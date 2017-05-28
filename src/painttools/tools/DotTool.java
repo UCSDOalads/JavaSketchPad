@@ -2,17 +2,20 @@ package painttools.tools;
 
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
-
+import buttons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
-import buttons.ToolButton;
+import ui.icons.CustomIcons;
 
-public class DotTool extends PaintTool {
+public class DotTool implements PaintToolsInterface {
 
 	SimplePoint p;
 	private PaintPanel panel;
+	private ToolButton button;
 
+	public DotTool(){
+		createButton();
+	}
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
@@ -22,18 +25,17 @@ public class DotTool extends PaintTool {
 		panel.setTempComponent(p);
 
 	}
-
+	@Override
+	public void createButton() {
+		button = new ToolButton();
+		button.setOriginalImage(CustomIcons.dot());
+		button.setSelectedImage(CustomIcons.selectedDot());
+		
+	}
 	@Override
 	public ToolButton getButton() {
 
-		ToolButton b = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/dot.png");
-		b.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/dotselected.png");
-		b.setSelectedImage(icon2);
-		return b;
+		return button;
 	}
 
 	@Override
@@ -46,7 +48,7 @@ public class DotTool extends PaintTool {
 		panel.getSelectTool().selectComponent(pointToAdd);
 
 		panel.addPaintComponent(pointToAdd);
-		panel.toolSelected(panel.getSelectTool());
+		//panel.toolSelected(panel.getSelectTool());
 	}
 
 	@Override
@@ -92,5 +94,7 @@ public class DotTool extends PaintTool {
 		// temporary component will automatically be removed
 
 	}
+
+
 
 }
