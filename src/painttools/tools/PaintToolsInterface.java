@@ -6,7 +6,7 @@ import java.awt.event.MouseWheelListener;
 import buttons.ToolButton;
 import ui.PaintPanel;
 
-public abstract class PaintTool implements MouseListener, MouseMotionListener, MouseWheelListener {
+public interface PaintToolsInterface extends MouseListener, MouseMotionListener, MouseWheelListener {
 
 	
 	/**
@@ -19,9 +19,8 @@ public abstract class PaintTool implements MouseListener, MouseMotionListener, M
 	 * or when esc is pressed.
 	 */
 	public abstract void reset();
-	
 
-	public ToolButton getButton() {
-		return new ToolButton(this.getClass().getName());
-	}
+	public ToolButton getButton();
+	
+	public void createButton();
 }

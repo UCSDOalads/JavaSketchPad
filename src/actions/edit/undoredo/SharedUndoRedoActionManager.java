@@ -91,5 +91,19 @@ public class SharedUndoRedoActionManager {
 	public Stack<UndoRedoableInterface> getRedoStack() {
 		return redoStack;
 	}
+	
+	/**
+	 * return the last item in undoStack
+	 */
+	public UndoRedoableInterface undoPeek(){
+		return undoStack.peek();
+	}
+	
+	/**
+	 * return last item in redoStack
+	 */
+	public UndoRedoableInterface redoPeek(){
+		return redoStack.peek();
+	}
 
 }

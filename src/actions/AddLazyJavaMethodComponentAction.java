@@ -51,6 +51,7 @@ public class AddLazyJavaMethodComponentAction extends MenuBarPaintAction {
 		//call DialogInputChecker to check input
 		DialogInputChecker inputChecker = new DialogInputChecker();
 		if(inputChecker.isValidNumber(desiaredConstructorIndex, 0, methods.length -1)){
+
 			AddLazyJavaMethodComponentGlobalAction associatedAction 
 			= (AddLazyJavaMethodComponentGlobalAction) ActionName.ADD_LAZY_JAVA_METHOD_ACTION.getAssociatedAction();
 			associatedAction.setMethodComponent(comp);

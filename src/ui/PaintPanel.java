@@ -1,10 +1,10 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -13,12 +13,11 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import paintcomponents.PaintComponent;
 import painttools.toolbar.ToolBarListener;
-import painttools.tools.PaintTool;
+import painttools.tools.PaintToolsInterface;
 import painttools.tools.SelectTool;
 
 public class PaintPanel extends JPanel implements ToolBarListener {
@@ -31,7 +30,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	private State state = State.DEFAULT;
-	private PaintTool tool;
+	private PaintToolsInterface tool;
 	private PaintComponent tempComponent;
 
 	private SelectTool selectTool;
@@ -59,7 +58,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		this.tempComponent = tempComponent;
 	}
 
-	private void setTool(PaintTool tool) {
+	private void setTool(PaintToolsInterface tool) {
 		if (this.state == State.TOOLS) {
 			resetTool();
 		}
@@ -94,7 +93,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		this.keyHandler = new KeyHandler(this);
 		this.shortcutHandler = new ShortcutHandler(this);
 		this.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			}
@@ -115,7 +114,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				
 			}
 		});
 
@@ -177,7 +176,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	}
 
 	@Override
-	public void toolSelected(PaintTool tool) {
+	public void toolSelected(PaintToolsInterface tool) {
 		this.setTool(tool);
 
 	}
@@ -188,6 +187,9 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 				new Point(), null));
 	}
 
+	public void setNewCursor(Cursor c){
+		setCursor(c);
+	}
 	public void showCursor() {
 		setCursor(Cursor.getDefaultCursor());
 	}
@@ -233,5 +235,13 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	public void setSelectTool(SelectTool selectTool) {
 		this.selectTool = selectTool;
 	}
+	
+	/**
+	 * change selectedTool to be selectTool
+	 */
+	public void setDefaultSelectTool(){
+		selectTool.getButton().doClick();
+	}
+
 
 }
