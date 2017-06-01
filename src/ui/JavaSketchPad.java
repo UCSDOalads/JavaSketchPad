@@ -15,12 +15,13 @@ import actions.menu.ActionsMenuBar;
 import painttools.toolbar.ToolBar;
 import ui.helper.historyui.undoredoLog.UndoredoDialog;
 
-public class MainFrame extends JFrame {
-	Color backgroundColor = new Color(200, 200, 200);
+public class JavaSketchPad extends JFrame {
+	Color backgroundColor = new Color(240, 240, 240);
+	Color toolBarColor = new Color(210,210,210);
 	
 	ArrayList<JPanel> panelList;
 
-	public MainFrame() {
+	public JavaSketchPad() {
 		panelList = new ArrayList<JPanel>();
 
 		// meke the frame full screen
@@ -32,12 +33,13 @@ public class MainFrame extends JFrame {
 		// set up paintPanel
 		PaintPanel paintPanel = new PaintPanel();
 		paintPanel.setBorder(null);
-		paintPanel.setBackground(Color.WHITE);
+		paintPanel.setBackground(backgroundColor);
 		panelList.add(paintPanel);
 		getContentPane().add(paintPanel, BorderLayout.CENTER);
 
 		// set up toolBar panel
 		ToolBar toolBar = new ToolBar(paintPanel);
+		toolBar.setBackground(toolBarColor);
 		panelList.add(toolBar);
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 
@@ -72,16 +74,13 @@ public class MainFrame extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new MainFrame().setVisible(true);
+		new JavaSketchPad().setVisible(true);
 	}
 
 	/* change the background setting for JPanels */
 	public void changeTheme() {
 		setForeground(backgroundColor);
 		setBackground(backgroundColor);
-		for (JPanel panel : panelList) {
-			panel.setBackground(backgroundColor);
-		}
 	}
 
 }

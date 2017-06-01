@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 public class ToolButton extends JToggleButton {
-	Dimension d = new Dimension(40,40);
+	Dimension d = new Dimension(50,50);
 	
 	public ToolButton(String str){
 		super(str);

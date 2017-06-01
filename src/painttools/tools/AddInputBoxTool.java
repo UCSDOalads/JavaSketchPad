@@ -30,8 +30,8 @@ public class AddInputBoxTool implements ActionToolsInterface {
 	public void createButton() {
 		// TODO Auto-generated method stub
 		button = new ToolButton();
-		button.setOriginalImage(CustomIcons.arrow());
-		button.setSelectedImage(CustomIcons.selectedArrow());
+		button.setOriginalImage(CustomIcons.inputBox());
+		button.setSelectedImage(CustomIcons.selectedInputBox());
 		button.addActionListener(this);
 	}
 	

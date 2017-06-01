@@ -2,11 +2,13 @@ package ui.helper.historyui.undoredoLog;
 
 
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.undo.UndoManager;
 
@@ -58,6 +60,8 @@ public class UndoredoDialog extends TableUITemplate implements TableUITemplateIn
 			}
 			
 		});
+		getScrollPane().setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.BLACK));
+		getButton_panel().setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 	
 	/**
