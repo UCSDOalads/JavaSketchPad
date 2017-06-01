@@ -2,6 +2,7 @@ package painttools.tools;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import actions.AddDataInputBoxAction;
 import buttons.ToolButton;
@@ -101,6 +102,12 @@ public class AddInputBoxTool implements ActionToolsInterface {
 
 	}
 
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * change the cursor when add button is clicked
 	 */
@@ -110,7 +117,4 @@ public class AddInputBoxTool implements ActionToolsInterface {
 		panel.setNewCursor (CustomCursors.addComponentcursor());
 		
 	}
-
-
-
 }

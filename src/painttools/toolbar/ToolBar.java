@@ -12,7 +12,6 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import buttons.ToolButton;
-
 import painttools.tools.AddClassTool;
 import painttools.tools.AddInputBoxTool;
 import painttools.tools.AddOutputBoxTool;

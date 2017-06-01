@@ -26,12 +26,11 @@ public class AddLazyJavaClassAction extends AddComponentActions {
 
 			@Override
 			public void didFinishInput(Class input) {
-				AddLazyJavaClassGlobalAction assiciatedAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
-						.getAssiciatedAction();
-				assiciatedAction.setClassToCreate(input);
-				assiciatedAction.setCoord(x,y);
-				GlobalPaintActionExecuter.getSharedInstance().execute(
-						assiciatedAction, panel);
+				AddLazyJavaClassGlobalAction associatedAction = (AddLazyJavaClassGlobalAction) ActionName.ADD_LAZY_JAVA_CLASS_ACTION
+						.getAssociatedAction();
+				associatedAction.setClassToCreate(input);
+				associatedAction.setCoord(x, y);
+				GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 
 			}
 		});

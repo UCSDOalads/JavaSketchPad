@@ -30,10 +30,10 @@ public class ExecuteInstanceConstructorAction extends MenuBarPaintAction {
 
 	@Override
 	public void performAction() {
-		ExecuteInstanceConstructorGlobalAction  assiciatedAction 
+		ExecuteInstanceConstructorGlobalAction  associatedAction 
 			= (ExecuteInstanceConstructorGlobalAction) ActionName.EXECUTE_INSTANCE_CONSTRUCTOR_ACTION
-				.getAssiciatedAction();
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+				.getAssociatedAction();
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 		
 		
 	}

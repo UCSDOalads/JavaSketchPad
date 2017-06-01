@@ -1,6 +1,7 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import buttons.ToolButton;
 import ui.PaintPanel;
@@ -71,6 +72,12 @@ public class RemoveComponentTool implements PaintToolsInterface {
 	public void createButton() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

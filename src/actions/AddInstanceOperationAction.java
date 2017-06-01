@@ -43,11 +43,11 @@ public class AddInstanceOperationAction extends MenuBarPaintAction {
 		//call inputChecker to check if input is valid
 		DialogInputChecker inputChecker = new DialogInputChecker();
 		if(inputChecker.isValidNumber(desiaredConstructorIndex, 0, cons.length -1)){
-			AddInstanceOperationGlobalAction assiciatedAction = 
+			AddInstanceOperationGlobalAction associatedAction = 
 					(AddInstanceOperationGlobalAction) ActionName.ADD_INSTANCE_OPERATION_ACTION
-					.getAssiciatedAction();
-			assiciatedAction.setConstructorToSet(cons[Integer.parseInt(desiaredConstructorIndex)]);
-			GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction, panel);
+					.getAssociatedAction();
+			associatedAction.setConstructorToSet(cons[Integer.parseInt(desiaredConstructorIndex)]);
+			GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 		}
 		
 	}

@@ -62,7 +62,7 @@ public class NameGlobalAction extends SingleInstanceOperationGlobalAction {
 
 		// Add annotation
 		AddAnnotationGlobalAction associatedAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		associatedAction.setAnnotationToAdd(token);
 		associatedAction.setOperatingInstance(comp);
 		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction,

@@ -45,7 +45,7 @@ public class FileOpen extends MenuBarPaintAction {
 		
 		FileOpenGlobalAction associatedAction 
 		= (FileOpenGlobalAction) ActionName.FILE_OPEN_GLOBAL_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		associatedAction.setFileToOpen(filePath);
 		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}

@@ -23,7 +23,7 @@ public class EditAnnotationSizeGlobalActionTest {
 		PaintPanel panel = new PaintPanel();
 
 		AddAnnotationGlobalAction addAnnotationGlobalAction = (AddAnnotationGlobalAction) ActionName.ADD_ANNOTATION_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 
 		// add component and annotations
 		DataDisplayPaintComponent add = new DataDisplayPaintComponent("", 0, 0);
@@ -35,7 +35,7 @@ public class EditAnnotationSizeGlobalActionTest {
 
 		// edit the size
 		EditAnnotationSizeGlobalAction associatedAction = (EditAnnotationSizeGlobalAction) ActionName.EDIT_ANNOTATION_SIZE_ACTION
-				.getAssiciatedAction();
+				.getAssociatedAction();
 		associatedAction.setTextSize((float) 40.0);
 		associatedAction.setInstance(add);
 

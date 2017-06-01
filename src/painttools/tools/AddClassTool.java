@@ -2,6 +2,7 @@ package painttools.tools;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import actions.AddLazyJavaClassAction;
 import buttons.ToolButton;
@@ -101,6 +102,12 @@ public class AddClassTool implements ActionToolsInterface {
 
 	}
 
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * change the cursor when add button is clicked
 	 */
@@ -108,7 +115,4 @@ public class AddClassTool implements ActionToolsInterface {
 	public void actionPerformed(ActionEvent e) {
 		panel.setNewCursor (CustomCursors.addComponentcursor());
 	}
-
-
-
 }
