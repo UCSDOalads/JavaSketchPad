@@ -27,7 +27,7 @@ Please read “How to work on this project?” for details on our code of conduc
 
 ## Authors
 
-See also the list of [contributors](github.com/UCSDOalads/JavaSketchPad/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/UCSDOalads/JavaSketchPad/graphs/contributors) who participated in this project.
 
 ## Acknowledgments
 UCSD CSE B260 lab
