@@ -1,5 +1,13 @@
-# Project Title
-JavaSketchPad README
+# JavaSketchPad README
+This project started with a simple idea of a sketch pad with connected and annotated dots; yet it ends up connecting a handful of UCSD undergrads to create something much more. This side project of ours has helped us learn an enormous amount about coding in Java and team management as well as git usage.
+Our project goal is to create a visual exploration of Java API. JavaSketchPad will
+```
+    1. allow beginners to learn all programming languages visually
+    2. enable developers to program faster through visual coding in all programming languages
+    3. make visualization of all of Java API possible, bypassing the old way of looking through
+       the functionalities in online tedious documentations
+```
+Currently JavaSketchPad support partially success usage in Java. Most of the development happens in develop branch, and we will push into Master branch every once in a while for the published version.
 
 ## Getting Started
 
