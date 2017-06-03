@@ -2,122 +2,170 @@ package ui.helper.historyui.undoredoLog;
 
 
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Stack;
-import java.util.stream.IntStream;
 
-
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.undo.UndoManager;
 
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.SharedUndoRedoActionManagerDelegate;
 import actions.edit.undoredo.UndoRedoableInterface;
-import ui.helper.historyui.HistoryDataObject;
-import ui.helper.historyui.HistoryUI;
-import ui.helper.historyui.HistoryUIInterface;
+import buttons.CustomJButton;
+import ui.helper.historyui.TableUIDataObject;
+import ui.helper.historyui.TableUITemplate;
+import ui.helper.historyui.TableUITemplateInterface;
+import ui.icons.CustomIcons;
 
-public class UndoredoDialog extends HistoryUI implements HistoryUIInterface{
+public class UndoredoDialog extends TableUITemplate implements TableUITemplateInterface{
 	
 	private static final String BUTTON_TITLE_REDO = "Redo";
 	private static final String BUTTON_TITLE_UNDO = "Undo";
+	private ArrayList<JButton> buttonArray;
 	SharedUndoRedoActionManager undoRedoManager;
-	Stack<Integer> num_undo;
+	private CustomJButton undoButton;
+	private CustomJButton redoButton;
 	
 	private UndoredoDialog(String[] titles) {
 		super(titles);
-		num_undo = new Stack<>();
+
+		buttonArray = super.getButtonArray();
 		setDelegate(this);
-		
+		addButtons();
+		updateButtonStatus();
 		undoRedoManager = SharedUndoRedoActionManager.getSharedInstance();
 		undoRedoManager.setDelegate(new SharedUndoRedoActionManagerDelegate() {
-			
+
 			@Override
 			public void didUndoAction(UndoRedoableInterface obj) {
-				update();
-				
-				
+				undo();
+				updateButtonStatus();
 			}
 			
 			@Override
 			public void didRedoAction(UndoRedoableInterface obj) {
-				
-				update();
+				redo();
+				updateButtonStatus();
 			}
 
 			@Override
 			public void didAddNewAction(
 					UndoRedoableInterface undoredoableAction) {
-				update();
+				insert(new TableUIDataObject(undoRedoManager.undoPeek().description()));
+				updateButtonStatus();
+			}
+			
+		});
+		getScrollPane().setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.BLACK));
+		getButton_panel().setBorder(BorderFactory.createLineBorder(Color.black));
+	}
+	
+	/**
+	 * add undo and redo button to button panel
+	 */
+	@Override
+	public void addButtons(){
+		undoButton = new CustomJButton(BUTTON_TITLE_UNDO);
+		undoButton.setIcon(CustomIcons.undo());
+		undoButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				delegate.didPressButton(BUTTON_TITLE_UNDO, getResultsTable().getSelectedRow());
 				
 			}
 		});
+		super.addButtons(undoButton);
+		
+		redoButton = new CustomJButton(BUTTON_TITLE_REDO);
+		redoButton.setIcon(CustomIcons.redo());
+		redoButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				delegate.didPressButton(BUTTON_TITLE_REDO, getResultsTable().getSelectedRow());
+				
+			}
+		});
+		super.addButtons(redoButton);
 	}
+	
 
-	static UndoredoDialog instance = new UndoredoDialog(new String[]{BUTTON_TITLE_UNDO, BUTTON_TITLE_REDO});
+	static UndoredoDialog instance = new UndoredoDialog(new String[] { BUTTON_TITLE_UNDO, BUTTON_TITLE_REDO });
 	
 	public static UndoredoDialog sharedInstance(){
 		return instance;
 	}
 	
-	
-	private void update(){
-		clear();
-		Stack<UndoRedoableInterface> undoStack = undoRedoManager.getUndoStack();
-		
-		for(int i = 0; i < undoStack.size(); i ++){
-			insert(new HistoryDataObject(undoStack.get(i).description()));
-		}
-		
-		
-		Stack<UndoRedoableInterface> redoStack = undoRedoManager.getRedoStack();
-		for(int i = redoStack.size() - 1 ; i >= 0; i --){
-			HistoryDataObject historyDataObject = new HistoryDataObject(redoStack.get(i).description());
-			historyDataObject.setUntraced(true);
-			insert(historyDataObject);
-		}
-		
-		
-		
-	}
-
-
 	@Override
 	public void didPressButton(String buttonName, int selectedRow) {
 		switch (buttonName) {
 		case BUTTON_TITLE_UNDO:
-			if(selectedRow == -1){
-				undoRedoManager.undo();
-			} else {
-				//undo until reached this action
-				if(selectedRow < undoRedoManager.getUndoStack().size() ){
-					for (int i = 0; i < undoRedoManager.getUndoStack().size() - selectedRow + 1; i++) {
-						undoRedoManager.undo();
-					}
-				}
-			}
+			undoContinuousRow();
 			break;
 			
 		case BUTTON_TITLE_REDO:
-			if (selectedRow == -1 ){
-				undoRedoManager.redo();
-			} else {
-				//if select on redo
-				if(selectedRow >= undoRedoManager.getUndoStack().size() ){
-					//undo select - size +1 times
-					for (int i = 0; i < selectedRow - undoRedoManager.getUndoStack().size() + 2 ; i++) {
-						undoRedoManager.redo();
-					}
-				}	
-			}
+			redoContinuousRow();
 
 		default:
 			break;
 		}
 		
-		update();
-		
+	}
+	/**
+	 * redo continuous row to selectedRow
+	 * or redo a row if no row is selected by user
+	 */
+	public void redoContinuousRow(){
+		int selectedRow = getSelectedRow();
+		if( getSelectedRow() == -1){
+			undoRedoManager.redo();
+		}
+		else{
+			for( int i = getIndex()+1; i <= selectedRow; i++){
+				undoRedoManager.redo();
+			}
+		}
 	}
 	
+	/**
+	 * undo continuous row from selectedRow to the end of list
+	 * or undo last row if no row is selected by user
+	 */
+	public void undoContinuousRow(){
+		int selectedRow = getSelectedRow();
+		if( getSelectedRow() == -1){
+			undoRedoManager.undo();
+		}
+		else{
+			for(int i = getIndex(); i >= selectedRow; i--){
+				undoRedoManager.undo();
+			}
+		}
+	}
+	
+	/**
+	 * disable undoButton when there is no actions to undo
+	 * disable redoButton when there is no actions to redo
+	 */
+	@Override
+	public void updateButtonStatus(){
+		if(getIndex() == -1 || getNumRow() == 0){
+			undoButton.setEnabled(false);
+		}
+		else{
+			undoButton.setEnabled(true);
+		}
+		
+		if(getIndex() == getNumRow()-1 || getNumRow() == 0){
+			redoButton.setEnabled(false);
+		}
+		else{
+			redoButton.setEnabled(true);
+		}
+	}
 }

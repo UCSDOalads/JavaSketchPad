@@ -1,54 +1,43 @@
 package painttools.tools;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Point;
+
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
+import buttons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
+import ui.icons.CustomIcons;
 
-public class DotTool extends PaintTool {
-	
+public class DotTool implements PaintToolsInterface {
+
 	SimplePoint p;
 	private PaintPanel panel;
+	private ToolButton button;
 
+	public DotTool(){
+		createButton();
+	}
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-		
+
 		panel.hideCursor();
 		p = new SimplePoint(0, 0);
 		panel.setTempComponent(p);
+
+	}
+	@Override
+	public void createButton() {
+		button = new ToolButton();
+		button.setOriginalImage(CustomIcons.dot());
+		button.setSelectedImage(CustomIcons.selectedDot());
 		
 	}
-
-
-	
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
-		button.setIcon(new Icon() {
-			
-			@Override
-			public void paintIcon(Component c, Graphics g, int x, int y) {
-				g.fillOval(10, 10, 20, 20);
-				
-			}
-			
-			@Override
-			public int getIconWidth() {
-				return 40;
-			}
-			
-			@Override
-			public int getIconHeight() {
-				// TODO Auto-generated method stub
-				return 40;
-			}
-		});
+	public ToolButton getButton() {
+
 		return button;
 	}
 
@@ -56,42 +45,46 @@ public class DotTool extends PaintTool {
 	public void mouseClicked(MouseEvent e) {
 
 		SimplePoint pointToAdd = new SimplePoint(p);
-		
-		//change selection to be only the added point
+
+		// change selection to be only the added point
 		panel.getSelectTool().clearSelection();
 		panel.getSelectTool().selectComponent(pointToAdd);
 
 		panel.addPaintComponent(pointToAdd);
+		if (!SwingUtilities.isRightMouseButton(e)) {
+			panel.setDefaultSelectTool();
+		}
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -101,16 +94,17 @@ public class DotTool extends PaintTool {
 		panel.repaint();
 	}
 
-
-
 	@Override
 	public void reset() {
-		//do nothing on reset
-		//temporary component will automatically be removed
-		
-		
+		// do nothing on reset
+		// temporary component will automatically be removed
+
 	}
 
-	
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

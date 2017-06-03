@@ -1,20 +1,26 @@
 package painttools.tools;
 
-import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.colorchooser.DefaultColorSelectionModel;
+import javax.swing.ImageIcon;
 
-import icons.LeftArrow;
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
+import actions.InputDataForDataInputBoxAction;
+import buttons.ToolButton;
 import paintcomponents.PaintComponent;
+import paintcomponents.data.DataInputTextfieldPaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
+import ui.icons.CustomIcons;
+import ui.icons.LeftArrow;
 
-public class SelectTool extends PaintTool {
+public class SelectTool implements PaintToolsInterface {
 
 	private PaintPanel panel;
+	private ToolButton button;
 
 	private ArrayList<PaintComponent> selectedComponents;
 	private ArrayList<SelectionToolListener> listeners;
@@ -50,6 +56,7 @@ public class SelectTool extends PaintTool {
 		selectedComponents = new ArrayList<>();
 		listeners = new ArrayList<>();
 		this.panel = panel;
+		createButton();
 	}
 
 	@Override
@@ -64,10 +71,19 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void selectComponent(PaintComponent comp) {
+		
 		comp.select(this);
+		
+		// update the components listening to select tool
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
 		}
+
+		// prompt data input if user double clicked on a selected data box
+		if(panel.getSelectTool().getButton().isSelected()) {
+			doubleClickAction(comp);
+		}
+
 		panel.repaint();
 	}
 
@@ -78,6 +94,13 @@ public class SelectTool extends PaintTool {
 	 * @param comp
 	 */
 	public void deselectComponent(PaintComponent comp) {
+
+		// check if double clicked, if so perform the action on the data box
+		if(panel.getSelectTool().getButton().isSelected()) {
+			doubleClickAction(comp);
+		}
+
+		// then deselect the component
 		comp.deselect(this);
 		for (SelectionToolListener selectionToolListener : listeners) {
 			selectionToolListener.selectionChanged();
@@ -240,20 +263,24 @@ public class SelectTool extends PaintTool {
 			panel.showCursor();
 			panel.repaint();
 		}
-
 	}
 
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-
 	}
 
 	@Override
-	public JButton getButton() {
-		JButton button = super.getButton();
-		button.setIcon(LeftArrow.iconFromPolygon(LeftArrow.getPolygon(),
-				Defaults.sharedDefaults().defaultColorForSelectToolIcon()));
+	public void createButton() {
+		button = new ToolButton();
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
+		
+	}
+	@Override
+	public ToolButton getButton() {
+		
+
 		return button;
 	}
 
@@ -264,4 +291,54 @@ public class SelectTool extends PaintTool {
 
 	}
 
+	/**
+	 * add a component to selected
+	 * @param pc
+	 */
+	public void addSelectedComponent(PaintComponent pc){
+		selectedComponents.add(pc);
+	}
+	
+	/**
+	 * remove a selected component
+	 * 
+	 */
+	public void removeSelectedComponent(PaintComponent pc){
+		selectedComponents.remove(pc);
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		ZoomInAction zoomIn = new ZoomInAction(panel);
+		ZoomOutAction zoomOut = new ZoomOutAction(panel);
+
+		if (e.getWheelRotation() > 0) {
+			zoomIn.setCenterX(e.getX());
+			zoomIn.setCenterY(e.getY());
+			zoomIn.performAction();
+		} else {
+			zoomOut.setCenterX(e.getX());
+			zoomOut.setCenterY(e.getY());
+			zoomOut.performAction();
+    }
+  }
+  
+  /**
+	 * Check if user double clicked a data box and it will prompt user to type
+	 * data if double clicked on a selected or de-selected data box
+	 * 
+	 * @param comp
+	 */
+	private void doubleClickAction(PaintComponent comp) {
+
+		// data input box prompt right after a double click on the box
+		if (comp instanceof DataInputTextfieldPaintComponent && getLastMouseEvent().getClickCount() == 2
+				&& !getLastMouseEvent().isConsumed()) {
+
+			InputDataForDataInputBoxAction newAction = new InputDataForDataInputBoxAction(panel);
+			newAction.performAction();
+			getLastMouseEvent().consume();
+		}
+	}
 }

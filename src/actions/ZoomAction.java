@@ -3,7 +3,7 @@ package actions;
 import paintcomponents.PaintComponent;
 import ui.PaintPanel;
 
-public abstract class ZoomAction extends PaintAction{
+public abstract class ZoomAction extends MenuBarPaintAction{
 
 	private double zoomValue;
 	private int centerX, centerY;
@@ -12,6 +12,7 @@ public abstract class ZoomAction extends PaintAction{
 		super(panel);
 		centerX = panel.getWidth() / 2;
 		centerY = panel.getHeight() / 2;
+
 	}
 	
 	public boolean canPerformAction() {
@@ -19,6 +20,8 @@ public abstract class ZoomAction extends PaintAction{
 	}
 	
 	public void performAction() {
+		
+		
 		for ( PaintComponent com: panel.getPaintComponents() ) {
 			int xDifference = com.getX() - centerX;
 			int yDifference = com.getY() - centerY;

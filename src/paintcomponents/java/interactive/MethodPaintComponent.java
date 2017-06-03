@@ -84,10 +84,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 	public void evaluate(){
 		
 		// prepare argument list
-		ArrayList<DataToPoint> toPoints = getToPoints();
-
-		Object operatingInstance = instance;
-		
+		ArrayList<DataToPoint> toPoints = getToPoints();		
 
 		// args takes toPoint 1 to size
 		Object[] args = new Object[toPoints.size()];
@@ -108,7 +105,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		}
 
 		try {
-			returnVal = this.displayingMethod.invoke(operatingInstance, args);
+			returnVal = this.displayingMethod.invoke(instance, args);
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			// TODO Auto-generated catch block
@@ -153,11 +150,11 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		this.instance = instance;
 	}
 	
-	public void executeMethod() {
+	public Object executeMethod() {
 		try {
 			if (instance == null) {
 				JOptionPane.showMessageDialog(null, "Please initiate an instance");
-				return;
+				return null;
 			}
 			Object[] initargs = new Object[this.getToPoints().size()];
 			for (int i = 0; i < initargs.length; i ++) {
@@ -166,11 +163,14 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 				initargs[i] = fromP.getProvider().provideInformationToDataFromPoint(fromP);
 			}
 			Object returnVal = this.displayingMethod.invoke(instance, initargs);			
-System.out.println("method return val: " + returnVal);
+			System.out.println("method return val: " + returnVal);
+			return returnVal;
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error Occurs");
 			e.printStackTrace();
 		}
+		return null;
 	}
+
 	
 }

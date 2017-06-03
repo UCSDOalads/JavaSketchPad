@@ -33,15 +33,27 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 	 * @throws NoSuchElementException 
 	 * @see DataToPoint.fetchData for exception details
 	 */
-	public void updateDisplayText() throws NoSuchElementException, NoConnectingLineSegmentException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
+	public void updateDisplayText() throws NoSuchElementException, NoConnectingLineSegmentException,
+					DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
 		Object data = getToPoints().get(0).fetchData();
-		if(data instanceof String){
+		this.setDisplayingText(data.toString());
+		/*if(data instanceof String){
 			this.setDisplayingText(data.toString());
 		} else {
-			this.setDisplayingText("Error: Not A String :: " + "Type : " + data.getClass().toString() + " Value: " + data.toString());
-		}
+			this.setDisplayingText("Error: Not A String :: " + "Type : " +
+						data.getClass().toString() + " Value: " + data.toString());
+		}*/
 	}
 	
+	public boolean canUpdate() {
+		return true; // temporary
+		/*
+		 * try { Object data = getToPoints().get(0).fetchData(); if (data
+		 * instanceof String) { return true; } } catch (Exception e) { return
+		 * false; } return false;
+		 */
+	}
+
 	@Override
 	public void saveToElement(Element rootElement, Document doc) {
 		super.saveToElement(rootElement, doc);

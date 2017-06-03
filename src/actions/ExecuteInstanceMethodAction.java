@@ -1,10 +1,16 @@
 package actions;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.AddLazyJavaClassGlobalAction;
+import actions.global.globalactions.ExecuteInstanceMethodGlobalAction;
 import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.java.interactive.MethodPaintComponent;
 import ui.PaintPanel;
+import ui.general.InputManager;
+import ui.general.InputManagerDelegate;
 
-public class ExecuteInstanceMethodAction extends PaintAction {
+public class ExecuteInstanceMethodAction extends MenuBarPaintAction {
 
 	public ExecuteInstanceMethodAction(PaintPanel panel) {
 		super(panel);
@@ -22,12 +28,13 @@ public class ExecuteInstanceMethodAction extends PaintAction {
 		return false;
 	}
 
+	
+	
 	@Override
 	public void performAction() {
-		MethodPaintComponent methodComp = 
-				(MethodPaintComponent)panel.getSelectTool().
-				getSelectedComponents().get(0);
-		methodComp.executeMethod();
+			ExecuteInstanceMethodGlobalAction associatedAction
+			=  (ExecuteInstanceMethodGlobalAction)ActionName.EXECUTE_INSTANCE_METHOD_ACTION.getAssociatedAction();
+			GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 	}
 
 	@Override

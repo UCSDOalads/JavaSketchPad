@@ -11,7 +11,7 @@ import paintcomponents.PaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import ui.PaintPanel;
 
-public class InputDataForDataInputBoxAction extends PaintAction {
+public class InputDataForDataInputBoxAction extends MenuBarPaintAction {
 
 	public InputDataForDataInputBoxAction(PaintPanel panel) {
 		super(panel);
@@ -21,8 +21,12 @@ public class InputDataForDataInputBoxAction extends PaintAction {
 	public boolean canPerformAction() {
 		ArrayList<PaintComponent> comps = panel.getSelectTool().getSelectedComponents();
 		if(comps.size()!= 1) return false;
-		if(comps.get(0) instanceof DataInputTextfieldPaintComponent){
-			return true;
+		Object comp = comps.get(0);
+		if (comp instanceof DataInputTextfieldPaintComponent) {
+			//Make sure this is not a class box
+			if( ((DataInputTextfieldPaintComponent) comp).canUpdate()){
+				return true;
+			}
 		}
 		return false;
 	}
@@ -31,34 +35,39 @@ public class InputDataForDataInputBoxAction extends PaintAction {
 	public void performAction() {
 		DataInputTextfieldPaintComponent inputComp = (DataInputTextfieldPaintComponent) panel.getSelectTool().getSelectedComponents().get(0);
 		String s = JOptionPane.showInputDialog("Please specify the message to push to the data input");
-		String original = inputComp.getDisplayingText();
-		inputComp.inputData(s);
-		// add action to undo redo manager
-		SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
-			
-			@Override
-			public void undoAction() {
-				inputComp.inputData(original);
-				panel.repaint();
-			}
-			
-			@Override
-			public void redoAction() {
-				inputComp.inputData(s);
-				panel.repaint();
-			}
-
-			@Override
-			protected String commandName() {
-				return "update inputBox";
-			}
-
-			@Override
-			protected String commandDescription() {
-				return "Input a string into the text input box";
-			}
-		});
-		panel.repaint();
+		//call DialogInputChecker to check input
+		DialogInputChecker inputChecker = new DialogInputChecker();
+		if(!inputChecker.isEmpty(s)){
+			String original = inputComp.getDisplayingText();
+			inputComp.inputData(s);
+			// add action to undo redo manager
+			SharedUndoRedoActionManager.getSharedInstance().pushUndoableAction(new UndoRedoableInterface() {
+				
+				@Override
+				public void undoAction() {
+					inputComp.inputData(original);
+					panel.repaint();
+				}
+				
+				@Override
+				public void redoAction() {
+					inputComp.inputData(s);
+					panel.repaint();
+				}
+	
+				@Override
+				protected String commandName() {
+					return "update inputBox";
+				}
+	
+				@Override
+				protected String commandDescription() {
+					return "Input a string into the text input box";
+				}
+			});
+		
+			panel.repaint();
+		}
 	}
 
 	@Override
