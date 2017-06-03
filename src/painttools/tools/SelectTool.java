@@ -14,7 +14,6 @@ import paintcomponents.PaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
-import ui.PaintPanel.State;
 import ui.icons.CustomIcons;
 import ui.icons.LeftArrow;
 
