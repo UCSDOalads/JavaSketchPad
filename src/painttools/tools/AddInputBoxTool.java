@@ -1,41 +1,44 @@
 package painttools.tools;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
-import ui.PaintPanel;
 import actions.AddDataInputBoxAction;
 import buttons.ToolButton;
+import ui.PaintPanel;
+import ui.cursor.CustomCursors;
+import ui.icons.CustomIcons;
 
-public class AddInputBoxTool extends PaintTool {
+public class AddInputBoxTool implements ActionToolsInterface {
 
 	private ToolButton button;
+	private PaintPanel panel;
 
 	public AddInputBoxTool(PaintPanel panel) {
-		button = new ToolButton("Add Input Box");
-
-		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
-
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if (action.canPerformAction()) {
-					action.performAction();
-					panel.toolSelected(panel.getSelectTool());
-				}
-
-			}
-		});
+		this.panel = panel;
+		createButton();
 	}
 
 	@Override
 	public void start(PaintPanel panel) {
 	}
 
+	/**
+	 * create a toolButton for this tool, and set icons
+	 */
+	@Override
+	public void createButton() {
+		// TODO Auto-generated method stub
+		button = new ToolButton();
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
+		button.addActionListener(this);
+	}
+	
 	@Override
 	public ToolButton getButton() {
+
 		return button;
 	}
 
@@ -44,9 +47,22 @@ public class AddInputBoxTool extends PaintTool {
 
 	}
 
+	
+	/**
+	 * when mouse click paintPanel, a input box will be added to 
+	 * where mouse was clicked
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		AddDataInputBoxAction action = new AddDataInputBoxAction(panel);
+		if(action.canPerformAction()){
+			//set starting point for paint component
+			action.setXY(e.getX(), e.getY());
+			action.performAction();
+			action.setDefaultXY();
+		}
+		panel.setDefaultSelectTool();
 
 	}
 
@@ -86,4 +102,19 @@ public class AddInputBoxTool extends PaintTool {
 
 	}
 
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * change the cursor when add button is clicked
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		panel.setNewCursor (CustomCursors.addComponentcursor());
+		
+	}
 }

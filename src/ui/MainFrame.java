@@ -7,15 +7,17 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import actions.menu.ActionsMenuBar;
 import painttools.toolbar.ToolBar;
 import ui.helper.historyui.undoredoLog.UndoredoDialog;
-import actions.menu.ActionsMenuBar;
 
 public class MainFrame extends JFrame {
-	Color color = new Color(150, 150, 150);
+	Color backgroundColor = new Color(200, 200, 200);
+	
 	ArrayList<JPanel> panelList;
 
 	public MainFrame() {
@@ -23,9 +25,9 @@ public class MainFrame extends JFrame {
 
 		// meke the frame full screen
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		//set menu bar to Mac menuBar
+		System.setProperty("apple.laf.useScreenMenuBar", "true");
 
-		setForeground(color);
-		setBackground(color);
 
 		// set up paintPanel
 		PaintPanel paintPanel = new PaintPanel();
@@ -60,6 +62,7 @@ public class MainFrame extends JFrame {
 		// tool bar
 		toolBar.getSelectTool().addSelectionToolListener(menuBar);
 		toolBar.addToolBarListener(paintPanel);
+		toolBar.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		// change backgrounds setting
 		changeTheme();
@@ -74,8 +77,10 @@ public class MainFrame extends JFrame {
 
 	/* change the background setting for JPanels */
 	public void changeTheme() {
+		setForeground(backgroundColor);
+		setBackground(backgroundColor);
 		for (JPanel panel : panelList) {
-			panel.setBackground(color);
+			panel.setBackground(backgroundColor);
 		}
 	}
 

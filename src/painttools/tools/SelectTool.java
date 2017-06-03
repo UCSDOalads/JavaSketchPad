@@ -1,21 +1,27 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
+
 
 import javax.swing.ImageIcon;
 
+import actions.ZoomInAction;
+import actions.ZoomOutAction;
 import actions.InputDataForDataInputBoxAction;
 import buttons.ToolButton;
-import icons.LeftArrow;
 import paintcomponents.PaintComponent;
 import paintcomponents.data.DataInputTextfieldPaintComponent;
 import settings.Defaults;
 import ui.PaintPanel;
+import ui.icons.CustomIcons;
+import ui.icons.LeftArrow;
 
-public class SelectTool extends PaintTool {
+public class SelectTool implements PaintToolsInterface {
 
 	private PaintPanel panel;
+	private ToolButton button;
 
 	private ArrayList<PaintComponent> selectedComponents;
 	private ArrayList<SelectionToolListener> listeners;
@@ -51,6 +57,7 @@ public class SelectTool extends PaintTool {
 		selectedComponents = new ArrayList<>();
 		listeners = new ArrayList<>();
 		this.panel = panel;
+		createButton();
 	}
 
 	@Override
@@ -253,7 +260,6 @@ public class SelectTool extends PaintTool {
 			panel.showCursor();
 			panel.repaint();
 		}
-
 	}
 
 	@Override
@@ -262,14 +268,17 @@ public class SelectTool extends PaintTool {
 	}
 
 	@Override
+	public void createButton() {
+		button = new ToolButton();
+		button.setOriginalImage(CustomIcons.arrow());
+		button.setSelectedImage(CustomIcons.selectedArrow());
+		
+	}
+	@Override
 	public ToolButton getButton() {
 		
-		ToolButton b = new ToolButton();
-		ImageIcon icon = new ImageIcon("./images/arrow.png");
-		b.setOriginalImage(icon);		
-		ImageIcon icon2 = new ImageIcon("./images/arrowselected.png");
-		b.setSelectedImage(icon2);
-		return b;
+
+		return button;
 	}
 
 	@Override
@@ -295,7 +304,24 @@ public class SelectTool extends PaintTool {
 		selectedComponents.remove(pc);
 	}
 
-	/**
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		ZoomInAction zoomIn = new ZoomInAction(panel);
+		ZoomOutAction zoomOut = new ZoomOutAction(panel);
+
+		if (e.getWheelRotation() > 0) {
+			zoomIn.setCenterX(e.getX());
+			zoomIn.setCenterY(e.getY());
+			zoomIn.performAction();
+		} else {
+			zoomOut.setCenterX(e.getX());
+			zoomOut.setCenterY(e.getY());
+			zoomOut.performAction();
+    }
+  }
+  
+  /**
 	 * Check if user double clicked a data box and it will prompt user to type
 	 * data if double clicked on a selected or de-selected data box
 	 * 

@@ -1,11 +1,16 @@
 package painttools.tools;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
+import actions.global.ActionName;
+import actions.global.GlobalPaintActionExecuter;
+import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
+import actions.global.globalactions.ConstructLineSegmentGlobalAction;
+import buttons.ToolButton;
 import paintcomponents.LineSegment;
 import paintcomponents.PaintComponent;
 import paintcomponents.SimplePoint;
@@ -14,28 +19,31 @@ import paintcomponents.data.DataFromPoint;
 import paintcomponents.data.DataTextPaintComponent;
 import paintcomponents.data.DataToPoint;
 import ui.PaintPanel;
-import actions.global.ActionName;
-import actions.global.GlobalPaintActionExecuter;
-import actions.global.globalactions.ConstructDataLineSegmentGlobalAction;
-import actions.global.globalactions.ConstructLineSegmentGlobalAction;
-import buttons.ToolButton;
+import ui.icons.CustomIcons;
 
-public class LineTool extends PaintTool {
+public class LineTool implements PaintToolsInterface {
 
 	LineSegment line;
 	private PaintPanel panel;
+	private ToolButton button;
 
+	public LineTool(){
+
+		createButton();
+	}
+	@Override
+	public void createButton() {
+		// TODO Auto-generated method stub
+
+		button = new ToolButton();
+		button.setOriginalImage(CustomIcons.line());
+		button.setSelectedImage(CustomIcons.selectedLine());
+		
+	}
+	
 	@Override
 	public ToolButton getButton() {
-
-		ToolButton b = new ToolButton();
-
-		ImageIcon icon = new ImageIcon("./images/line.png");
-		b.setOriginalImage(icon);
-
-		ImageIcon icon2 = new ImageIcon("./images/lineselected.png");
-		b.setSelectedImage(icon2);
-		return b;
+		return button;
 	}
 
 	@Override
@@ -130,7 +138,7 @@ public class LineTool extends PaintTool {
 					panel.repaint();
 					panel.setTempComponent(null);
 					panel.showCursor();
-					panel.toolSelected(panel.getSelectTool());
+					panel.setDefaultSelectTool();
 				}
 
 				// If the first point is dataFrom point and the point under
@@ -151,7 +159,7 @@ public class LineTool extends PaintTool {
 					panel.repaint();
 					panel.setTempComponent(null);
 					panel.showCursor();
-					panel.toolSelected(panel.getSelectTool());
+					panel.setDefaultSelectTool();
 				}
 			}
 		}
@@ -248,7 +256,6 @@ public class LineTool extends PaintTool {
 	@Override
 	public void start(PaintPanel panel) {
 		this.panel = panel;
-
 		panel.getSelectTool().clearSelection();
 	}
 
@@ -256,6 +263,12 @@ public class LineTool extends PaintTool {
 	public void reset() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

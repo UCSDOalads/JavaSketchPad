@@ -12,13 +12,12 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import buttons.ToolButton;
-
 import painttools.tools.AddClassTool;
 import painttools.tools.AddInputBoxTool;
 import painttools.tools.AddOutputBoxTool;
 import painttools.tools.DotTool;
 import painttools.tools.LineTool;
-import painttools.tools.PaintTool;
+import painttools.tools.PaintToolsInterface;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
 import ui.ShortcutHandler;
@@ -47,9 +46,9 @@ public class ToolBar extends JPanel {
 		addTool(new LineTool());
 
 
-		addComponentTool(new AddClassTool(panel));
-		addComponentTool(new AddInputBoxTool(panel));
-		addComponentTool(new AddOutputBoxTool(panel));
+		addTool(new AddClassTool(panel));
+		addTool(new AddInputBoxTool(panel));
+		addTool(new AddOutputBoxTool(panel));
 
 
 		addSeprator();
@@ -65,7 +64,7 @@ public class ToolBar extends JPanel {
 	 * 
 	 * @param tool
 	 */
-	private void addTool(PaintTool tool) {
+	private void addTool(PaintToolsInterface tool) {
 		ToolButton button = tool.getButton();
 		buttons.add(button);
 		button.addActionListener(new ActionListener() {
@@ -74,29 +73,6 @@ public class ToolBar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				setButtonSelection(e);
 				select(tool);
-			}
-		});
-		addSeprator();
-		add(button);
-	}
-
-	/**
-	 * Adds a component tool to the toolbar. This method will add specific tool to the
-	 * tool bar, and an action listener associated with it
-	 * 
-	 * @param tool
-	 */
-	private void addComponentTool(PaintTool tool) {
-		ToolButton button = tool.getButton();
-		buttons.add(button);
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setButtonSelection(e);
-				select(tool);
-				
-				buttons.get(1).doClick();
 			}
 		});
 		addSeprator();
@@ -115,7 +91,7 @@ public class ToolBar extends JPanel {
 	 * this method should be invoked by the actionlistener when an tool button is selected
 	 * @param tool
 	 */
-	private void select(PaintTool tool) {
+	private void select(PaintToolsInterface tool) {
 		for (ToolBarListener toolBarListener : listeners) {
 			toolBarListener.toolSelected(tool);
 		}
