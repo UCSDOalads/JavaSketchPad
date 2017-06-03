@@ -119,6 +119,8 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 			DataToPoint toPoint = toPoints.get(i+1);
 			try {
 				args[i] = toPoint.fetchData();
+				//This usage's effects haven't been verified to be useful.
+				// ***** DO NOT FOLLOW THIS USAGE IF YOU'RE NOT CLEAR WHAT YOU'RE DOING ******
 				if (wantedType[i].isAssignableFrom(String.class)) {
 					args[i] = wantedType[i].cast(args[i]);
 				}
