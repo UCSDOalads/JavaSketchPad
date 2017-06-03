@@ -34,10 +34,12 @@ public class DataDisplayPaintComponent extends DataTextIOPaintComponent {
 	 * @see DataToPoint.fetchData for exception details
 	 */
 	public void updateDisplayText() throws NoSuchElementException, NoConnectingLineSegmentException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
-		Object data = getToPoints().get(0).fetchData().toString();// add
-																	// toString
-																	// to ignore
-																	// error
+		Object data = getToPoints().get(0).fetchData();/*
+														 * .toString();// add //
+														 * toString // to ignore
+														 * // error
+														 */
+		this.setDisplayingText(data.toString());
 		/*if(data instanceof String){
 			this.setDisplayingText(data.toString());
 		} else {
