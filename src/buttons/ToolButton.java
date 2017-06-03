@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 public class ToolButton extends JToggleButton {
-	Dimension d = new Dimension(60,60);
+	Dimension d = new Dimension(50,50);
 	
 	public ToolButton(String str){
 		super(str);
@@ -20,7 +20,7 @@ public class ToolButton extends JToggleButton {
 		setOpaque(false);
 		setFocusPainted(false);
 		setBorderPainted(false);
-		setButtonSize(new Dimension(60,60));
+		setButtonSize(d);
 	}
 	
 	

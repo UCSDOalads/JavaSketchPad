@@ -12,7 +12,7 @@ import ui.PaintPanel;
 import ui.general.InputManager;
 import ui.general.InputManagerDelegate;
 
-public class AddDataDisplayBoxAction extends MenuBarPaintAction {
+public class AddDataDisplayBoxAction extends AddComponentActions {
 
 	public AddDataDisplayBoxAction(PaintPanel panel) {
 		super(panel);
@@ -27,13 +27,12 @@ public class AddDataDisplayBoxAction extends MenuBarPaintAction {
 	@Override
 	public void performAction() {
 
-		AddDataDisplayBoxGlobalAction assiciatedAction = (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
-				.getAssiciatedAction();
-		assiciatedAction.setDisplayString("Data Display");
-		assiciatedAction.setX(panel.getWidth() / 2);
-		assiciatedAction.setY(panel.getHeight() / 2);
-		GlobalPaintActionExecuter.getSharedInstance().execute(assiciatedAction,
-				panel);
+		AddDataDisplayBoxGlobalAction associatedAction = (AddDataDisplayBoxGlobalAction) ActionName.ADD_DATA_DISPLAY_BOX
+				.getAssociatedAction();
+		associatedAction.setDisplayString("Data Display");
+		associatedAction.setX(x);
+		associatedAction.setY(y);
+		GlobalPaintActionExecuter.getSharedInstance().execute(associatedAction, panel);
 
 	}
 

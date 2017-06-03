@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,17 +17,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import classpathutil.ClassSearch;
 
-import javax.swing.DefaultListSelectionModel;
-import javax.swing.JButton;
-
-public class ClassSearchFrame extends JFrame
-		implements
-			ActionListener,
-			DocumentListener {
+public class ClassSearchFrame extends JFrame implements ActionListener,
+		DocumentListener {
 
 	private JTextField searchingTextField;
 	private JTable resultsTable;
@@ -66,7 +62,7 @@ public class ClassSearchFrame extends JFrame
 		resultsTable = new JTable();
 		resultsTable.setModel(defaultTableModel);
 		resultsTable.setSelectionModel(new ForcedListSelectionModel());
-
+		resultsTable.setTableHeader(null);
 		// scroll option
 		scrollPane = new JScrollPane(resultsTable);
 		panel.add(scrollPane, BorderLayout.CENTER);
@@ -101,6 +97,7 @@ public class ClassSearchFrame extends JFrame
 				synchronized (searchingTextField) {
 					searchText = searchingTextField.getText();
 				}
+
 				// start Search
 				ArrayList<String> classesForName = searchUtil
 						.classesForName(searchText);
@@ -108,8 +105,8 @@ public class ClassSearchFrame extends JFrame
 				boolean equals;
 				synchronized (searchingTextField) {
 					equals =
-							// if text has not changed
-							searchingTextField.getText().equals(searchText);
+					// if text has not changed
+					searchingTextField.getText().equals(searchText);
 				}
 
 				if (equals) {
@@ -119,7 +116,8 @@ public class ClassSearchFrame extends JFrame
 						public void run() {
 							defaultTableModel.setRowCount(0);
 							for (String string : classesForName) {
-								defaultTableModel.addRow(new String[]{string});
+								defaultTableModel
+										.addRow(new String[] { string });
 							}
 							defaultTableModel.fireTableDataChanged();
 						}
@@ -140,7 +138,7 @@ public class ClassSearchFrame extends JFrame
 	public void actionPerformed(ActionEvent e) {
 
 		// User cancel the class search
-		
+
 		if (e.getSource() == btnCancel) {
 			setVisible(false);
 			dispose();
@@ -155,8 +153,8 @@ public class ClassSearchFrame extends JFrame
 					selectedRow = 0;
 				}
 				// TODO get selected/highlighted class, not just the first one
-				delegate.didSelectClass(
-						(String) resultsTable.getValueAt(selectedRow, 0));
+				delegate.didSelectClass(decode((String) resultsTable
+						.getValueAt(selectedRow, 0)));
 
 			}
 
@@ -171,6 +169,7 @@ public class ClassSearchFrame extends JFrame
 
 		updateClassList();
 	}
+
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
@@ -188,12 +187,21 @@ public class ClassSearchFrame extends JFrame
 		this.delegate = delegate;
 	}
 
+	private String decode(String original) {
+		String result = "";
+		String leftPart = original.substring(0, original.indexOf(' '));
+		String rightPart = original.substring(original.lastIndexOf('(') + 1,
+				original.lastIndexOf(')'));
+		result = rightPart + ".";
+		result += leftPart;
+		return result;
+	}
+
 	/*
 	 * Forcely remove single selection in Jtable
 	 */
-	private static class ForcedListSelectionModel
-			extends
-				DefaultListSelectionModel {
+	private static class ForcedListSelectionModel extends
+			DefaultListSelectionModel {
 		public ForcedListSelectionModel() {
 			this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		};

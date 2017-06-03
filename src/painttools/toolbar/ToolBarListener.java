@@ -1,8 +1,8 @@
 package painttools.toolbar;
 
-import painttools.tools.PaintTool;
+import painttools.tools.PaintToolsInterface;
 
 public interface ToolBarListener {
 
-	public abstract void toolSelected(PaintTool tool);
+	public abstract void toolSelected(PaintToolsInterface tool);
 }

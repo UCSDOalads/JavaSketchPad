@@ -7,35 +7,39 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import actions.menu.ActionsMenuBar;
 import painttools.toolbar.ToolBar;
 import ui.helper.historyui.undoredoLog.UndoredoDialog;
-import actions.menu.ActionsMenuBar;
 
-public class MainFrame extends JFrame {
-	Color color = new Color(150, 150, 150);
+public class JavaSketchPad extends JFrame {
+	Color backgroundColor = new Color(240, 240, 240);
+	Color toolBarColor = new Color(210,210,210);
+	
 	ArrayList<JPanel> panelList;
 
-	public MainFrame() {
+	public JavaSketchPad() {
 		panelList = new ArrayList<JPanel>();
 
 		// meke the frame full screen
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		//set menu bar to Mac menuBar
+		System.setProperty("apple.laf.useScreenMenuBar", "true");
 
-		setForeground(color);
-		setBackground(color);
 
 		// set up paintPanel
 		PaintPanel paintPanel = new PaintPanel();
 		paintPanel.setBorder(null);
-		paintPanel.setBackground(Color.WHITE);
+		paintPanel.setBackground(backgroundColor);
 		panelList.add(paintPanel);
 		getContentPane().add(paintPanel, BorderLayout.CENTER);
 
 		// set up toolBar panel
 		ToolBar toolBar = new ToolBar(paintPanel);
+		toolBar.setBackground(toolBarColor);
 		panelList.add(toolBar);
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 
@@ -60,6 +64,7 @@ public class MainFrame extends JFrame {
 		// tool bar
 		toolBar.getSelectTool().addSelectionToolListener(menuBar);
 		toolBar.addToolBarListener(paintPanel);
+		toolBar.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		// change backgrounds setting
 		changeTheme();
@@ -69,14 +74,13 @@ public class MainFrame extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new MainFrame().setVisible(true);
+		new JavaSketchPad().setVisible(true);
 	}
 
 	/* change the background setting for JPanels */
 	public void changeTheme() {
-		for (JPanel panel : panelList) {
-			panel.setBackground(color);
-		}
+		setForeground(backgroundColor);
+		setBackground(backgroundColor);
 	}
 
 }
