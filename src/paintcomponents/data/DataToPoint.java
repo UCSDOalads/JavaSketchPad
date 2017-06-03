@@ -53,7 +53,7 @@ public class DataToPoint extends SimplePoint {
 	public Object fetchData() throws NoConnectingLineSegmentException, NoSuchElementException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
 		if(this.lineSegment == null) throw new NoConnectingLineSegmentException();
 		
-		Object returnVal = lineSegment.getFromPoint().getData().toString();
+		Object returnVal = lineSegment.getFromPoint().getData();// .toString();
 		if(returnVal == null) throw new NoSuchElementException();
 		return returnVal;
 		

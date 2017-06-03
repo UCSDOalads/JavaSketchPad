@@ -26,9 +26,11 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		implements DataFromPointDataProvider {
 
 	private Method displayingMethod;
+	private Class<?>[] wantedType;
 
 	public MethodPaintComponent(Method displayingMethod, int x, int y) {
 		super(displayingMethod.toString(), x, y);
+		this.wantedType = displayingMethod.getParameterTypes();
 		this.displayingMethod = displayingMethod;
 		init();
 	}
@@ -100,6 +102,7 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 		Object operatingInstance = null;
 		try {
 			operatingInstance = toPoints.get(0).fetchData();
+			System.out.println(operatingInstance.getClass());
 		} catch (NoSuchElementException | NoConnectingLineSegmentException
 				| DataFromPointNoDataProviderException
 				| DataFromPointProviderCannotProvideDataException e1) {
@@ -116,6 +119,9 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 			DataToPoint toPoint = toPoints.get(i+1);
 			try {
 				args[i] = toPoint.fetchData();
+				if (wantedType[i].isAssignableFrom(String.class)) {
+					args[i] = wantedType[i].cast(args[i]);
+				}
 			} catch (NoSuchElementException | NoConnectingLineSegmentException
 					| DataFromPointNoDataProviderException
 					| DataFromPointProviderCannotProvideDataException e) {
@@ -123,7 +129,8 @@ public class MethodPaintComponent extends DataTextIOPaintComponent
 				// TODO Handle Exception
 				// arguments must be valid
 				throw new IllegalStateException();
-			}
+			} 
+			 
 		}
 
 		try {
