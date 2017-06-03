@@ -13,6 +13,7 @@
 	</target>
 
 	<target name="run" depends="compile" description="Running the program">
+		<java classname="ui.JavaSketchPad" fork="true" classpath="${build.dir}"/>
 	</target>
 
 	<target name="clean">
