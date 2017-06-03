@@ -16,6 +16,9 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 		implements DataFromPointDataProvider{
 
 
+	//Protect the class box from being updated
+	boolean canUpdate = true;
+	
 	public DataInputTextfieldPaintComponent(String displayingText, int x,
 			int y) {
 		super(displayingText, x, y);
@@ -52,8 +55,19 @@ public class DataInputTextfieldPaintComponent extends DataTextIOPaintComponent
 		linkPoints(rootElement);
 	}
 
+	/*
+	 * Set this input box to be "in-updatable"
+	 * Now this should only be used by the class input box
+	 */
+	public void setCannotUpdate(){
+		this.canUpdate = false;
+	}
 	
-	
+	/*
+	 * Getter for whether it's updatable.
+	 */
+	public boolean canUpdate(){
+		return this.canUpdate;
+	}
 
-	
 }

@@ -23,6 +23,8 @@ public class AddLazyJavaClassGlobalAction extends GlobalPaintAction {
 	@Override
 	protected void execute(PaintPanel panel) {
 		ClassPaintComponent comp = new ClassPaintComponent(classToCreate, x, y);
+		//The class input box shouldn't be updatable.
+		comp.setCannotUpdate();
 		panel.addPaintComponent(comp);
 
 		if (panel.getSelectTool() != null) {
