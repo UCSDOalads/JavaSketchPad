@@ -34,7 +34,7 @@ UCSD CSE B260 lab
 
 
 ## User Interface Introduction
-
+![alt text](https://github.com/UCSDOalads/JavaSketchPad/blob/demoImage/demo%201.png)
 ### Menu bar:
 Contains all the functionalities that you can use on JavaSketchPad, mainly including Data (Input/Output Box, Annotations, etc), Lazy (Java class, method, etc), Edit (Zoom, font, etc), File (e.g. c.xml), Script (same as the “:” commands to quickly add objects). Among them, Generate, Developer, and View are deprecated or under-development.
 
@@ -54,6 +54,11 @@ Class (C): create a Java class constructor that can be used to create its method
 InputBox (I): A data input box that can be updated with double click or a click on menu bar (Data -> InputBox -> Update). It can also be connected to the left dots of method to pass in argument for methods.
 OutputBox (O): A data output box that can be updated with a click on menu bar (Data -> OutputBox -> Update), but only after it is connected to the right dots of method and all the left dots are connected with data.
 
+### MUST READ THIS!
+For any class other than java.lang.String class, please use a Constructor that takes in a ***String*** type data to initialize the value to be the corresponding type before constructing lines.
+
+E.g.:
+![alt text](https://github.com/UCSDOalads/JavaSketchPad/blob/demoImage/demo%202.png)
 
 ## Open Source Code: Package Description
 
