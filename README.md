@@ -21,20 +21,9 @@ git clone https://github.com/UCSDOalads/JavaSketchPad.git
 cd JavaSketchPad
 ```
 
-## Contributing
-
-Please read “How to work on this project?” for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Authors
-
-See also the list of [contributors](github.com/UCSDOalads/JavaSketchPad/graphs/contributors) who participated in this project.
-
-## Acknowledgments
-UCSD CSE B260 lab
-
 
 ## User Interface Introduction
-
+![alt text](https://github.com/UCSDOalads/JavaSketchPad/blob/demoImage/demo%201.png)
 ### Menu bar:
 Contains all the functionalities that you can use on JavaSketchPad, mainly including Data (Input/Output Box, Annotations, etc), Lazy (Java class, method, etc), Edit (Zoom, font, etc), File (e.g. c.xml), Script (same as the “:” commands to quickly add objects). Among them, Generate, Developer, and View are deprecated or under-development.
 
@@ -54,6 +43,16 @@ Class (C): create a Java class constructor that can be used to create its method
 InputBox (I): A data input box that can be updated with double click or a click on menu bar (Data -> InputBox -> Update). It can also be connected to the left dots of method to pass in argument for methods.
 OutputBox (O): A data output box that can be updated with a click on menu bar (Data -> OutputBox -> Update), but only after it is connected to the right dots of method and all the left dots are connected with data.
 
+### MUST READ THIS!
+For any class other than java.lang.String class, please use a Constructor that takes in a ***String*** type data to initialize the value to be the corresponding type before constructing lines.
+
+E.g.:
+![alt text](https://github.com/UCSDOalads/JavaSketchPad/blob/demoImage/demo%202.png)
+
+
+## Contributing
+
+Please read “How to work on this project?” for details on our code of conduct, and the process for submitting pull requests to develop branch.
 
 ## Open Source Code: Package Description
 
@@ -86,4 +85,26 @@ ui.helper.historyui: frame for history(undo, redo) actions
 ui.helper.historyui.undoredoLog: generate log for undo/redo Log
 ui.helper.methodinput: implements the method input functionality. The package contains a method input frame and a method searching engine. 
 ui.icons: icons used in the program
+```
+
+
+## Authors
+
+See also the list of [contributors](https://github.com/UCSDOalads/JavaSketchPad/graphs/contributors) who participated in this project.
+```
+(in alphabetical order)
+Original Author/ ex-Project Lead: Zhibo Chen.
+Project Lead: Cheng Gong
+(UI) User Interface Lead:     Kaijie Cai.
+              UI members:     Zhien Ke.
+(ID) Interactive Design Lead: Muyuan Chi.
+              ID members:     Zhongyu Chen, Yaobang Deng, Xiangyi Gong, Xiaoquan Jiang, Kent, Feng Shan, Tan Su.
+(BE) Back End Lead:           Yidong Luo.
+              BE members:     Sean Z, Tianyi Zhang.
+```
+
+## Acknowledgments
+```
+UCSD CSE B260 lab
+Helen, Zhening Huang, Mossaka, Jiheng Wang, Tony Yang, and any other who support or contribute to this project.
 ```
