@@ -3,6 +3,8 @@ package painttools.tools;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
+import javax.swing.SwingUtilities;
+
 import buttons.ToolButton;
 import paintcomponents.SimplePoint;
 import ui.PaintPanel;
@@ -49,7 +51,9 @@ public class DotTool implements PaintToolsInterface {
 		panel.getSelectTool().selectComponent(pointToAdd);
 
 		panel.addPaintComponent(pointToAdd);
-		panel.toolSelected(panel.getSelectTool());
+		if (!SwingUtilities.isRightMouseButton(e)) {
+			panel.setDefaultSelectTool();
+		}
 
 	}
 

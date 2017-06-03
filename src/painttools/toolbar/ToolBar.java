@@ -21,6 +21,7 @@ import painttools.tools.PaintToolsInterface;
 import painttools.tools.SelectTool;
 import ui.PaintPanel;
 import ui.ShortcutHandler;
+import ui.PaintPanel.State;
 
 public class ToolBar extends JPanel {
 

@@ -25,7 +25,7 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	private ArrayList<PaintComponent> components;
 
 	
-	enum State {
+	public enum State {
 		TOOLS, DEFAULT
 	}
 
@@ -243,5 +243,10 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 		selectTool.getButton().doClick();
 	}
 
-
+	/**
+	 * Returns the state of the panel
+	 */
+	public State getState(){
+		return state;
+	}
 }
