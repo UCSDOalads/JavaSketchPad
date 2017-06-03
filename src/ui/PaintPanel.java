@@ -242,11 +242,4 @@ public class PaintPanel extends JPanel implements ToolBarListener {
 	public void setDefaultSelectTool(){
 		selectTool.getButton().doClick();
 	}
-
-	/**
-	 * Returns the state of the panel
-	 */
-	public State getState(){
-		return state;
-	}
 }
