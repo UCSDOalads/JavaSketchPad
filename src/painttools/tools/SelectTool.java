@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
-
 import javax.swing.ImageIcon;
 
 import actions.ZoomInAction;
@@ -81,7 +80,9 @@ public class SelectTool implements PaintToolsInterface {
 		}
 
 		// prompt data input if user double clicked on a selected data box
-		doubleClickAction(comp);
+		if(panel.getSelectTool().getButton().isSelected()) {
+			doubleClickAction(comp);
+		}
 
 		panel.repaint();
 	}
@@ -95,7 +96,9 @@ public class SelectTool implements PaintToolsInterface {
 	public void deselectComponent(PaintComponent comp) {
 
 		// check if double clicked, if so perform the action on the data box
-		doubleClickAction(comp);
+		if(panel.getSelectTool().getButton().isSelected()) {
+			doubleClickAction(comp);
+		}
 
 		// then deselect the component
 		comp.deselect(this);

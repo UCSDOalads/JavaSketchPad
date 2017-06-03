@@ -48,7 +48,6 @@ public class LineTool implements PaintToolsInterface {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.print(panel.getSelectTool().getSelectedComponents() + "\n");
 		// If no point is selected, select the point(if any) at the mouse's
 		// location.
 		ArrayList<PaintComponent> items = panel.getSelectTool()
@@ -194,7 +193,7 @@ public class LineTool implements PaintToolsInterface {
 				panel.setTempComponent(null);
 				panel.showCursor();
 				panel.repaint();
-				panel.toolSelected(panel.getSelectTool());
+				panel.setDefaultSelectTool();
 			}
 		}
 

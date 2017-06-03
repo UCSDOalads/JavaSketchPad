@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
+import javax.swing.SwingUtilities;
+
 import actions.AddDataDisplayBoxAction;
 import buttons.ToolButton;
 import ui.PaintPanel;
@@ -63,7 +65,9 @@ public class AddOutputBoxTool implements ActionToolsInterface {
 			action.performAction();
 			action.setDefaultXY();
 		}
-		panel.setDefaultSelectTool();
+		if (!SwingUtilities.isRightMouseButton(e)) {
+			panel.setDefaultSelectTool();
+		}
 
 	}
 
