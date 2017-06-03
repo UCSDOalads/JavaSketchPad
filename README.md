@@ -104,5 +104,7 @@ Project Lead: Cheng Gong
 ```
 
 ## Acknowledgments
+```
 UCSD CSE B260 lab
 Helen, Zhening Huang, Mossaka, Jiheng Wang, Tony Yang, and any other who support or contribute to this project.
+```
