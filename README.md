@@ -33,19 +33,20 @@ See also the list of [contributors](github.com/UCSDOalads/JavaSketchPad/graphs/c
 UCSD CSE B260 lab
 
 
-##User Interface Introduction
+## User Interface Introduction
 
-###Menu bar:
+### Menu bar:
 Contains all the functionalities that you can use on JavaSketchPad, mainly including Data (Input/Output Box, Annotations, etc), Lazy (Java class, method, etc), Edit (Zoom, font, etc), File (e.g. c.xml), Script (same as the “:” commands to quickly add objects). Among them, Generate, Developer, and View are deprecated or under-development.
 
-###Canvas:
+### Canvas:
 You can interact with the program on the canvas.
 
-###Action History Dialog:
+### Action History Dialog:
 Action History: This table shows the actions user performed in order and each individual action could be highlighted for undo.
 Undo button: undo the last action. You can also select a row to highlight that action, so that undoing again will undo until that row (inclusive).
-Redo button: Similiar to Undo button.
-###Six Button tools: click on the button and click on canvas where you want to put the object (except for Line tool). 
+Redo button: Similiar to Undo button.
+
+### Six Button tools: click on the button and click on canvas where you want to put the object (except for Line tool). 
 Simple Point: a basic developer point that can be connected with Lines
 Select: the default mode that can select other components on canvas
 Line: select the Line tool, then connect one point to another. If you want to connect points to pass on data, you have to select the point that contains data and then select the point that the data is going to. This sequence does not matter for Simple Point.
@@ -54,7 +55,7 @@ InputBox (I): A data input box that can be updated with double click or a click 
 OutputBox (O): A data output box that can be updated with a click on menu bar (Data -> OutputBox -> Update), but only after it is connected to the right dots of method and all the left dots are connected with data.
 
 
-##Open Source Code: Package Description
+## Open Source Code: Package Description
 
 ```
 actions: implements all the actions that users could make interactions from the menu bar
