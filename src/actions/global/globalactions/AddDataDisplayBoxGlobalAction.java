@@ -1,20 +1,17 @@
 package actions.global.globalactions;
 
-import java.util.ArrayList;
-
-import paintcomponents.SimplePoint;
 import paintcomponents.data.DataDisplayPaintComponent;
-import paintcomponents.data.DataInputTextfieldPaintComponent;
+import ui.PaintPanel;
 import actions.edit.undoredo.SharedUndoRedoActionManager;
 import actions.edit.undoredo.UndoRedoableInterface;
 import actions.global.GlobalPaintAction;
-import ui.PaintPanel;
 
 public class AddDataDisplayBoxGlobalAction extends GlobalPaintAction {
 
 	private String dataDisplay;
 	private int x;
 	private int y;
+
 	private DataDisplayPaintComponent comp;
 
 	public void setDisplayString(String dataDisplay) {
@@ -40,11 +37,14 @@ public class AddDataDisplayBoxGlobalAction extends GlobalPaintAction {
 	@Override
 	protected void execute(PaintPanel panel) {
 		comp = new DataDisplayPaintComponent(
+		// DataDisplayPaintComponent comp = new DataDisplayPaintComponent(
 				dataDisplay, x, y);
+
 		if (panel.getSelectTool() != null) {
-		    panel.getSelectTool().clearSelection();
-		    panel.getSelectTool().selectComponent(comp);
+			panel.getSelectTool().clearSelection();
+			panel.getSelectTool().selectComponent(comp);
 		}
+
 		panel.addPaintComponent(comp);
 
 		// push action to manager

@@ -5,14 +5,14 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import actions.edit.undoredo.SharedUndoRedoActionManager;
-import actions.edit.undoredo.UndoRedoableInterface;
-import actions.menu.ActionsMenuBarTitles;
 import paintcomponents.NoConnectingLineSegmentException;
 import paintcomponents.data.DataDisplayPaintComponent;
 import paintcomponents.data.DataFromPointNoDataProviderException;
 import paintcomponents.data.DataFromPointProviderCannotProvideDataException;
 import ui.PaintPanel;
+import actions.edit.undoredo.SharedUndoRedoActionManager;
+import actions.edit.undoredo.UndoRedoableInterface;
+import actions.menu.ActionsMenuBarTitles;
 
 public class UpdateDataDisplayBoxAction extends MenuBarPaintAction {
 
@@ -25,7 +25,9 @@ public class UpdateDataDisplayBoxAction extends MenuBarPaintAction {
 		
 		if(panel.getSelectTool().getSelectedComponents().size() == 1){
 			if(panel.getSelectTool().getSelectedComponents().get(0) instanceof DataDisplayPaintComponent){
-				return ((DataDisplayPaintComponent) panel.getSelectTool().getSelectedComponents().get(0)).canUpdate();
+				// return true;
+				return ((DataDisplayPaintComponent) panel.getSelectTool()
+						.getSelectedComponents().get(0)).canUpdate();
 			}
 		}
 		return false;
