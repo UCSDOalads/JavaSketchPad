@@ -50,7 +50,8 @@ public class DataToPoint extends SimplePoint {
 	 * @throws DataFromPointProviderCannotProvideDataException  when the connecting dataInputPoint's data provider cannot provide a information
 	 * @throws DataFromPointNoDataProviderException  when the connecting DataInputPoint does not have a data provider associated
 	 */
-	public Object fetchData() throws NoConnectingLineSegmentException, NoSuchElementException, DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
+	public Object fetchData() throws NoConnectingLineSegmentException, NoSuchElementException,
+				DataFromPointNoDataProviderException, DataFromPointProviderCannotProvideDataException{
 		if(this.lineSegment == null) throw new NoConnectingLineSegmentException();
 		
 		Object returnVal = lineSegment.getFromPoint().getData();// .toString();
