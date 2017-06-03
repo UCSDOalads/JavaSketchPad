@@ -21,17 +21,22 @@ git clone https://github.com/UCSDOalads/JavaSketchPad.git
 cd JavaSketchPad
 ```
 
-## Contributing
-
-Please read “How to work on this project?” for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Authors
 
 See also the list of [contributors](https://github.com/UCSDOalads/JavaSketchPad/graphs/contributors) who participated in this project.
+(in alphabetical order)
+Original Author/ ex-Project Lead: Zhibo Chen.
+Project Lead: Cheng Gong
+(UI) User Interface Lead:     Kaijie Cai.
+              UI members:     Zhien Ke.
+(ID) Interactive Design Lead: Muyuan Chi.
+              ID members:     Zhongyu Chen, Yaobang Deng, Xiangyi Gong, Xiaoquan Jiang, Kent, Feng Shan, Tan Su.
+(BE) Back End Lead:           Yidong Luo.
+              BE members:     Sean Z, Tianyi Zhang.
 
 ## Acknowledgments
 UCSD CSE B260 lab
-
+Helen, Zhening Huang, Mossaka, Jiheng Wang, Tony Yang, and any other who support or contribute to this project.
 
 ## User Interface Introduction
 ![alt text](https://github.com/UCSDOalads/JavaSketchPad/blob/demoImage/demo%201.png)
@@ -59,6 +64,11 @@ For any class other than java.lang.String class, please use a Constructor that t
 
 E.g.:
 ![alt text](https://github.com/UCSDOalads/JavaSketchPad/blob/demoImage/demo%202.png)
+
+
+## Contributing
+
+Please read “How to work on this project?” for details on our code of conduct, and the process for submitting pull requests to develop branch.
 
 ## Open Source Code: Package Description
 
