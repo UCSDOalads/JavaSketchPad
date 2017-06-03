@@ -16,8 +16,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 ```
-Eclipse for Java (Eclipse Neon recommended)
-Java System Library [JavaSE 1.8]
+Java Runtime Environment, J2SE 1.8
+Ant Build Tool
 ```
 
 ### Installing
@@ -27,6 +27,7 @@ git clone the project through “github.com/UCSDOalads/JavaSketchPad” or throu
 ```
 git clone https://github.com/UCSDOalads/JavaSketchPad.git
 cd JavaSketchPad
+ant run
 ```
 
 
