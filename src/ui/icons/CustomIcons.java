@@ -37,4 +37,28 @@ public class CustomIcons {
 	public static ImageIcon redo(){
 		return new ImageIcon("./images/redo.png");
 	}
+	
+	public static ImageIcon classIcon(){
+		return new ImageIcon("./images/c.png");
+	}
+	
+	public static ImageIcon selectedClassIcon(){
+		return new ImageIcon("./images/cselected.png");
+	}
+	
+	public static ImageIcon inputBox(){
+		return new ImageIcon("./images/inputbox.png");
+	}
+	
+	public static ImageIcon selectedInputBox(){
+		return new ImageIcon("./images/inputboxselected.png");
+	}
+	
+	public static ImageIcon outputBox(){
+		return new ImageIcon("./images/outputbox.png");
+	}
+	
+	public static ImageIcon selectedOutputBox(){
+		return new ImageIcon("./images/outputboxselected.png");
+	}
 }

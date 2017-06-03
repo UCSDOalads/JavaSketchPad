@@ -33,8 +33,8 @@ public class AddOutputBoxTool implements ActionToolsInterface {
 	public void createButton() {
 		// TODO Auto-generated method stub
 		button = new ToolButton();
-		button.setOriginalImage(CustomIcons.arrow());
-		button.setSelectedImage(CustomIcons.selectedArrow());
+		button.setOriginalImage(CustomIcons.outputBox());
+		button.setSelectedImage(CustomIcons.selectedOutputBox());
 		button.addActionListener(this);
 		
 	}
