@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
+import javax.swing.SwingUtilities;
+
 import actions.AddLazyJavaClassAction;
 import buttons.ToolButton;
 import ui.PaintPanel;
@@ -62,8 +64,9 @@ public class AddClassTool implements ActionToolsInterface {
 			action.setXY(e.getX(), e.getY());
 			action.performAction();
 		}
-		panel.setDefaultSelectTool();
-
+		if (!SwingUtilities.isRightMouseButton(e)) {
+			panel.setDefaultSelectTool();
+		}
 	}
 
 	@Override
