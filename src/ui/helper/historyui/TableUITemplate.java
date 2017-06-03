@@ -109,7 +109,6 @@ public class TableUITemplate extends JPanel {
 		scrollPane.setEnabled(false);
 		scrollPane.setViewportBorder(null);
 		scrollPane.setBackground(getColor());
-		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		add(scrollPane, BorderLayout.CENTER);
 		jcomponents.add(scrollPane);
 	}
@@ -117,7 +116,6 @@ public class TableUITemplate extends JPanel {
 	private void setButtonPanel() {
 		FlowLayout fl_button_panel = new FlowLayout();
 		button_panel = new JPanel(fl_button_panel);
-	    getButton_panel().setBorder(BorderFactory.createLineBorder(Color.black));
 		getButton_panel().setBackground(getColor());
 		add(getButton_panel(), BorderLayout.SOUTH);
 		jcomponents.add(button_panel);

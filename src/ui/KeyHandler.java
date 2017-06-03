@@ -26,7 +26,7 @@ public class KeyHandler implements KeyListener {
 	public static final String COMMAND_LINE_DISPLAY = "Press : to enter commands";
 	private static final String PROMPT = "";
 
-	Color color = new Color(150, 150, 150);
+	Color color = new Color(240, 240, 240);
 	private PaintPanel paintPanel;
 	private boolean inCommandMode;
 	Interpreter interpreter ;

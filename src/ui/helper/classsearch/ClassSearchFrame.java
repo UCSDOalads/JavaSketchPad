@@ -62,7 +62,7 @@ public class ClassSearchFrame extends JFrame implements ActionListener,
 		resultsTable = new JTable();
 		resultsTable.setModel(defaultTableModel);
 		resultsTable.setSelectionModel(new ForcedListSelectionModel());
-
+		resultsTable.setTableHeader(null);
 		// scroll option
 		scrollPane = new JScrollPane(resultsTable);
 		panel.add(scrollPane, BorderLayout.CENTER);
