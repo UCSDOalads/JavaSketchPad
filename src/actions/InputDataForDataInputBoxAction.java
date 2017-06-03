@@ -21,8 +21,12 @@ public class InputDataForDataInputBoxAction extends MenuBarPaintAction {
 	public boolean canPerformAction() {
 		ArrayList<PaintComponent> comps = panel.getSelectTool().getSelectedComponents();
 		if(comps.size()!= 1) return false;
-		if (comps.get(0) instanceof DataInputTextfieldPaintComponent) {
-			return true;
+		Object comp = comps.get(0);
+		if (comp instanceof DataInputTextfieldPaintComponent) {
+			//Make sure this is not a class box
+			if( ((DataInputTextfieldPaintComponent) comp).canUpdate()){
+				return true;
+			}
 		}
 		return false;
 	}
