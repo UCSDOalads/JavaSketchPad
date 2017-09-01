@@ -1,4 +1,8 @@
 # JavaSketchPad README
+master: [![Build Status](https://travis-ci.org/UCSDOalads/JavaSketchPad.svg?branch=master)](https://travis-ci.org/UCSDOalads/JavaSketchPad)
+develop:[![Build Status](https://travis-ci.org/UCSDOalads/JavaSketchPad.svg?branch=develop)](https://travis-ci.org/UCSDOalads/JavaSketchPad)
+
+
 This project started with a simple idea of a sketch pad with connected and annotated dots; yet it ends up connecting a handful of UCSD undergrads to create something much more. This side project of ours has helped us learn an enormous amount about coding in Java and team management as well as git usage.
 Our project goal is to create a visual exploration of Java API. JavaSketchPad will
 ```
